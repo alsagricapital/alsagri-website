@@ -381,7 +381,7 @@ function Footer() {
   return (
     <footer className="foot">
       <div className="wrap foot-inner">
-        <div>© ٢٠٢٥ الصاقري كابيتال — جميع الحقوق محفوظة.</div>
+        <div>© 2026 الصقري كابيتال — جميع الحقوق محفوظة.</div>
         <div className="mono">Riyadh · KSA · TASI Listed Equities</div>
       </div>
     </footer>);

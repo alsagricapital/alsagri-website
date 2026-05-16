@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<title>OG Image — الصقري</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1200px; height: 630px;
+    background: #0A1628;
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
+    overflow: hidden;
+  }
+  .og {
+    width: 1200px; height: 630px;
+    background: #0A1628;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .og .dots {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.07) 1px, transparent 0);
+    background-size: 14px 14px;
+    z-index: 1;
+  }
+  .og .glow {
+    position: absolute;
+    bottom: -25%; left: -10%;
+    width: 60%; height: 90%;
+    background: radial-gradient(ellipse at center, rgba(59,130,246,.28), transparent 65%);
+    z-index: 1;
+  }
+  .og .chart {
+    position: absolute; inset: 0;
+    z-index: 1; opacity: .9;
+  }
+  .og .chart svg { width: 100%; height: 100%; }
+
+  .og .content {
+    position: absolute; inset: 0;
+    z-index: 3;
+    padding: 64px 80px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .og .brand {
+    display: flex; align-items: center; gap: 18px;
+  }
+  .og .brand .mark { width: 48px; height: 48px; color: #3B82F6; }
+  .og .brand .name {
+    font-size: 44px; font-weight: 600; letter-spacing: -.01em;
+    color: #fff;
+  }
+  .og .quote {
+    max-width: 880px;
+  }
+  .og .quote .eyebrow {
+    font-family: 'IBM Plex Mono', monospace; font-size: 13px;
+    letter-spacing: .14em; color: #60A5FA;
+    text-transform: uppercase; direction: ltr;
+    margin-bottom: 16px;
+    display: inline-flex; align-items: center; gap: 12px;
+  }
+  .og .quote .eyebrow::before {
+    content: ""; width: 26px; height: 1px; background: #60A5FA;
+  }
+  .og .quote h1 {
+    font-size: 60px; font-weight: 500; letter-spacing: -.02em;
+    line-height: 1.1; color: #fff;
+    text-wrap: balance;
+  }
+  .og .quote h1 .em { color: #60A5FA; }
+  .og .footer {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: 'IBM Plex Mono', monospace; font-size: 16px;
+    color: #B4C0D8; direction: ltr; letter-spacing: .04em;
+  }
+  .og .footer .handle { color: #60A5FA; }
+</style>
+</head>
+<body>
+<div class="og">
+  <div class="dots"></div>
+  <div class="glow"></div>
+  <div class="chart">
+    <svg viewBox="0 0 1200 630" preserveAspectRatio="xMidYMax slice">
+      <defs>
+        <linearGradient id="og-gd" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#3B82F6" stop-opacity="0"/>
+          <stop offset="55%" stop-color="#3B82F6" stop-opacity="0.55"/>
+          <stop offset="100%" stop-color="#60A5FA" stop-opacity="1"/>
+        </linearGradient>
+      </defs>
+      <path d="M-50 520 L130 480 L260 510 L420 410 L580 440 L740 320 L900 360 L1060 220 L1200 250"
+            fill="none" stroke="url(#og-gd)" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M1170 270 L1200 250 L1175 235" fill="none" stroke="#60A5FA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="420" cy="410" r="5" fill="#60A5FA"/>
+      <circle cx="740" cy="320" r="5" fill="#60A5FA"/>
+      <circle cx="1060" cy="220" r="5" fill="#60A5FA"/>
+    </svg>
+  </div>
+
+  <div class="content">
+    <div class="brand">
+      <span class="mark">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:48px;height:48px;">
+          <path d="M4 36 L14 22 L22 28 L34 12" stroke="#3B82F6" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M28 12 L34 12 L34 18" stroke="#3B82F6" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="4" cy="36" r="3" fill="#3B82F6"/>
+          <circle cx="14" cy="22" r="3" fill="#3B82F6"/>
+          <circle cx="22" cy="28" r="3" fill="#3B82F6"/>
+        </svg>
+      </span>
+      <span class="name">الصقري</span>
+    </div>
+
+    <div class="quote">
+      <div class="eyebrow">SAUDI · LISTED · EQUITIES</div>
+      <h1>
+        قراءةٌ مفصَّلة<br/>
+        لشركات السوق <span class="em">السعودي.</span>
+      </h1>
+    </div>
+
+    <div class="footer">
+      <div>EARNINGS · RESEARCH · ANALYSIS</div>
+      <div class="handle">@alsagricapital</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

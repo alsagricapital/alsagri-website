@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<title>Brand Kit — الصقري</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  :root {
+    --navy:     #0A1628;
+    --navy-2:   #0F1F38;
+    --navy-3:   #16294D;
+    --blue:     #3B82F6;
+    --blue-2:   #60A5FA;
+    --paper:    #F7F6F1;
+    --line:     #2A3E64;
+    --ink-dark: #0A1628;
+    --ink-soft-d: #B4C0D8;
+    --ink-mute-d: #6B7AA0;
+    --white:    #FFFFFF;
+  }
+  body {
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
+    background: var(--paper);
+    color: var(--ink-dark);
+    line-height: 1.6;
+    padding: 60px 32px;
+  }
+  .wrap { max-width: 1280px; margin: 0 auto; }
+  h1 {
+    font-size: 48px; font-weight: 500; letter-spacing: -.02em;
+    margin: 0 0 8px;
+  }
+  .sub { color: #54607A; margin-bottom: 56px; font-size: 16px; }
+  h2 {
+    font-size: 13px; font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: .14em; text-transform: uppercase; color: #54607A;
+    margin: 64px 0 20px;
+    direction: ltr;
+    padding-bottom: 12px; border-bottom: 1px solid #D8DCE5;
+  }
+  .swatch-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 14px;
+  }
+  .sw {
+    border-radius: 12px; overflow: hidden;
+    border: 1px solid #E5E8EE;
+    background: #fff;
+  }
+  .sw .color { aspect-ratio: 5/3; }
+  .sw .meta { padding: 14px 16px; }
+  .sw .name {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: .08em;
+    text-transform: uppercase; color: #54607A; direction: ltr;
+  }
+  .sw .hex {
+    font-family: 'IBM Plex Mono', monospace; font-size: 14px; margin-top: 4px;
+    direction: ltr; color: var(--ink-dark);
+  }
+
+  .asset-card {
+    border: 1px solid #E5E8EE;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .asset-preview {
+    padding: 0;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 200px;
+    position: relative;
+  }
+  .asset-meta {
+    padding: 16px 20px;
+    border-top: 1px solid #E5E8EE;
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 13px;
+  }
+  .asset-meta .lbl { color: #54607A; }
+  .asset-meta .size {
+    font-family: 'IBM Plex Mono', monospace; color: #8892A6; font-size: 11.5px;
+    direction: ltr;
+  }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 900px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+  .on-dark {
+    background: var(--navy);
+    color: var(--white);
+  }
+  .on-light {
+    background: var(--paper);
+    color: var(--ink-dark);
+  }
+  .on-white {
+    background: #fff;
+    color: var(--ink-dark);
+  }
+
+  /* ── LOGO RENDERING ─────────────────────────────────── */
+  .logo {
+    display: inline-flex; align-items: center; gap: 16px;
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
+    font-weight: 600;
+    letter-spacing: -.01em;
+    color: currentColor;
+  }
+  .logo-text {
+    font-size: 38px;
+    line-height: 1;
+  }
+  .logo-mark {
+    display: inline-block;
+    color: var(--blue);
+  }
+  .logo.lg .logo-text { font-size: 56px; }
+  .logo.lg .logo-mark svg { width: 48px; height: 48px; }
+  .logo.sm .logo-text { font-size: 24px; }
+  .logo.sm .logo-mark svg { width: 22px; height: 22px; }
+  .logo.xs .logo-text { font-size: 18px; }
+  .logo.xs .logo-mark svg { width: 18px; height: 18px; }
+  .logo-mark svg { width: 32px; height: 32px; display: block; }
+
+  /* dot pattern background */
+  .dotted {
+    position: relative;
+  }
+  .dotted::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.08) 1px, transparent 0);
+    background-size: 14px 14px;
+    pointer-events: none;
+  }
+
+  /* OG / banner mock previews */
+  .og-card {
+    width: 100%;
+    aspect-ratio: 1200/630;
+    background: var(--navy);
+    color: #fff;
+    border-radius: 0;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .og-card .og-text {
+    padding: 60px 64px;
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .og-card .og-quote {
+    font-size: clamp(20px, 2.6vw, 32px); line-height: 1.55; font-weight: 400;
+    text-wrap: balance;
+    color: #DEE6F0;
+  }
+  .og-card .og-attr {
+    color: var(--ink-mute-d); font-size: 13px;
+    font-family: 'IBM Plex Mono', monospace; direction: ltr;
+    margin-top: 16px;
+    letter-spacing: .06em;
+  }
+  .og-card .og-brand {
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .og-card .og-handle {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+    color: var(--blue-2); letter-spacing: .04em; direction: ltr;
+  }
+  .og-card .og-chart {
+    position: absolute; inset: 0; opacity: .9;
+    pointer-events: none;
+  }
+  .og-card .og-dots {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.07) 1px, transparent 0);
+    background-size: 14px 14px;
+    pointer-events: none; z-index: 1;
+  }
+  .og-card .og-glow {
+    position: absolute;
+    bottom: -20%; right: -10%;
+    width: 60%; height: 80%;
+    background: radial-gradient(ellipse at center, rgba(59,130,246,.25), transparent 70%);
+    pointer-events: none; z-index: 1;
+  }
+
+  /* Favicon block */
+  .fav-preview {
+    background: var(--navy);
+    border-radius: 22%;
+    width: 100px; height: 100px;
+    display: grid; place-items: center;
+    color: white;
+  }
+  .fav-preview.small { width: 32px; height: 32px; border-radius: 6px; }
+  .fav-preview.tab { width: 16px; height: 16px; border-radius: 3px; }
+  .fav-row {
+    display: flex; align-items: center; gap: 32px;
+  }
+
+  /* download buttons */
+  .dl {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px; border-radius: 8px;
+    background: var(--navy); color: #fff;
+    text-decoration: none; font-size: 12px; font-weight: 500;
+    font-family: 'IBM Plex Mono', monospace; letter-spacing: .04em;
+    direction: ltr;
+  }
+  .dl:hover { background: #16294D; }
+
+  /* Section banner mock */
+  .section-banner {
+    width: 100%; height: 240px;
+    background: var(--navy);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; padding: 0 56px;
+    color: #fff;
+  }
+  .section-banner .sb-text {
+    position: relative; z-index: 2;
+  }
+  .section-banner .sb-eyebrow {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+    color: var(--blue-2); letter-spacing: .14em;
+    text-transform: uppercase; direction: ltr;
+    margin-bottom: 12px;
+  }
+  .section-banner .sb-title {
+    font-size: 42px; font-weight: 500; letter-spacing: -.01em;
+  }
+  .section-banner .sb-dots {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.08) 1px, transparent 0);
+    background-size: 14px 14px;
+    pointer-events: none; z-index: 1;
+  }
+  .section-banner .sb-chart {
+    position: absolute; bottom: 0; left: -5%; right: -5%; height: 70%;
+    opacity: .35; z-index: 1; pointer-events: none;
+  }
+
+  .note {
+    background: #F6F6F1; border: 1px solid #E5E8EE; border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 14px; color: #54607A;
+    margin: 12px 0;
+  }
+  .note strong { color: var(--ink-dark); }
+
+  .code-inline {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12.5px;
+    background: #F0EFE9; padding: 2px 7px; border-radius: 4px;
+    direction: ltr;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div style="font-family:'IBM Plex Mono', monospace; font-size: 11px; letter-spacing:.14em; color:#8892A6; direction:ltr; margin-bottom: 20px;">/ BRAND KIT · v1</div>
+    <h1>الصقري — الهوية البصرية</h1>
+    <p class="sub">حزمة الشعار، النمط البصري، وصور المشاركة لموقع alsagricapital.com</p>
+  </header>
+
+  <!-- ─────────────── COLORS ─────────────── -->
+  <h2>1 — Color System</h2>
+  <div class="swatch-grid">
+    <div class="sw">
+      <div class="color" style="background:#0A1628"></div>
+      <div class="meta"><div class="name">NAVY</div><div class="hex">#0A1628</div></div>
+    </div>
+    <div class="sw">
+      <div class="color" style="background:#0F1F38"></div>
+      <div class="meta"><div class="name">NAVY 2</div><div class="hex">#0F1F38</div></div>
+    </div>
+    <div class="sw">
+      <div class="color" style="background:#16294D"></div>
+      <div class="meta"><div class="name">NAVY 3</div><div class="hex">#16294D</div></div>
+    </div>
+    <div class="sw">
+      <div class="color" style="background:#3B82F6"></div>
+      <div class="meta"><div class="name">BLUE (ACCENT)</div><div class="hex">#3B82F6</div></div>
+    </div>
+    <div class="sw">
+      <div class="color" style="background:#60A5FA"></div>
+      <div class="meta"><div class="name">BLUE LIGHT</div><div class="hex">#60A5FA</div></div>
+    </div>
+    <div class="sw">
+      <div class="color" style="background:#F7F6F1"></div>
+      <div class="meta"><div class="name">PAPER</div><div class="hex">#F7F6F1</div></div>
+    </div>
+    <div class="sw">
+      <div class="color" style="background:#FFFFFF; border:1px solid #E5E8EE"></div>
+      <div class="meta"><div class="name">WHITE</div><div class="hex">#FFFFFF</div></div>
+    </div>
+    <div class="sw">
+      <div class="color" style="background:#B4C0D8"></div>
+      <div class="meta"><div class="name">INK SOFT (DARK BG)</div><div class="hex">#B4C0D8</div></div>
+    </div>
+  </div>
+
+  <!-- ─────────────── LOGO ─────────────── -->
+  <h2>2 — Logo</h2>
+
+  <div class="grid-2">
+    <!-- Light version -->
+    <div class="asset-card">
+      <div class="asset-preview on-dark dotted" style="min-height:260px;">
+        <div class="logo lg" style="color:#fff; position:relative; z-index:2;">
+          <span class="logo-mark">
+            <!-- Stylized ascending chart mark -->
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 36 L14 22 L22 28 L34 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M28 12 L34 12 L34 18" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="4" cy="36" r="2.5" fill="currentColor"/>
+              <circle cx="14" cy="22" r="2.5" fill="currentColor"/>
+              <circle cx="22" cy="28" r="2.5" fill="currentColor"/>
+            </svg>
+          </span>
+          <span class="logo-text">الصقري</span>
+        </div>
+      </div>
+      <div class="asset-meta">
+        <span class="lbl">Logo · على خلفية داكنة</span>
+        <span class="size">PRIMARY</span>
+      </div>
+    </div>
+
+    <!-- Dark version on light -->
+    <div class="asset-card">
+      <div class="asset-preview on-light" style="min-height:260px;">
+        <div class="logo lg" style="color:#0A1628;">
+          <span class="logo-mark">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 36 L14 22 L22 28 L34 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M28 12 L34 12 L34 18" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="4" cy="36" r="2.5" fill="currentColor"/>
+              <circle cx="14" cy="22" r="2.5" fill="currentColor"/>
+              <circle cx="22" cy="28" r="2.5" fill="currentColor"/>
+            </svg>
+          </span>
+          <span class="logo-text">الصقري</span>
+        </div>
+      </div>
+      <div class="asset-meta">
+        <span class="lbl">Logo · على خلفية فاتحة</span>
+        <span class="size">SECONDARY</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-3" style="margin-top: 20px;">
+    <!-- Large size -->
+    <div class="asset-card">
+      <div class="asset-preview on-white">
+        <div class="logo lg" style="color:#0A1628;">
+          <span class="logo-mark">
+            <svg viewBox="0 0 48 48" fill="none">
+              <path d="M4 36 L14 22 L22 28 L34 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M28 12 L34 12 L34 18" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="4" cy="36" r="2.5" fill="currentColor"/>
+              <circle cx="14" cy="22" r="2.5" fill="currentColor"/>
+              <circle cx="22" cy="28" r="2.5" fill="currentColor"/>
+            </svg>
+          </span>
+          <span class="logo-text">الصقري</span>
+        </div>
+      </div>
+      <div class="asset-meta">
+        <span class="lbl">حجم كبير</span>
+        <span class="size">~64PX</span>
+      </div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-preview on-white">
+        <div class="logo" style="color:#0A1628;">
+          <span class="logo-mark">
+            <svg viewBox="0 0 48 48" fill="none">
+              <path d="M4 36 L14 22 L22 28 L34 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M28 12 L34 12 L34 18" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="4" cy="36" r="2.5" fill="currentColor"/>
+              <circle cx="14" cy="22" r="2.5" fill="currentColor"/>
+              <circle cx="22" cy="28" r="2.5" fill="currentColor"/>
+            </svg>
+          </span>
+          <span class="logo-text">الصقري</span>
+        </div>
+      </div>
+      <div class="asset-meta">
+        <span class="lbl">حجم متوسط (الـ Nav)</span>
+        <span class="size">~38PX</span>
+      </div>
+    </div>
+    <div class="asset-card">
+      <div class="asset-preview on-white">
+        <div class="logo sm" style="color:#0A1628;">
+          <span class="logo-mark">
+            <svg viewBox="0 0 48 48" fill="none">
+              <path d="M4 36 L14 22 L22 28 L34 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M28 12 L34 12 L34 18" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="4" cy="36" r="2.5" fill="currentColor"/>
+              <circle cx="14" cy="22" r="2.5" fill="currentColor"/>
+              <circle cx="22" cy="28" r="2.5" fill="currentColor"/>
+            </svg>
+          </span>
+          <span class="logo-text">الصقري</span>
+        </div>
+      </div>
+      <div class="asset-meta">
+        <span class="lbl">حجم صغير (الـ Footer)</span>
+        <span class="size">~24PX</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>الفكرة:</strong> الرمز يمثل خطاً بيانياً صاعداً مع سهم — اللي يشير لتحليل سوق الأسهم، وفي نفس الوقت أحرف بسيطة كافية للاستخدام بحجم صغير (favicon, avatar).
+  </div>
+
+  <!-- ─────────────── FAVICON ─────────────── -->
+  <h2>3 — Favicon &amp; App Icon</h2>
+
+  <div class="asset-card">
+    <div class="asset-preview on-white" style="min-height:200px;">
+      <div class="fav-row">
+        <div class="fav-preview tab">
+          <svg viewBox="0 0 48 48" fill="none" style="width:12px;height:12px;">
+            <path d="M4 36 L14 22 L22 28 L34 12" stroke="#3B82F6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M28 12 L34 12 L34 18" stroke="#3B82F6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="fav-preview small">
+          <svg viewBox="0 0 48 48" fill="none" style="width:22px;height:22px;">
+            <path d="M4 36 L14 22 L22 28 L34 12" stroke="#3B82F6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M28 12 L34 12 L34 18" stroke="#3B82F6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="fav-preview">
+          <svg viewBox="0 0 48 48" fill="none" style="width:60px;height:60px;">
+            <path d="M4 36 L14 22 L22 28 L34 12" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M28 12 L34 12 L34 18" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="4" cy="36" r="2.5" fill="#3B82F6"/>
+            <circle cx="14" cy="22" r="2.5" fill="#3B82F6"/>
+            <circle cx="22" cy="28" r="2.5" fill="#3B82F6"/>
+          </svg>
+        </div>
+        <div class="fav-preview" style="width:140px;height:140px;border-radius:30%;">
+          <svg viewBox="0 0 48 48" fill="none" style="width:84px;height:84px;">
+            <path d="M4 36 L14 22 L22 28 L34 12" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M28 12 L34 12 L34 18" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="4" cy="36" r="2.5" fill="#3B82F6"/>
+            <circle cx="14" cy="22" r="2.5" fill="#3B82F6"/>
+            <circle cx="22" cy="28" r="2.5" fill="#3B82F6"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="asset-meta">
+      <span class="lbl">Favicon — 16, 32, 100, 140 px</span>
+      <span class="size">SVG · PNG · ICO</span>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>Favicon = الرمز فقط</strong> بدون نص. خلفية navy داكنة، السهم بالأزرق الأكسنت. تم إنشاءه كـ <code class="code-inline">favicon.svg</code> منفصل وموجود في ملفاتك.
+  </div>
+
+  <!-- ─────────────── OG IMAGE ─────────────── -->
+  <h2>4 — Social Share Image (Open Graph · 1200 × 630)</h2>
+
+  <div class="asset-card">
+    <div class="asset-preview" style="padding:24px; background:#F0EFE9;">
+      <div class="og-card">
+        <div class="og-dots"></div>
+        <div class="og-glow"></div>
+        <svg class="og-chart" viewBox="0 0 600 315" preserveAspectRatio="xMaxYMax slice">
+          <defs>
+            <linearGradient id="og-gd" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#3B82F6" stop-opacity="0"/>
+              <stop offset="50%" stop-color="#3B82F6" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#60A5FA" stop-opacity="1"/>
+            </linearGradient>
+          </defs>
+          <path d="M-20 240 L80 200 L150 220 L220 160 L300 175 L370 110 L440 130 L520 60 L600 75"
+                fill="none" stroke="url(#og-gd)" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Up arrow at end -->
+          <path d="M580 90 L600 75 L585 70" fill="none" stroke="#60A5FA" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Dots on the line -->
+          <circle cx="80" cy="200" r="3" fill="#60A5FA"/>
+          <circle cx="220" cy="160" r="3" fill="#60A5FA"/>
+          <circle cx="370" cy="110" r="3" fill="#60A5FA"/>
+          <circle cx="520" cy="60" r="3" fill="#60A5FA"/>
+        </svg>
+
+        <div class="og-text">
+          <div class="og-brand">
+            <div class="logo lg" style="color:#fff;">
+              <span class="logo-mark">
+                <svg viewBox="0 0 48 48" fill="none" style="width:42px;height:42px;">
+                  <path d="M4 36 L14 22 L22 28 L34 12" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M28 12 L34 12 L34 18" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="4" cy="36" r="2.5" fill="#3B82F6"/>
+                  <circle cx="14" cy="22" r="2.5" fill="#3B82F6"/>
+                  <circle cx="22" cy="28" r="2.5" fill="#3B82F6"/>
+                </svg>
+              </span>
+              <span class="logo-text" style="font-size:48px;">الصقري</span>
+            </div>
+            <div class="og-handle">@alsagricapital</div>
+          </div>
+          <div>
+            <div class="og-quote">
+              قراءةٌ مفصَّلةٌ<br>
+              لشركات السوق السعودي.
+            </div>
+            <div class="og-attr">EARNINGS · RESEARCH · ANALYSIS</div>
+          </div>
+        </div>
+
+        <div></div>
+      </div>
+    </div>
+    <div class="asset-meta">
+      <span class="lbl">Open Graph image — تظهر لما يشارك أحد الرابط في X / WhatsApp / LinkedIn</span>
+      <span class="size">1200 × 630</span>
+    </div>
+  </div>
+
+  <!-- ─────────────── HERO BANNER ─────────────── -->
+  <h2>5 — Hero Banner (Homepage)</h2>
+
+  <div class="asset-card">
+    <div class="asset-preview on-dark dotted" style="min-height:380px; padding:80px 64px; align-items:flex-end;">
+      <svg style="position:absolute; bottom:0; left:0; right:0; height:60%; opacity:.4; pointer-events:none;" viewBox="0 0 1200 360" preserveAspectRatio="xMidYMax slice">
+        <defs>
+          <linearGradient id="hero-gd" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#3B82F6" stop-opacity="0"/>
+            <stop offset="60%" stop-color="#3B82F6" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#60A5FA" stop-opacity="1"/>
+          </linearGradient>
+        </defs>
+        <path d="M-50 280 L120 250 L240 270 L380 200 L520 220 L660 140 L810 165 L960 80 L1100 100 L1250 40"
+              fill="none" stroke="url(#hero-gd)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M1080 50 L1100 40 L1085 32" fill="none" stroke="#60A5FA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="380" cy="200" r="3" fill="#60A5FA"/>
+        <circle cx="660" cy="140" r="3" fill="#60A5FA"/>
+        <circle cx="960" cy="80" r="3" fill="#60A5FA"/>
+      </svg>
+      <div style="position:relative; z-index:2; color:#fff; width:100%;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;color:#60A5FA;direction:ltr;margin-bottom:24px;">SAUDI · LISTED · EQUITIES</div>
+        <h1 style="font-size:64px; font-weight:500; letter-spacing:-.02em; line-height:1.05; margin:0; color:#fff; max-width:800px;">
+          قراءةٌ مفصَّلة<br>
+          لشركات السوق <span style="color:#60A5FA;">السعودي</span>.
+        </h1>
+      </div>
+    </div>
+    <div class="asset-meta">
+      <span class="lbl">Hero banner — يستخدم داخل الصفحة الرئيسية مباشرة (مو صورة منفصلة)</span>
+      <span class="size">FULL-BLEED</span>
+    </div>
+  </div>
+
+  <!-- ─────────────── SECTION BANNERS ─────────────── -->
+  <h2>6 — Section Banners (about / services / examples / contact)</h2>
+
+  <div style="display:grid; gap: 16px;">
+    <div class="section-banner">
+      <div class="sb-dots"></div>
+      <svg class="sb-chart" viewBox="0 0 1200 200" preserveAspectRatio="xMidYMax slice">
+        <path d="M-50 150 L120 130 L240 145 L380 110 L520 125 L660 85 L810 100 L960 50 L1100 70 L1250 30"
+              fill="none" stroke="#3B82F6" stroke-width="2" opacity=".8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="sb-text">
+        <div class="sb-eyebrow">/01 — ABOUT</div>
+        <div class="sb-title">عن المنصة</div>
+      </div>
+    </div>
+    <div class="section-banner">
+      <div class="sb-dots"></div>
+      <svg class="sb-chart" viewBox="0 0 1200 200" preserveAspectRatio="xMidYMax slice">
+        <path d="M-50 160 L120 145 L240 125 L380 130 L520 95 L660 110 L810 70 L960 90 L1100 45 L1250 60"
+              fill="none" stroke="#3B82F6" stroke-width="2" opacity=".8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="sb-text">
+        <div class="sb-eyebrow">/02 — SERVICES</div>
+        <div class="sb-title">الخدمات</div>
+      </div>
+    </div>
+    <div class="section-banner">
+      <div class="sb-dots"></div>
+      <svg class="sb-chart" viewBox="0 0 1200 200" preserveAspectRatio="xMidYMax slice">
+        <path d="M-50 130 L120 145 L240 110 L380 130 L520 75 L660 95 L810 55 L960 75 L1100 35 L1250 50"
+              fill="none" stroke="#3B82F6" stroke-width="2" opacity=".8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="sb-text">
+        <div class="sb-eyebrow">/03 — EXAMPLES</div>
+        <div class="sb-title">نماذج التقارير</div>
+      </div>
+    </div>
+    <div class="section-banner">
+      <div class="sb-dots"></div>
+      <svg class="sb-chart" viewBox="0 0 1200 200" preserveAspectRatio="xMidYMax slice">
+        <path d="M-50 140 L120 130 L240 145 L380 115 L520 125 L660 90 L810 105 L960 65 L1100 80 L1250 40"
+              fill="none" stroke="#3B82F6" stroke-width="2" opacity=".8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="sb-text">
+        <div class="sb-eyebrow">/04 — CONTACT</div>
+        <div class="sb-title">التواصل</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>توحيد بصري:</strong> كل صفحة داخلية تبدأ ببنر داكن قصير يحدد القسم، ثم تستمر بمحتوى أبيض للقراءة. هذا يخلق إيقاع بصري مريح للقارئ بدون نشف.
+  </div>
+
+  <p style="margin-top: 80px; padding-top: 24px; border-top: 1px solid #D8DCE5; font-size: 12.5px; color: #8892A6; font-family: 'IBM Plex Mono', monospace; direction: ltr; letter-spacing: .04em;">
+    BRAND KIT · ALSAGRI · V1 · 2026
+  </p>
+
+</div>
+</body>
+</html>

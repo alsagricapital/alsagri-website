@@ -1,16 +1,14 @@
-// app.jsx — wires sections together + scroll progress + tweaks
+// app.jsx — multi-page wiring. Renders the section matching <body data-page="...">.
 
-const { useState: useStateApp, useEffect: useEffectApp, useRef: useRefApp } = React;
+const { useState: useStateApp, useEffect: useEffectApp } = React;
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "palette": ["#0A1A33", "#FAFAF7", "#6B8FB5"],
   "mode": "light",
-  "density": "regular",
-  "heroVariant": "split"
+  "density": "regular"
 }/*EDITMODE-END*/;
 
 const PALETTES = {
-  // [ink/navy, paper, accent ]
   navy:    ["#0A1A33", "#FAFAF7", "#6B8FB5"],
   midnight:["#06112A", "#F3F1E8", "#C9A96A"],
   slate:   ["#1A2233", "#FFFFFF", "#4A6B8A"],
@@ -20,7 +18,6 @@ const PALETTES = {
 function applyPalette(p, mode) {
   const root = document.documentElement;
   const [navy, paper, accent] = p;
-  // dark mode swaps ink/bg
   if (mode === 'dark') {
     root.style.setProperty('--accent', accent);
     root.style.setProperty('--accent-2', accent);
@@ -30,16 +27,16 @@ function applyPalette(p, mode) {
     root.style.setProperty('--paper', paper);
     root.style.setProperty('--bg', paper);
     root.style.setProperty('--accent', accent);
-    // derive accent-2 darker
     root.style.setProperty('--accent-2', accent);
   }
 }
 
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
-  const [active, setActive] = useStateApp('top');
   const [drawer, setDrawer] = useStateApp(false);
-  const [progress, setProgress] = useStateApp(0);
+
+  // Determine which page to render from body[data-page]
+  const page = (document.body.dataset.page || 'home');
 
   // theme tokens on root
   useEffectApp(() => {
@@ -48,29 +45,8 @@ function App() {
     applyPalette(t.palette, t.mode);
   }, [t.palette, t.mode, t.density]);
 
-  // run scroll reveals; re-run when DOM might shift
-  useReveal([t.density, t.heroVariant, t.mode]);
-
-  // scroll tracking: progress + active section
-  useEffectApp(() => {
-    const sectionIds = ['top', 'about', 'services', 'examples', 'contact'];
-    const onScroll = () => {
-      const sc = window.scrollY;
-      const dh = document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(dh > 0 ? Math.min(100, (sc / dh) * 100) : 0);
-      // active section: pick the one whose top is just above viewport center
-      const mid = sc + window.innerHeight * 0.35;
-      let cur = 'top';
-      for (const id of sectionIds) {
-        const el = document.getElementById(id);
-        if (el && el.offsetTop <= mid) cur = id;
-      }
-      setActive(cur);
-    };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  // run scroll reveals
+  useReveal([t.density, t.mode, page]);
 
   // close drawer on resize-to-desktop
   useEffectApp(() => {
@@ -79,16 +55,26 @@ function App() {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
+  // close drawer on Esc
+  useEffectApp(() => {
+    const onKey = (e) => { if (e.key === 'Escape') setDrawer(false); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
+  const PageBody = {
+    home:     Hero,
+    about:    About,
+    services: Services,
+    examples: Examples,
+    contact:  Contact,
+  }[page] || Hero;
+
   return (
     <React.Fragment>
-      <Nav activeSection={active} drawerOpen={drawer} setDrawerOpen={setDrawer} progress={progress} />
+      <Nav currentPage={page} drawerOpen={drawer} setDrawerOpen={setDrawer} />
       <main>
-        <Hero variant={t.heroVariant} />
-        <About />
-        <Services />
-        <Examples />
-        <Disclaimer />
-        <Contact />
+        <PageBody />
       </main>
       <Footer />
 
@@ -113,12 +99,6 @@ function App() {
           value={t.density}
           options={['compact', 'regular', 'comfy']}
           onChange={(v) => setTweak('density', v)}
-        />
-        <TweakRadio
-          label="Hero"
-          value={t.heroVariant}
-          options={['split', 'centered']}
-          onChange={(v) => setTweak('heroVariant', v)}
         />
       </TweaksPanel>
     </React.Fragment>

@@ -1,0 +1,906 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Alsagri Capital — Deployment Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A1A33;
+    --ink: #0A1A33;
+    --ink-soft: #54607A;
+    --ink-mute: #8892A6;
+    --paper: #FAFAF7;
+    --surface: #FFFFFF;
+    --surface-2: #F6F6F1;
+    --line: #E5E8EE;
+    --line-2: #D8DCE5;
+    --accent: #6B8FB5;
+    --accent-2: #4A6B8A;
+    --ok: #4F7A4A;
+    --warn: #B07A2C;
+  }
+  *,*::before,*::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Layout shell */
+  .shell {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    max-width: 1280px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+  @media (max-width: 980px) { .shell { grid-template-columns: 1fr; } }
+
+  /* Sidebar TOC */
+  aside.toc {
+    position: sticky; top: 0; align-self: start;
+    height: 100vh; overflow-y: auto;
+    padding: 40px 28px 40px 32px;
+    border-right: 1px solid var(--line);
+    background: var(--paper);
+  }
+  @media (max-width: 980px) {
+    aside.toc { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+  }
+  .toc-brand {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none; color: var(--ink);
+    margin-bottom: 36px;
+  }
+  .toc-brand .mark {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: var(--navy); color: var(--paper);
+    display: grid; place-items: center;
+    font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 12px;
+  }
+  .toc-brand .ttl { font-weight: 600; font-size: 14px; letter-spacing: -.01em; }
+  .toc-brand .sub { font-size: 11px; color: var(--ink-mute); }
+  .toc-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-mute);
+    margin: 24px 0 10px;
+  }
+  .toc ol {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .toc ol a {
+    display: flex; gap: 12px; align-items: baseline;
+    padding: 8px 10px; border-radius: 6px;
+    color: var(--ink-soft); text-decoration: none;
+    font-size: 13.5px;
+    transition: background-color .15s ease, color .15s ease;
+  }
+  .toc ol a:hover { background: var(--surface-2); color: var(--ink); }
+  .toc ol a .n {
+    font-family: 'IBM Plex Mono', monospace; font-size: 10.5px;
+    color: var(--ink-mute); min-width: 22px;
+  }
+
+  /* Main content */
+  main {
+    padding: 64px 56px 96px;
+    max-width: 880px;
+  }
+  @media (max-width: 720px) { main { padding: 40px 24px 80px; } }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent-2);
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-bottom: 20px;
+  }
+  .eyebrow::before { content: ""; width: 22px; height: 1px; background: currentColor; }
+
+  h1 {
+    font-size: clamp(34px, 4.5vw, 52px); font-weight: 500;
+    letter-spacing: -.02em; line-height: 1.1;
+    margin: 0 0 16px;
+    text-wrap: balance;
+  }
+  h1 .em { color: var(--accent); }
+  .lede {
+    font-size: 18px; color: var(--ink-soft); max-width: 640px;
+    margin: 0 0 48px;
+  }
+
+  h2 {
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 500; letter-spacing: -.01em;
+    margin: 64px 0 12px;
+    line-height: 1.2;
+    text-wrap: balance;
+    display: flex; align-items: baseline; gap: 16px;
+  }
+  h2 .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px; color: var(--ink-mute); letter-spacing: .14em;
+    font-weight: 500;
+  }
+  h2 + .sub-lede { color: var(--ink-soft); margin: 0 0 28px; font-size: 15.5px; }
+
+  h3 {
+    font-size: 17px; font-weight: 600; letter-spacing: -.005em;
+    margin: 36px 0 8px;
+  }
+
+  p { margin: 0 0 14px; }
+  p, li { font-size: 15.5px; color: var(--ink); }
+
+  ul, ol.steps { margin: 0 0 18px; padding-inline-start: 22px; }
+  ul li, ol.steps li { margin-bottom: 6px; }
+
+  /* Step list - numbered */
+  ol.steps {
+    list-style: none; padding: 0; counter-reset: step;
+  }
+  ol.steps > li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 44px;
+    padding-bottom: 16px;
+    margin-bottom: 0;
+  }
+  ol.steps > li::before {
+    content: counter(step, decimal-leading-zero);
+    position: absolute; left: 0; top: 0;
+    width: 30px; height: 24px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+    color: var(--accent-2);
+    border: 1px solid var(--line-2); border-radius: 4px;
+    display: grid; place-items: center;
+    font-weight: 500;
+  }
+  ol.steps > li:not(:last-child)::after {
+    content: ""; position: absolute;
+    left: 14px; top: 28px; bottom: 4px;
+    width: 1px; background: var(--line);
+  }
+
+  /* Code blocks */
+  code, pre {
+    font-family: 'IBM Plex Mono', monospace;
+    direction: ltr; unicode-bidi: isolate;
+  }
+  code {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 0.88em;
+    color: var(--navy);
+  }
+  pre {
+    background: #0A1A33;
+    color: #E8ECF4;
+    border-radius: 10px;
+    padding: 18px 22px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.65;
+    margin: 12px 0 18px;
+    border: 1px solid #0A1A33;
+  }
+  pre .c { color: #8892A6; }     /* comment */
+  pre .k { color: #B8CFE5; }     /* command */
+  pre .p { color: #6B8FB5; }     /* prompt */
+  pre code { background: transparent; border: 0; padding: 0; color: inherit; font-size: inherit; }
+
+  /* Call-out boxes */
+  .box {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin: 18px 0;
+    background: var(--surface);
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 14px;
+    align-items: start;
+  }
+  .box .ic {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+    color: var(--ink-mute); letter-spacing: .1em;
+    text-transform: uppercase; padding-top: 2px;
+  }
+  .box.tip { border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); background: color-mix(in srgb, var(--accent) 6%, var(--surface)); }
+  .box.tip .ic { color: var(--accent-2); }
+  .box.warn { border-color: color-mix(in srgb, var(--warn) 35%, var(--line)); background: color-mix(in srgb, var(--warn) 6%, var(--surface)); }
+  .box.warn .ic { color: var(--warn); }
+  .box.note { background: var(--surface-2); }
+  .box p:last-child { margin-bottom: 0; }
+  .box strong { color: var(--ink); }
+
+  /* Click-trail */
+  .trail {
+    display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 12.5px;
+    background: var(--surface-2); border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 3px 8px;
+    margin: 2px 0;
+  }
+  .trail .step { color: var(--navy); }
+  .trail .sep { color: var(--ink-mute); }
+
+  /* Inline keys */
+  .kbd {
+    font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+    background: var(--surface); border: 1px solid var(--line-2);
+    border-bottom-width: 2px; border-radius: 4px;
+    padding: 1px 6px;
+    color: var(--ink);
+  }
+
+  /* Tables */
+  table.tbl {
+    width: 100%; border-collapse: collapse; margin: 14px 0 20px;
+    font-size: 14px;
+    border: 1px solid var(--line); border-radius: 10px;
+    overflow: hidden;
+  }
+  table.tbl th, table.tbl td {
+    text-align: left; padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  table.tbl th {
+    background: var(--surface-2);
+    font-weight: 600; font-size: 12.5px;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: .04em; text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  table.tbl tr:last-child td { border-bottom: 0; }
+  table.tbl td code { font-size: 12px; }
+
+  /* Hero section card */
+  .stack-card {
+    margin: 32px 0 40px;
+    padding: 28px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface);
+  }
+  .stack-card h3 { margin-top: 0; }
+  .stack-card .stack-row {
+    display: grid; grid-template-columns: 140px 1fr;
+    padding: 10px 0; border-top: 1px solid var(--line);
+    align-items: baseline;
+    gap: 16px;
+  }
+  .stack-card .stack-row:first-of-type { border-top: 0; }
+  .stack-card .stack-row .k {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+    color: var(--ink-mute); letter-spacing: .14em; text-transform: uppercase;
+  }
+  .stack-card .stack-row .v { font-size: 14.5px; color: var(--ink); }
+  .stack-card .stack-row .v .pill {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+    padding: 2px 8px; border: 1px solid var(--line-2); border-radius: 4px;
+    margin-inline-end: 6px;
+  }
+
+  /* Checkboxes for final checklist */
+  ul.check { list-style: none; padding: 0; }
+  ul.check li {
+    display: grid; grid-template-columns: 22px 1fr;
+    gap: 14px; align-items: start;
+    padding: 12px 0; border-bottom: 1px solid var(--line);
+    font-size: 15px;
+  }
+  ul.check li:last-child { border-bottom: 0; }
+  ul.check li::before {
+    content: ""; width: 16px; height: 16px;
+    border: 1.5px solid var(--ink-mute); border-radius: 4px;
+    margin-top: 4px;
+  }
+  ul.check li.done { color: var(--ink-soft); }
+  ul.check li.done::before {
+    background: var(--ok); border-color: var(--ok);
+    content: "✓"; color: white;
+    font-size: 11px; display: grid; place-items: center;
+    line-height: 1;
+  }
+
+  /* Section divider */
+  hr {
+    border: 0; border-top: 1px solid var(--line);
+    margin: 56px 0;
+  }
+
+  /* Anchor offset */
+  section[id] { scroll-margin-top: 24px; }
+
+  /* External link arrow */
+  a.ext {
+    color: var(--accent-2); text-decoration: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--accent-2) 30%, transparent);
+    transition: border-color .2s ease;
+  }
+  a.ext:hover { border-bottom-color: var(--accent-2); }
+  a.ext::after { content: " ↗"; font-family: 'IBM Plex Mono', monospace; font-size: 0.85em; }
+
+  .ar { font-family: 'IBM Plex Sans Arabic', sans-serif; direction: rtl; }
+
+  /* Footer */
+  footer.f {
+    margin-top: 80px; padding-top: 24px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px; color: var(--ink-mute);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  footer.f .mono { font-family: 'IBM Plex Mono', monospace; }
+
+</style>
+</head>
+<body>
+  <div class="shell">
+
+    <!-- ─────────────── TOC SIDEBAR ─────────────── -->
+    <aside class="toc">
+      <a href="#top" class="toc-brand">
+        <span class="mark">AC</span>
+        <span>
+          <div class="ttl">Alsagri Capital</div>
+          <div class="sub">Deployment Guide</div>
+        </span>
+      </a>
+
+      <div class="toc-label">Sections</div>
+      <ol>
+        <li><a href="#stack"><span class="n">00</span><span>Your stack</span></a></li>
+        <li><a href="#setup"><span class="n">A</span><span>Code &amp; setup</span></a></li>
+        <li><a href="#github"><span class="n">B</span><span>GitHub</span></a></li>
+        <li><a href="#deploy"><span class="n">C</span><span>Hosting &amp; deploy</span></a></li>
+        <li><a href="#domain"><span class="n">D</span><span>Domain name</span></a></li>
+        <li><a href="#polish"><span class="n">E</span><span>Pro checklist</span></a></li>
+        <li><a href="#final"><span class="n">★</span><span>Zero-to-live</span></a></li>
+      </ol>
+
+      <div class="toc-label" style="margin-top:32px;">Reading time</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);">~ 20 min</div>
+      <div class="toc-label">Doing time</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);">~ 2–3 hrs</div>
+    </aside>
+
+    <!-- ─────────────── MAIN ─────────────── -->
+    <main id="top">
+      <div class="eyebrow">DEPLOYMENT · ZERO TO LIVE</div>
+      <h1>From Claude to a <span class="em">live website</span>, step by step.</h1>
+      <p class="lede">
+        A complete beginner's guide to taking your Alsagri Capital design out of this workspace and putting it on the public internet with your own domain name. No assumed knowledge.
+      </p>
+
+      <!-- ─────────────── STACK ─────────────── -->
+      <section id="stack">
+        <h2><span class="num">/00</span>What is your website built with?</h2>
+        <p class="sub-lede">A 30-second technical inventory before we start.</p>
+
+        <div class="stack-card">
+          <div class="stack-row">
+            <div class="k">Language</div>
+            <div class="v">
+              <span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">JavaScript</span>
+            </div>
+          </div>
+          <div class="stack-row">
+            <div class="k">UI library</div>
+            <div class="v">React 18 (loaded from a CDN, <em>not</em> a built project)</div>
+          </div>
+          <div class="stack-row">
+            <div class="k">Compiler</div>
+            <div class="v">Babel Standalone (runs in the browser at page load)</div>
+          </div>
+          <div class="stack-row">
+            <div class="k">Backend</div>
+            <div class="v">None. No server, no database, no API.</div>
+          </div>
+          <div class="stack-row">
+            <div class="k">Files</div>
+            <div class="v"><code>index.html</code>, <code>app.jsx</code>, <code>data.jsx</code>, <code>sections.jsx</code>, <code>tweaks-panel.jsx</code></div>
+          </div>
+          <div class="stack-row">
+            <div class="k">Verdict</div>
+            <div class="v">A <strong>static website</strong> — you can host it anywhere that serves files.</div>
+          </div>
+        </div>
+
+        <div class="box tip">
+          <div class="ic">TIP</div>
+          <div>
+            <p><strong>"Static" is good news.</strong> It's the cheapest, fastest, and most reliable kind of website. You don't need to manage a server. Many great hosts (Netlify, Vercel, Cloudflare Pages, GitHub Pages) will host it for free.</p>
+          </div>
+        </div>
+
+        <div class="box warn">
+          <div class="ic">NOTE</div>
+          <div>
+            <p><strong>The current setup transpiles JSX in the browser</strong> using Babel Standalone. That's fine for ~50 visitors a day but adds about 1–2 seconds of page-load delay. After we get you live, I can convert this into a real Vite + React production build, which is faster and more SEO-friendly. Ask me when you're ready.</p>
+          </div>
+        </div>
+      </section>
+
+      <hr>
+
+      <!-- ─────────────── A. SETUP ─────────────── -->
+      <section id="setup">
+        <h2><span class="num">/A</span>Code &amp; project setup</h2>
+        <p class="sub-lede">Get the files off this workspace and onto your computer.</p>
+
+        <h3>A.1 — Download the project files</h3>
+        <ol class="steps">
+          <li>In this workspace, look for the <strong>"⋮" menu or download icon</strong> in the toolbar (usually top-right of the file pane).</li>
+          <li>Choose <strong>Download project</strong> (or "Export as ZIP"). A file like <code>alsagri-website.zip</code> will save to your computer's <strong>Downloads</strong> folder.</li>
+          <li>Unzip it (double-click on Mac, right-click → "Extract All" on Windows). You'll get a folder with these files inside:
+            <pre><span class="c">alsagri-website/</span>
+├── index.html
+├── app.jsx
+├── data.jsx
+├── sections.jsx
+└── tweaks-panel.jsx</pre>
+          </li>
+          <li>Move that folder somewhere sensible. I recommend:
+            <ul>
+              <li><strong>Mac:</strong> <code>~/Documents/projects/alsagri-website</code></li>
+              <li><strong>Windows:</strong> <code>C:\Users\YourName\Documents\projects\alsagri-website</code></li>
+            </ul>
+          </li>
+        </ol>
+
+        <h3>A.2 — Install your tools</h3>
+        <p>You need three pieces of software. Install them in this order.</p>
+
+        <table class="tbl">
+          <thead>
+            <tr><th>Tool</th><th>What it is</th><th>Where</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>VS Code</strong></td>
+              <td>The text editor you'll use to view and tweak files.</td>
+              <td><a class="ext" href="https://code.visualstudio.com">code.visualstudio.com</a></td>
+            </tr>
+            <tr>
+              <td><strong>Git</strong></td>
+              <td>The tool that uploads your code to GitHub.</td>
+              <td><a class="ext" href="https://git-scm.com/downloads">git-scm.com/downloads</a></td>
+            </tr>
+            <tr>
+              <td><strong>Node.js</strong> (optional, for running locally)</td>
+              <td>Lets you run a small local web server to preview the site.</td>
+              <td><a class="ext" href="https://nodejs.org">nodejs.org</a> — pick "LTS"</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>For each one: download → open the installer → click <strong>Next / Continue / Install</strong> on every screen. Default settings are fine.</p>
+
+        <h3>A.3 — Verify the installs work</h3>
+        <p>Open your terminal:</p>
+        <ul>
+          <li><strong>Mac:</strong> press <span class="kbd">⌘</span> + <span class="kbd">Space</span>, type <em>Terminal</em>, hit enter.</li>
+          <li><strong>Windows:</strong> press <span class="kbd">⊞ Win</span>, type <em>PowerShell</em>, hit enter.</li>
+        </ul>
+        <p>Type each of these commands (one at a time, press enter after each):</p>
+<pre><span class="p">$</span> <span class="k">git --version</span>
+<span class="c"># expected output: git version 2.something</span>
+
+<span class="p">$</span> <span class="k">node --version</span>
+<span class="c"># expected output: v20.something</span>
+
+<span class="p">$</span> <span class="k">npm --version</span>
+<span class="c"># expected output: 10.something</span></pre>
+
+        <div class="box warn">
+          <div class="ic">!</div>
+          <div>
+            <p>If any command says <em>"command not found"</em>, close and reopen the terminal. If still broken, the install didn't finish — reinstall that tool.</p>
+          </div>
+        </div>
+
+        <h3>A.4 — Run the website locally</h3>
+        <p>This lets you preview the site on your own computer before publishing.</p>
+
+        <ol class="steps">
+          <li>In your terminal, navigate into the project folder:
+<pre><span class="p">$</span> <span class="k">cd ~/Documents/projects/alsagri-website</span>
+<span class="c"># Windows: cd C:\Users\YourName\Documents\projects\alsagri-website</span></pre>
+          </li>
+          <li>Start a tiny local server using a built-in Node tool:
+<pre><span class="p">$</span> <span class="k">npx serve .</span></pre>
+            The first time it'll ask "Ok to proceed? (y)" — type <span class="kbd">y</span> and enter.
+          </li>
+          <li>It will print something like <code>http://localhost:3000</code>. Open that URL in your browser. Your site is now running locally.</li>
+          <li>To stop it: in the terminal, press <span class="kbd">Ctrl</span> + <span class="kbd">C</span>.</li>
+        </ol>
+
+        <div class="box tip">
+          <div class="ic">TIP</div>
+          <div>
+            <p>You can also just <strong>double-click <code>index.html</code></strong> and open it in your browser. That works for previewing, though some advanced features depend on it being served over <code>http://</code>.</p>
+          </div>
+        </div>
+      </section>
+
+      <hr>
+
+      <!-- ─────────────── B. GITHUB ─────────────── -->
+      <section id="github">
+        <h2><span class="num">/B</span>GitHub</h2>
+        <p class="sub-lede">A free place to store your code online. It's where deployment platforms read from.</p>
+
+        <h3>B.1 — Do you need a GitHub account?</h3>
+        <p><strong>Yes.</strong> Both Netlify and Vercel deploy directly from GitHub. It's also a free, versioned backup of your code.</p>
+
+        <h3>B.2 — Create the account</h3>
+        <ol class="steps">
+          <li>Go to <a class="ext" href="https://github.com">github.com</a> and click <strong>Sign up</strong>.</li>
+          <li>Use your email, pick a username (e.g. <code>alsagri</code> or <code>alsagricapital</code>), set a password. Verify your email.</li>
+          <li>Choose the <strong>Free</strong> plan when asked.</li>
+        </ol>
+
+        <h3>B.3 — Create a new repository</h3>
+        <ol class="steps">
+          <li>Once logged in, click the <strong>+</strong> icon in the top-right → <strong>New repository</strong>.</li>
+          <li>Fill in:
+            <ul>
+              <li><strong>Repository name:</strong> <code>alsagri-website</code></li>
+              <li><strong>Description:</strong> "Alsagri Capital — Saudi market analysis"</li>
+              <li><strong>Public</strong> (selected by default — fine, deployment platforms need this on the free tier)</li>
+              <li>Leave the README / .gitignore / license boxes <strong>unchecked</strong> — your folder already has files.</li>
+            </ul>
+          </li>
+          <li>Click the green <strong>Create repository</strong> button.</li>
+          <li>You'll land on an empty repo page with setup instructions. Keep this tab open — you'll need the URL at the top, which looks like:
+<pre><span class="c">https://github.com/YOUR-USERNAME/alsagri-website.git</span></pre>
+          </li>
+        </ol>
+
+        <h3>B.4 — Upload your code (the first push)</h3>
+        <p>This is the part beginners always find confusing. Just follow the lines in order — copy/paste each one into your terminal.</p>
+
+        <ol class="steps">
+          <li>Make sure you're inside the project folder in the terminal:
+<pre><span class="p">$</span> <span class="k">cd ~/Documents/projects/alsagri-website</span></pre>
+          </li>
+          <li>Tell Git who you are (one time only on this computer):
+<pre><span class="p">$</span> <span class="k">git config --global user.name "Your Name"</span>
+<span class="p">$</span> <span class="k">git config --global user.email "you@example.com"</span></pre>
+            Use the same email as your GitHub account.
+          </li>
+          <li>Initialize Git, stage all the files, and make your first commit:
+<pre><span class="p">$</span> <span class="k">git init</span>
+<span class="p">$</span> <span class="k">git add .</span>
+<span class="p">$</span> <span class="k">git commit -m "Initial commit"</span>
+<span class="p">$</span> <span class="k">git branch -M main</span></pre>
+          </li>
+          <li>Connect to GitHub and push (replace <code>YOUR-USERNAME</code>):
+<pre><span class="p">$</span> <span class="k">git remote add origin https://github.com/YOUR-USERNAME/alsagri-website.git</span>
+<span class="p">$</span> <span class="k">git push -u origin main</span></pre>
+            The first push will ask you to log in. Modern GitHub uses a browser pop-up — follow it through.
+          </li>
+          <li>Refresh your GitHub repo page in the browser. Your files should now appear. Done.</li>
+        </ol>
+
+        <div class="box tip">
+          <div class="ic">TIP</div>
+          <div>
+            <p><strong>Future updates</strong> are just three commands. Whenever you change a file, run:</p>
+<pre><span class="p">$</span> <span class="k">git add .</span>
+<span class="p">$</span> <span class="k">git commit -m "describe what you changed"</span>
+<span class="p">$</span> <span class="k">git push</span></pre>
+            <p style="margin:8px 0 0;">If you connect Vercel/Netlify (next section), every push automatically redeploys the live site within 30 seconds.</p>
+          </div>
+        </div>
+
+        <div class="box note">
+          <div class="ic">ALT</div>
+          <div>
+            <p><strong>Too much terminal?</strong> Download <a class="ext" href="https://desktop.github.com">GitHub Desktop</a> — a clean clickable app that does all of the above without any commands. Open it, sign in, click "Add Local Repository", point it at your folder, click "Publish repository". That's it.</p>
+          </div>
+        </div>
+      </section>
+
+      <hr>
+
+      <!-- ─────────────── C. DEPLOY ─────────────── -->
+      <section id="deploy">
+        <h2><span class="num">/C</span>Hosting &amp; deployment</h2>
+        <p class="sub-lede">Picking a host, and connecting it to GitHub for automatic deploys.</p>
+
+        <h3>C.1 — Which platform?</h3>
+        <table class="tbl">
+          <thead>
+            <tr><th>Platform</th><th>Free tier</th><th>Speed</th><th>Best for</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Netlify</strong></td>
+              <td>Yes, generous</td>
+              <td>Fast (global CDN)</td>
+              <td><strong>Recommended for you.</strong> Simplest dashboard. Easiest custom-domain flow.</td>
+            </tr>
+            <tr>
+              <td>Vercel</td>
+              <td>Yes</td>
+              <td>Fast</td>
+              <td>If you later upgrade to a Next.js build. Also fine for static.</td>
+            </tr>
+            <tr>
+              <td>Cloudflare Pages</td>
+              <td>Yes, most generous</td>
+              <td>Fastest</td>
+              <td>Best raw performance, but slightly more technical setup.</td>
+            </tr>
+            <tr>
+              <td>GitHub Pages</td>
+              <td>Yes</td>
+              <td>OK</td>
+              <td>Free option built into GitHub. Custom domains work but DNS is fiddlier.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p><strong>I recommend Netlify</strong> for your case. Beginner-friendliest, free SSL, free custom domain hookup, and excellent for Arabic / RTL sites.</p>
+
+        <h3>C.2 — Deploy on Netlify (step by step)</h3>
+        <ol class="steps">
+          <li>Go to <a class="ext" href="https://app.netlify.com/signup">app.netlify.com/signup</a>.</li>
+          <li>Click <strong>"Sign up with GitHub"</strong>. Authorize when prompted.</li>
+          <li>Once you land in the dashboard, click <strong>"Add new site"</strong> → <strong>"Import an existing project"</strong>.</li>
+          <li>Choose <strong>Deploy with GitHub</strong>. It'll ask to install the Netlify app on your GitHub. Click <strong>Configure</strong> → choose <strong>"Only select repositories"</strong> → pick <code>alsagri-website</code> → <strong>Save</strong>.</li>
+          <li>Back in Netlify, your repo will appear in the list. Click it.</li>
+          <li>On the build settings screen:
+            <ul>
+              <li><strong>Branch to deploy:</strong> <code>main</code></li>
+              <li><strong>Build command:</strong> leave empty</li>
+              <li><strong>Publish directory:</strong> leave empty (or type <code>.</code>)</li>
+            </ul>
+          </li>
+          <li>Click <strong>Deploy</strong>. Wait ~30 seconds.</li>
+          <li>You'll get a URL like <code>https://random-name-abc123.netlify.app</code>. Click it. <strong>Your site is live.</strong> 🎉</li>
+        </ol>
+
+        <h3>C.3 — Rename your free subdomain (optional)</h3>
+        <p>While you're shopping for a real domain, you can claim a nicer Netlify URL:</p>
+        <p class="trail">
+          <span class="step">Netlify dashboard</span>
+          <span class="sep">→</span>
+          <span class="step">Site configuration</span>
+          <span class="sep">→</span>
+          <span class="step">Domain management</span>
+          <span class="sep">→</span>
+          <span class="step">Options</span>
+          <span class="sep">→</span>
+          <span class="step">Edit site name</span>
+        </p>
+        <p>Change to e.g. <code>alsagri-capital</code> → your site becomes <code>https://alsagri-capital.netlify.app</code>.</p>
+      </section>
+
+      <hr>
+
+      <!-- ─────────────── D. DOMAIN ─────────────── -->
+      <section id="domain">
+        <h2><span class="num">/D</span>Domain name</h2>
+        <p class="sub-lede">Replacing the <code>.netlify.app</code> URL with your own real address.</p>
+
+        <h3>D.1 — Where to buy</h3>
+        <table class="tbl">
+          <thead>
+            <tr><th>Registrar</th><th>Price (.com / yr)</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Cloudflare</strong></td>
+              <td>~$10 (at-cost)</td>
+              <td><strong>Recommended.</strong> Cheapest renewals, excellent DNS, free SSL. Bit nerdy UI.</td>
+            </tr>
+            <tr>
+              <td>Porkbun</td>
+              <td>~$10</td>
+              <td>Great prices, very friendly UI. Strong recommend for beginners.</td>
+            </tr>
+            <tr>
+              <td>Namecheap</td>
+              <td>~$10–15</td>
+              <td>Widely used, very beginner-friendly support.</td>
+            </tr>
+            <tr>
+              <td>SaudiNIC (<code>.sa</code> / <code>.com.sa</code>)</td>
+              <td>~SAR 130 / 5 yrs</td>
+              <td>If you want the Saudi domain. Requires CR or ID.</td>
+            </tr>
+            <tr>
+              <td>GoDaddy</td>
+              <td>~$15 first yr, $25+ after</td>
+              <td>Avoid. Expensive renewals + upsells.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>D.2 — What kind of domain?</h3>
+        <p>For an investor-focused content platform, in order of strength:</p>
+        <ul>
+          <li><strong><code>alsagricapital.com</code></strong> — universal, easy to share, instantly looks professional. <strong>My top recommendation.</strong></li>
+          <li><strong><code>alsagricapital.sa</code></strong> — strong Saudi signal, premium-feeling. Requires Saudi CR or ID via SaudiNIC.</li>
+          <li><code>alsagri.capital</code> — clever but slightly novelty. Renewals are pricier.</li>
+        </ul>
+
+        <h3>D.3 — Buy the domain</h3>
+        <p>Using Porkbun as the easiest example:</p>
+        <ol class="steps">
+          <li>Go to <a class="ext" href="https://porkbun.com">porkbun.com</a>.</li>
+          <li>Search <code>alsagricapital</code>. Add <code>.com</code> (and any backups like <code>.sa</code>) to your cart.</li>
+          <li>Create account, pay. <strong>Decline all upsells</strong> — you don't need their email, web hosting, or "premium DNS." You already have hosting (Netlify).</li>
+          <li>You now own the domain. The next step is pointing it at Netlify.</li>
+        </ol>
+
+        <h3>D.4 — Connect the domain to Netlify</h3>
+        <p>This is the bit that scares beginners. It's actually 4 clicks + 2 copy-pastes.</p>
+
+        <ol class="steps">
+          <li><strong>In Netlify:</strong>
+            <p class="trail">
+              <span class="step">Site</span>
+              <span class="sep">→</span>
+              <span class="step">Domain management</span>
+              <span class="sep">→</span>
+              <span class="step">Add a domain</span>
+            </p>
+            Type your domain (e.g. <code>alsagricapital.com</code>) → click Verify → click Add.
+          </li>
+          <li>Netlify will show you two values to copy. They look like this:
+<pre><span class="c"># For the bare domain (alsagricapital.com)</span>
+A record       →  75.2.60.5
+
+<span class="c"># For www.alsagricapital.com</span>
+CNAME record   →  your-site.netlify.app</pre>
+            Keep that tab open.
+          </li>
+          <li><strong>In Porkbun (or your registrar):</strong>
+            <p class="trail">
+              <span class="step">My Account</span>
+              <span class="sep">→</span>
+              <span class="step">Domain Management</span>
+              <span class="sep">→</span>
+              <span class="step">Details</span>
+              <span class="sep">→</span>
+              <span class="step">DNS Records</span>
+            </p>
+          </li>
+          <li>Delete any default records that came with the domain (parking pages). Then add two new records:
+            <table class="tbl">
+              <thead>
+                <tr><th>Type</th><th>Host</th><th>Answer / Value</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>A</td><td>(leave blank, or @)</td><td><code>75.2.60.5</code> <em>(use the IP Netlify showed you)</em></td></tr>
+                <tr><td>CNAME</td><td>www</td><td><code>your-site.netlify.app</code> <em>(use the value Netlify showed you)</em></td></tr>
+              </tbody>
+            </table>
+            Save.
+          </li>
+          <li>Wait <strong>5 minutes to 24 hours</strong> while DNS propagates around the world. Usually it's 10 minutes.</li>
+          <li>Back in Netlify, hit <strong>Verify DNS configuration</strong>. Then click <strong>"HTTPS → Provision certificate"</strong> (often automatic). This gives you the green padlock.</li>
+        </ol>
+
+        <div class="box tip">
+          <div class="ic">DNS</div>
+          <div>
+            <p><strong>What is DNS, in one sentence?</strong> The internet's phone book — it turns <code>alsagricapital.com</code> into the IP address of Netlify's servers. The "A record" is the bare domain, the "CNAME" handles the <code>www.</code> version.</p>
+          </div>
+        </div>
+      </section>
+
+      <hr>
+
+      <!-- ─────────────── E. POLISH ─────────────── -->
+      <section id="polish">
+        <h2><span class="num">/E</span>Professional polish checklist</h2>
+        <p class="sub-lede">Before you tell anyone the URL — go through this.</p>
+
+        <h3>E.1 — Responsive on mobile &amp; desktop</h3>
+        <p>Open the live URL on your phone. Then on desktop, press <span class="kbd">F12</span> (or Cmd+Opt+I on Mac), click the <strong>device toolbar</strong> icon, and test at iPhone, iPad, and 1440px widths.</p>
+
+        <h3>E.2 — Arabic / RTL renders correctly</h3>
+        <p>The site already declares <code>&lt;html lang="ar" dir="rtl"&gt;</code> and uses <code>IBM Plex Sans Arabic</code>. Verify on the live site that:</p>
+        <ul>
+          <li>Text reads right-to-left.</li>
+          <li>The arrow icons on buttons point in the right direction (←).</li>
+          <li>The reports list isn't mirrored awkwardly.</li>
+        </ul>
+
+        <h3>E.3 — Loading speed</h3>
+        <p>Test at <a class="ext" href="https://pagespeed.web.dev">pagespeed.web.dev</a>. Paste your URL → click Analyze. Aim for 80+ on mobile.</p>
+        <p>Because the current site transpiles JSX in the browser, your first-load score will be in the 60–80 range. <strong>Tell me when you want to convert to a Vite build — it'll jump to 95+.</strong></p>
+
+        <h3>E.4 — Buttons &amp; links</h3>
+        <p>Click everything once. In particular check:</p>
+        <ul>
+          <li>Nav links jump to the right sections.</li>
+          <li>The contact section links go to real handles (currently placeholders — give me your real email/LinkedIn and I'll wire them up).</li>
+          <li>Footer year is correct.</li>
+        </ul>
+
+        <h3>E.5 — SEO basics</h3>
+        <p>Add these to <code>&lt;head&gt;</code> in <code>index.html</code>. I can do this for you — just say the word and I'll write the exact tags. The essentials:</p>
+<pre><span class="k">&lt;title&gt;</span>الصاقري كابيتال — تحليلات الشركات السعودية المدرجة<span class="k">&lt;/title&gt;</span>
+<span class="k">&lt;meta</span> name="description" content="ملخصات وتحليلات لمكالمات نتائج الشركات السعودية..."<span class="k">&gt;</span>
+<span class="k">&lt;link</span> rel="canonical" href="https://alsagricapital.com/"<span class="k">&gt;</span>
+
+<span class="c">&lt;!-- Open Graph (Facebook, LinkedIn) --&gt;</span>
+<span class="k">&lt;meta</span> property="og:title" content="الصاقري كابيتال"<span class="k">&gt;</span>
+<span class="k">&lt;meta</span> property="og:description" content="..."<span class="k">&gt;</span>
+<span class="k">&lt;meta</span> property="og:image" content="https://alsagricapital.com/og.png"<span class="k">&gt;</span>
+<span class="k">&lt;meta</span> property="og:url" content="https://alsagricapital.com/"<span class="k">&gt;</span>
+
+<span class="c">&lt;!-- Twitter / X --&gt;</span>
+<span class="k">&lt;meta</span> name="twitter:card" content="summary_large_image"<span class="k">&gt;</span>
+<span class="k">&lt;meta</span> name="twitter:site" content="@alsagricapital"<span class="k">&gt;</span></pre>
+
+        <p>After deploy, also:</p>
+        <ul>
+          <li>Submit your URL to <a class="ext" href="https://search.google.com/search-console">Google Search Console</a> (free).</li>
+          <li>Add a <code>sitemap.xml</code> and <code>robots.txt</code> at the root.</li>
+        </ul>
+
+        <h3>E.6 — Favicon &amp; social share image</h3>
+        <p>Two small graphic files make the site feel real.</p>
+        <ul>
+          <li><strong>Favicon</strong> — the little icon in the browser tab. Use a navy "AC" mark on white. Create one easily at <a class="ext" href="https://realfavicongenerator.net">realfavicongenerator.net</a> — drop in a 512×512 PNG, download the bundle, drop the files in your project folder, paste the snippet they give you into your <code>&lt;head&gt;</code>.</li>
+          <li><strong>Social share image (Open Graph)</strong> — what shows up when you paste the URL into X or WhatsApp. A 1200×630 PNG with the headline + logo. I can design one for you in this workspace — just ask.</li>
+        </ul>
+      </section>
+
+      <hr>
+
+      <!-- ─────────────── FINAL ─────────────── -->
+      <section id="final">
+        <h2><span class="num">/★</span>Final zero-to-live checklist</h2>
+        <p class="sub-lede">Tick each box as you complete it. About 2–3 hours total for a complete beginner.</p>
+
+        <ul class="check">
+          <li><span><strong>1. Download code</strong> — Export project from this workspace, unzip into <code>~/Documents/projects/alsagri-website</code>.</span></li>
+          <li><span><strong>2. Install tools</strong> — VS Code, Git, (optionally) Node.js. Verify with <code>git --version</code>.</span></li>
+          <li><span><strong>3. Run locally</strong> — <code>cd</code> into the folder, run <code>npx serve .</code>, open <code>localhost:3000</code>.</span></li>
+          <li><span><strong>4. Upload to GitHub</strong> — Create repo <code>alsagri-website</code>, <code>git init</code> → <code>git add .</code> → <code>git commit</code> → <code>git push</code>.</span></li>
+          <li><span><strong>5. Deploy on Netlify</strong> — Sign in with GitHub, import repo, deploy. Confirm the <code>.netlify.app</code> URL loads.</span></li>
+          <li><span><strong>6. Buy domain</strong> — Porkbun or Cloudflare. <code>alsagricapital.com</code> (~$10/yr). Decline all upsells.</span></li>
+          <li><span><strong>7. Connect domain</strong> — In Netlify: Add domain. In registrar: add A record (Netlify IP) and CNAME for <code>www</code>. Wait for DNS propagation. Provision SSL.</span></li>
+          <li><span><strong>8. Final testing</strong> — Mobile + desktop, RTL renders correctly, PageSpeed test, all links work, SEO tags, favicon, social share image. Submit to Google Search Console.</span></li>
+        </ul>
+
+        <div class="box tip" style="margin-top:32px;">
+          <div class="ic">NEXT</div>
+          <div>
+            <p>When the site is live and you're ready for a performance upgrade, ask me to <strong>"convert this to a production Vite build"</strong>. I'll restructure the project so JSX is pre-compiled — pages will load 2–3× faster and Google will rank you higher.</p>
+            <p style="margin:8px 0 0;">Also: send me your real <strong>email, LinkedIn, and Telegram</strong> handles whenever you'd like me to replace the contact placeholders in the live site.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="f">
+        <div>© ٢٠٢٦ الصاقري كابيتال — دليل النشر</div>
+        <div class="mono">v1 · Riyadh · KSA</div>
+      </footer>
+    </main>
+
+  </div>
+</body>
+</html>

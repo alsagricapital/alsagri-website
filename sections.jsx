@@ -290,23 +290,31 @@ function XSubBanner() {
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
         </svg>
       </span>
-      <span className="tb-text">جميع خدمات المنصة متاحة في قسم الاشتراك بـ <strong>X</strong></span>
-      <span className="tb-meta">(تويتر سابقاً)</span>
+      <span className="tb-text">
+        جميع خدمات المنصة متاحة في قسم الاشتراك بـ
+        <span className="tb-xlogo" aria-label="X" role="img">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+        </span>
+      </span>
       <span className="tb-arr">←</span>
     </a>);
 }
 
 /* ── PAGE BANNER (interior pages) ──────────────────────────────── */
-function PageBanner({ num, eyebrow, title, sub, variant = 'about' }) {
+function PageBanner({ num, eyebrow, title, sub, variant = 'about', showXSub = false }) {
   return (
     <section className="page-banner">
       <div className="wrap">
         <div className="pb-eyebrow">/{num} — {eyebrow}</div>
         <h1 className="pb-title">{title}</h1>
         {sub && <p className="pb-sub">{sub}</p>}
-        <div style={{ marginTop: 24 }}>
-          <XSubBanner />
-        </div>
+        {showXSub && (
+          <div style={{ marginTop: 24 }}>
+            <XSubBanner />
+          </div>
+        )}
       </div>
     </section>);
 }
@@ -351,7 +359,7 @@ function Hero() {
             </div>
             <div className="hero-actions">
               <a href="services.html" className="btn btn-primary">
-                استعراض الخدمات
+                استعرض الخدمات
                 <span className="arrow">←</span>
               </a>
               <a href="about.html" className="btn btn-ghost">
@@ -386,7 +394,8 @@ function About() {
         eyebrow="ABOUT"
         title="عن المنصة"
         sub="محتوى تحليلي منظّم موجّه للمستثمرين والمهتمّين بالسوق السعودي، يقدّم قراءة مكتوبة ومبسّطة لأهم ما يُنشر حول الشركات المدرجة في السوق السعودي."
-        variant="about" />
+        variant="about"
+        showXSub={true} />
 
       <section id="about" className="section first">
         <div className="wrap">
@@ -488,7 +497,8 @@ function Services() {
         eyebrow="SERVICES"
         title="الخدمات"
         sub="ثلاثُ زوايا لقراءة الشركة السعودية المدرجة: ما قالته الشركة، ما يُقال عنها، وما هي عليه. اضغط على أي خدمة لعرض نماذجها."
-        variant="services" />
+        variant="services"
+        showXSub={true} />
 
       <section id="services" className="section first">
         <div className="wrap">
@@ -651,16 +661,20 @@ function Tools() {
       n: '01',
       ar: 'حاسبة تبديل المراكز',
       en: 'Position Switching Calculator',
+      href: 'tool-position-switch.html',
+      ready: true,
     },
     {
       n: '02',
       ar: 'حساب العائد التراكمي',
       en: 'Cumulative Return Calculator',
+      ready: false,
     },
     {
       n: '03',
       ar: 'حساب العائد السنوي للمحفظة الاحترافي',
       en: 'Pro Annualised Portfolio Return',
+      ready: false,
     },
   ];
 
@@ -670,23 +684,34 @@ function Tools() {
         num="03"
         eyebrow="USEFUL TOOLS"
         title="أدوات مفيدة"
-        sub="مجموعةٌ من الحاسبات والأدوات المعينة للمستثمر في السوق السعودي. ستُضاف وظائف الحساب لاحقًا."
+        sub="مجموعةٌ من الحاسبات والأدوات المعينة للمستثمر في السوق السعودي."
         variant="tools" />
 
       <section className="section first">
         <div className="wrap">
           <div className="tools-grid">
-            {tools.map((tool, idx) => (
-              <article className={'tool-card reveal d' + (idx + 1)} key={tool.n}>
-                <div className="tool-num"><span>{tool.n}</span></div>
-                <h3 className="tool-title">{tool.ar}</h3>
-                <div className="tool-en">{tool.en}</div>
-                <span className="tool-status">
-                  <span className="tool-status-dot" aria-hidden="true"></span>
-                  قريبًا
-                </span>
-              </article>
-            ))}
+            {tools.map((tool, idx) => {
+              const inner = (
+                <React.Fragment>
+                  <div className="tool-num"><span>{tool.n}</span></div>
+                  <h3 className="tool-title">{tool.ar}</h3>
+                  <div className="tool-en">{tool.en}</div>
+                  <span className={'tool-status ' + (tool.ready ? 'ready' : '')}>
+                    <span className="tool-status-dot" aria-hidden="true"></span>
+                    {tool.ready ? 'افتح الأداة ←' : 'قريبًا'}
+                  </span>
+                </React.Fragment>
+              );
+              return tool.ready ? (
+                <a className={'tool-card is-link reveal d' + (idx + 1)} key={tool.n} href={tool.href}>
+                  {inner}
+                </a>
+              ) : (
+                <article className={'tool-card reveal d' + (idx + 1)} key={tool.n}>
+                  {inner}
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>

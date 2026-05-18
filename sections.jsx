@@ -665,13 +665,37 @@ function Tools() {
       id: 'cumulative-return',
       ar: 'حساب العائد التراكمي',
       en: 'Cumulative Return Calculator',
-      ready: false,
+      href: 'tool-compound-return.html',
+      ready: true,
     },
     {
       n: '03',
       id: 'annualised-return',
-      ar: 'حساب العائد السنوي للمحفظة الاحترافي',
-      en: 'Pro Annualised Portfolio Return',
+      ar: 'حساب العائد السنوي المركّب',
+      en: 'Compound Annual Growth Rate',
+      href: 'tool-cagr.html',
+      ready: true,
+    },
+    {
+      n: '04',
+      id: 'portfolio-return',
+      ar: 'حاسبة العائد السنوي للمحفظة',
+      en: 'Portfolio Annualised Return (XIRR)',
+      href: 'tool-portfolio-return.html',
+      ready: true,
+    },
+    {
+      n: '05',
+      id: 'tool-5',
+      ar: '',
+      en: '',
+      ready: false,
+    },
+    {
+      n: '06',
+      id: 'tool-6',
+      ar: '',
+      en: '',
       ready: false,
     },
   ];
@@ -689,18 +713,25 @@ function Tools() {
         <div className="wrap">
           <div className="tools-grid">
             {tools.map((tool, idx) => {
+              const isPlaceholder = !tool.ar;
+              if (isPlaceholder) {
+                return (
+                  <article className={'tool-card tool-card-placeholder reveal d' + (idx + 1)} key={tool.n}>
+                    <div className="tool-num"><span>{tool.n}</span></div>
+                    <div className="tool-placeholder-body">
+                      <span className="tool-placeholder-badge">
+                        <span className="tool-status-dot" aria-hidden="true"></span>
+                        قريبًا
+                      </span>
+                    </div>
+                  </article>
+                );
+              }
               const inner = (
                 <React.Fragment>
                   <div className="tool-num"><span>{tool.n}</span></div>
                   <h3 className="tool-title">{tool.ar}</h3>
                   <div className="tool-en">{tool.en}</div>
-                  {!tool.ready && (
-                    <span className="tool-status">
-                      <span className="tool-status-dot" aria-hidden="true"></span>
-                      قريبًا
-                    </span>
-                  )}
-                  {tool.ready && <span className="tool-arrow" aria-hidden="true">←</span>}
                 </React.Fragment>
               );
               return tool.ready ? (

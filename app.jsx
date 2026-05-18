@@ -70,6 +70,9 @@ function App() {
     contact:  Contact,
     'service-detail': ServiceDetail,
     'tool-position-switch': window.ToolPositionSwitch,
+    'tool-compound-return': window.ToolCompoundReturn,
+    'tool-cagr': window.ToolCagr,
+    'tool-portfolio-return': window.ToolPortfolioReturn,
   }[page] || Hero;
 
   return (

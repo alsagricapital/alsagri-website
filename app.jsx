@@ -69,6 +69,7 @@ function App() {
     tools:    Tools,
     contact:  Contact,
     'service-detail': ServiceDetail,
+    'tool-position-switch': window.ToolPositionSwitch,
   }[page] || Hero;
 
   return (

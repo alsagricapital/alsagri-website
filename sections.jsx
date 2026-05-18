@@ -271,7 +271,6 @@ function Nav({ currentPage, drawerOpen, setDrawerOpen }) {
           <li key={it.id}>
             <a href={it.href} onClick={() => setDrawerOpen(false)}>
               <span>{it.label}</span>
-              <span className="n">{it.n}</span>
             </a>
           </li>
         ))}
@@ -285,11 +284,6 @@ function Nav({ currentPage, drawerOpen, setDrawerOpen }) {
 function XSubBanner() {
   return (
     <a className="top-announcement" href="https://x.com/alsagricapital" target="_blank" rel="noreferrer">
-      <span className="x-logo" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-        </svg>
-      </span>
       <span className="tb-text">
         جميع خدمات المنصة متاحة في قسم الاشتراك بـ
         <span className="tb-xlogo" aria-label="X" role="img">
@@ -697,7 +691,7 @@ function Tools() {
                   <h3 className="tool-title">{tool.ar}</h3>
                   <div className="tool-en">{tool.en}</div>
                   <span className={'tool-status ' + (tool.ready ? 'ready' : '')}>
-                    <span className="tool-status-dot" aria-hidden="true"></span>
+                    {!tool.ready && <span className="tool-status-dot" aria-hidden="true"></span>}
                     {tool.ready ? 'افتح الأداة ←' : 'قريبًا'}
                   </span>
                 </React.Fragment>

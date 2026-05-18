@@ -846,18 +846,32 @@ a.rpt-link:hover { transform: translateY(-3px); border-color: var(--accent); }
   .hero-quote-card { width: 28%; left: 3%; }
 }
 @media (max-width: 900px) {
+  .hero-dark {
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+    padding: calc(80px * var(--scale)) 0 calc(80px * var(--scale));
+  }
+  .hero-dark > .wrap { order: 1; }
   .hero-quote-card {
+    order: 2;
     position: static;
-    width: 100%;
+    width: auto;
     max-width: none;
     min-width: 0;
-    margin-top: 36px;
+    margin: 32px 20px 0;
     transform: none;
-    padding: 24px 22px 22px;
+    padding: 22px 22px 20px;
+    border-radius: 14px;
     opacity: 1;
     animation: hqcInMobile .9s .3s cubic-bezier(.2,.7,.2,1) backwards;
+    box-shadow: 0 16px 32px -18px rgba(10, 22, 40, 0.25);
   }
-  .hero-quote-card .hqc-quote { font-size: 16px; }
+  .hero-quote-card .hqc-top { padding-bottom: 14px; margin-bottom: 14px; }
+  .hero-quote-card .hqc-brand { font-size: 14px; }
+  .hero-quote-card .hqc-quote { font-size: 15.5px; line-height: 1.7; }
+  .hero-quote-card .hqc-q-open { font-size: 28px; }
+  .hero-quote-card .hqc-attr { margin-top: 14px; font-size: 12px; }
 }
 @keyframes hqcInMobile {
   from { opacity: 0; transform: translateY(16px); }

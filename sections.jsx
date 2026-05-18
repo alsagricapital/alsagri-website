@@ -499,19 +499,20 @@ function Services() {
           <div className="services-grid">
             {window.SERVICES.map((s, idx) => (
               <a
-                className={'svc reveal d' + (idx + 1)}
+                className={'svc svc-tint-' + s.id + ' reveal d' + (idx + 1)}
                 key={s.id}
-                href={'service-' + s.id + '.html'}
-                style={{ cursor: 'pointer', textDecoration: 'none', color: 'inherit', display: 'block' }}>
+                href={'service-' + s.id + '.html'}>
                 <div className="svc-num">
                   <span>{s.num}</span>
                 </div>
                 <h3>{s.ar}</h3>
                 <div className="svc-en">{s.en}</div>
                 <p className="svc-desc">{s.desc}</p>
-                <div className="svc-tags">
-                  {s.tags.map((t) => <span className="tag" key={t}>{t}</span>)}
-                </div>
+                {s.tags && s.tags.length > 0 && (
+                  <div className="svc-tags">
+                    {s.tags.map((t) => <span className="tag" key={t}>{t}</span>)}
+                  </div>
+                )}
                 <span className="svc-link">
                   <span>اطّلع على النماذج</span>
                   <span className="arr">←</span>
@@ -653,6 +654,7 @@ function Tools() {
   const tools = [
     {
       n: '01',
+      id: 'position-switch',
       ar: 'حاسبة تبديل المراكز',
       en: 'Position Switching Calculator',
       href: 'tool-position-switch.html',
@@ -660,12 +662,14 @@ function Tools() {
     },
     {
       n: '02',
+      id: 'cumulative-return',
       ar: 'حساب العائد التراكمي',
       en: 'Cumulative Return Calculator',
       ready: false,
     },
     {
       n: '03',
+      id: 'annualised-return',
       ar: 'حساب العائد السنوي للمحفظة الاحترافي',
       en: 'Pro Annualised Portfolio Return',
       ready: false,
@@ -690,18 +694,21 @@ function Tools() {
                   <div className="tool-num"><span>{tool.n}</span></div>
                   <h3 className="tool-title">{tool.ar}</h3>
                   <div className="tool-en">{tool.en}</div>
-                  <span className={'tool-status ' + (tool.ready ? 'ready' : '')}>
-                    {!tool.ready && <span className="tool-status-dot" aria-hidden="true"></span>}
-                    {tool.ready ? 'افتح الأداة ←' : 'قريبًا'}
-                  </span>
+                  {!tool.ready && (
+                    <span className="tool-status">
+                      <span className="tool-status-dot" aria-hidden="true"></span>
+                      قريبًا
+                    </span>
+                  )}
+                  {tool.ready && <span className="tool-arrow" aria-hidden="true">←</span>}
                 </React.Fragment>
               );
               return tool.ready ? (
-                <a className={'tool-card is-link reveal d' + (idx + 1)} key={tool.n} href={tool.href}>
+                <a className={'tool-card tool-tint-' + tool.id + ' is-link reveal d' + (idx + 1)} key={tool.n} href={tool.href}>
                   {inner}
                 </a>
               ) : (
-                <article className={'tool-card reveal d' + (idx + 1)} key={tool.n}>
+                <article className={'tool-card tool-tint-' + tool.id + ' reveal d' + (idx + 1)} key={tool.n}>
                   {inner}
                 </article>
               );

@@ -5,18 +5,18 @@ const SERVICES = [
   {
     id: 'earnings',
     num: '01',
-    ar: 'مكالمات نتائج الشركات / مكالمات المستثمرين',
+    ar: 'مكالمات نتائج الشركات',
     en: 'Earnings Call Reports',
     desc: 'مكالمات نتائج الشركات السعودية المدرجة، تشمل تعليقات الإدارة، أبرز المؤشرات المالية، ورؤى موجَّهة للمستثمرين وتوجيهات الشركة للإيرادات والأرباح والإجابة على أسئلة المحللين.',
-    tags: ['Management Commentary', 'KPIs', 'Guidance', 'Q&A Highlights'],
+    tags: [],
   },
   {
     id: 'brokerage',
     num: '02',
-    ar: 'تقارير بيوت الوساطة والأبحاث',
+    ar: 'تقارير بيوت الخبرة والأبحاث',
     en: 'Brokerage & Research House Reports',
     desc: 'ملخصات لأبرز تقارير الأبحاث الصادرة عن بيوت الوساطة وبنوك الاستثمار، مع التركيز على السعر المستهدف، التوصية، الفرضيات، ومضاعفات التقييم.',
-    tags: ['Target Price', 'Rating', 'EV/EBITDA', 'DCF', 'Catalysts'],
+    tags: [],
   },
   {
     id: 'qualitative',
@@ -24,7 +24,7 @@ const SERVICES = [
     ar: 'تقارير نوعية وتحليلات خاصة',
     en: 'Special Qualitative Reports',
     desc: 'تقارير معمَّقة عن الشركات السعودية المدرجة تتناول نموذج الأعمال، محركات النمو، المنافسة، اتجاهات القطاع، والنظرة المستقبلية.',
-    tags: ['Business Model', 'Sector View', 'Moat', 'Strategy', 'Outlook'],
+    tags: [],
   },
 ];
 

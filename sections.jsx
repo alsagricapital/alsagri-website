@@ -191,6 +191,30 @@ function Nav({ currentPage, drawerOpen, setDrawerOpen }) {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+  // Lock body scroll while drawer is open
+  useEffect(() => {
+    if (drawerOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => { document.body.style.overflow = prev; };
+    }
+  }, [drawerOpen]);
+  // Close drawer if user resizes past mobile breakpoint
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 861px)');
+    const onChange = (e) => { if (e.matches) setDrawerOpen(false); };
+    mq.addEventListener ? mq.addEventListener('change', onChange) : mq.addListener(onChange);
+    return () => {
+      mq.removeEventListener ? mq.removeEventListener('change', onChange) : mq.removeListener(onChange);
+    };
+  }, [setDrawerOpen]);
+  // Close drawer on Escape
+  useEffect(() => {
+    if (!drawerOpen) return;
+    const onKey = (e) => { if (e.key === 'Escape') setDrawerOpen(false); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [drawerOpen, setDrawerOpen]);
   const items = [
     { id: 'about',     label: 'عن المنصة', n: '01', href: 'about.html' },
     { id: 'services',  label: 'الخدمات',   n: '02', href: 'services.html' },
@@ -198,6 +222,7 @@ function Nav({ currentPage, drawerOpen, setDrawerOpen }) {
   ];
 
   return (
+    <React.Fragment>
     <header className={'nav ' + (scrolled ? 'scrolled' : '')}>
       <div className="wrap nav-inner">
         <a className="brand" href="index.html">
@@ -223,24 +248,37 @@ function Nav({ currentPage, drawerOpen, setDrawerOpen }) {
         <button
           className={'nav-burger ' + (drawerOpen ? 'open' : '')}
           aria-label="القائمة"
+          aria-expanded={drawerOpen ? 'true' : 'false'}
+          aria-controls="mobile-drawer"
           onClick={() => setDrawerOpen((v) => !v)}>
           <span></span><span></span>
         </button>
       </div>
-      <div className={'drawer ' + (drawerOpen ? 'open' : '')}>
-        <ul>
-          {items.map((it) => (
-            <li key={it.id}>
-              <a href={it.href}>
-                <span>{it.label}</span>
-                <span className="n">{it.n}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-        <a className="drawer-cta" href="contact.html">تواصل معي ←</a>
-      </div>
-    </header>);
+    </header>
+    <div
+      className={'drawer-backdrop ' + (drawerOpen ? 'open' : '')}
+      onClick={() => setDrawerOpen(false)}
+      aria-hidden="true"
+    ></div>
+    <div
+      id="mobile-drawer"
+      className={'drawer ' + (drawerOpen ? 'open' : '')}
+      role="dialog"
+      aria-modal="true"
+      aria-hidden={drawerOpen ? 'false' : 'true'}>
+      <ul>
+        {items.map((it) => (
+          <li key={it.id}>
+            <a href={it.href} onClick={() => setDrawerOpen(false)}>
+              <span>{it.label}</span>
+              <span className="n">{it.n}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <a className="drawer-cta" href="contact.html" onClick={() => setDrawerOpen(false)}>تواصل معي ←</a>
+    </div>
+    </React.Fragment>);
 }
 
 /* ── X Subscription Banner (shared across pages) ────────────────── */

@@ -216,9 +216,9 @@ function Nav({ currentPage, drawerOpen, setDrawerOpen }) {
     return () => window.removeEventListener('keydown', onKey);
   }, [drawerOpen, setDrawerOpen]);
   const items = [
-    { id: 'about',     label: 'عن المنصة', n: '01', href: 'about.html' },
-    { id: 'services',  label: 'الخدمات',   n: '02', href: 'services.html' },
-    { id: 'contact',   label: 'التواصل',   n: '03', href: 'contact.html' },
+    { id: 'about',     label: 'عن المنصة',   n: '01', href: 'about.html' },
+    { id: 'services',  label: 'الخدمات',     n: '02', href: 'services.html' },
+    { id: 'tools',     label: 'أدوات مفيدة', n: '03', href: 'tools.html' },
   ];
 
   return (
@@ -644,4 +644,53 @@ function Footer() {
     </footer>);
 }
 
-Object.assign(window, { Nav, Hero, About, Services, ServiceDetail, Disclaimer, Contact, Footer, useReveal, BrandMark, PageBanner, ReportCard });
+/* ── TOOLS page (placeholders) ─────────────────────────────────── */
+function Tools() {
+  const tools = [
+    {
+      n: '01',
+      ar: 'حاسبة تبديل المراكز',
+      en: 'Position Switching Calculator',
+    },
+    {
+      n: '02',
+      ar: 'حساب العائد التراكمي',
+      en: 'Cumulative Return Calculator',
+    },
+    {
+      n: '03',
+      ar: 'حساب العائد السنوي للمحفظة الاحترافي',
+      en: 'Pro Annualised Portfolio Return',
+    },
+  ];
+
+  return (
+    <React.Fragment>
+      <PageBanner
+        num="03"
+        eyebrow="USEFUL TOOLS"
+        title="أدوات مفيدة"
+        sub="مجموعةٌ من الحاسبات والأدوات المعينة للمستثمر في السوق السعودي. ستُضاف وظائف الحساب لاحقًا."
+        variant="tools" />
+
+      <section className="section first">
+        <div className="wrap">
+          <div className="tools-grid">
+            {tools.map((tool, idx) => (
+              <article className={'tool-card reveal d' + (idx + 1)} key={tool.n}>
+                <div className="tool-num"><span>{tool.n}</span></div>
+                <h3 className="tool-title">{tool.ar}</h3>
+                <div className="tool-en">{tool.en}</div>
+                <span className="tool-status">
+                  <span className="tool-status-dot" aria-hidden="true"></span>
+                  قريبًا
+                </span>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </React.Fragment>);
+}
+
+Object.assign(window, { Nav, Hero, About, Services, ServiceDetail, Disclaimer, Contact, Tools, Footer, useReveal, BrandMark, PageBanner, ReportCard });

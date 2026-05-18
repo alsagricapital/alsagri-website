@@ -66,6 +66,7 @@ function App() {
     home:     Hero,
     about:    About,
     services: Services,
+    tools:    Tools,
     contact:  Contact,
     'service-detail': ServiceDetail,
   }[page] || Hero;

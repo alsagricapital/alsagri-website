@@ -316,8 +316,12 @@ function PageBanner({ num, eyebrow, title, sub, variant = 'about', showXSub = fa
 /* ── HERO (homepage — DARK BANNER) ─────────────────────────────── */
 function Hero() {
   return (
+    <React.Fragment>
     <section id="top" className="hero-dark">
       <div className="hero-glow" aria-hidden="true"></div>
+      <div className="hero-chart" aria-hidden="true">
+        <ChartLineBackground variant="hero" />
+      </div>
       <div className="hero-quote-card" aria-hidden="false">
         <div className="hqc-dots"></div>
         <div className="hqc-glow"></div>
@@ -374,6 +378,31 @@ function Hero() {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+    <HomeCalmBanner />
+    </React.Fragment>);
+}
+
+function HomeCalmBanner() {
+  return (
+    <section className="home-calm-band">
+      <div className="wrap">
+        <div className="home-calm-card reveal">
+          <div className="home-calm-glow" aria-hidden="true"></div>
+          <div className="home-calm-mark" aria-hidden="true">
+            <BrandMark size={26} />
+          </div>
+          <div className="home-calm-copy">
+            <span className="home-calm-kicker">قراءة هادئة للسوق</span>
+            <p>تنظيم المعلومة قبل اتخاذ القرار: مكالمات نتائج، تقارير أبحاث، وأدوات مختصرة في مكان واحد.</p>
+          </div>
+          <div className="home-calm-tags" aria-label="محاور المنصة">
+            <span>مكالمات النتائج</span>
+            <span>تقارير الأبحاث</span>
+            <span>أدوات مفيدة</span>
+          </div>
         </div>
       </div>
     </section>);

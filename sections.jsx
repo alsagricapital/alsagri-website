@@ -373,7 +373,7 @@ function HomeCalmBanner() {
           <div className="home-calm-glow" aria-hidden="true"></div>
           <div className="home-calm-profile">
             <div className="home-profile-avatar-wrap">
-              <img className="home-profile-avatar" src="assets/alsagri-profile.jpg" alt="الصقري | Alsagri" loading="eager" decoding="async" />
+              <BrandMark size={38} />
               <span className="home-profile-status" aria-hidden="true"></span>
             </div>
             <div className="home-profile-copy">

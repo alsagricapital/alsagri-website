@@ -19,16 +19,19 @@ function useReveal(deps = []) {
   }, deps);
 }
 
-/* ── Brand mark SVG (chart line + arrow + dots) ─────────────────── */
+/* ── Brand mark SVG (refined market wing) ───────────────────────── */
 function BrandMark({ size = 28, color = 'currentColor' }) {
+  const markStyle = color === 'currentColor' ? { width: size, height: size } : { width: size, height: size, color };
   return (
-    <span className="brand-mark-svg" style={{ width: size, height: size, color }}>
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 36 L14 22 L22 28 L34 12" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M28 12 L34 12 L34 18" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="4" cy="36" r="2.5" fill="currentColor" />
-        <circle cx="14" cy="22" r="2.5" fill="currentColor" />
-        <circle cx="22" cy="28" r="2.5" fill="currentColor" />
+    <span className="brand-mark-svg" style={markStyle}>
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M7 34.5L17.2 24.2L23.7 29.2L35.8 15.6L41 16" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M34.5 9.5L41 16L34 22" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M9.5 37.5H39" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" opacity="0.24" />
+        <path d="M11 30L17.5 23.7L24.3 28.8L20.5 38H11Z" fill="currentColor" opacity="0.18" />
+        <path d="M23.2 28.6L35.8 15.6L39 37.5H20.4Z" fill="currentColor" opacity="0.1" />
+        <circle cx="17.2" cy="24.2" r="2.4" fill="currentColor" />
+        <circle cx="23.7" cy="29.2" r="2.4" fill="currentColor" />
       </svg>
     </span>
   );
@@ -52,132 +55,68 @@ function Sparkline({ data }) {
     </svg>);
 }
 
-/* ── Candlestick chart background SVG ──────────────────────────── */
+/* ── Market trend background SVG ───────────────────────────────── */
 function ChartLineBackground({ variant = 'hero' }) {
-  // Each candle: [x, openY, closeY, highY, lowY, dir]  (dir: 'up' or 'down')
-  // ViewBox is 1200×360, baseline ~340.
-  const sets = {
-    hero: [
-      [40,  290, 250, 230, 305, 'up'],
-      [120, 270, 235, 215, 285, 'up'],
-      [200, 250, 270, 235, 285, 'down'],
-      [280, 260, 215, 195, 275, 'up'],
-      [360, 220, 195, 175, 240, 'up'],
-      [440, 200, 215, 185, 235, 'down'],
-      [520, 210, 165, 145, 225, 'up'],
-      [600, 170, 145, 125, 185, 'up'],
-      [680, 150, 165, 135, 185, 'down'],
-      [760, 160, 115, 95,  175, 'up'],
-      [840, 120, 90,  70,  140, 'up'],
-      [920, 95,  75,  55,  110, 'up'],
-    ],
-    about: [
-      [40,  285, 260, 245, 300, 'up'],
-      [120, 270, 245, 230, 285, 'up'],
-      [200, 255, 270, 240, 280, 'down'],
-      [280, 265, 230, 215, 280, 'up'],
-      [360, 240, 215, 200, 255, 'up'],
-      [440, 220, 240, 210, 250, 'down'],
-      [520, 235, 195, 180, 250, 'up'],
-      [600, 200, 175, 160, 215, 'up'],
-      [680, 180, 195, 170, 210, 'down'],
-      [760, 190, 155, 140, 205, 'up'],
-      [840, 160, 135, 120, 175, 'up'],
-      [920, 140, 115, 100, 150, 'up'],
-    ],
-    services: [
-      [40,  280, 245, 230, 295, 'up'],
-      [120, 260, 280, 245, 290, 'down'],
-      [200, 270, 230, 215, 285, 'up'],
-      [280, 235, 210, 195, 250, 'up'],
-      [360, 215, 235, 205, 245, 'down'],
-      [440, 230, 195, 180, 240, 'up'],
-      [520, 200, 175, 160, 215, 'up'],
-      [600, 180, 195, 170, 210, 'down'],
-      [680, 190, 155, 140, 205, 'up'],
-      [760, 160, 135, 120, 175, 'up'],
-      [840, 140, 115, 100, 150, 'up'],
-      [920, 120, 95,  80,  130, 'up'],
-    ],
-    examples: [
-      [40,  290, 265, 250, 305, 'up'],
-      [120, 275, 295, 260, 305, 'down'],
-      [200, 285, 245, 230, 295, 'up'],
-      [280, 250, 270, 240, 280, 'down'],
-      [360, 260, 215, 200, 275, 'up'],
-      [440, 220, 195, 180, 235, 'up'],
-      [520, 205, 175, 160, 220, 'up'],
-      [600, 180, 200, 170, 215, 'down'],
-      [680, 195, 155, 140, 210, 'up'],
-      [760, 160, 135, 120, 175, 'up'],
-      [840, 145, 165, 135, 180, 'down'],
-      [920, 155, 115, 100, 170, 'up'],
-    ],
-    contact: [
-      [40,  280, 255, 240, 295, 'up'],
-      [120, 265, 240, 225, 280, 'up'],
-      [200, 250, 270, 235, 280, 'down'],
-      [280, 260, 220, 205, 275, 'up'],
-      [360, 230, 205, 190, 245, 'up'],
-      [440, 210, 230, 200, 240, 'down'],
-      [520, 225, 185, 170, 240, 'up'],
-      [600, 190, 165, 150, 205, 'up'],
-      [680, 170, 190, 160, 205, 'down'],
-      [760, 180, 145, 130, 195, 'up'],
-      [840, 150, 125, 110, 165, 'up'],
-      [920, 130, 105, 90,  140, 'up'],
-    ],
-  };
-  const candles = sets[variant] || sets.hero;
   const W = 1200, H = 360;
-  const candleW = 22;
-  const BASELINE = 348;
+  const BASELINE = 336;
+  const charts = {
+    hero: {
+      start: [44, 292],
+      end: [1100, 76],
+      path: 'M44 292 C118 284 154 250 226 254 C292 258 326 226 388 214 C456 201 490 224 548 203 C620 178 654 142 725 151 C792 160 830 119 898 111 C970 102 1018 88 1100 76',
+      nodes: [[226, 254], [388, 214], [548, 203], [725, 151], [898, 111], [1100, 76]],
+      bars: [[126, 278, 42, .1], [286, 238, 58, .14], [462, 218, 76, .1], [642, 158, 88, .14], [810, 128, 68, .1], [984, 98, 76, .16]],
+    },
+  };
+  const chart = charts[variant] || charts.hero;
+  const areaPath = `${chart.path} L${chart.end[0]} ${BASELINE} L${chart.start[0]} ${BASELINE} Z`;
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" aria-hidden="true">
       <defs>
-        <linearGradient id={`fade-${variant}`} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.2" />
-          <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.95" />
+        <linearGradient id={`trend-line-${variant}`} x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0%" stopColor="#8FB0D1" stopOpacity="0.2" />
+          <stop offset="42%" stopColor="#3B82F6" stopOpacity="0.82" />
+          <stop offset="100%" stopColor="#0A1628" stopOpacity="0.9" />
         </linearGradient>
+        <linearGradient id={`trend-area-${variant}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.2" />
+          <stop offset="72%" stopColor="#3B82F6" stopOpacity="0.06" />
+          <stop offset="100%" stopColor="#3B82F6" stopOpacity="0" />
+        </linearGradient>
+        <filter id={`trend-shadow-${variant}`} x="-10%" y="-40%" width="120%" height="180%">
+          <feDropShadow dx="0" dy="10" stdDeviation="10" floodColor="#3B82F6" floodOpacity="0.22" />
+        </filter>
       </defs>
 
-      {/* Horizontal grid lines (chart axes) */}
-      {[80, 160, 240, 320].map((y, i) => (
+      {[84, 148, 212, 276, 336].map((y, i) => (
         <line key={i} x1="0" y1={y} x2={W} y2={y}
               stroke="#0A1628" strokeOpacity="0.07" strokeWidth="1"
-              strokeDasharray="2 8" />
+              strokeDasharray={i === 4 ? '0' : '2 10'} />
+      ))}
+      {[160, 360, 560, 760, 960].map((x, i) => (
+        <line key={i} x1={x} y1="42" x2={x} y2={BASELINE}
+              stroke="#0A1628" strokeOpacity="0.045" strokeWidth="1" />
       ))}
 
-      {/* Baseline */}
-      <line x1="0" y1={BASELINE} x2={W} y2={BASELINE}
-            stroke="#3B82F6" strokeOpacity="0.35" strokeWidth="1" />
+      {chart.bars.map(([x, y, h, opacity], i) => (
+        <rect key={i} x={x} y={y} width="18" height={h} rx="9"
+              fill="#3B82F6" opacity={opacity} />
+      ))}
 
-      {/* Candles */}
-      {candles.map((c, i) => {
-        const [x, openY, closeY, highY, lowY, dir] = c;
-        const isUp = dir === 'up';
-        const bodyTop = Math.min(openY, closeY);
-        const bodyHeight = Math.max(Math.abs(closeY - openY), 4);
-        const fade = (i + 1) / candles.length;
-        const opacity = 0.35 + fade * 0.55;
-        const color = isUp ? '#3B82F6' : '#0A1628';
-        return (
-          <g key={i} opacity={opacity}>
-            {/* Wick */}
-            <line x1={x + candleW / 2} y1={highY} x2={x + candleW / 2} y2={lowY}
-                  stroke={color} strokeWidth="1.5" strokeLinecap="round" />
-            {/* Body */}
-            {isUp ? (
-              <rect x={x} y={bodyTop} width={candleW} height={bodyHeight}
-                    fill={color} rx="1.5" />
-            ) : (
-              <rect x={x} y={bodyTop} width={candleW} height={bodyHeight}
-                    fill="none" stroke={color} strokeWidth="1.5" rx="1.5" />
-            )}
-          </g>
-        );
-      })}
+      <path d={areaPath} fill={`url(#trend-area-${variant})`} />
+      <path d={chart.path} fill="none" stroke={`url(#trend-line-${variant})`}
+            strokeWidth="8" strokeLinecap="round" strokeLinejoin="round"
+            filter={`url(#trend-shadow-${variant})`} opacity="0.92" />
+      <path d={chart.path} fill="none" stroke="#FFFFFF" strokeOpacity="0.32"
+            strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+
+      {chart.nodes.map(([x, y], i) => (
+        <g key={i}>
+          <circle cx={x} cy={y} r="12" fill="#3B82F6" opacity="0.1" />
+          <circle cx={x} cy={y} r="4.5" fill="#FAFAF7" stroke="#3B82F6" strokeWidth="2" />
+        </g>
+      ))}
     </svg>
   );
 }
@@ -226,8 +165,11 @@ function Nav({ currentPage, drawerOpen, setDrawerOpen }) {
     <header className={'nav ' + (scrolled ? 'scrolled' : '')}>
       <div className="wrap nav-inner">
         <a className="brand" href="index.html">
-          <BrandMark size={26} />
-          <span style={{ fontSize: 18, fontWeight: 600, letterSpacing: '-.01em' }}>الصقري</span>
+          <BrandMark size={34} />
+          <span className="brand-wordmark">
+            <span className="brand-name">الصقري</span>
+            <span className="brand-sub">CAPITAL</span>
+          </span>
         </a>
         <nav>
           <ul className="nav-links">

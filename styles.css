@@ -129,8 +129,32 @@ p { margin: 0; }
 }
 .brand {
   display: flex; align-items: center; gap: 12px;
-  font-weight: 600; font-size: 16px; letter-spacing: -.01em;
+  font-weight: 600; font-size: 16px; letter-spacing: 0;
   color: var(--ink); text-decoration: none;
+  padding: 4px 6px;
+  border-radius: 14px;
+  transition: background-color .2s ease, color .2s ease;
+}
+.brand:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+.brand-wordmark {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  line-height: 1;
+}
+.brand-name {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.brand-sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8.5px;
+  letter-spacing: .16em;
+  color: var(--accent-2);
+  direction: ltr;
+  line-height: 1;
 }
 .brand-mark {
   width: 28px; height: 28px; border-radius: 6px;
@@ -879,8 +903,22 @@ a.rpt-link:hover { transform: translateY(-3px); border-color: var(--accent); }
     min-height: 0;
     padding: calc(80px * var(--scale)) 0 calc(80px * var(--scale));
   }
-  .hero-dark .hero-glow,
-  .hero-dark .hero-chart { display: none; }
+  .hero-dark .hero-glow { display: none; }
+  .hero-dark .hero-chart {
+    display: block;
+    top: auto;
+    bottom: 28px;
+    left: 0;
+    right: 0;
+    height: 220px;
+    opacity: .42;
+    -webkit-mask-image:
+      linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,.85) 20%, rgba(0,0,0,.85) 80%, rgba(0,0,0,0) 100%),
+      linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,.72) 70%, rgba(0,0,0,0) 100%);
+    mask-image:
+      linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,.85) 20%, rgba(0,0,0,.85) 80%, rgba(0,0,0,0) 100%),
+      linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,.72) 70%, rgba(0,0,0,0) 100%);
+  }
   .hero-dark::before { opacity: .5; }
   .hero-dark > .wrap { order: 1; }
   .hero-quote-card {
@@ -903,6 +941,9 @@ a.rpt-link:hover { transform: translateY(-3px); border-color: var(--accent); }
   .hero-quote-card .hqc-quote { font-size: 15.5px; line-height: 1.7; }
   .hero-quote-card .hqc-q-open { font-size: 28px; }
   .hero-quote-card .hqc-attr { margin-top: 14px; font-size: 12px; }
+}
+@media (max-width: 640px) {
+  .hero-dark .hero-chart { display: none; }
 }
 @keyframes hqcInMobile {
   from { opacity: 0; transform: translateY(16px); }
@@ -975,10 +1016,39 @@ a:focus-visible, button:focus-visible {
 .brand-mark-svg {
   width: 28px; height: 28px;
   display: inline-grid; place-items: center;
-  color: var(--accent);
+  padding: 5px;
+  border-radius: 12px;
+  color: #fff;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--navy) 92%, #ffffff), var(--navy-2));
+  border: 1px solid color-mix(in srgb, var(--accent) 26%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .16),
+    0 12px 24px -18px rgba(10, 22, 40, .75);
   flex-shrink: 0;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
 }
 .brand-mark-svg svg { width: 100%; height: 100%; display: block; }
+.brand:hover .brand-mark-svg {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--accent) 42%, transparent);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .2),
+    0 16px 28px -20px rgba(10, 22, 40, .85);
+}
+.hero-quote-card .hqc-brand .brand-mark-svg {
+  color: var(--blue-light);
+  background: rgba(96, 165, 250, .1);
+  border-color: rgba(96, 165, 250, .2);
+  box-shadow: none;
+}
+.home-calm-mark .brand-mark-svg {
+  color: var(--accent);
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
 
 /* ── LIGHT HERO (homepage) ───────────────────────────── */
 .hero-dark {
@@ -999,18 +1069,24 @@ a:focus-visible, button:focus-visible {
 }
 .hero-dark .hero-glow {
   position: absolute;
-  bottom: -10%; left: -8%;
-  width: 55%; height: 80%;
-  background: radial-gradient(ellipse at center, rgba(59,130,246,.14), transparent 65%);
+  bottom: -18%; left: -10%;
+  width: 58%; height: 82%;
+  background: radial-gradient(ellipse at center, rgba(59,130,246,.12), transparent 68%);
   pointer-events: none; z-index: 0;
 }
 .hero-dark .hero-chart {
-  position: absolute; bottom: 0; left: 0; right: 50%;
-  height: 75%;
-  opacity: 1;
+  position: absolute; top: 31%; bottom: auto; left: 0; right: 32%;
+  height: 50%;
+  opacity: .95;
   pointer-events: none; z-index: 0;
-  -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
-  mask-image: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image:
+    linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,.95) 64%, rgba(0,0,0,0) 100%),
+    linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,.86) 74%, rgba(0,0,0,0) 100%);
+  mask-image:
+    linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,.95) 64%, rgba(0,0,0,0) 100%),
+    linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,.86) 74%, rgba(0,0,0,0) 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
 }
 .hero-dark .hero-chart svg {
   width: 100%; height: 100%;
@@ -1040,6 +1116,22 @@ a:focus-visible, button:focus-visible {
 .hero-dark .ticker-strip .tk .v { color: var(--navy); }
 .hero-dark .ticker-strip .tk .v .unit { color: var(--accent); }
 
+@media (min-width: 641px) and (max-width: 900px) {
+  .hero-dark .hero-chart {
+    top: 48%;
+    bottom: auto;
+    left: 0;
+    right: 0;
+    height: 220px;
+    opacity: .42;
+    -webkit-mask-image:
+      linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,.85) 20%, rgba(0,0,0,.85) 80%, rgba(0,0,0,0) 100%),
+      linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,.72) 70%, rgba(0,0,0,0) 100%);
+    mask-image:
+      linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,.85) 20%, rgba(0,0,0,.85) 80%, rgba(0,0,0,0) 100%),
+      linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,.72) 70%, rgba(0,0,0,0) 100%);
+  }
+}
 
 /* ── SOFT HOMEPAGE BANNER ───────────────────────────── */
 .home-calm-band {

@@ -129,7 +129,7 @@ const REPORTS = [
     title: 'لجام في 2026: سنة انتقالية تحت اختبار الهوامش والتوسع',
     desc: 'قراءة تربط توصيات بيوت الخبرة مع مكالمة المستثمرين بعد نتائج الربع الأول 2026.',
     date: '2026·05·22',
-    cover: 'banners/lejam-2026-transition.jpg',
+    cover: 'banners/lejam-2026-transition.png',
     link: 'https://x.com/AlsagriCapital/status/2057801221088424005',
   },
   {
@@ -139,7 +139,7 @@ const REPORTS = [
     title: 'تقرير شامل عن سلوشنز: أسباب الهبوط وهل السعر مغري؟',
     desc: 'تحليل لأسباب الهبوط وقراءة جاذبية السعر الحالي في ضوء أساسيات الشركة.',
     date: '2026·02·24',
-    cover: 'banners/solutions-special-report.jpg',
+    cover: 'banners/solutions-special-report.png',
     link: 'https://x.com/AlsagriCapital/status/2026386566118011283',
   },
   {
@@ -149,7 +149,7 @@ const REPORTS = [
     title: 'شركة علم في 2025: تقرير مالي وأساسي',
     desc: 'تقرير مالي وأساسي يستعرض أداء الشركة ومحركات النمو والعوامل المؤثرة في التقييم.',
     date: '2026·05·19',
-    cover: 'banners/elm-2025-financial-fundamental.jpg',
+    cover: 'banners/elm-2025-financial-fundamental.png',
     link: 'https://x.com/AlsagriCapital/status/2056658937374466556',
   },
 ];

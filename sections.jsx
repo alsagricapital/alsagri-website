@@ -25,13 +25,11 @@ function BrandMark({ size = 28, color = 'currentColor' }) {
   return (
     <span className="brand-mark-svg" style={markStyle}>
       <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M7 34.5L17.2 24.2L23.7 29.2L35.8 15.6L41 16" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M34.5 9.5L41 16L34 22" stroke="currentColor" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M9.5 37.5H39" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" opacity="0.24" />
-        <path d="M11 30L17.5 23.7L24.3 28.8L20.5 38H11Z" fill="currentColor" opacity="0.18" />
-        <path d="M23.2 28.6L35.8 15.6L39 37.5H20.4Z" fill="currentColor" opacity="0.1" />
-        <circle cx="17.2" cy="24.2" r="2.4" fill="currentColor" />
-        <circle cx="23.7" cy="29.2" r="2.4" fill="currentColor" />
+        <path className="bm-wing bm-wing-soft" d="M8 33.5L20.5 20.2L27.4 26.9L15 40.5H8Z" />
+        <path className="bm-wing bm-wing-main" d="M18.7 31.2L33.3 13.6L41.4 17.4L27.7 35.6Z" />
+        <path className="bm-wing bm-wing-accent" d="M32.4 13.4L43.2 8.6L41.4 17.4Z" />
+        <path className="bm-wing bm-wing-rise" d="M27.7 35.6L41.4 17.4L43.4 27.4L33.4 39.4Z" />
+        <path className="bm-baseline" d="M9.5 41.5H39.5" />
       </svg>
     </span>
   );
@@ -168,7 +166,7 @@ function Nav({ currentPage, drawerOpen, setDrawerOpen }) {
           <BrandMark size={34} />
           <span className="brand-wordmark">
             <span className="brand-name">الصقري</span>
-            <span className="brand-sub">CAPITAL</span>
+            <span className="brand-sub">ALSAGRI CAPITAL</span>
           </span>
         </a>
         <nav>
@@ -281,7 +279,10 @@ function Hero() {
         </div>
         <div className="hqc-attr">
           <span className="hqc-attr-line"></span>
-          <span className="hqc-attr-name">وارن بافت</span>
+          <span className="hqc-person">
+            <img className="hqc-avatar" src="assets/warren-buffett.jpg" alt="" loading="eager" decoding="async" />
+            <span className="hqc-attr-name">وارن بافت</span>
+          </span>
         </div>
       </div>
       <div className="wrap">
@@ -420,7 +421,7 @@ function ReportCard({ r, catLabel }) {
     <Wrapper {...wrapperProps}>
       {r.cover && (
         <div className="rpt-cover">
-          <img src={r.cover} alt={r.co + ' — ' + r.title} loading="lazy" />
+          <img src={r.cover} alt={r.co + ' — ' + r.title} loading="eager" decoding="async" />
         </div>
       )}
       <div className="rpt-body">

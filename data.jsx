@@ -155,8 +155,8 @@ const REPORTS = [
 ];
 
 const TICKER_STATS = [
-  { k: 'REPORTS PUBLISHED',  ar: 'عدد التقارير المنشورة', v: '120', unit: '+' },
-  { k: 'COMPANIES COVERED',  ar: 'عدد الشركات المغطاة',  v: '40',  unit: '+' },
+  { k: 'REPORTS PUBLISHED',  ar: 'عدد التقارير المنشورة', v: '200', unit: '+' },
+  { k: 'COMPANIES COVERED',  ar: 'عدد الشركات المغطاة',  v: '100',  unit: '+' },
 ];
 
 window.SERVICES = SERVICES;

@@ -67,6 +67,7 @@ function App() {
     about:    About,
     services: Services,
     tools:    Tools,
+    cfa:      CFAResources,
     contact:  Contact,
     'service-detail': ServiceDetail,
     'tool-position-switch': window.ToolPositionSwitch,

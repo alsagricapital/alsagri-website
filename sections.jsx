@@ -19,17 +19,20 @@ function useReveal(deps = []) {
   }, deps);
 }
 
-/* ── Brand mark SVG (refined market wing) ───────────────────────── */
+/* ── Brand mark SVG (market crest) ───────────────────────── */
 function BrandMark({ size = 28, color = 'currentColor' }) {
   const markStyle = color === 'currentColor' ? { width: size, height: size } : { width: size, height: size, color };
   return (
     <span className="brand-mark-svg" style={markStyle}>
-      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path className="bm-wing bm-wing-soft" d="M8 33.5L20.5 20.2L27.4 26.9L15 40.5H8Z" />
-        <path className="bm-wing bm-wing-main" d="M18.7 31.2L33.3 13.6L41.4 17.4L27.7 35.6Z" />
-        <path className="bm-wing bm-wing-accent" d="M32.4 13.4L43.2 8.6L41.4 17.4Z" />
-        <path className="bm-wing bm-wing-rise" d="M27.7 35.6L41.4 17.4L43.4 27.4L33.4 39.4Z" />
-        <path className="bm-baseline" d="M9.5 41.5H39.5" />
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect className="bm-panel" x="8" y="8" width="48" height="48" rx="16" />
+        <path className="bm-grid" d="M18 43H47M18 34H47M18 25H47" />
+        <rect className="bm-bar bm-bar-1" x="20" y="36" width="6" height="9" rx="3" />
+        <rect className="bm-bar bm-bar-2" x="30" y="29" width="6" height="16" rx="3" />
+        <rect className="bm-bar bm-bar-3" x="40" y="22" width="6" height="23" rx="3" />
+        <path className="bm-trend" d="M18 38L28 32L36 35L47 22" />
+        <path className="bm-arrow" d="M42 22H47V27" />
+        <path className="bm-spark" d="M20 18L23 15L26 18L23 21Z" />
       </svg>
     </span>
   );
@@ -156,6 +159,7 @@ function Nav({ currentPage, drawerOpen, setDrawerOpen }) {
     { id: 'about',     label: 'عن المنصة',   n: '01', href: 'about.html' },
     { id: 'services',  label: 'الخدمات',     n: '02', href: 'services.html' },
     { id: 'tools',     label: 'أدوات مفيدة', n: '03', href: 'tools.html' },
+    { id: 'cfa',       label: 'مصادر CFA',   n: '04', href: 'cfa.html' },
   ];
 
   return (
@@ -237,18 +241,27 @@ function XSubBanner() {
 }
 
 /* ── PAGE BANNER (interior pages) ──────────────────────────────── */
-function PageBanner({ num, eyebrow, title, sub, variant = 'about', showXSub = false }) {
+function PageBanner({ num, eyebrow, title, sub, variant = 'about', showXSub = false, sideContent = null }) {
   return (
-    <section className="page-banner">
+    <section className={'page-banner ' + (sideContent ? 'page-banner-with-card' : '')}>
       <div className="wrap">
-        <div className="pb-eyebrow">/{num} — {eyebrow}</div>
-        <h1 className="pb-title">{title}</h1>
-        {sub && <p className="pb-sub">{sub}</p>}
-        {showXSub && (
-          <div style={{ marginTop: 24 }}>
-            <XSubBanner />
+        <div className="pb-layout">
+          <div className="pb-copy">
+            <div className="pb-eyebrow">/{num} — {eyebrow}</div>
+            <h1 className="pb-title">{title}</h1>
+            {sub && <p className="pb-sub">{sub}</p>}
+            {showXSub && (
+              <div style={{ marginTop: 24 }}>
+                <XSubBanner />
+              </div>
+            )}
           </div>
-        )}
+          {sideContent && (
+            <div className="pb-side">
+              {sideContent}
+            </div>
+          )}
+        </div>
       </div>
     </section>);
 }
@@ -293,7 +306,7 @@ function Hero() {
               <span className="line">قراءةٌ مُفصَّلة لشركات السوق <span className="em">السعودي</span></span>
             </h1>
             <p className="hero-sub">
-              منصةٌ تعرض ملخصات وتحليلات مكتوبة لمكالمات نتائج الشركات السعودية المدرجة، تقارير بيوت الأبحاث، والتقارير النوعية حول نماذج الأعمال وقطاعات السوق.
+              منصةٌ تعرض ملخصات وتحليلات مكتوبة لمكالمات نتائج الشركات السعودية المدرجة، تقارير بيوت الأبحاث، والتقارير النوعية عن الشركات وقطاعات السوق.
             </p>
             <div style={{ marginTop: 28 }}>
               <XSubBanner />
@@ -328,23 +341,54 @@ function Hero() {
     </React.Fragment>);
 }
 
+function XProfileCard({ className = '' }) {
+  return (
+    <a className={'hero-profile-card ' + className} href="https://x.com/AlsagriCapital" target="_blank" rel="noreferrer" aria-label="حساب الصقري على منصة X">
+      <div className="hpc-frame-glow" aria-hidden="true"></div>
+      <div className="hpc-cover">
+        <img src="assets/alsagri-x-cover.jpg" alt="" loading="eager" decoding="async" />
+        <span className="hpc-source">X · @alsagricapital</span>
+      </div>
+      <div className="hpc-body">
+        <img className="hpc-avatar" src="assets/alsagri-profile.jpg" alt="الصقري | Alsagri" loading="eager" decoding="async" />
+        <div className="hpc-name-row">
+          <span className="hpc-name">الصقري | Alsagri</span>
+          <span className="hpc-verify" aria-label="موثّق">✓</span>
+        </div>
+        <div className="hpc-handle">@AlsagriCapital</div>
+        <div className="hpc-bio">باحث مستقل | مهتم بالاستثمار والتوعية المالية | تقارير ومراجعة للشركات</div>
+        <div className="hpc-meta">
+          <span>خدمات مالية</span>
+          <span>الرياض</span>
+        </div>
+      </div>
+    </a>);
+}
+
 function HomeCalmBanner() {
   return (
     <section className="home-calm-band">
       <div className="wrap">
         <div className="home-calm-card reveal">
           <div className="home-calm-glow" aria-hidden="true"></div>
-          <div className="home-calm-mark" aria-hidden="true">
-            <BrandMark size={26} />
+          <div className="home-calm-profile">
+            <div className="home-profile-avatar-wrap">
+              <img className="home-profile-avatar" src="assets/alsagri-profile.jpg" alt="الصقري | Alsagri" loading="eager" decoding="async" />
+              <span className="home-profile-status" aria-hidden="true"></span>
+            </div>
+            <div className="home-profile-copy">
+              <span className="home-profile-name">الصقري | Alsagri</span>
+              <span className="home-profile-handle">@AlsagriCapital</span>
+            </div>
           </div>
           <div className="home-calm-copy">
             <span className="home-calm-kicker">قراءة هادئة للسوق</span>
             <p>تنظيم المعلومة قبل اتخاذ القرار: مكالمات نتائج، تقارير أبحاث، وأدوات مختصرة في مكان واحد.</p>
           </div>
           <div className="home-calm-tags" aria-label="محاور المنصة">
-            <span>مكالمات النتائج</span>
-            <span>تقارير الأبحاث</span>
-            <span>أدوات مفيدة</span>
+            <a href="service-earnings.html">مكالمات النتائج</a>
+            <a href="service-brokerage.html">تقارير الأبحاث</a>
+            <a href="tools.html">أدوات مفيدة</a>
           </div>
         </div>
       </div>
@@ -361,7 +405,8 @@ function About() {
         title="عن المنصة"
         sub="محتوى تحليلي منظّم موجّه للمستثمرين والمهتمّين بالسوق السعودي، يقدّم قراءة مكتوبة ومبسّطة لأهم ما يُنشر حول الشركات المدرجة في السوق السعودي."
         variant="about"
-        showXSub={true} />
+        showXSub={true}
+        sideContent={<XProfileCard className="about-hero-profile-card" />} />
 
       <section id="about" className="section first">
         <div className="wrap">
@@ -374,8 +419,7 @@ function About() {
                 المنصة <span className="em">لا تقدّم توصيات شراء أو بيع</span>، ولا تُعدّ استشارة مالية، وإنما تهدف إلى تجميع المعلومة المتاحة علناً، تحليلها، وترتيبها بأسلوب مختصر ومحايد يساعد المستثمر على تكوين فهم أعمق.
               </p>
             </div>
-
-            <div className="about-pillars reveal d2">
+            <div className="about-pillars reveal d3">
               <div className="pillar">
                 <div className="p-n">01</div>
                 <div>
@@ -563,19 +607,14 @@ function Contact() {
               <span className="v">@alsagricapital</span>
               <span className="arr">↗</span>
             </a>
-            <a className="contact-row" href="mailto:hello@alsagricapital.sa">
+            <a className="contact-row" href="mailto:alsagricapital@gmail.com">
               <span className="k">EMAIL</span>
-              <span className="v">hello@alsagricapital.sa</span>
+              <span className="v">alsagricapital@gmail.com</span>
               <span className="arr">↗</span>
             </a>
-            <a className="contact-row" href="https://linkedin.com/in/alsagricapital" target="_blank" rel="noreferrer">
-              <span className="k">LINKEDIN</span>
-              <span className="v">/in/alsagricapital</span>
-              <span className="arr">↗</span>
-            </a>
-            <a className="contact-row" href="https://t.me/alsagricapital" target="_blank" rel="noreferrer">
-              <span className="k">TELEGRAM</span>
-              <span className="v">@alsagricapital</span>
+            <a className="contact-row" href="https://wa.me/966550734332" target="_blank" rel="noreferrer">
+              <span className="k">WHATSAPP</span>
+              <span className="v">0550734332</span>
               <span className="arr">↗</span>
             </a>
           </div>
@@ -611,7 +650,7 @@ function Footer() {
     <footer className="foot">
       <div className="wrap foot-inner">
         <div className="foot-row">
-          <div>© ٢٠٢٦ الصقري — جميع الحقوق محفوظة.</div>
+          <div>الصقري - جميع الحقوق محفوظة - 2026</div>
           <div className="mono">Riyadh · KSA · TASI Listed Equities</div>
         </div>
         <div className="foot-disclaimer">
@@ -722,4 +761,85 @@ function Tools() {
     </React.Fragment>);
 }
 
-Object.assign(window, { Nav, Hero, About, Services, ServiceDetail, Disclaimer, Contact, Tools, Footer, useReveal, BrandMark, PageBanner, ReportCard });
+/* ── CFA Resources page ───────────────────────────────────────────────── */
+function CFAResources() {
+  const levels = [
+    {
+      n: '01',
+      title: 'CFA Level 1',
+      desc: 'المدخل الأساسي لعالم التحليل المالي: أخلاقيات المهنة، الاقتصاد، القوائم المالية، أدوات الاستثمار، وبناء قاعدة مفاهيمية قوية.',
+    },
+    {
+      n: '02',
+      title: 'CFA Level 2',
+      desc: 'مرحلة أعمق في التقييم والتحليل: قراءة الشركات، النماذج المالية، أدوات الدخل الثابت والمشتقات، وربط الأرقام بالسياق.',
+    },
+    {
+      n: '03',
+      title: 'CFA Level 3',
+      desc: 'الانتقال من التحليل إلى إدارة المحافظ: بناء السياسات الاستثمارية، تخصيص الأصول، إدارة المخاطر، والتفكير كمستشار محترف.',
+    },
+  ];
+
+  return (
+    <React.Fragment>
+      <PageBanner
+        num="04"
+        eyebrow="CFA RESOURCES"
+        title="مصادر CFA"
+        sub="صفحة تُبنى لتكون رفيقاً منظماً في رحلة CFA: تجمع الطريق، المصادر، وخطط المذاكرة بلغة واضحة تساعدك على البدء بثقة والتقدم بهدوء." />
+
+      <section className="section first cfa-section">
+        <div className="wrap">
+          <div className="cfa-intro reveal">
+            <div className="cfa-intro-copy">
+              <div className="cfa-kicker">CHARTERED FINANCIAL ANALYST</div>
+              <h2>رحلة مهنية تصنع طريقة تفكير المستثمر والمحلل</h2>
+              <p>
+                شهادة CFA من أكثر الشهادات احتراماً في عالم الاستثمار والتحليل المالي، لأنها لا تكتفي بشرح المفاهيم، بل تبني طريقة تفكير منضبطة:
+                كيف تقرأ الأرقام، تربطها بالاقتصاد والقطاع، تفهم جودة الأرباح، وتحوّل المعلومات إلى قرار استثماري أكثر وعياً.
+              </p>
+              <p>
+                هذه الصفحة ستكون بوابة مرتبة للاستعداد للاختبار: مصادر مختارة، خرائط للمنهج، ملاحظات مختصرة، وأدوات تساعدك على التعامل مع كل مستوى بخطة أوضح وهدوء أكبر.
+              </p>
+            </div>
+            <div className="cfa-emblem" aria-hidden="true">
+              <div className="cfa-emblem-halo"></div>
+              <div className="cfa-emblem-card">
+                <div className="cfa-emblem-top">
+                  <span>CFA</span>
+                  <span>01-03</span>
+                </div>
+                <div className="cfa-emblem-mark">
+                  <span className="bar b1"></span>
+                  <span className="bar b2"></span>
+                  <span className="bar b3"></span>
+                  <span className="trend"></span>
+                </div>
+                <div className="cfa-emblem-caption">
+                  <span>Ethics</span>
+                  <span>Analysis</span>
+                  <span>Portfolio</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="cfa-levels">
+            {levels.map((level, idx) => (
+              <article className={'cfa-level-card reveal d' + (idx + 1)} key={level.title}>
+                <div className="cfa-level-num">{level.n}</div>
+                <div className="cfa-level-body">
+                  <h3>{level.title}</h3>
+                  <p>{level.desc}</p>
+                </div>
+                <div className="cfa-soon">قريباً</div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </React.Fragment>);
+}
+
+Object.assign(window, { Nav, Hero, About, Services, ServiceDetail, Disclaimer, Contact, Tools, CFAResources, Footer, useReveal, BrandMark, PageBanner, ReportCard });

@@ -68,6 +68,7 @@ function App() {
     services: Services,
     tools:    Tools,
     cfa:      CFAResources,
+    newsletter: Newsletter,
     contact:  Contact,
     'service-detail': ServiceDetail,
     'tool-position-switch': window.ToolPositionSwitch,

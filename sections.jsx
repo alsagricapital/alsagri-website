@@ -20,20 +20,10 @@ function useReveal(deps = []) {
 }
 
 /* ── Brand mark SVG (market crest) ───────────────────────── */
-function BrandMark({ size = 28, color = 'currentColor' }) {
-  const markStyle = color === 'currentColor' ? { width: size, height: size } : { width: size, height: size, color };
+function BrandMark({ size = 28 }) {
   return (
-    <span className="brand-mark-svg" style={markStyle}>
-      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <rect className="bm-panel" x="8" y="8" width="48" height="48" rx="16" />
-        <path className="bm-grid" d="M18 43H47M18 34H47M18 25H47" />
-        <rect className="bm-bar bm-bar-1" x="20" y="36" width="6" height="9" rx="3" />
-        <rect className="bm-bar bm-bar-2" x="30" y="29" width="6" height="16" rx="3" />
-        <rect className="bm-bar bm-bar-3" x="40" y="22" width="6" height="23" rx="3" />
-        <path className="bm-trend" d="M18 38L28 32L36 35L47 22" />
-        <path className="bm-arrow" d="M42 22H47V27" />
-        <path className="bm-spark" d="M20 18L23 15L26 18L23 21Z" />
-      </svg>
+    <span className="brand-mark-img" style={{ width: size, height: size }}>
+      <img src="assets/alsagri-icon-dark.png" alt="" loading="eager" decoding="async" />
     </span>
   );
 }
@@ -168,18 +158,21 @@ function Nav({ currentPage, drawerOpen, setDrawerOpen }) {
     { id: 'services',  label: 'الخدمات',     n: '02', href: 'services.html' },
     { id: 'tools',     label: 'أدوات مفيدة', n: '03', href: 'tools.html' },
     { id: 'cfa',       label: 'مصادر CFA',   n: '04', href: 'cfa.html' },
+    { id: 'newsletter', label: 'النشرة البريدية', n: '05', href: 'newsletter.html' },
   ];
 
   return (
     <React.Fragment>
     <header className={'nav ' + (scrolled ? 'scrolled' : '')}>
       <div className="wrap nav-inner">
-        <a className="brand" href="index.html">
-          <BrandMark size={34} />
-          <span className="brand-wordmark">
-            <span className="brand-name">الصقري</span>
-            <span className="brand-sub">ALSAGRI CAPITAL</span>
-          </span>
+        <a className="brand" href="index.html" aria-label="Alsagri Capital">
+          <img
+            className="brand-logo-img"
+            src="assets/alsagri-logo-horizontal.png"
+            alt="Alsagri Capital"
+            loading="eager"
+            decoding="async"
+          />
         </a>
         <nav>
           <ul className="nav-links">
@@ -916,4 +909,84 @@ function CFAResources() {
     </React.Fragment>);
 }
 
-Object.assign(window, { Nav, Hero, About, Services, ServiceDetail, Disclaimer, Contact, Tools, CFAResources, Footer, useReveal, BrandMark, PageBanner, ReportCard });
+/* ── Newsletter page ───────────────────────────────────────────────── */
+function Newsletter() {
+  const benefits = [
+    'تقارير الشركات المالية والأسعار المستهدفة لأسهم الشركات السعودية أولاً بأول.',
+    'تقارير حساب الصقري عن الشركات السعودية بشكل مفصّل ومنظّم.',
+    'نشرة بريدية أسبوعية مفصلة عن السوق السعودي وأبرز ما يستحق المتابعة.',
+    'مواضيع تحليلية وتوعوية وتعليمية عن الاستثمار وقراءة الشركات.',
+    'مختارات لعدد من الأسهم الاستثمارية للأغراض التعليمية فقط.',
+  ];
+
+  return (
+    <React.Fragment>
+      <PageBanner
+        num="05"
+        eyebrow="NEWSLETTER"
+        title="النشرة البريدية"
+        sub="ملخصات مرتبة تصل إلى بريدك: تقارير، قراءات أسبوعية، ومختارات تحليلية تساعدك على متابعة السوق السعودي بهدوء ووضوح." />
+
+      <section className="section first newsletter-section">
+        <div className="wrap">
+          <div className="newsletter-shell reveal">
+            <a
+              className="newsletter-art"
+              href="https://alsagricapital.substack.com/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="الاشتراك في النشرة البريدية">
+              <div className="newsletter-art-grid" aria-hidden="true"></div>
+              <div className="newsletter-art-top">
+                <div className="newsletter-brand">
+                  <BrandMark size={42} />
+                  <span>الصقري</span>
+                </div>
+                <span className="newsletter-badge">SUBSTACK</span>
+              </div>
+              <h2>النشرة البريدية</h2>
+              <p>قراءة أسبوعية مركّزة للسوق السعودي، تصل إلى بريدك بدون ضجيج.</p>
+              <div className="newsletter-handle">
+                <XInlineIcon />
+                <span>@alsagricapital</span>
+              </div>
+              <div className="newsletter-chart" aria-hidden="true">
+                <svg viewBox="0 0 520 190" preserveAspectRatio="none">
+                  <path className="nc-area" d="M10 158 C74 148 96 126 148 132 C204 138 224 96 278 102 C334 108 350 56 410 66 C456 74 476 38 514 26 L514 190 L10 190 Z" />
+                  <path className="nc-shadow" d="M10 158 C74 148 96 126 148 132 C204 138 224 96 278 102 C334 108 350 56 410 66 C456 74 476 38 514 26" />
+                  <path className="nc-line" d="M10 158 C74 148 96 126 148 132 C204 138 224 96 278 102 C334 108 350 56 410 66 C456 74 476 38 514 26" />
+                  <path className="nc-thin" d="M96 112 L154 82 L216 118 L282 72 L350 130 L424 72 L498 104" />
+                  <path className="nc-arrow" d="M470 28 L514 26 L499 66" />
+                </svg>
+              </div>
+            </a>
+
+            <div className="newsletter-copy">
+              <span className="newsletter-kicker">دعوة اشتراك</span>
+              <h2>أدعوك للاشتراك بالنشرة البريدية</h2>
+              <p>
+                مساحة بريدية مختصرة وواضحة تجمع ما يستحق القراءة عن الشركات السعودية والسوق، مع ترتيب يساعدك على المتابعة واتخاذ صورة أعمق قبل القرار.
+              </p>
+              <ul className="newsletter-benefits">
+                {benefits.map((item) => (
+                  <li key={item}>
+                    <span className="newsletter-check" aria-hidden="true"></span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="newsletter-actions">
+                <a className="newsletter-cta" href="https://alsagricapital.substack.com/" target="_blank" rel="noreferrer">
+                  الاشتراك في النشرة
+                  <span>←</span>
+                </a>
+                <span className="newsletter-note">المحتوى تعليمي وتحليلي، وليس توصية مالية.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </React.Fragment>);
+}
+
+Object.assign(window, { Nav, Hero, About, Services, ServiceDetail, Disclaimer, Contact, Tools, CFAResources, Newsletter, Footer, useReveal, BrandMark, PageBanner, ReportCard });

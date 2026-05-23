@@ -106,16 +106,24 @@ function ChartLineBackground({ variant = 'hero' }) {
       ))}
 
       <path d={areaPath} fill={`url(#trend-area-${variant})`} />
+      {variant === 'hero' && (
+        <path d={chart.path} fill="none" stroke="#8A97A8" strokeOpacity="0.26"
+              strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
+      )}
       <path d={chart.path} fill="none" stroke={`url(#trend-line-${variant})`}
             strokeWidth="8" strokeLinecap="round" strokeLinejoin="round"
-            filter={`url(#trend-shadow-${variant})`} opacity="0.92" />
+            filter={`url(#trend-shadow-${variant})`} opacity="0.92"
+            pathLength={variant === 'hero' ? 1 : undefined}
+            strokeDasharray={variant === 'hero' ? '0.66 1' : undefined} />
       <path d={chart.path} fill="none" stroke="#FFFFFF" strokeOpacity="0.32"
-            strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+            pathLength={variant === 'hero' ? 1 : undefined}
+            strokeDasharray={variant === 'hero' ? '0.66 1' : undefined} />
 
       {chart.nodes.map(([x, y], i) => (
         <g key={i}>
-          <circle cx={x} cy={y} r="12" fill="#3B82F6" opacity="0.1" />
-          <circle cx={x} cy={y} r="4.5" fill="#FAFAF7" stroke="#3B82F6" strokeWidth="2" />
+          <circle cx={x} cy={y} r="12" fill={variant === 'hero' && i > 3 ? '#8A97A8' : '#3B82F6'} opacity={variant === 'hero' && i > 3 ? '0.06' : '0.1'} />
+          <circle cx={x} cy={y} r="4.5" fill="#FAFAF7" stroke={variant === 'hero' && i > 3 ? '#8A97A8' : '#3B82F6'} strokeOpacity={variant === 'hero' && i > 3 ? '0.45' : '1'} strokeWidth="2" />
         </g>
       ))}
     </svg>
@@ -241,7 +249,7 @@ function XSubBanner() {
 }
 
 /* ── PAGE BANNER (interior pages) ──────────────────────────────── */
-function PageBanner({ num, eyebrow, title, sub, variant = 'about', showXSub = false, sideContent = null }) {
+function PageBanner({ num, eyebrow, title, sub, variant = 'about', showXSub = false, sideContent = null, afterSubContent = null }) {
   return (
     <section className={'page-banner ' + (sideContent ? 'page-banner-with-card' : '')}>
       <div className="wrap">
@@ -250,6 +258,7 @@ function PageBanner({ num, eyebrow, title, sub, variant = 'about', showXSub = fa
             <div className="pb-eyebrow">/{num} — {eyebrow}</div>
             <h1 className="pb-title">{title}</h1>
             {sub && <p className="pb-sub">{sub}</p>}
+            {afterSubContent}
             {showXSub && (
               <div style={{ marginTop: 24 }}>
                 <XSubBanner />
@@ -267,6 +276,30 @@ function PageBanner({ num, eyebrow, title, sub, variant = 'about', showXSub = fa
 }
 
 /* ── HERO (homepage — DARK BANNER) ─────────────────────────────── */
+function XInlineIcon({ className = '' }) {
+  return (
+    <span className={'x-inline-icon ' + className} aria-label="X" role="img">
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+      </svg>
+    </span>);
+}
+
+function HomeServicesCallout() {
+  return (
+    <a className="home-services-callout reveal" href="services.html">
+      <span className="hsc-kicker">مهم قبل الاشتراك</span>
+      <strong>هنا تتعرّف على خدمات ومميزات الاشتراك في حساب الصقري على <XInlineIcon /></strong>
+      <span className="hsc-bottom">
+        <span>الخدمات، المميزات، والنماذج السابقة في صفحة واحدة.</span>
+        <span className="hsc-action">
+          اضغط هنا
+          <span className="hsc-arrow">←</span>
+        </span>
+      </span>
+    </a>);
+}
+
 function Hero() {
   return (
     <React.Fragment>
@@ -275,6 +308,7 @@ function Hero() {
       <div className="hero-chart" aria-hidden="true">
         <ChartLineBackground variant="hero" />
       </div>
+      <HomeServicesCallout />
       <div className="hero-quote-card" aria-hidden="false">
         <div className="hqc-dots"></div>
         <div className="hqc-glow"></div>
@@ -300,7 +334,7 @@ function Hero() {
       </div>
       <div className="wrap">
         <div className="hero-grid" style={{ maxWidth: 1080 }}>
-          <div>
+          <div className="hero-copy">
             <div className="eyebrow" style={{ marginBottom: 32 }}>SAUDI · LISTED · EQUITIES</div>
             <h1>
               <span className="line">قراءةٌ مُفصَّلة لشركات السوق <span className="em">السعودي</span></span>
@@ -499,6 +533,46 @@ function ReportCard({ r, catLabel }) {
 }
 
 /* ── SERVICES page ──────────────────────────────────── */
+function ServicesXHighlight() {
+  return (
+    <a className="services-x-highlight reveal" href="https://x.com/AlsagriCapital" target="_blank" rel="noreferrer">
+      <span className="sxh-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      </span>
+      <span className="sxh-copy">
+        <span className="sxh-kicker">
+          حصرياً لمشتركي
+          <span className="sxh-inline-x" aria-label="X" role="img">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </span>
+        </span>
+        <strong>
+          اشترك في حساب الصقري على
+          <span className="sxh-inline-x sxh-inline-x-lg" aria-label="X" role="img">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </span>
+          لتحصل على هذه الخدمات حصرياً وقبل الجميع.
+        </strong>
+        <span>مكالمات النتائج، تقارير بيوت الأبحاث، والتحليلات النوعية تصل للمشترك أولاً وبصياغة مختصرة تساعده على قراءة الشركة بوضوح أسرع.</span>
+      </span>
+      <span className="sxh-action">
+        الاشتراك عبر
+        <span className="sxh-inline-x" aria-label="X" role="img">
+          <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+        </span>
+        <span className="sxh-arrow">←</span>
+      </span>
+    </a>);
+}
+
 function Services() {
   return (
     <React.Fragment>
@@ -506,12 +580,16 @@ function Services() {
         num="02"
         eyebrow="SERVICES"
         title="الخدمات"
-        sub="ثلاثُ زوايا لقراءة الشركة السعودية المدرجة: ما قالته الشركة، ما يُقال عنها، وما هي عليه. اضغط على أي خدمة لعرض نماذجها."
+        sub="ثلاثُ زوايا لقراءة الشركة السعودية المدرجة: ما قالته الشركة، ما يُقال عنها، وما هي عليه الآن ومستقبلاً."
         variant="services"
-        showXSub={true} />
+        afterSubContent={<ServicesXHighlight />} />
 
       <section id="services" className="section first">
         <div className="wrap">
+          <div className="services-samples-note reveal">
+            <span>للاطلاع على نماذج سابقة</span>
+            <p>هذه نماذج من الخدمات التي يحصل عليها المشترك بشكل دوري: مكالمات نتائج الشركات، تقارير بيوت خبرة، وتحليلات نوعية مبكرة.</p>
+          </div>
           <div className="services-grid">
             {window.SERVICES.map((s, idx) => (
               <a
@@ -794,10 +872,9 @@ function CFAResources() {
           <div className="cfa-intro reveal">
             <div className="cfa-intro-copy">
               <div className="cfa-kicker">CHARTERED FINANCIAL ANALYST</div>
-              <h2>رحلة مهنية تصنع طريقة تفكير المستثمر والمحلل</h2>
+              <h2>رحلتك المهنية مع اختبارات CFA</h2>
               <p>
-                شهادة CFA من أكثر الشهادات احتراماً في عالم الاستثمار والتحليل المالي، لأنها لا تكتفي بشرح المفاهيم، بل تبني طريقة تفكير منضبطة:
-                كيف تقرأ الأرقام، تربطها بالاقتصاد والقطاع، تفهم جودة الأرباح، وتحوّل المعلومات إلى قرار استثماري أكثر وعياً.
+                تُعد شهادة CFA من أعلى الشهادات المهنية موثوقية واحتراماً في أسواق المال ولدى الشركات المالية، لأنها لا تمنح معرفة نظرية فحسب، بل تبني طريقة تفكير استثمارية منضبطة؛ تقرأ الأرقام بعمق، تفهم ما وراءها، وتحوّل التحليل إلى قرار أكثر وعياً.
               </p>
               <p>
                 هذه الصفحة ستكون بوابة مرتبة للاستعداد للاختبار: مصادر مختارة، خرائط للمنهج، ملاحظات مختصرة، وأدوات تساعدك على التعامل مع كل مستوى بخطة أوضح وهدوء أكبر.

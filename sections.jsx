@@ -288,7 +288,6 @@ function XInlineIcon({ className = '' }) {
 function HomeServicesCallout({ className = '' }) {
   return (
     <a className={'home-services-callout reveal ' + className} href="services.html">
-      <span className="hsc-kicker">مهم قبل الاشتراك</span>
       <strong>هنا تتعرّف على خدمات ومميزات الاشتراك في حساب الصقري على <XInlineIcon /></strong>
       <span className="hsc-bottom">
         <span>الخدمات، المميزات، والنماذج السابقة في صفحة واحدة.</span>
@@ -343,9 +342,6 @@ function Hero() {
               منصةٌ تعرض ملخصات وتحليلات مكتوبة لمكالمات نتائج الشركات السعودية المدرجة، تقارير بيوت الأبحاث، والتقارير النوعية عن الشركات وقطاعات السوق.
             </p>
             <HomeServicesCallout className="home-services-callout-mobile" />
-            <div style={{ marginTop: 28 }}>
-              <XSubBanner />
-            </div>
             <div className="hero-actions">
               <a href="services.html" className="btn btn-primary">
                 استعرض الخدمات

@@ -593,24 +593,32 @@ p { margin: 0; }
 @media (max-width: 640px) {
   .services-x-highlight {
     grid-template-columns: 1fr;
-    gap: 14px;
-    padding: 22px 20px;
+    gap: 10px;
+    padding: 16px 16px;
     margin-bottom: 28px;
+    border-radius: 8px;
   }
   .sxh-mark {
-    width: 46px;
-    height: 46px;
+    display: none;
+  }
+  .sxh-kicker {
+    margin-bottom: 6px;
+    padding: 3px 8px;
+    font-size: 11px;
   }
   .sxh-copy strong {
-    font-size: 18px;
+    font-size: 15.5px;
     line-height: 1.65;
   }
   .sxh-copy > span:last-child {
-    font-size: 13.5px;
+    display: none;
   }
   .sxh-action {
     grid-column: auto;
     justify-self: stretch;
+    min-height: 36px;
+    font-size: 12.5px;
+    padding: 0 12px;
   }
   .services-samples-note {
     margin-bottom: 18px;
@@ -1795,6 +1803,9 @@ a:focus-visible, button:focus-visible {
 .home-services-callout:hover .hsc-arrow {
   transform: translateX(-4px);
 }
+.home-services-callout-mobile {
+  display: none;
+}
 
 @media (min-width: 641px) and (max-width: 900px) {
   .hero-dark .hero-chart {
@@ -1813,6 +1824,12 @@ a:focus-visible, button:focus-visible {
   }
 }
 @media (max-width: 900px) {
+  .home-services-callout-desktop {
+    display: none;
+  }
+  .home-services-callout-mobile {
+    display: flex;
+  }
   .home-services-callout {
     position: relative;
     inset: auto;
@@ -1826,6 +1843,10 @@ a:focus-visible, button:focus-visible {
   }
   .hero-quote-card {
     order: 3;
+  }
+  .hero-copy .home-services-callout-mobile {
+    width: 100%;
+    margin: 24px 0 0;
   }
 }
 @media (max-width: 640px) {

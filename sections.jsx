@@ -285,9 +285,9 @@ function XInlineIcon({ className = '' }) {
     </span>);
 }
 
-function HomeServicesCallout() {
+function HomeServicesCallout({ className = '' }) {
   return (
-    <a className="home-services-callout reveal" href="services.html">
+    <a className={'home-services-callout reveal ' + className} href="services.html">
       <span className="hsc-kicker">مهم قبل الاشتراك</span>
       <strong>هنا تتعرّف على خدمات ومميزات الاشتراك في حساب الصقري على <XInlineIcon /></strong>
       <span className="hsc-bottom">
@@ -308,7 +308,7 @@ function Hero() {
       <div className="hero-chart" aria-hidden="true">
         <ChartLineBackground variant="hero" />
       </div>
-      <HomeServicesCallout />
+      <HomeServicesCallout className="home-services-callout-desktop" />
       <div className="hero-quote-card" aria-hidden="false">
         <div className="hqc-dots"></div>
         <div className="hqc-glow"></div>
@@ -342,6 +342,7 @@ function Hero() {
             <p className="hero-sub">
               منصةٌ تعرض ملخصات وتحليلات مكتوبة لمكالمات نتائج الشركات السعودية المدرجة، تقارير بيوت الأبحاث، والتقارير النوعية عن الشركات وقطاعات السوق.
             </p>
+            <HomeServicesCallout className="home-services-callout-mobile" />
             <div style={{ marginTop: 28 }}>
               <XSubBanner />
             </div>

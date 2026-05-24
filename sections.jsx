@@ -479,46 +479,58 @@ function ReportCard({ r, catLabel }) {
     brokerage: 'تقرير بحثي',
     qualitative: 'تقرير نوعي',
   })[r.cat] || '';
+  const isResearchReport = r.cat === 'brokerage' && r.cover;
+  const coverClass = r.cover ? ' rpt-has-cover' : '';
+  const researchClass = isResearchReport ? ' rpt-research-card' : '';
 
-  const Wrapper = r.link ? 'a' : 'article';
-  const wrapperProps = r.link
-    ? { href: r.link, target: '_blank', rel: 'noreferrer', className: 'rpt rpt-link' + (r.cover ? ' rpt-has-cover' : '') }
-    : { className: 'rpt' + (r.cover ? ' rpt-has-cover' : '') };
+  const reportHref = r.link || r.pdf;
+  const Wrapper = reportHref ? 'a' : 'article';
+  const wrapperProps = reportHref
+    ? { href: reportHref, target: '_blank', rel: 'noreferrer', className: 'rpt rpt-link' + coverClass + researchClass }
+    : { className: 'rpt' + coverClass + researchClass };
 
   return (
     <Wrapper {...wrapperProps}>
+      {isResearchReport && (
+        <div className="rpt-cover-heading">
+          <span>{r.title}</span>
+          {r.researchHouse && <small>{r.researchHouse}</small>}
+        </div>
+      )}
       {r.cover && (
         <div className="rpt-cover">
           <img src={r.cover} alt={r.co + ' — ' + r.title} loading="eager" decoding="async" />
         </div>
       )}
-      <div className="rpt-body">
-        <div className="rpt-top">
-          <div className="rpt-tag-group">
-            <span className="rpt-tag-ar">{arCat}</span>
-            <span className="rpt-tag">{catLabel}</span>
+      {!isResearchReport && (
+        <div className="rpt-body">
+          <div className="rpt-top">
+            <div className="rpt-tag-group">
+              <span className="rpt-tag-ar">{arCat}</span>
+              <span className="rpt-tag">{catLabel}</span>
+            </div>
+            <span className="rpt-ticker">{r.ticker}</span>
           </div>
-          <span className="rpt-ticker">{r.ticker}</span>
-        </div>
-        <div className="rpt-co">{r.co}</div>
-        <div className="rpt-title">{r.title}</div>
-        {!r.cover && <Sparkline data={r.spark} />}
-        {r.metrics && !r.cover && (
-          <div className="rpt-metrics">
-            {r.metrics.map((m) => (
-              <span className="m" key={m}><span className="dot"></span>{m}</span>
-            ))}
-          </div>
-        )}
-        <div className="rpt-foot">
-          <span className="rpt-date">{r.date}</span>
-          {r.link && (
-            <span className="rpt-read">
-              <span className="arr">↗</span>
-            </span>
+          <div className="rpt-co">{r.co}</div>
+          <div className="rpt-title">{r.title}</div>
+          {!r.cover && <Sparkline data={r.spark} />}
+          {r.metrics && !r.cover && (
+            <div className="rpt-metrics">
+              {r.metrics.map((m) => (
+                <span className="m" key={m}><span className="dot"></span>{m}</span>
+              ))}
+            </div>
           )}
+          <div className="rpt-foot">
+            <span className="rpt-date">{r.date}</span>
+            {reportHref && (
+              <span className="rpt-read">
+                <span className="arr">↗</span>
+              </span>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </Wrapper>);
 }
 
@@ -610,6 +622,90 @@ function Services() {
 }
 
 /* ── SERVICE DETAIL (per-service reports page) ────────── */
+function EarningsFeatureBanner() {
+  return (
+    <a
+      className="earnings-feature-banner reveal"
+      href="https://x.com/AlsagriCapital/status/2054659950194942119?s=20"
+      target="_blank"
+      rel="noreferrer">
+      <span className="efb-bg" aria-hidden="true"></span>
+      <span className="efb-copy">
+        <span className="efb-kicker">ملف مجمّع · الربع الأول 2026</span>
+        <strong>مكالمات المستثمرين / مكالمات عرض نتائج الربع الأول 2026</strong>
+        <span>تجميع مرتب لمكالمات النتائج وروابطها في مكان واحد للرجوع السريع.</span>
+      </span>
+      <span className="efb-visual" aria-hidden="true">
+        <span className="efb-orbit"></span>
+        <svg viewBox="0 0 240 120" preserveAspectRatio="none">
+          <path className="efb-area" d="M6 104 C42 96 54 72 88 78 C120 84 132 48 164 54 C196 60 204 26 234 18 L234 120 L6 120 Z" />
+          <path className="efb-line-soft" d="M6 104 C42 96 54 72 88 78 C120 84 132 48 164 54 C196 60 204 26 234 18" />
+          <path className="efb-line" d="M6 104 C42 96 54 72 88 78 C120 84 132 48 164 54 C196 60 204 26 234 18" />
+          <path className="efb-arrow" d="M210 18 H234 V42" />
+        </svg>
+      </span>
+      <span className="efb-action">
+        عرض التجميع
+        <span>←</span>
+      </span>
+    </a>);
+}
+
+function BrokerageAccessBanner() {
+  return (
+    <div className="brokerage-access-banner reveal">
+      <span className="bab-sheen" aria-hidden="true"></span>
+      <div className="bab-copy">
+        <span className="bab-kicker">للمشتركين بالحساب</span>
+        <strong>يتم نشر تقارير بيوت الخبرة للمشتركين بالحساب</strong>
+        <span className="bab-desc">متابعة مختصرة لأبرز التقارير البحثية: التوصية، السعر المستهدف، وما وراء التحديثات المهمة للشركات السعودية.</span>
+        <span className="bab-note">* بيوت الخبرة التي عندنا اتفاقيات معها</span>
+      </div>
+      <div className="bab-showcase" aria-hidden="true">
+        <span className="bab-report bab-report-one">
+          <img src="banners/research-united-aramco.jpg" alt="" loading="eager" decoding="async" />
+        </span>
+        <span className="bab-report bab-report-two">
+          <img src="banners/research-alinma-luberef.jpg" alt="" loading="eager" decoding="async" />
+        </span>
+        <span className="bab-report bab-report-three">
+          <img src="banners/research-snb-lejam.jpg" alt="" loading="eager" decoding="async" />
+        </span>
+      </div>
+    </div>);
+}
+
+function QualitativeMarketBanner() {
+  return (
+    <a
+      className="qualitative-market-banner reveal"
+      href="https://x.com/AlsagriCapital/status/1662714994377498629?s=20"
+      target="_blank"
+      rel="noreferrer">
+      <span className="qmb-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M5 16.5L10 11.5L13.5 14.5L19 7" />
+          <path d="M15 7H19V11" />
+        </svg>
+      </span>
+      <span className="qmb-copy">
+        <span className="qmb-kicker">أرشيف السوق السعودي</span>
+        <strong>التقارير التي كتبت عن شركات السوق السعودي</strong>
+        <span>مجموعة قراءات وتحليلات مختارة عن السوق، القطاعات، والشركات المدرجة.</span>
+        <span className="qmb-tags" aria-hidden="true">
+          <span>TASI</span>
+          <span>SECTORS</span>
+          <span>COMPANIES</span>
+        </span>
+      </span>
+      <span className="qmb-panel" aria-hidden="true">
+        <span className="qmb-panel-num">+80</span>
+        <span className="qmb-panel-text">تقرير وقراءة عن شركات وقطاعات السوق</span>
+      </span>
+      <span className="qmb-action">استعراض التقارير <span>←</span></span>
+    </a>);
+}
+
 function ServiceDetail() {
   const serviceId = document.body.dataset.serviceId;
   const service = window.SERVICES.find((s) => s.id === serviceId);
@@ -648,9 +744,14 @@ function ServiceDetail() {
             <h2>نماذج من <span style={{ color: 'var(--accent)' }}>{service.ar}</span></h2>
           </div>
 
+          {serviceId === 'earnings' && <EarningsFeatureBanner />}
+          {serviceId === 'brokerage' && <BrokerageAccessBanner />}
+
           <div className="examples-grid">
             {reports.map((r) => <ReportCard key={r.co + r.title} r={r} catLabel={catLabel} />)}
           </div>
+
+          {serviceId === 'qualitative' && <QualitativeMarketBanner />}
         </div>
       </section>
     </React.Fragment>);

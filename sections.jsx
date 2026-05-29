@@ -1062,7 +1062,7 @@ function CFAResources() {
               const isUnlockedLevel1 = idx === 0 && cfaLevel1Unlocked;
               return (
                 <article
-                  className={'cfa-level-card reveal d' + (idx + 1) + (isLockedLevel ? ' is-locked in' : '') + (isUnlockedLevel1 ? ' cfa-level-interactive' + (cfaResourcesOpen ? ' is-open' : '') : '')}
+                  className={'cfa-level-card reveal d' + (idx + 1) + (idx === 0 ? ' in' : '') + (isLockedLevel ? ' is-locked' : '') + (isUnlockedLevel1 ? ' cfa-level-interactive' + (cfaResourcesOpen ? ' is-open' : '') : '')}
                   key={level.title}
                   onClick={isUnlockedLevel1 ? () => setCfaResourcesOpen((v) => !v) : undefined}
                   role={isUnlockedLevel1 ? 'button' : undefined}

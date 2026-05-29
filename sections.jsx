@@ -1056,24 +1056,24 @@ function CFAResources() {
             </div>
           </div>
 
-          <div className="cfa-levels">
+          <div className={'cfa-levels' + (cfaResourcesOpen ? ' resources-open' : '')}>
             {levels.map((level, idx) => {
               const isLockedLevel = idx === 0 && !cfaLevel1Unlocked;
-              const isUnlockedLevel1 = idx === 0 && cfaLevel1Unlocked;
+              const isInteractive = idx === 0;
               return (
                 <article
-                  className={'cfa-level-card reveal d' + (idx + 1) + (idx === 0 ? ' in' : '') + (isLockedLevel ? ' is-locked' : '') + (isUnlockedLevel1 ? ' cfa-level-interactive' + (cfaResourcesOpen ? ' is-open' : '') : '')}
+                  className={'cfa-level-card reveal d' + (idx + 1) + (idx === 0 ? ' in' : '') + (isLockedLevel ? ' is-locked' : '') + (isInteractive ? ' cfa-level-interactive' + (cfaResourcesOpen ? ' is-open' : '') : '')}
                   key={level.title}
-                  onClick={isUnlockedLevel1 ? () => setCfaResourcesOpen((v) => !v) : undefined}
-                  role={isUnlockedLevel1 ? 'button' : undefined}
-                  tabIndex={isUnlockedLevel1 ? 0 : undefined}
-                  aria-expanded={isUnlockedLevel1 ? cfaResourcesOpen : undefined}
-                  onKeyDown={isUnlockedLevel1 ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setCfaResourcesOpen((v) => !v); } } : undefined}>
+                  onClick={isInteractive ? () => setCfaResourcesOpen((v) => !v) : undefined}
+                  role={isInteractive ? 'button' : undefined}
+                  tabIndex={isInteractive ? 0 : undefined}
+                  aria-expanded={isInteractive ? cfaResourcesOpen : undefined}
+                  onKeyDown={isInteractive ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setCfaResourcesOpen((v) => !v); } } : undefined}>
                   <div className="cfa-level-num">{level.n}</div>
                   <div className="cfa-level-body">
                     <h3>{level.title}</h3>
                     {isLockedLevel ? (
-                      <div className="cfa-lock-box">
+                      <div className="cfa-lock-box" onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
                         <div className="cfa-lock-badge">مقفل بكلمة مرور</div>
                         <p>أدخل كلمة المرور لفتح موارد CFA Level 1.</p>
                         <form className="cfa-lock-form" onSubmit={unlockCfaLevel1}>
@@ -1097,7 +1097,7 @@ function CFAResources() {
                       <p>{level.desc}</p>
                     )}
                   </div>
-                  {cfaLevel1Unlocked && idx === 0 ? (
+                  {idx === 0 ? (
                     <React.Fragment>
                       {!cfaResourcesOpen && (
                         <div className="cfa-hover-hint" aria-hidden="true">
@@ -1110,20 +1110,20 @@ function CFAResources() {
                           <span>{cfaResourcesOpen ? 'إخفاء المحتوى' : 'عرض المحتوى'}</span>
                           <span className="cfa-chevron" aria-hidden="true">↓</span>
                         </div>
-                        <button type="button" className="cfa-relock-btn" onClick={(e) => { e.stopPropagation(); lockCfaLevel1(); }}>إقفال</button>
+                        {cfaLevel1Unlocked && (
+                          <button type="button" className="cfa-relock-btn" onClick={(e) => { e.stopPropagation(); lockCfaLevel1(); }}>إقفال</button>
+                        )}
                       </div>
                     </React.Fragment>
                   ) : (
-                    <div className={isLockedLevel ? 'cfa-soon cfa-locked-status' : 'cfa-soon'}>
-                      {isLockedLevel ? 'مقفل' : 'قريباً'}
-                    </div>
+                    <div className="cfa-soon">قريباً</div>
                   )}
                 </article>
               );
             })}
           </div>
 
-          {cfaLevel1Unlocked && (
+          {(
             <div className={'cfa-resources-wrap' + (cfaResourcesOpen ? ' is-open' : '')}>
               <div className="cfa-resources-inner">
                 <div className="cfa-resources">

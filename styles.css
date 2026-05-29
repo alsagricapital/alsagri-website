@@ -3589,6 +3589,11 @@ a.tool-card.is-link:hover .tool-arrow {
   .cfa-resources-grid {
     grid-template-columns: 1fr;
   }
+  /* When the subscriber panel is open on mobile, hide the other levels
+     so the panel sits directly under CFA Level 1, not below 2 & 3. */
+  .cfa-levels.resources-open .cfa-level-card:not(.cfa-level-interactive) {
+    display: none;
+  }
 }
 @media (max-width: 640px) {
   .cfa-intro { padding: 26px 20px; border-radius: 18px; }

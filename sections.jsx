@@ -478,6 +478,7 @@ function ReportCard({ r, catLabel }) {
     earnings: 'مكالمة عرض النتائج',
     brokerage: 'تقرير بحثي',
     qualitative: 'تقرير نوعي',
+    ipo: 'اكتتاب أولي',
   })[r.cat] || '';
   const isResearchReport = r.cat === 'brokerage' && r.cover;
   const coverClass = r.cover ? ' rpt-has-cover' : '';
@@ -582,14 +583,14 @@ function Services() {
         num="02"
         eyebrow="SERVICES"
         title="الخدمات"
-        sub="ثلاثُ زوايا لقراءة الشركة السعودية المدرجة: ما قالته الشركة، ما يُقال عنها، وما هي عليه الآن ومستقبلاً."
+        sub="أربعُ زوايا لقراءة الشركة السعودية المدرجة: ما قالته الشركة، ما يُقال عنها، ما هي عليه الآن ومستقبلاً، والاكتتابات الجديدة."
         variant="services"
         afterSubContent={<ServicesXHighlight />} />
 
       <section id="services" className="section first">
         <div className="wrap">
           <div className="services-samples-note reveal">
-            <span>للاطلاع على نماذج سابقة</span>
+            <span>للاطلاع على نماذج <em className="samples-word">سابقة</em></span>
             <p>هذه نماذج من الخدمات التي يحصل عليها المشترك بشكل دوري: مكالمات نتائج الشركات، تقارير بيوت خبرة، وتحليلات نوعية مبكرة.</p>
           </div>
           <div className="services-grid">
@@ -716,6 +717,7 @@ function ServiceDetail() {
     earnings: 'EARNINGS CALL',
     brokerage: 'RESEARCH',
     qualitative: 'QUALITATIVE',
+    ipo: 'IPO',
   })[serviceId];
 
   return (
@@ -932,6 +934,19 @@ function Tools() {
 
 /* ── CFA Resources page ───────────────────────────────────────────────── */
 function CFAResources() {
+  const CFA_LEVEL_1_PASSWORD = 'CFA1-2026';
+  const [cfaLevel1Password, setCfaLevel1Password] = useState('');
+  const [cfaLevel1Unlocked, setCfaLevel1Unlocked] = useState(
+    () => {
+      try {
+        return window.localStorage.getItem('alsagri.cfa.level1.unlocked') === '1';
+      } catch (e) {
+        return false;
+      }
+    }
+  );
+  const [cfaLevel1Error, setCfaLevel1Error] = useState('');
+  const [cfaResourcesOpen, setCfaResourcesOpen] = useState(false);
   const levels = [
     {
       n: '01',
@@ -949,6 +964,54 @@ function CFAResources() {
       desc: 'الانتقال من التحليل إلى إدارة المحافظ: بناء السياسات الاستثمارية، تخصيص الأصول، إدارة المخاطر، والتفكير كمستشار محترف.',
     },
   ];
+
+  const cfaLevel1Resources = [
+    {
+      n: '01',
+      name: 'Mark Meldrum',
+      tag: 'شروحات مرئية',
+      desc: 'محاضرات فيديو شاملة تغطّي المنهج كاملاً بأسلوبٍ مبسّط وعملي، مع تركيز على الفهم العميق لا الحفظ.',
+      points: ['فيديوهات مرتّبة حسب المواد', 'أمثلة وحلول تطبيقية', 'خطط مذاكرة ونصائح للاختبار'],
+    },
+    {
+      n: '02',
+      name: 'Kaplan Schweser',
+      tag: 'ملخصات وبنك أسئلة',
+      desc: 'ملخّصات SchweserNotes من أشهر المصادر المعتمدة، مع بنك أسئلة ضخم واختبارات تجريبية قريبة من جوّ الاختبار الفعلي.',
+      points: ['ملخصات SchweserNotes', 'بنك أسئلة QBank واسع', 'اختبارات محاكية Mock Exams'],
+    },
+    {
+      n: '03',
+      name: 'IFT',
+      tag: 'دروس ومراجعات',
+      desc: 'دروس مرئية واضحة وملاحظات مختصرة ومراجعات سريعة، مناسبة بشكلٍ خاص للمراجعة النهائية قبل الاختبار.',
+      points: ['فيديو لكل Reading', 'ملاحظات وملخصات مركّزة', 'مراجعات وأسئلة تدريبية'],
+    },
+  ];
+
+  const unlockCfaLevel1 = (e) => {
+    e.preventDefault();
+    if (cfaLevel1Password.trim() === CFA_LEVEL_1_PASSWORD) {
+      try {
+        window.localStorage.setItem('alsagri.cfa.level1.unlocked', '1');
+      } catch (err) {}
+      setCfaLevel1Unlocked(true);
+      setCfaLevel1Password('');
+      setCfaLevel1Error('');
+      return;
+    }
+    setCfaLevel1Error('كلمة المرور غير صحيحة.');
+  };
+
+  const lockCfaLevel1 = () => {
+    try {
+      window.localStorage.removeItem('alsagri.cfa.level1.unlocked');
+    } catch (err) {}
+    setCfaLevel1Unlocked(false);
+    setCfaLevel1Password('');
+    setCfaLevel1Error('');
+    setCfaResourcesOpen(false);
+  };
 
   return (
     <React.Fragment>
@@ -994,17 +1057,128 @@ function CFAResources() {
           </div>
 
           <div className="cfa-levels">
-            {levels.map((level, idx) => (
-              <article className={'cfa-level-card reveal d' + (idx + 1)} key={level.title}>
-                <div className="cfa-level-num">{level.n}</div>
-                <div className="cfa-level-body">
-                  <h3>{level.title}</h3>
-                  <p>{level.desc}</p>
-                </div>
-                <div className="cfa-soon">قريباً</div>
-              </article>
-            ))}
+            {levels.map((level, idx) => {
+              const isLockedLevel = idx === 0 && !cfaLevel1Unlocked;
+              const isUnlockedLevel1 = idx === 0 && cfaLevel1Unlocked;
+              return (
+                <article
+                  className={'cfa-level-card reveal d' + (idx + 1) + (isLockedLevel ? ' is-locked in' : '') + (isUnlockedLevel1 ? ' cfa-level-interactive' + (cfaResourcesOpen ? ' is-open' : '') : '')}
+                  key={level.title}
+                  onClick={isUnlockedLevel1 ? () => setCfaResourcesOpen((v) => !v) : undefined}
+                  role={isUnlockedLevel1 ? 'button' : undefined}
+                  tabIndex={isUnlockedLevel1 ? 0 : undefined}
+                  aria-expanded={isUnlockedLevel1 ? cfaResourcesOpen : undefined}
+                  onKeyDown={isUnlockedLevel1 ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setCfaResourcesOpen((v) => !v); } } : undefined}>
+                  <div className="cfa-level-num">{level.n}</div>
+                  <div className="cfa-level-body">
+                    <h3>{level.title}</h3>
+                    {isLockedLevel ? (
+                      <div className="cfa-lock-box">
+                        <div className="cfa-lock-badge">مقفل بكلمة مرور</div>
+                        <p>أدخل كلمة المرور لفتح موارد CFA Level 1.</p>
+                        <form className="cfa-lock-form" onSubmit={unlockCfaLevel1}>
+                          <label className="cfa-lock-field">
+                            <span>كلمة المرور</span>
+                            <input
+                              type="password"
+                              value={cfaLevel1Password}
+                              onChange={(e) => {
+                                setCfaLevel1Password(e.target.value);
+                                if (cfaLevel1Error) setCfaLevel1Error('');
+                              }}
+                              placeholder="••••••••"
+                              autoComplete="current-password" />
+                          </label>
+                          {cfaLevel1Error && <div className="cfa-lock-error">{cfaLevel1Error}</div>}
+                          <button type="submit" className="cfa-lock-btn">فتح المستوى</button>
+                        </form>
+                      </div>
+                    ) : (
+                      <p>{level.desc}</p>
+                    )}
+                  </div>
+                  {cfaLevel1Unlocked && idx === 0 ? (
+                    <React.Fragment>
+                      {!cfaResourcesOpen && (
+                        <div className="cfa-hover-hint" aria-hidden="true">
+                          <span className="cfa-hover-hint-icon">↓</span>
+                          <span>عرض ما ستحصل عليه عند الاشتراك</span>
+                        </div>
+                      )}
+                      <div className="cfa-level-actions">
+                        <div className="cfa-soon cfa-resources-toggle">
+                          <span>{cfaResourcesOpen ? 'إخفاء المحتوى' : 'عرض المحتوى'}</span>
+                          <span className="cfa-chevron" aria-hidden="true">↓</span>
+                        </div>
+                        <button type="button" className="cfa-relock-btn" onClick={(e) => { e.stopPropagation(); lockCfaLevel1(); }}>إقفال</button>
+                      </div>
+                    </React.Fragment>
+                  ) : (
+                    <div className={isLockedLevel ? 'cfa-soon cfa-locked-status' : 'cfa-soon'}>
+                      {isLockedLevel ? 'مقفل' : 'قريباً'}
+                    </div>
+                  )}
+                </article>
+              );
+            })}
           </div>
+
+          {cfaLevel1Unlocked && (
+            <div className={'cfa-resources-wrap' + (cfaResourcesOpen ? ' is-open' : '')}>
+              <div className="cfa-resources-inner">
+                <div className="cfa-resources">
+                  <button
+                    type="button"
+                    className="cfa-resources-close"
+                    aria-label="إغلاق محتوى الصفحة للمشتركين"
+                    onClick={() => {
+                      setCfaResourcesOpen(false);
+                      setTimeout(() => {
+                        const target = document.querySelector('.cfa-level-interactive');
+                        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      }, 460);
+                    }}>
+                    <span aria-hidden="true">↑</span>
+                  </button>
+                  <div className="cfa-resources-head">
+                    <div className="cfa-resources-kicker">CFA LEVEL 1 · المصادر</div>
+                    <h3>محتوى الصفحة للمشتركين</h3>
+                    <p>كل ما تحتاجه للاستعداد والتجهيز لاختبار CFA Level 1</p>
+                  </div>
+                  <div className="cfa-resources-grid">
+                    {cfaLevel1Resources.map((res) => (
+                      <article className="cfa-resource-card" key={res.name}>
+                        <div className="cfa-resource-top">
+                          <span className="cfa-resource-num">{res.n}</span>
+                          <span className="cfa-resource-tag">{res.tag}</span>
+                        </div>
+                        <h4 className="cfa-resource-name">{res.name}</h4>
+                        <p className="cfa-resource-desc">{res.desc}</p>
+                        <ul className="cfa-resource-points">
+                          {res.points.map((p) => (
+                            <li key={p}>
+                              <span className="cfa-resource-check" aria-hidden="true"></span>
+                              <span>{p}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </article>
+                    ))}
+                  </div>
+                  <div className="cfa-resources-cta">
+                    <a
+                      className="cfa-subscribe-btn"
+                      href="https://alsagricapital.substack.com/"
+                      target="_blank"
+                      rel="noreferrer"
+                      onClick={(e) => e.stopPropagation()}>
+                      الاشتراك
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </React.Fragment>);

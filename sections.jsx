@@ -473,7 +473,7 @@ function About() {
 }
 
 /* ── Report card (used inline within Services) ─────────────────── */
-function ReportCard({ r, catLabel, viewCount }) {
+function ReportCard({ r, catLabel, viewCount, compact = false, viewsPlacement = 'body' }) {
   const arCat = ({
     earnings: 'مكالمة عرض النتائج',
     brokerage: 'تقرير بحثي',
@@ -483,12 +483,19 @@ function ReportCard({ r, catLabel, viewCount }) {
   const isResearchReport = r.cat === 'brokerage' && r.cover;
   const coverClass = r.cover ? ' rpt-has-cover' : '';
   const researchClass = isResearchReport ? ' rpt-research-card' : '';
+  const compactClass = compact ? ' rpt-compact' : '';
+  const viewsBadge = viewCount && (
+    <div className="rpt-views-badge">
+      <strong>{viewCount}</strong>
+      <span>مشاهدات</span>
+    </div>
+  );
 
   const reportHref = r.link || r.pdf;
   const Wrapper = reportHref ? 'a' : 'article';
   const wrapperProps = reportHref
-    ? { href: reportHref, target: '_blank', rel: 'noreferrer', className: 'rpt rpt-link' + coverClass + researchClass }
-    : { className: 'rpt' + coverClass + researchClass };
+    ? { href: reportHref, target: '_blank', rel: 'noreferrer', className: 'rpt rpt-link' + coverClass + researchClass + compactClass }
+    : { className: 'rpt' + coverClass + researchClass + compactClass };
 
   return (
     <Wrapper {...wrapperProps}>
@@ -507,19 +514,17 @@ function ReportCard({ r, catLabel, viewCount }) {
         <div className="rpt-body">
           <div className="rpt-top">
             <div className="rpt-tag-group">
-              <span className="rpt-tag-ar">{arCat}</span>
+              {!compact && <span className="rpt-tag-ar">{arCat}</span>}
               <span className="rpt-tag">{catLabel}</span>
             </div>
-            <span className="rpt-ticker">{r.ticker}</span>
+            <div className="rpt-ticker-stack">
+              <span className="rpt-ticker">{r.ticker}</span>
+              {viewsPlacement === 'ticker' && viewsBadge}
+            </div>
           </div>
           <div className="rpt-co">{r.co}</div>
-          {viewCount && (
-            <div className="rpt-views-badge">
-              <strong>{viewCount}</strong>
-              <span>مشاهدات</span>
-            </div>
-          )}
-          <div className="rpt-title">{r.title}</div>
+          {viewsPlacement !== 'ticker' && viewsBadge}
+          {!compact && <div className="rpt-title">{r.title}</div>}
           {!r.cover && <Sparkline data={r.spark} />}
           {r.metrics && !r.cover && (
             <div className="rpt-metrics">
@@ -528,14 +533,16 @@ function ReportCard({ r, catLabel, viewCount }) {
               ))}
             </div>
           )}
-          <div className="rpt-foot">
-            <span className="rpt-date">{r.date}</span>
-            {reportHref && (
-              <span className="rpt-read">
-                <span className="arr">↗</span>
-              </span>
-            )}
-          </div>
+          {!compact && (
+            <div className="rpt-foot">
+              <span className="rpt-date">{r.date}</span>
+              {reportHref && (
+                <span className="rpt-read">
+                  <span className="arr">↗</span>
+                </span>
+              )}
+            </div>
+          )}
         </div>
       )}
     </Wrapper>);
@@ -1072,6 +1079,8 @@ function SponsorshipQ22026() {
                 key={r.co + r.title}
                 r={r}
                 catLabel="EARNINGS CALL"
+                compact
+                viewsPlacement="ticker"
                 viewCount={previousExampleViews[r.co]} />
             ))}
           </div>

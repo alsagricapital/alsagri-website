@@ -1198,6 +1198,10 @@ function SponsorshipQ22026() {
                 <small>واتساب</small>
                 <strong>0550734332</strong>
               </a>
+              <a className="sp-contact-email" href="mailto:alsagricapital@gmail.com">
+                <small>البريد الإلكتروني</small>
+                <strong>alsagricapital@gmail.com</strong>
+              </a>
             </div>
           </div>
         </div>

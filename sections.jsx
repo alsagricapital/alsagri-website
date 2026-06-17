@@ -516,13 +516,14 @@ function ReportCard({ r, catLabel, viewCount, compact = false, viewsPlacement = 
             <div className="rpt-tag-group">
               {!compact && <span className="rpt-tag-ar">{arCat}</span>}
               <span className="rpt-tag">{catLabel}</span>
+              {compact && <span className="rpt-co-top">{r.co}</span>}
             </div>
             <div className="rpt-ticker-stack">
               <span className="rpt-ticker">{r.ticker}</span>
               {viewsPlacement === 'ticker' && viewsBadge}
             </div>
           </div>
-          <div className="rpt-co">{r.co}</div>
+          {!compact && <div className="rpt-co">{r.co}</div>}
           {viewsPlacement !== 'ticker' && viewsBadge}
           {!compact && <div className="rpt-title">{r.title}</div>}
           {!r.cover && <Sparkline data={r.spark} />}
@@ -831,16 +832,16 @@ function Disclaimer() {
 /* ── SPONSORSHIP Q2 2026 page ─────────────────────────────────── */
 function SponsorshipQ22026() {
   const stats = [
-    { value: '9M', label: 'مرات الظهور', note: 'Impressions' },
-    { value: '51K', label: 'متابع', note: 'Followers', badge: '80% متابع نشط' },
-    { value: '55K', label: 'مشاهدة لكل مكالمة', note: 'متوسط مشاهدات المحتوى' },
-    { value: '166K', label: 'مشاهدة لافتتاحية الموسم السابق', note: 'تغريدة مثبتة' },
+    { value: '~9M', label: 'مرات الظهور', note: 'Impressions' },
+    { value: '~51K', label: 'متابع', note: 'Followers', badge: '80% متابع نشط' },
+    { value: '~55K', label: 'مشاهدة لكل مكالمة', note: 'متوسط مشاهدات المحتوى' },
+    { value: '~166K', label: 'مشاهدة لافتتاحية الموسم السابق', note: 'تغريدة مثبتة' },
   ];
 
   const flow = [
     { n: '01', title: 'إعلان النتائج', text: 'الشركة تعلن نتائجها رسمياً' },
-    { n: '02', title: 'نشر المكالمة', metric: 'متوسط مشاهدات 55 ألف لكل مكالمة', text: 'نشر المكالمة في تويتر خلال ساعات' },
-    { n: '03', title: 'ظهور شعارك', text: 'أسفل المكالمة وبالافتتاحية' },
+    { n: '02', title: 'نشر المكالمة', text: 'نشر المكالمة في تويتر خلال ساعات', metric: 'متوسط مشاهدات 55 ألف للمكالمات' },
+    { n: '03', title: 'ظهور شعارك', text: 'أسفل المكالمة وفي التغريدة الافتتاحية المثبتة' },
     { n: '04', title: 'حضور طوال الربع', text: 'يتكرر مع كل شركة' },
   ];
 
@@ -867,7 +868,7 @@ function SponsorshipQ22026() {
     {
       tier: 'SILVER',
       title: 'الباقة الفضية',
-      period: 'رعاية ربع واحد',
+      period: 'رعاية مكالمات النتائج للربع الثاني من عام 2026',
       priceAmount: '10,000',
       priceLabel: 'للفترة',
       features: [
@@ -878,14 +879,26 @@ function SponsorshipQ22026() {
     {
       tier: 'GOLD',
       title: 'الباقة الذهبية',
-      period: 'رعاية ربع كامل',
+      period: 'رعاية مكالمات النتائج للربع الثاني من عام 2026',
       priceAmount: '30,000',
       priceLabel: 'للفترة',
-      featured: true,
       features: [
         'شعار الشركة الراعية يظهر في التغريدة المثبتة',
         'إشارة شكر وشعار الشركة الراعية يظهران في جميع المكالمات، +25 مكالمة',
         'إعلان للشركة الراعية في أي وقت حسب رغبتهم خلال الفترة',
+      ],
+    },
+    {
+      tier: 'DIAMOND',
+      title: 'الباقة الألماسية',
+      period: 'رعاية مكالمات النتائج للربع الثاني من عام 2026',
+      priceAmount: '50,000',
+      priceLabel: 'للفترة',
+      featured: true,
+      features: [
+        'جميع مزايا الباقة الذهبية',
+        'إضافة شعار الشركة الراعية في البنر الأساسي لكل مكالمة',
+        '15,000 ريال مخصصة للترويج المدفوع في تويتر للتغريدة، مما يدعم انتشار العلامة التجارية',
       ],
     },
   ];
@@ -967,11 +980,9 @@ function SponsorshipQ22026() {
               {flow.map((item) => (
                 <div className="sp-flow-item" key={item.n}>
                   <span>{item.n}</span>
-                  <strong>
-                    {item.title}
-                    {item.metric && <em className="sp-flow-metric">{item.metric}</em>}
-                  </strong>
+                  <strong>{item.title}</strong>
                   <p>{item.text}</p>
+                  {item.metric && <em className="sp-flow-metric">{item.metric}</em>}
                 </div>
               ))}
             </div>
@@ -984,7 +995,7 @@ function SponsorshipQ22026() {
           <div className="sp-section-head reveal">
             <span>WHY SPONSOR · 02</span>
             <h2>لماذا ترعى هذه السلسلة؟</h2>
-            <p>أداء حقيقي من الموسم السابق، وحضور متكرر داخل محتوى مالي جاد يتابعه جمهور مهتم بالسوق والشركات المدرجة.</p>
+            <p>أداء حقيقي من الموسم السابق، وحضور متكرر داخل محتوى مالي جاد يتابعه جمهور مهتم بالسوق والشركات المدرجة. كن العلامة التي يربطها المستثمر بكل إعلان نتائج، ورسّخ حضورك في أكثر مواسم السوق متابعةً.</p>
           </div>
           <div className="sp-stats-grid">
             {stats.map((stat, idx) => (
@@ -1001,7 +1012,7 @@ function SponsorshipQ22026() {
           <div className="sp-proof-grid">
             <div className="sp-proof-card sp-proof-media reveal">
               <span className="sp-proof-label">أداء موثق</span>
-              <strong>166K مشاهدة للافتتاحية السابقة</strong>
+              <strong>~166K مشاهدة للافتتاحية السابقة</strong>
               <p>لقطة فعلية من منصة X للتغريدة الافتتاحية في الموسم السابق، وتوضح حجم المشاهدات والتفاعل على السلسلة.</p>
               <div className="sp-proof-window sp-proof-window-image">
                 <img
@@ -1092,12 +1103,11 @@ function SponsorshipQ22026() {
           <div className="sp-section-head reveal">
             <span>PACKAGES · 05</span>
             <h2>باقات الرعاية</h2>
-            <p>اختر مستوى الحضور الذي يناسب علامتك.</p>
+            <p>اختر مستوى الحضور الذي يناسب علامتك، واحجز مكانك قبل بداية الموسم — المساحة محدودة لراعٍ واحد فقط.</p>
           </div>
           <div className="sp-packages-grid">
             {packages.map((pkg, idx) => (
               <article className={'sp-package reveal d' + (idx + 1) + (pkg.featured ? ' is-featured' : '')} key={pkg.tier}>
-                {pkg.featured && <div className="sp-package-ribbon">الأكثر طلباً</div>}
                 <span className="sp-package-tier">{pkg.tier}</span>
                 <h3>{pkg.title}</h3>
                 <p>{pkg.period}</p>

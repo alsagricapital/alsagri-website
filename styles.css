@@ -1518,6 +1518,10 @@ a.rpt-link:hover { transform: translateY(-3px); border-color: var(--accent); }
   margin-top: 18px; font-size: 22px; color: var(--ink); font-weight: 600;
   letter-spacing: -.005em;
 }
+.rpt-co-top {
+  margin-top: 5px; font-size: 18px; color: var(--ink); font-weight: 600;
+  letter-spacing: -.005em;
+}
 .rpt-views-badge {
   width: fit-content;
   margin-top: 10px;
@@ -1562,9 +1566,8 @@ a.rpt-link:hover { transform: translateY(-3px); border-color: var(--accent); }
 .rpt-compact .rpt-top {
   padding-bottom: 13px;
 }
-.rpt-compact .rpt-co {
-  margin-top: 14px;
-  font-size: 21px;
+.rpt-compact .rpt-co-top {
+  font-size: 17px;
 }
 .rpt-compact .rpt-views-badge {
   padding: 5px 9px;
@@ -5482,6 +5485,10 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
 .sp-flow-metric {
   display: inline-flex;
   align-items: center;
+  align-self: start;
+  justify-self: start;
+  width: fit-content;
+  margin-top: 2px;
   min-height: 24px;
   padding: 3px 9px;
   border-radius: 999px;
@@ -5810,10 +5817,10 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
 }
 .sp-packages-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
   align-items: stretch;
-  max-width: 880px;
+  max-width: 1140px;
   margin-inline: auto;
 }
 .sp-package {
@@ -5831,18 +5838,6 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   color: var(--paper);
   border-color: var(--navy);
   box-shadow: 0 34px 72px -46px rgba(10,22,40,.72);
-}
-.sp-package-ribbon {
-  position: absolute;
-  top: 0;
-  inset-inline-start: 50%;
-  transform: translateX(-50%);
-  padding: 9px 22px;
-  border-radius: 0 0 8px 8px;
-  background: var(--sp-gold-2);
-  color: var(--navy);
-  font-size: 12px;
-  font-weight: 700;
 }
 .sp-package h3 {
   margin-top: 16px;
@@ -6133,9 +6128,8 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
     gap: 10px;
     padding-bottom: 11px;
   }
-  .sp-examples-grid .rpt-compact .rpt-co {
-    margin-top: 12px;
-    font-size: 20px;
+  .sp-examples-grid .rpt-compact .rpt-co-top {
+    font-size: 16px;
   }
   .sp-package h3 {
     font-size: 26px;

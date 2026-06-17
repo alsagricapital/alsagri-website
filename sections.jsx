@@ -832,7 +832,7 @@ function Disclaimer() {
 /* ── SPONSORSHIP Q2 2026 page ─────────────────────────────────── */
 function SponsorshipQ22026() {
   const stats = [
-    { value: '~9M', label: 'مرات الظهور', note: 'Impressions' },
+    { value: '~12M', label: 'مرات الظهور', note: 'Impressions' },
     { value: '~51K', label: 'متابع', note: 'Followers', badge: '80% متابع نشط' },
     { value: '~55K', label: 'مشاهدة لكل مكالمة', note: 'متوسط مشاهدات المحتوى' },
     { value: '~166K', label: 'مشاهدة لافتتاحية الموسم السابق', note: 'تغريدة مثبتة' },
@@ -842,7 +842,7 @@ function SponsorshipQ22026() {
     { n: '01', title: 'إعلان النتائج', text: 'الشركة تعلن نتائجها رسمياً' },
     { n: '02', title: 'نشر المكالمة', text: 'نشر المكالمة في تويتر خلال ساعات', metric: 'متوسط مشاهدات 55 ألف للمكالمات' },
     { n: '03', title: 'ظهور شعارك', text: 'أسفل المكالمة وفي التغريدة الافتتاحية المثبتة' },
-    { n: '04', title: 'حضور طوال الربع', text: 'يتكرر مع كل شركة' },
+    { n: '04', title: 'حضور العلامة التجارية طوال الربع', text: 'يتكرر ظهور العلامة التجارية مع نتائج كل شركة يتم تغطيتها' },
   ];
 
   const reasons = [
@@ -856,11 +856,21 @@ function SponsorshipQ22026() {
       code: 'A',
       title: 'غلاف التغريدة الافتتاحية المثبتة',
       text: 'مثبتة أعلى الحساب طوال الربع، وهي أول ما يراه زائر السلسلة.',
+      image: 'assets/sponsorship/q2-2026-example-tweet-enhanced.png',
+      alt: 'مثال توضيحي لغلاف التغريدة الافتتاحية المثبتة مع ظهور شعار الراعي',
     },
     {
       code: 'B',
       title: 'أسفل كل مكالمة نتائج',
       text: 'شعارك أسفل المقال في كل مكالمة، مع أكثر من 25 مرة في الربع.',
+    },
+    {
+      code: 'C',
+      title: 'شعار العلامة التجارية في البنر الأساسي للمكالمة',
+      text: 'شعار الراعي داخل البنر الأساسي للمكالمة، يظهر مع كل مكالمة منشورة طوال الموسم.',
+      image: 'assets/sponsorship/q2-2026-banner-go-telecom.png',
+      alt: 'مثال توضيحي لظهور شعار الراعي في البنر الأساسي لمكالمة عرض النتائج',
+      wide: true,
     },
   ];
 
@@ -872,8 +882,8 @@ function SponsorshipQ22026() {
       priceAmount: '10,000',
       priceLabel: 'للفترة',
       features: [
-        'شعار الشركة الراعية يظهر في التغريدة المثبتة',
-        'إشارة شكر وشعار الشركة الراعية يظهران في 5 مكالمات',
+        { text: 'شعار الشركة الراعية يظهر في التغريدة المثبتة', code: 'A' },
+        { text: 'إشارة شكر وشعار الشركة الراعية يظهران في 5 مكالمات', code: 'B' },
       ],
     },
     {
@@ -883,9 +893,9 @@ function SponsorshipQ22026() {
       priceAmount: '30,000',
       priceLabel: 'للفترة',
       features: [
-        'شعار الشركة الراعية يظهر في التغريدة المثبتة',
-        'إشارة شكر وشعار الشركة الراعية يظهران في جميع المكالمات، +25 مكالمة',
-        'إعلان للشركة الراعية في أي وقت حسب رغبتهم خلال الفترة',
+        { text: 'شعار الشركة الراعية يظهر في التغريدة المثبتة', code: 'A' },
+        { text: 'إشارة شكر وشعار الشركة الراعية يظهران في جميع المكالمات، +25 مكالمة', code: 'B' },
+        { text: 'إعلان للشركة الراعية في أي وقت حسب رغبتهم خلال الفترة' },
       ],
     },
     {
@@ -896,9 +906,9 @@ function SponsorshipQ22026() {
       priceLabel: 'للفترة',
       featured: true,
       features: [
-        'جميع مزايا الباقة الذهبية',
-        'إضافة شعار الشركة الراعية في البنر الأساسي لكل مكالمة',
-        '15,000 ريال مخصصة للترويج المدفوع في تويتر للتغريدة، مما يدعم انتشار العلامة التجارية',
+        { text: 'جميع مزايا الباقة الذهبية' },
+        { text: 'إضافة شعار الشركة الراعية في البنر الأساسي لكل مكالمة', code: 'C' },
+        { text: '15,000 ريال مخصصة للترويج المدفوع في تويتر للتغريدة، مما يدعم انتشار العلامة التجارية' },
       ],
     },
   ];
@@ -972,6 +982,7 @@ function SponsorshipQ22026() {
             <div className="sp-product-card reveal d2">
               <strong>تغريدة افتتاحية مثبتة 3 أشهر</strong>
               <p>رأس السلسلة مثبت أعلى الحساب ومرجع دائم لكل المكالمات.</p>
+              <span className="sp-product-metric">متوقع مشاهدات <span className="sp-pm-num">&gt; 150K</span></span>
             </div>
           </div>
           <div className="sp-flow reveal d3">
@@ -1040,18 +1051,18 @@ function SponsorshipQ22026() {
           <div className="sp-section-head reveal">
             <span>BRAND PLACEMENT · 03</span>
             <h2>أين يظهر شعارك؟</h2>
-            <p>في مكانين دائمين أمام كل متابع للسلسلة، من أول زيارة للتغريدة المثبتة إلى نهاية كل مكالمة منشورة.</p>
+            <p>في ثلاثة أماكن دائمة أمام كل متابع للسلسلة: التغريدة الافتتاحية المثبتة، والبنر الأساسي للمكالمة، وأسفل كل مكالمة منشورة.</p>
           </div>
           <div className="sp-placement-grid">
             {placements.map((item, idx) => (
-              <article className={'sp-placement reveal d' + (idx + 1)} key={item.code}>
+              <article className={'sp-placement reveal d' + (idx + 1) + (item.wide ? ' is-wide' : '')} key={item.code}>
                 <div className="sp-placement-code">{item.code}</div>
-                {idx === 0 ? (
+                {item.image ? (
                   <figure className="sp-placement-example-image">
                     <span>مثال</span>
                     <img
-                      src="assets/sponsorship/q2-2026-example-tweet-enhanced.png"
-                      alt="مثال توضيحي لغلاف التغريدة الافتتاحية المثبتة مع ظهور شعار الراعي"
+                      src={item.image}
+                      alt={item.alt}
                       loading="lazy"
                       decoding="async" />
                   </figure>
@@ -1107,13 +1118,13 @@ function SponsorshipQ22026() {
           </div>
           <div className="sp-packages-grid">
             {packages.map((pkg, idx) => (
-              <article className={'sp-package reveal d' + (idx + 1) + (pkg.featured ? ' is-featured' : '')} key={pkg.tier}>
+              <article className={'sp-package reveal d' + (idx + 1) + ' sp-tier-' + pkg.tier.toLowerCase() + (pkg.featured ? ' is-featured' : '')} key={pkg.tier}>
                 <span className="sp-package-tier">{pkg.tier}</span>
                 <h3>{pkg.title}</h3>
                 <p>{pkg.period}</p>
                 <ul>
                   {pkg.features.map((feature) => (
-                    <li key={feature}><span></span>{feature}</li>
+                    <li key={feature.text}><span className="sp-feat-check"></span><span className="sp-feat-text">{feature.text}{feature.code && <em className="sp-feat-code">{feature.code}</em>}</span></li>
                   ))}
                 </ul>
                 <div className="sp-package-price">

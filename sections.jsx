@@ -856,7 +856,7 @@ function SponsorshipQ22026() {
       code: 'A',
       title: 'غلاف التغريدة الافتتاحية المثبتة',
       text: 'مثبتة أعلى الحساب طوال الربع، وهي أول ما يراه زائر السلسلة.',
-      image: 'assets/sponsorship/q2-2026-example-tweet-enhanced.png',
+      image: 'assets/sponsorship/q2-2026-example-tweet-enhanced.png?v=q2e',
       alt: 'مثال توضيحي لغلاف التغريدة الافتتاحية المثبتة مع ظهور شعار الراعي',
     },
     {
@@ -868,7 +868,7 @@ function SponsorshipQ22026() {
       code: 'C',
       title: 'شعار العلامة التجارية في البنر الأساسي للمكالمة',
       text: 'شعار الراعي داخل البنر الأساسي للمكالمة، يظهر مع كل مكالمة منشورة طوال الموسم.',
-      image: 'assets/sponsorship/q2-2026-banner-go-telecom.png',
+      image: 'assets/sponsorship/q2-2026-banner-go-telecom.png?v=q2e',
       alt: 'مثال توضيحي لظهور شعار الراعي في البنر الأساسي لمكالمة عرض النتائج',
       wide: true,
     },
@@ -906,8 +906,10 @@ function SponsorshipQ22026() {
       priceLabel: 'للفترة',
       featured: true,
       features: [
-        { text: 'جميع مزايا الباقة الذهبية' },
+        { text: 'شعار الشركة الراعية يظهر في التغريدة المثبتة', code: 'A' },
+        { text: 'إشارة شكر وشعار الشركة الراعية يظهران في جميع المكالمات، +25 مكالمة', code: 'B' },
         { text: 'إضافة شعار الشركة الراعية في البنر الأساسي لكل مكالمة', code: 'C' },
+        { text: 'إعلان للشركة الراعية في أي وقت حسب رغبتهم خلال الفترة' },
         { text: '15,000 ريال مخصصة للترويج المدفوع في تويتر للتغريدة، مما يدعم انتشار العلامة التجارية' },
       ],
     },
@@ -955,7 +957,7 @@ function SponsorshipQ22026() {
                   <small>نموذج ظهور الراعي في التغريدة المثبتة</small>
                 </figcaption>
                 <img
-                  src="assets/sponsorship/q2-2026-example-tweet-enhanced.png"
+                  src="assets/sponsorship/q2-2026-example-tweet-enhanced.png?v=q2e"
                   alt="مثال توضيحي لتغريدة مكالمات المستثمرين مع ظهور شعار الراعي"
                   loading="eager"
                   decoding="async" />

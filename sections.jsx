@@ -838,6 +838,18 @@ function SponsorshipQ22026() {
     { value: '~166K', label: 'مشاهدة لافتتاحية الموسم السابق', note: 'تغريدة مثبتة' },
   ];
 
+  const analytics = [
+    { label: 'Verified followers', value: '2.3K', sub: '/ 50.9K', verified: true },
+    { label: 'Active followers', value: '39.9K', sub: '/ 50.9K' },
+    { label: 'Impressions', value: '13.2M', up: '140%' },
+    { label: 'Profile visits', value: '25.6K', up: '162%' },
+    { label: 'Replies', value: '2.1K', up: '140%' },
+    { label: 'Likes', value: '15.8K', up: '242%' },
+    { label: 'Reposts', value: '2.6K', up: '343%' },
+    { label: 'Bookmarks', value: '8.8K', up: '242%' },
+    { label: 'Shares', value: '3.6K', up: '178%' },
+  ];
+
   const flow = [
     { n: '01', title: 'إعلان النتائج', text: 'الشركة تعلن نتائجها رسمياً' },
     { n: '02', title: 'نشر المكالمة', text: 'نشر المكالمة في تويتر خلال ساعات', metric: 'متوسط مشاهدات 55 ألف للمكالمات' },
@@ -1028,11 +1040,26 @@ function SponsorshipQ22026() {
               <span>مصدر موثّق</span>
               <small>تحليلات حساب الصقري على منصة X</small>
             </figcaption>
-            <img
-              src="assets/sponsorship/q2-2026-x-analytics.png?v=q2f"
-              alt="تحليلات حساب الصقري على منصة X تُظهر مرات الظهور والتفاعل والمتابعين"
-              loading="lazy"
-              decoding="async" />
+            <div className="sp-analytics-grid">
+              {analytics.map((a) => (
+                <div className="sp-an-card" key={a.label}>
+                  <div className="sp-an-label">
+                    {a.label}
+                    {a.verified && (
+                      <svg className="sp-an-check" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" fill="#1d9bf0" />
+                        <path d="M9.3 12.4l1.9 1.9 3.6-3.9" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    )}
+                  </div>
+                  <div className="sp-an-val">
+                    {a.value}
+                    {a.sub && <small>{a.sub}</small>}
+                    {a.up && <span className="sp-an-up">↑ {a.up}</span>}
+                  </div>
+                </div>
+              ))}
+            </div>
           </figure>
           <div className="sp-proof-grid">
             <div className="sp-proof-card sp-proof-media reveal">

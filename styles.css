@@ -257,6 +257,23 @@ p { margin: 0; }
     max-height: 44px;
   }
 }
+body[data-page="sponsorship"] .nav-links,
+body[data-page="sponsorship"] .nav-burger {
+  display: none;
+}
+body[data-page="sponsorship"] .nav-inner {
+  justify-content: space-between;
+}
+@media (max-width: 860px) {
+  body[data-page="sponsorship"] .nav-cta {
+    display: inline-flex;
+    padding: 9px 13px;
+    font-size: 12px;
+  }
+  body[data-page="sponsorship"] .nav-cta .dot {
+    display: none;
+  }
+}
 
 /* mobile drawer */
 .drawer-backdrop {

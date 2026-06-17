@@ -904,19 +904,17 @@ function SponsorshipQ22026() {
             </div>
 
             <div className="sp-hero-visual reveal d2" aria-label="معاينة ظهور الراعي">
-              <div className="sp-sponsor-preview">
-                <div className="sp-preview-top">
-                  <span>مكالمات المستثمرين</span>
-                  <small>2026 · الربع الثاني</small>
-                </div>
-                <div className="sp-preview-lines" aria-hidden="true">
-                  <span></span><span></span><span></span>
-                </div>
-                <div className="sp-logo-slot">
-                  <span>SPONSOR LOGO</span>
-                  <small>راعي السلسلة</small>
-                </div>
-              </div>
+              <figure className="sp-hero-example-card">
+                <figcaption>
+                  <span>مثال توضيحي</span>
+                  <small>نموذج ظهور الراعي في التغريدة المثبتة</small>
+                </figcaption>
+                <img
+                  src="assets/sponsorship/q2-2026-example-tweet-enhanced.png"
+                  alt="مثال توضيحي لتغريدة مكالمات المستثمرين مع ظهور شعار الراعي"
+                  loading="eager"
+                  decoding="async" />
+              </figure>
             </div>
           </div>
         </div>

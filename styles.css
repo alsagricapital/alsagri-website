@@ -5126,6 +5126,48 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   gap: 14px;
   align-self: stretch;
 }
+.sp-hero-example-card {
+  position: relative;
+  align-self: center;
+  margin: 0;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(255,255,255,.92);
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--line));
+  box-shadow: 0 34px 80px -52px rgba(10, 22, 40, .45);
+}
+.sp-hero-example-card figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.sp-hero-example-card figcaption span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--sp-gold) 13%, transparent);
+  border: 1px solid color-mix(in srgb, var(--sp-gold) 36%, transparent);
+  color: var(--sp-gold);
+  font-size: 13px;
+  font-weight: 800;
+}
+.sp-hero-example-card figcaption small {
+  color: var(--ink-mute);
+  font-size: 12.5px;
+  line-height: 1.5;
+  text-align: end;
+}
+.sp-hero-example-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  background: #fff;
+}
 .sp-profile-mini {
   display: grid;
   overflow: hidden;
@@ -5910,6 +5952,17 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   .sp-sponsor-preview {
     min-height: 300px;
     padding: 22px;
+  }
+  .sp-hero-example-card {
+    padding: 8px;
+  }
+  .sp-hero-example-card figcaption {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .sp-hero-example-card figcaption small {
+    text-align: start;
   }
   .sp-preview-top span {
     font-size: 24px;

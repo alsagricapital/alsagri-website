@@ -876,7 +876,8 @@ function SponsorshipQ22026() {
       ],
     },
   ];
-  const previousExamples = window.REPORTS.filter((r) => r.cat === 'earnings');
+  const hiddenPreviousExamples = ['لوسيد', 'الأمار', 'المراعي'];
+  const previousExamples = window.REPORTS.filter((r) => r.cat === 'earnings' && !hiddenPreviousExamples.includes(r.co));
 
   return (
     <React.Fragment>

@@ -832,7 +832,7 @@ function Disclaimer() {
 /* ── SPONSORSHIP Q2 2026 page ─────────────────────────────────── */
 function SponsorshipQ22026() {
   const stats = [
-    { value: '~12M', label: 'مرات الظهور', note: 'Impressions' },
+    { value: '~13.2M', label: 'مرات الظهور', note: 'Impressions' },
     { value: '~51K', label: 'متابع', note: 'Followers', badge: '80% متابع نشط' },
     { value: '~55K', label: 'مشاهدة لكل مكالمة', note: 'متوسط مشاهدات المحتوى' },
     { value: '~166K', label: 'مشاهدة لافتتاحية الموسم السابق', note: 'تغريدة مثبتة' },
@@ -849,6 +849,7 @@ function SponsorshipQ22026() {
     { n: '01', title: 'جمهور مالي نوعي', text: 'مستثمرون ومتداولون، لا جمهور عام. كل مشاهدة لها قيمة.' },
     { n: '02', title: 'محتوى دائم ومثبت', text: 'الافتتاحية مثبتة طوال الربع، وحضورك لا ينتهي بانتهاء منشور واحد.' },
     { n: '03', title: 'ظهور متكرر للشعار', text: 'في الافتتاحية وأسفل كل مكالمة، مع أكثر من 25 ظهور خلال الربع.' },
+    { n: '04', title: 'ظهور في محتوى احترافي', text: 'يتابع المحتوى رؤساء تنفيذيون لشركات مدرجة وكبار الإداريين والتنفيذيين، بناءً على الأرقام والإحصائيات لدينا.' },
   ];
 
   const placements = [
@@ -984,7 +985,7 @@ function SponsorshipQ22026() {
             <div className="sp-product-card reveal d2">
               <strong>تغريدة افتتاحية مثبتة 3 أشهر</strong>
               <p>رأس السلسلة مثبت أعلى الحساب ومرجع دائم لكل المكالمات.</p>
-              <span className="sp-product-metric">متوقع مشاهدات <span className="sp-pm-num">&gt; 150K</span></span>
+              <span className="sp-product-metric">متوقع مشاهدات أعلى من 150 ألف</span>
             </div>
           </div>
           <div className="sp-flow reveal d3">
@@ -1022,6 +1023,17 @@ function SponsorshipQ22026() {
               </div>
             ))}
           </div>
+          <figure className="sp-analytics reveal">
+            <figcaption>
+              <span>مصدر موثّق</span>
+              <small>تحليلات حساب الصقري على منصة X</small>
+            </figcaption>
+            <img
+              src="assets/sponsorship/q2-2026-x-analytics.png?v=q2f"
+              alt="تحليلات حساب الصقري على منصة X تُظهر مرات الظهور والتفاعل والمتابعين"
+              loading="lazy"
+              decoding="async" />
+          </figure>
           <div className="sp-proof-grid">
             <div className="sp-proof-card sp-proof-media reveal">
               <span className="sp-proof-label">أداء موثق</span>
@@ -1164,7 +1176,6 @@ function SponsorshipQ22026() {
         </div>
       </section>
 
-      <Disclaimer />
     </React.Fragment>);
 }
 

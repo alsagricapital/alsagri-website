@@ -6054,6 +6054,7 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   align-items: center;
   gap: 4px;
   direction: ltr;
+  unicode-bidi: isolate;
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 700;
   margin-inline-end: 5px;

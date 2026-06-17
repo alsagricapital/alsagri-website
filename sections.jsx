@@ -923,7 +923,7 @@ function SponsorshipQ22026() {
         { text: 'إشارة شكر وشعار الشركة الراعية يظهران في جميع المكالمات، +25 مكالمة', code: 'B' },
         { text: 'إضافة شعار الشركة الراعية في البنر الأساسي لكل مكالمة', code: 'C' },
         { text: 'إعلان للشركة الراعية في أي وقت حسب رغبتهم خلال الفترة' },
-        { text: '15,000 ريال مخصصة للترويج المدفوع في تويتر للتغريدة، مما يدعم انتشار العلامة التجارية' },
+        { amount: '+10,000', text: 'مخصصة للترويج المدفوع في تويتر للتغريدة، مما يدعم انتشار العلامة التجارية' },
       ],
     },
   ];
@@ -1165,7 +1165,7 @@ function SponsorshipQ22026() {
                 <p>{pkg.period}</p>
                 <ul>
                   {pkg.features.map((feature) => (
-                    <li key={feature.text}><span className="sp-feat-check"></span><span className="sp-feat-text">{feature.text}{feature.code && <em className="sp-feat-code">{feature.code}</em>}</span></li>
+                    <li key={feature.text}><span className="sp-feat-check"></span><span className="sp-feat-text">{feature.amount && <strong className="sp-feat-amount">{feature.amount}<img src="assets/sponsorship/saudi-riyal-symbol.svg" alt="ريال سعودي" loading="lazy" decoding="async" /></strong>}{feature.text}{feature.code && <em className="sp-feat-code">{feature.code}</em>}</span></li>
                   ))}
                 </ul>
                 <div className="sp-package-price">

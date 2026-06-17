@@ -70,6 +70,7 @@ function App() {
     cfa:      CFAResources,
     newsletter: Newsletter,
     contact:  Contact,
+    sponsorship: SponsorshipQ22026,
     'service-detail': ServiceDetail,
     'tool-position-switch': window.ToolPositionSwitch,
     'tool-compound-return': window.ToolCompoundReturn,

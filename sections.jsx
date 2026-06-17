@@ -583,7 +583,7 @@ function Services() {
         num="02"
         eyebrow="SERVICES"
         title="الخدمات"
-        sub="أربعُ زوايا لقراءة الشركة السعودية المدرجة: ما قالته الشركة، ما يُقال عنها، ما هي عليه الآن ومستقبلاً، والاكتتابات الجديدة."
+        sub="ثلاثُ زوايا لقراءة الشركة السعودية المدرجة: ما قالته الشركة، ما يُقال عنها، وما هي عليه الآن ومستقبلاً."
         variant="services"
         afterSubContent={<ServicesXHighlight />} />
 
@@ -594,7 +594,7 @@ function Services() {
             <p>هذه نماذج من الخدمات التي يحصل عليها المشترك بشكل دوري: مكالمات نتائج الشركات، تقارير بيوت خبرة، وتحليلات نوعية مبكرة.</p>
           </div>
           <div className="services-grid">
-            {window.SERVICES.map((s, idx) => (
+            {window.SERVICES.filter((s) => s.id !== 'ipo').map((s, idx) => (
               <a
                 className={'svc svc-tint-' + s.id + ' reveal d' + (idx + 1)}
                 key={s.id}
@@ -815,6 +815,297 @@ function Disclaimer() {
     </section>);
 }
 
+/* ── SPONSORSHIP Q2 2026 page ─────────────────────────────────── */
+function SponsorshipQ22026() {
+  const stats = [
+    { value: '9M', label: 'مرات الظهور', note: 'Impressions' },
+    { value: '51K', label: 'متابع', note: 'Followers', badge: '80% متابع نشط' },
+    { value: '55K', label: 'مشاهدة لكل مكالمة', note: 'متوسط مشاهدات المحتوى' },
+    { value: '166K', label: 'مشاهدة لافتتاحية الموسم السابق', note: 'تغريدة مثبتة' },
+  ];
+
+  const flow = [
+    { n: '01', title: 'إعلان النتائج', text: 'الشركة تعلن نتائجها رسمياً' },
+    { n: '02', title: 'نشر المكالمة', metric: 'متوسط مشاهدات 55 ألف لكل مكالمة', text: 'نشر المكالمة في تويتر خلال ساعات' },
+    { n: '03', title: 'ظهور شعارك', text: 'أسفل المكالمة وبالافتتاحية' },
+    { n: '04', title: 'حضور طوال الربع', text: 'يتكرر مع كل شركة' },
+  ];
+
+  const reasons = [
+    { n: '01', title: 'جمهور مالي نوعي', text: 'مستثمرون ومتداولون، لا جمهور عام. كل مشاهدة لها قيمة.' },
+    { n: '02', title: 'محتوى دائم ومثبت', text: 'الافتتاحية مثبتة طوال الربع، وحضورك لا ينتهي بانتهاء منشور واحد.' },
+    { n: '03', title: 'ظهور متكرر للشعار', text: 'في الافتتاحية وأسفل كل مكالمة، مع أكثر من 25 ظهور خلال الربع.' },
+  ];
+
+  const placements = [
+    {
+      code: 'A',
+      title: 'غلاف التغريدة الافتتاحية المثبتة',
+      text: 'مثبتة أعلى الحساب طوال الربع، وهي أول ما يراه زائر السلسلة.',
+    },
+    {
+      code: 'B',
+      title: 'أسفل كل مكالمة نتائج',
+      text: 'شعارك أسفل المقال في كل مكالمة، مع أكثر من 25 مرة في الربع.',
+    },
+  ];
+
+  const packages = [
+    {
+      tier: 'SILVER',
+      title: 'الباقة الفضية',
+      period: 'رعاية ربع واحد',
+      priceAmount: '10,000',
+      priceLabel: 'للفترة',
+      features: [
+        'شعار الشركة الراعية يظهر في التغريدة المثبتة',
+        'إشارة شكر وشعار الشركة الراعية يظهران في 5 مكالمات',
+      ],
+    },
+    {
+      tier: 'GOLD',
+      title: 'الباقة الذهبية',
+      period: 'رعاية ربع كامل',
+      priceAmount: '30,000',
+      priceLabel: 'للفترة',
+      featured: true,
+      features: [
+        'شعار الشركة الراعية يظهر في التغريدة المثبتة',
+        'إشارة شكر وشعار الشركة الراعية يظهران في جميع المكالمات، +25 مكالمة',
+        'إعلان للشركة الراعية في أي وقت حسب رغبتهم خلال الفترة',
+      ],
+    },
+  ];
+  const previousExamples = window.REPORTS.filter((r) => r.cat === 'earnings');
+
+  return (
+    <React.Fragment>
+      <section className="sponsorship-hero">
+        <div className="sp-hero-chart" aria-hidden="true">
+          <ChartLineBackground variant="sponsorship" />
+        </div>
+        <div className="wrap">
+          <div className="sp-hero-grid">
+            <div className="sp-hero-copy reveal">
+              <div className="sp-kicker">SPONSORSHIP 2026 · Q2 EARNINGS CALLS SERIES</div>
+              <h1>رعاية سلسلة مكالمات النتائج للربع الثاني 2026</h1>
+              <p>
+                فرصة رعاية كاملة أمام جمهور مالي نوعي لسلسلة متخصصة تلخص وتحلل مكالمات عرض النتائج للشركات المدرجة خلال الفترة من <strong>15 يونيو - 15 سبتمبر</strong>.
+              </p>
+              <div className="sp-hero-actions">
+                <a className="btn btn-primary" href="https://wa.me/966550734332" target="_blank" rel="noreferrer">
+                  احجز الرعاية
+                  <span className="arrow">←</span>
+                </a>
+                <a className="btn btn-ghost" href="#packages">
+                  استعرض الباقات
+                </a>
+              </div>
+            </div>
+
+            <div className="sp-hero-visual reveal d2" aria-label="معاينة ظهور الراعي">
+              <div className="sp-sponsor-preview">
+                <div className="sp-preview-top">
+                  <span>مكالمات المستثمرين</span>
+                  <small>2026 · الربع الثاني</small>
+                </div>
+                <div className="sp-preview-lines" aria-hidden="true">
+                  <span></span><span></span><span></span>
+                </div>
+                <div className="sp-logo-slot">
+                  <span>SPONSOR LOGO</span>
+                  <small>راعي السلسلة</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="sp-section sp-product-section">
+        <div className="wrap">
+          <div className="sp-section-head reveal">
+            <span>THE PRODUCT · 01</span>
+            <h2>ما هي مكالمات المستثمرين؟</h2>
+            <p>
+              مكالمات النتائج لقاءات يحضرها الفريق التنفيذي للشركة مع محللي الشركات المالية، وتمتد عادة لنحو ساعة. نعمل على تفريغها كاملة ونشرها للمتابعين والمهتمين في تويتر.
+            </p>
+          </div>
+          <div className="sp-product-cards">
+            <div className="sp-product-card reveal d1">
+              <strong>+25 مكالمة منشورة في الربع</strong>
+              <p>تغطية لأبرز الشركات بعد كل إعلان نتائج خلال الموسم.</p>
+            </div>
+            <div className="sp-product-card reveal d2">
+              <strong>تغريدة افتتاحية مثبتة 3 أشهر</strong>
+              <p>رأس السلسلة مثبت أعلى الحساب ومرجع دائم لكل المكالمات.</p>
+            </div>
+          </div>
+          <div className="sp-flow reveal d3">
+            <h3>كيف تعمل السلسلة؟</h3>
+            <div className="sp-flow-grid">
+              {flow.map((item) => (
+                <div className="sp-flow-item" key={item.n}>
+                  <span>{item.n}</span>
+                  <strong>
+                    {item.title}
+                    {item.metric && <em className="sp-flow-metric">{item.metric}</em>}
+                  </strong>
+                  <p>{item.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="sp-section sp-why-section">
+        <div className="wrap">
+          <div className="sp-section-head reveal">
+            <span>WHY SPONSOR · 02</span>
+            <h2>لماذا ترعى هذه السلسلة؟</h2>
+            <p>أداء حقيقي من الموسم السابق، وحضور متكرر داخل محتوى مالي جاد يتابعه جمهور مهتم بالسوق والشركات المدرجة.</p>
+          </div>
+          <div className="sp-stats-grid">
+            {stats.map((stat, idx) => (
+              <div className={'sp-stat reveal d' + (idx + 1)} key={stat.value}>
+                <div className="sp-stat-value">
+                  <strong>{stat.value}</strong>
+                  {stat.badge && <em className="sp-stat-badge">{stat.badge}</em>}
+                </div>
+                <span>{stat.label}</span>
+                <small>{stat.note}</small>
+              </div>
+            ))}
+          </div>
+          <div className="sp-proof-grid">
+            <div className="sp-proof-card sp-proof-media reveal">
+              <span className="sp-proof-label">أداء موثق</span>
+              <strong>166K مشاهدة للافتتاحية السابقة</strong>
+              <p>لقطة فعلية من منصة X للتغريدة الافتتاحية في الموسم السابق، وتوضح حجم المشاهدات والتفاعل على السلسلة.</p>
+              <div className="sp-proof-window sp-proof-window-image">
+                <img
+                  src="assets/sponsorship/q2-2026-proof-tweet.png"
+                  alt="لقطة من تغريدة مكالمات المستثمرين تظهر 166.5 ألف مشاهدة وتفاعل المتابعين"
+                  loading="lazy"
+                  decoding="async" />
+              </div>
+            </div>
+            <div className="sp-reasons-grid">
+              {reasons.map((item, idx) => (
+                <article className={'sp-reason reveal d' + (idx + 1)} key={item.n}>
+                  <span>{item.n}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="sp-section sp-placement-section">
+        <div className="wrap">
+          <div className="sp-section-head reveal">
+            <span>BRAND PLACEMENT · 03</span>
+            <h2>أين يظهر شعارك؟</h2>
+            <p>في مكانين دائمين أمام كل متابع للسلسلة، من أول زيارة للتغريدة المثبتة إلى نهاية كل مكالمة منشورة.</p>
+          </div>
+          <div className="sp-placement-grid">
+            {placements.map((item, idx) => (
+              <article className={'sp-placement reveal d' + (idx + 1)} key={item.code}>
+                <div className="sp-placement-code">{item.code}</div>
+                <div className="sp-placement-mock" aria-hidden="true">
+                  <div className="sp-placement-brand">
+                    <BrandMark size={22} />
+                    <span>الصقري | Alsagri</span>
+                  </div>
+                  <div className="sp-placement-content">
+                    <strong>{idx === 0 ? 'مكالمات المستثمرين' : 'مكالمة المستثمرين - شركة المثال'}</strong>
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div className="sp-placement-logo">SPONSOR LOGO</div>
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="sp-section sp-examples-section">
+        <div className="wrap">
+          <div className="sp-section-head reveal">
+            <span>PREVIOUS EXAMPLES · 04</span>
+            <h2>أمثلة سابقة</h2>
+            <p>نماذج من مكالمات نتائج الشركات المنشورة سابقاً في حساب الصقري، بنفس أسلوب السلسلة التي تظهر فيها رعاية العلامة.</p>
+          </div>
+          <EarningsFeatureBanner />
+          <div className="examples-grid sp-examples-grid">
+            {previousExamples.map((r) => <ReportCard key={r.co + r.title} r={r} catLabel="EARNINGS CALL" />)}
+          </div>
+        </div>
+      </section>
+
+      <section id="packages" className="sp-section sp-packages-section">
+        <div className="wrap">
+          <div className="sp-section-head reveal">
+            <span>PACKAGES · 05</span>
+            <h2>باقات الرعاية</h2>
+            <p>اختر مستوى الحضور الذي يناسب علامتك.</p>
+          </div>
+          <div className="sp-packages-grid">
+            {packages.map((pkg, idx) => (
+              <article className={'sp-package reveal d' + (idx + 1) + (pkg.featured ? ' is-featured' : '')} key={pkg.tier}>
+                {pkg.featured && <div className="sp-package-ribbon">الأكثر طلباً</div>}
+                <span className="sp-package-tier">{pkg.tier}</span>
+                <h3>{pkg.title}</h3>
+                <p>{pkg.period}</p>
+                <ul>
+                  {pkg.features.map((feature) => (
+                    <li key={feature}><span></span>{feature}</li>
+                  ))}
+                </ul>
+                <div className="sp-package-price">
+                  <strong className="sp-riyal-price">
+                    <img src="assets/sponsorship/saudi-riyal-symbol.svg" alt="" loading="lazy" decoding="async" />
+                    <span>{pkg.priceAmount}</span>
+                  </strong>
+                  <small>{pkg.priceLabel}</small>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="sp-final-section">
+        <div className="wrap">
+          <div className="sp-final-grid reveal">
+            <div>
+              <span>LIMITED · الربع الثاني 2026</span>
+              <h2>كن راعي السلسلة</h2>
+              <p>مساحة رعاية واحدة لكل ربع. لنحجز ظهور علامتك أمام جمهور مالي نوعي قبل بداية الموسم.</p>
+            </div>
+            <div className="sp-contact-actions">
+              <a href="https://x.com/AlsagriCapital" target="_blank" rel="noreferrer">
+                <small>على منصة X</small>
+                <strong>@AlsagriCapital</strong>
+              </a>
+              <a href="https://wa.me/966550734332" target="_blank" rel="noreferrer">
+                <small>واتساب</small>
+                <strong>0550734332</strong>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Disclaimer />
+    </React.Fragment>);
+}
+
 /* ── FOOTER ────────────────────────────────────────────────────── */
 function Footer() {
   return (
@@ -934,18 +1225,6 @@ function Tools() {
 
 /* ── CFA Resources page ───────────────────────────────────────────────── */
 function CFAResources() {
-  const CFA_LEVEL_1_PASSWORD = 'CFA1-2026';
-  const [cfaLevel1Password, setCfaLevel1Password] = useState('');
-  const [cfaLevel1Unlocked, setCfaLevel1Unlocked] = useState(
-    () => {
-      try {
-        return window.localStorage.getItem('alsagri.cfa.level1.unlocked') === '1';
-      } catch (e) {
-        return false;
-      }
-    }
-  );
-  const [cfaLevel1Error, setCfaLevel1Error] = useState('');
   const [cfaResourcesOpen, setCfaResourcesOpen] = useState(false);
   const levels = [
     {
@@ -967,51 +1246,48 @@ function CFAResources() {
 
   const cfaLevel1Resources = [
     {
-      n: '01',
       name: 'Mark Meldrum',
-      tag: 'شروحات مرئية',
-      desc: 'محاضرات فيديو شاملة تغطّي المنهج كاملاً بأسلوبٍ مبسّط وعملي، مع تركيز على الفهم العميق لا الحفظ.',
-      points: ['فيديوهات مرتّبة حسب المواد', 'أمثلة وحلول تطبيقية', 'خطط مذاكرة ونصائح للاختبار'],
+      mono: 'MM',
+      logo: 'assets/cfa/mark-meldrum-logo-mark.png',
+      color: '#2563EB',
+      points: ['فيديوهات كاملة مرتّبة حسب الفصول', 'Notes كاملة لجميع الفصول'],
     },
     {
-      n: '02',
       name: 'Kaplan Schweser',
-      tag: 'ملخصات وبنك أسئلة',
-      desc: 'ملخّصات SchweserNotes من أشهر المصادر المعتمدة، مع بنك أسئلة ضخم واختبارات تجريبية قريبة من جوّ الاختبار الفعلي.',
-      points: ['ملخصات SchweserNotes', 'بنك أسئلة QBank واسع', 'اختبارات محاكية Mock Exams'],
+      mono: 'KS',
+      logo: 'assets/cfa/kaplan-schweser-logo-mark.png',
+      color: '#0EA5A4',
+      points: ['ملخصات SchweserNotes لكل فصل', 'بنك أسئلة واختبارات محاكية'],
     },
     {
-      n: '03',
       name: 'IFT',
-      tag: 'دروس ومراجعات',
-      desc: 'دروس مرئية واضحة وملاحظات مختصرة ومراجعات سريعة، مناسبة بشكلٍ خاص للمراجعة النهائية قبل الاختبار.',
-      points: ['فيديو لكل Reading', 'ملاحظات وملخصات مركّزة', 'مراجعات وأسئلة تدريبية'],
+      mono: 'IFT',
+      logo: 'assets/cfa/ift-logo-mark.png',
+      color: '#7C3AED',
+      points: ['فيديو لكل Reading', 'ملاحظات ومراجعات مركّزة'],
+    },
+    {
+      name: 'Salt Solutions',
+      mono: 'SS',
+      logo: 'assets/cfa/salt-solutions-logo-mark.png',
+      color: '#EA580C',
+      points: ['بنك أسئلة عالي الجودة', 'اختبارات محاكية للاختبار الحقيقي'],
+    },
+    {
+      name: 'UWorld',
+      mono: 'UW',
+      logo: 'assets/cfa/uworld-finance-logo-mark.png',
+      color: '#DB2777',
+      points: ['بنك أسئلة QBank بشروحات مفصّلة', 'تحليل الأداء وتتبّع التقدّم'],
+    },
+    {
+      name: 'AnalystPrep',
+      mono: 'AP',
+      logo: 'assets/cfa/analystprep-logo-mark.png',
+      color: '#16A34A',
+      points: ['فيديوهات وملاحظات دراسية للمستوى الأول', 'QBank واختبارات Mock مع تحليلات أداء'],
     },
   ];
-
-  const unlockCfaLevel1 = (e) => {
-    e.preventDefault();
-    if (cfaLevel1Password.trim() === CFA_LEVEL_1_PASSWORD) {
-      try {
-        window.localStorage.setItem('alsagri.cfa.level1.unlocked', '1');
-      } catch (err) {}
-      setCfaLevel1Unlocked(true);
-      setCfaLevel1Password('');
-      setCfaLevel1Error('');
-      return;
-    }
-    setCfaLevel1Error('كلمة المرور غير صحيحة.');
-  };
-
-  const lockCfaLevel1 = () => {
-    try {
-      window.localStorage.removeItem('alsagri.cfa.level1.unlocked');
-    } catch (err) {}
-    setCfaLevel1Unlocked(false);
-    setCfaLevel1Password('');
-    setCfaLevel1Error('');
-    setCfaResourcesOpen(false);
-  };
 
   return (
     <React.Fragment>
@@ -1058,11 +1334,10 @@ function CFAResources() {
 
           <div className={'cfa-levels' + (cfaResourcesOpen ? ' resources-open' : '')}>
             {levels.map((level, idx) => {
-              const isLockedLevel = idx === 0 && !cfaLevel1Unlocked;
               const isInteractive = idx === 0;
               return (
                 <article
-                  className={'cfa-level-card reveal d' + (idx + 1) + (idx === 0 ? ' in' : '') + (isLockedLevel ? ' is-locked' : '') + (isInteractive ? ' cfa-level-interactive' + (cfaResourcesOpen ? ' is-open' : '') : '')}
+                  className={'cfa-level-card reveal d' + (idx + 1) + (idx === 0 ? ' in' : '') + (isInteractive ? ' cfa-level-interactive' + (cfaResourcesOpen ? ' is-open' : '') : '')}
                   key={level.title}
                   onClick={isInteractive ? () => setCfaResourcesOpen((v) => !v) : undefined}
                   role={isInteractive ? 'button' : undefined}
@@ -1072,47 +1347,17 @@ function CFAResources() {
                   <div className="cfa-level-num">{level.n}</div>
                   <div className="cfa-level-body">
                     <h3>{level.title}</h3>
-                    {isLockedLevel ? (
-                      <div className="cfa-lock-box" onClick={(e) => e.stopPropagation()} onKeyDown={(e) => e.stopPropagation()}>
-                        <div className="cfa-lock-badge">مقفل بكلمة مرور</div>
-                        <p>أدخل كلمة المرور لفتح موارد CFA Level 1.</p>
-                        <form className="cfa-lock-form" onSubmit={unlockCfaLevel1}>
-                          <label className="cfa-lock-field">
-                            <span>كلمة المرور</span>
-                            <input
-                              type="password"
-                              value={cfaLevel1Password}
-                              onChange={(e) => {
-                                setCfaLevel1Password(e.target.value);
-                                if (cfaLevel1Error) setCfaLevel1Error('');
-                              }}
-                              placeholder="••••••••"
-                              autoComplete="current-password" />
-                          </label>
-                          {cfaLevel1Error && <div className="cfa-lock-error">{cfaLevel1Error}</div>}
-                          <button type="submit" className="cfa-lock-btn">فتح المستوى</button>
-                        </form>
-                      </div>
-                    ) : (
-                      <p>{level.desc}</p>
-                    )}
+                    <p>{level.desc}</p>
                   </div>
                   {idx === 0 ? (
                     <React.Fragment>
-                      {!cfaResourcesOpen && (
-                        <div className="cfa-hover-hint" aria-hidden="true">
-                          <span className="cfa-hover-hint-icon">↓</span>
-                          <span>عرض ما ستحصل عليه عند الاشتراك</span>
-                        </div>
-                      )}
                       <div className="cfa-level-actions">
-                        <div className="cfa-soon cfa-resources-toggle">
-                          <span>{cfaResourcesOpen ? 'إخفاء المحتوى' : 'عرض المحتوى'}</span>
-                          <span className="cfa-chevron" aria-hidden="true">↓</span>
+                        <div className="cfa-action-stack">
+                          <div className="cfa-soon cfa-resources-toggle">
+                            <span>{cfaResourcesOpen ? 'إخفاء المحتوى' : 'عرض المحتوى'}</span>
+                            <span className="cfa-chevron" aria-hidden="true">↓</span>
+                          </div>
                         </div>
-                        {cfaLevel1Unlocked && (
-                          <button type="button" className="cfa-relock-btn" onClick={(e) => { e.stopPropagation(); lockCfaLevel1(); }}>إقفال</button>
-                        )}
                       </div>
                     </React.Fragment>
                   ) : (
@@ -1130,7 +1375,7 @@ function CFAResources() {
                   <button
                     type="button"
                     className="cfa-resources-close"
-                    aria-label="إغلاق محتوى الصفحة للمشتركين"
+                    aria-label="إغلاق أبرز المصادر للاستعداد للاختبار"
                     onClick={() => {
                       setCfaResourcesOpen(false);
                       setTimeout(() => {
@@ -1142,18 +1387,23 @@ function CFAResources() {
                   </button>
                   <div className="cfa-resources-head">
                     <div className="cfa-resources-kicker">CFA LEVEL 1 · المصادر</div>
-                    <h3>محتوى الصفحة للمشتركين</h3>
+                    <h3>أبرز المصادر للاستعداد للاختبار</h3>
                     <p>كل ما تحتاجه للاستعداد والتجهيز لاختبار CFA Level 1</p>
                   </div>
                   <div className="cfa-resources-grid">
                     {cfaLevel1Resources.map((res) => (
-                      <article className="cfa-resource-card" key={res.name}>
-                        <div className="cfa-resource-top">
-                          <span className="cfa-resource-num">{res.n}</span>
-                          <span className="cfa-resource-tag">{res.tag}</span>
+                      <article
+                        className="cfa-resource-card"
+                        key={res.name}
+                        style={{ '--res-color': res.color }}>
+                        <div className={'cfa-resource-badge' + (res.logo ? ' has-logo' : '')} aria-hidden="true">
+                          {res.logo ? (
+                            <img src={res.logo} alt="" loading="lazy" decoding="async" />
+                          ) : (
+                            <span>{res.mono}</span>
+                          )}
                         </div>
                         <h4 className="cfa-resource-name">{res.name}</h4>
-                        <p className="cfa-resource-desc">{res.desc}</p>
                         <ul className="cfa-resource-points">
                           {res.points.map((p) => (
                             <li key={p}>
@@ -1167,12 +1417,11 @@ function CFAResources() {
                   </div>
                   <div className="cfa-resources-cta">
                     <a
-                      className="cfa-subscribe-btn"
-                      href="https://alsagricapital.substack.com/"
+                      className="cfa-source-note"
+                      href="https://t.me/cfalevel001"
                       target="_blank"
-                      rel="noreferrer"
-                      onClick={(e) => e.stopPropagation()}>
-                      الاشتراك
+                      rel="noreferrer">
+                      أفضل مصدر موثوق للملخصات والمراجع - تيلغرام
                     </a>
                   </div>
                 </div>
@@ -1264,4 +1513,4 @@ function Newsletter() {
     </React.Fragment>);
 }
 
-Object.assign(window, { Nav, Hero, About, Services, ServiceDetail, Disclaimer, Contact, Tools, CFAResources, Newsletter, Footer, useReveal, BrandMark, PageBanner, ReportCard });
+Object.assign(window, { Nav, Hero, About, Services, ServiceDetail, Disclaimer, Contact, Tools, CFAResources, Newsletter, SponsorshipQ22026, Footer, useReveal, BrandMark, PageBanner, ReportCard });

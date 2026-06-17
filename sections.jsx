@@ -1013,17 +1013,28 @@ function SponsorshipQ22026() {
             {placements.map((item, idx) => (
               <article className={'sp-placement reveal d' + (idx + 1)} key={item.code}>
                 <div className="sp-placement-code">{item.code}</div>
-                <div className="sp-placement-mock" aria-hidden="true">
-                  <div className="sp-placement-brand">
-                    <BrandMark size={22} />
-                    <span>الصقري | Alsagri</span>
+                {idx === 0 ? (
+                  <figure className="sp-placement-example-image">
+                    <span>مثال</span>
+                    <img
+                      src="assets/sponsorship/q2-2026-example-tweet-enhanced.png"
+                      alt="مثال توضيحي لغلاف التغريدة الافتتاحية المثبتة مع ظهور شعار الراعي"
+                      loading="lazy"
+                      decoding="async" />
+                  </figure>
+                ) : (
+                  <div className="sp-placement-mock" aria-hidden="true">
+                    <div className="sp-placement-brand">
+                      <BrandMark size={22} />
+                      <span>الصقري | Alsagri</span>
+                    </div>
+                    <div className="sp-placement-content">
+                      <strong>مكالمة المستثمرين - شركة المثال</strong>
+                      <span></span><span></span><span></span>
+                    </div>
+                    <div className="sp-placement-logo">SPONSOR LOGO</div>
                   </div>
-                  <div className="sp-placement-content">
-                    <strong>{idx === 0 ? 'مكالمات المستثمرين' : 'مكالمة المستثمرين - شركة المثال'}</strong>
-                    <span></span><span></span><span></span>
-                  </div>
-                  <div className="sp-placement-logo">SPONSOR LOGO</div>
-                </div>
+                )}
                 <h3>{item.title}</h3>
                 <p>{item.text}</p>
               </article>

@@ -473,7 +473,7 @@ function About() {
 }
 
 /* ── Report card (used inline within Services) ─────────────────── */
-function ReportCard({ r, catLabel }) {
+function ReportCard({ r, catLabel, viewCount }) {
   const arCat = ({
     earnings: 'مكالمة عرض النتائج',
     brokerage: 'تقرير بحثي',
@@ -513,6 +513,12 @@ function ReportCard({ r, catLabel }) {
             <span className="rpt-ticker">{r.ticker}</span>
           </div>
           <div className="rpt-co">{r.co}</div>
+          {viewCount && (
+            <div className="rpt-views-badge">
+              <strong>{viewCount}</strong>
+              <span>مشاهدات</span>
+            </div>
+          )}
           <div className="rpt-title">{r.title}</div>
           {!r.cover && <Sparkline data={r.spark} />}
           {r.metrics && !r.cover && (
@@ -877,6 +883,14 @@ function SponsorshipQ22026() {
     },
   ];
   const hiddenPreviousExamples = ['لوسيد', 'الأمار', 'المراعي'];
+  const previousExampleViews = {
+    'لوبريف': '194K',
+    'أرامكو السعودية': '25K',
+    'أفالون فارما': '35K',
+    'وقت اللياقة': '52K',
+    'رسن': '96K',
+    'سال': '146K',
+  };
   const previousExamples = window.REPORTS.filter((r) => r.cat === 'earnings' && !hiddenPreviousExamples.includes(r.co));
 
   return (
@@ -1053,7 +1067,13 @@ function SponsorshipQ22026() {
           </div>
           <EarningsFeatureBanner />
           <div className="examples-grid sp-examples-grid">
-            {previousExamples.map((r) => <ReportCard key={r.co + r.title} r={r} catLabel="EARNINGS CALL" />)}
+            {previousExamples.map((r) => (
+              <ReportCard
+                key={r.co + r.title}
+                r={r}
+                catLabel="EARNINGS CALL"
+                viewCount={previousExampleViews[r.co]} />
+            ))}
           </div>
         </div>
       </section>

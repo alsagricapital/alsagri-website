@@ -1511,6 +1511,37 @@ a.rpt-link:hover { transform: translateY(-3px); border-color: var(--accent); }
   margin-top: 18px; font-size: 22px; color: var(--ink); font-weight: 600;
   letter-spacing: -.005em;
 }
+.rpt-views-badge {
+  width: fit-content;
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  gap: 7px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  color: var(--sp-gold);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--sp-gold) 16%, transparent), color-mix(in srgb, var(--accent) 8%, transparent)),
+    color-mix(in srgb, var(--surface) 92%, transparent);
+  border: 1px solid color-mix(in srgb, var(--sp-gold) 35%, var(--line));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.75), 0 14px 28px -24px rgba(10,22,40,.42);
+  font-size: 12.5px;
+  line-height: 1.35;
+  font-weight: 700;
+  direction: ltr;
+}
+.rpt-views-badge strong {
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--sp-gold);
+}
+.rpt-views-badge span {
+  direction: rtl;
+  color: var(--ink);
+}
 .rpt-title {
   margin-top: 6px; font-size: 18px; line-height: 1.4; font-weight: 500;
   text-wrap: balance;

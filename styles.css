@@ -6775,6 +6775,57 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   font-size: 14px;
 }
 
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sponsorship-hero::after,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-hero-visual::before,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-hero-visual::after,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-hero-example-card::before,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-product-card::before,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-product-card::after,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-product-metric::after,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-flow::before,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-flow::after,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-placement::before,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-placement::after,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-placement-code::after,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-placement-mock::after,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-placement-example-image::after,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-package::before,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-package::after,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-final-grid::before,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-final-grid::after {
+  content: none;
+  animation: none;
+}
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sponsorship-hero::before,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-hero-example-card,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-flow.in .sp-flow-item span,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-placement.in .sp-placement-code,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-placement.in .sp-placement-logo,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-package.in li .sp-feat-check,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-package.in .sp-package-price {
+  animation: none;
+}
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sponsorship-hero .trend-line-main,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sponsorship-hero .trend-line-gloss {
+  animation: none;
+  stroke-dashoffset: 0;
+}
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sponsorship-hero .trend-area {
+  animation: none;
+  opacity: 1;
+}
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sponsorship-hero .trend-bar,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sponsorship-hero .trend-node {
+  animation: none;
+  transform: none;
+}
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-product-card.in:hover,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-stat.in:hover,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-placement.in:hover,
+body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-package.in:hover {
+  transform: none;
+}
+
 @media (max-width: 1100px) {
   .sp-hero-grid,
   .sp-proof-grid,

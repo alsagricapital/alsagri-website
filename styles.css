@@ -6052,12 +6052,11 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
 .sp-feat-amount {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   direction: ltr;
-  unicode-bidi: isolate;
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 700;
-  margin-inline-end: 5px;
+  margin-inline-end: 7px;
   vertical-align: middle;
   white-space: nowrap;
 }

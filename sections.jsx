@@ -1079,6 +1079,7 @@ function SponsorshipQ22026() {
             <div className="sp-product-card reveal d1">
               <strong>+25 مكالمة منشورة في الربع</strong>
               <p>تغطية لأبرز الشركات بعد كل إعلان نتائج خلال الموسم.</p>
+              <span className="sp-product-metric">متوقع أكثر من 2 مليون مشاهدة</span>
             </div>
             <div className="sp-product-card reveal d2">
               <strong>تغريدة افتتاحية مثبتة 3 أشهر</strong>

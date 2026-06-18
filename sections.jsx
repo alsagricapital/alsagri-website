@@ -1121,7 +1121,7 @@ function SponsorshipQ22026() {
               </div>
             ))}
           </div>
-          <figure className="sp-analytics reveal">
+          <figure className="sp-analytics">
             <figcaption>
               <span>مصدر موثّق</span>
               <small>تحليلات حساب الصقري على منصة X</small>
@@ -1139,9 +1139,9 @@ function SponsorshipQ22026() {
                     )}
                   </div>
                   <div className="sp-an-val">
-                    <CountUpText value={a.value} />
+                    {a.value}
                     {a.sub && <small>{a.sub}</small>}
-                    {a.up && <span className="sp-an-up">↑ <CountUpText value={a.up} /></span>}
+                    {a.up && <span className="sp-an-up">↑ {a.up}</span>}
                   </div>
                 </div>
               ))}
@@ -1257,7 +1257,7 @@ function SponsorshipQ22026() {
                 <div className="sp-package-price">
                   <strong className="sp-riyal-price">
                     <img src="assets/sponsorship/saudi-riyal-symbol.svg" alt="" loading="lazy" decoding="async" />
-                    <CountUpText value={pkg.priceAmount} />
+                    <span>{pkg.priceAmount}</span>
                   </strong>
                   <small>{pkg.priceLabel}</small>
                 </div>

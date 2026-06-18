@@ -5768,25 +5768,7 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   padding: 12px 14px;
   direction: ltr;
   text-align: left;
-  opacity: 0;
-  transform: translateY(14px);
-  transition: border-color .2s ease, background-color .2s ease, transform .2s ease;
-}
-.sp-analytics.in .sp-an-card {
-  animation: spMetricIn .56s cubic-bezier(.2,.8,.2,1) forwards;
-}
-.sp-analytics.in .sp-an-card:nth-child(2) { animation-delay: .05s; }
-.sp-analytics.in .sp-an-card:nth-child(3) { animation-delay: .1s; }
-.sp-analytics.in .sp-an-card:nth-child(4) { animation-delay: .15s; }
-.sp-analytics.in .sp-an-card:nth-child(5) { animation-delay: .2s; }
-.sp-analytics.in .sp-an-card:nth-child(6) { animation-delay: .25s; }
-.sp-analytics.in .sp-an-card:nth-child(7) { animation-delay: .3s; }
-.sp-analytics.in .sp-an-card:nth-child(8) { animation-delay: .35s; }
-.sp-analytics.in .sp-an-card:nth-child(9) { animation-delay: .4s; }
-.sp-analytics.in .sp-an-card:hover {
-  transform: translateY(-2px);
-  border-color: color-mix(in srgb, var(--sp-gold) 34%, var(--line));
-  background: color-mix(in srgb, var(--sp-gold) 7%, var(--surface-2));
+  transition: none;
 }
 .sp-an-label {
   display: flex;
@@ -6608,11 +6590,6 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   .sp-placement.in .sp-placement-logo,
   .sp-package.in::before,
   .sp-package.in .sp-package-price {
-    animation: none !important;
-  }
-  .sp-analytics .sp-an-card {
-    opacity: 1;
-    transform: none;
     animation: none !important;
   }
 }

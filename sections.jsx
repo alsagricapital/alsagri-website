@@ -19,6 +19,91 @@ function useReveal(deps = []) {
   }, deps);
 }
 
+function parseCountValue(value) {
+  const raw = String(value);
+  const match = raw.match(/^([^0-9+\-]*)([+\-]?\d[\d,]*(?:\.\d+)?)(.*)$/);
+  if (!match) return null;
+  const numberText = match[2];
+  const target = Number(numberText.replace(/,/g, ''));
+  if (!Number.isFinite(target)) return null;
+  return {
+    prefix: match[1],
+    target: Math.abs(target),
+    sign: numberText.trim().startsWith('+') ? '+' : (target < 0 ? '-' : ''),
+    suffix: match[3],
+    decimals: (numberText.split('.')[1] || '').length,
+    grouping: numberText.includes(','),
+  };
+}
+
+function formatCountValue(progress, parts) {
+  const current = parts.target * progress;
+  const number = parts.grouping
+    ? Math.round(current).toLocaleString('en-US')
+    : current.toFixed(parts.decimals);
+  return `${parts.prefix}${parts.sign}${number}${parts.suffix}`;
+}
+
+function CountUpText({ value, as = 'span', className = '' }) {
+  const Tag = as;
+  const initialParts = parseCountValue(value);
+  const [display, setDisplay] = useState(initialParts ? formatCountValue(0, initialParts) : String(value));
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const parts = parseCountValue(value);
+    const node = ref.current;
+    if (!parts || !node || typeof window === 'undefined') {
+      setDisplay(String(value));
+      return undefined;
+    }
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      setDisplay(String(value));
+      return undefined;
+    }
+
+    let frame = 0;
+    let started = false;
+    const duration = 1250;
+    const start = () => {
+      if (started) return;
+      started = true;
+      const startedAt = performance.now();
+      const tick = (now) => {
+        const elapsed = Math.min((now - startedAt) / duration, 1);
+        const eased = 1 - Math.pow(1 - elapsed, 3);
+        setDisplay(formatCountValue(eased, parts));
+        if (elapsed < 1) {
+          frame = requestAnimationFrame(tick);
+        } else {
+          setDisplay(String(value));
+        }
+      };
+      frame = requestAnimationFrame(tick);
+    };
+
+    setDisplay(formatCountValue(0, parts));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          start();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.35 });
+
+    observer.observe(node);
+    return () => {
+      observer.disconnect();
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, [value]);
+
+  return <Tag ref={ref} className={className || undefined} aria-label={String(value)}>{display}</Tag>;
+}
+
 /* ── Brand mark SVG (market crest) ───────────────────────── */
 function BrandMark({ size = 28 }) {
   return (
@@ -63,7 +148,7 @@ function ChartLineBackground({ variant = 'hero' }) {
   const areaPath = `${chart.path} L${chart.end[0]} ${BASELINE} L${chart.start[0]} ${BASELINE} Z`;
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <svg className={'trend-chart trend-chart-' + variant} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" aria-hidden="true">
       <defs>
         <linearGradient id={`trend-line-${variant}`} x1="0" y1="1" x2="1" y2="0">
           <stop offset="0%" stopColor="#8FB0D1" stopOpacity="0.2" />
@@ -92,28 +177,29 @@ function ChartLineBackground({ variant = 'hero' }) {
 
       {chart.bars.map(([x, y, h, opacity], i) => (
         <rect key={i} x={x} y={y} width="18" height={h} rx="9"
+              className="trend-bar" style={{ animationDelay: `${i * 0.12}s` }}
               fill="#3B82F6" opacity={opacity} />
       ))}
 
-      <path d={areaPath} fill={`url(#trend-area-${variant})`} />
+      <path className="trend-area" d={areaPath} fill={`url(#trend-area-${variant})`} />
       {variant === 'hero' && (
-        <path d={chart.path} fill="none" stroke="#8A97A8" strokeOpacity="0.26"
+        <path className="trend-line-base" d={chart.path} fill="none" stroke="#8A97A8" strokeOpacity="0.26"
               strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
       )}
-      <path d={chart.path} fill="none" stroke={`url(#trend-line-${variant})`}
+      <path className="trend-line-main" d={chart.path} fill="none" stroke={`url(#trend-line-${variant})`}
             strokeWidth="8" strokeLinecap="round" strokeLinejoin="round"
             filter={`url(#trend-shadow-${variant})`} opacity="0.92"
-            pathLength={variant === 'hero' ? 1 : undefined}
+            pathLength="1"
             strokeDasharray={variant === 'hero' ? '0.66 1' : undefined} />
-      <path d={chart.path} fill="none" stroke="#FFFFFF" strokeOpacity="0.32"
+      <path className="trend-line-gloss" d={chart.path} fill="none" stroke="#FFFFFF" strokeOpacity="0.32"
             strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-            pathLength={variant === 'hero' ? 1 : undefined}
+            pathLength="1"
             strokeDasharray={variant === 'hero' ? '0.66 1' : undefined} />
 
       {chart.nodes.map(([x, y], i) => (
-        <g key={i}>
-          <circle cx={x} cy={y} r="12" fill={variant === 'hero' && i > 3 ? '#8A97A8' : '#3B82F6'} opacity={variant === 'hero' && i > 3 ? '0.06' : '0.1'} />
-          <circle cx={x} cy={y} r="4.5" fill="#FAFAF7" stroke={variant === 'hero' && i > 3 ? '#8A97A8' : '#3B82F6'} strokeOpacity={variant === 'hero' && i > 3 ? '0.45' : '1'} strokeWidth="2" />
+        <g className="trend-node" style={{ animationDelay: `${i * 0.18}s` }} key={i}>
+          <circle className="trend-node-halo" cx={x} cy={y} r="12" fill={variant === 'hero' && i > 3 ? '#8A97A8' : '#3B82F6'} opacity={variant === 'hero' && i > 3 ? '0.06' : '0.1'} />
+          <circle className="trend-node-core" cx={x} cy={y} r="4.5" fill="#FAFAF7" stroke={variant === 'hero' && i > 3 ? '#8A97A8' : '#3B82F6'} strokeOpacity={variant === 'hero' && i > 3 ? '0.45' : '1'} strokeWidth="2" />
         </g>
       ))}
     </svg>
@@ -887,21 +973,12 @@ function SponsorshipQ22026() {
     },
   ];
 
-  const priceVariant = document.body.dataset.priceVariant;
-  const priceOverrides = {
-    high: {
-      SILVER: '17,000',
-      GOLD: '38,000',
-      DIAMOND: '58,000',
-    },
-  }[priceVariant] || {};
-
   const packages = [
     {
       tier: 'SILVER',
       title: 'الباقة الفضية',
       period: 'رعاية مكالمات النتائج للربع الثاني من عام 2026',
-      priceAmount: priceOverrides.SILVER || '10,000',
+      priceAmount: '10,000',
       priceLabel: 'للفترة',
       features: [
         { text: 'شعار الشركة الراعية يظهر في التغريدة المثبتة', code: 'A' },
@@ -912,7 +989,7 @@ function SponsorshipQ22026() {
       tier: 'GOLD',
       title: 'الباقة الذهبية',
       period: 'رعاية مكالمات النتائج للربع الثاني من عام 2026',
-      priceAmount: priceOverrides.GOLD || '30,000',
+      priceAmount: '30,000',
       priceLabel: 'للفترة',
       features: [
         { text: 'شعار الشركة الراعية يظهر في التغريدة المثبتة', code: 'A' },
@@ -924,7 +1001,7 @@ function SponsorshipQ22026() {
       tier: 'DIAMOND',
       title: 'الباقة الألماسية',
       period: 'رعاية مكالمات النتائج للربع الثاني من عام 2026',
-      priceAmount: priceOverrides.DIAMOND || '50,000',
+      priceAmount: '50,000',
       priceLabel: 'للفترة',
       featured: true,
       features: [
@@ -1036,7 +1113,7 @@ function SponsorshipQ22026() {
             {stats.map((stat, idx) => (
               <div className={'sp-stat reveal d' + (idx + 1)} key={stat.value}>
                 <div className="sp-stat-value">
-                  <strong>{stat.value}</strong>
+                  <CountUpText value={stat.value} as="strong" />
                   {stat.badge && <em className="sp-stat-badge">{stat.badge}</em>}
                 </div>
                 <span>{stat.label}</span>
@@ -1062,9 +1139,9 @@ function SponsorshipQ22026() {
                     )}
                   </div>
                   <div className="sp-an-val">
-                    {a.value}
+                    <CountUpText value={a.value} />
                     {a.sub && <small>{a.sub}</small>}
-                    {a.up && <span className="sp-an-up">↑ {a.up}</span>}
+                    {a.up && <span className="sp-an-up">↑ <CountUpText value={a.up} /></span>}
                   </div>
                 </div>
               ))}
@@ -1180,7 +1257,7 @@ function SponsorshipQ22026() {
                 <div className="sp-package-price">
                   <strong className="sp-riyal-price">
                     <img src="assets/sponsorship/saudi-riyal-symbol.svg" alt="" loading="lazy" decoding="async" />
-                    <span>{pkg.priceAmount}</span>
+                    <CountUpText value={pkg.priceAmount} />
                   </strong>
                   <small>{pkg.priceLabel}</small>
                 </div>

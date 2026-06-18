@@ -887,12 +887,21 @@ function SponsorshipQ22026() {
     },
   ];
 
+  const priceVariant = document.body.dataset.priceVariant;
+  const priceOverrides = {
+    high: {
+      SILVER: '17,000',
+      GOLD: '38,000',
+      DIAMOND: '58,000',
+    },
+  }[priceVariant] || {};
+
   const packages = [
     {
       tier: 'SILVER',
       title: 'الباقة الفضية',
       period: 'رعاية مكالمات النتائج للربع الثاني من عام 2026',
-      priceAmount: '10,000',
+      priceAmount: priceOverrides.SILVER || '10,000',
       priceLabel: 'للفترة',
       features: [
         { text: 'شعار الشركة الراعية يظهر في التغريدة المثبتة', code: 'A' },
@@ -903,7 +912,7 @@ function SponsorshipQ22026() {
       tier: 'GOLD',
       title: 'الباقة الذهبية',
       period: 'رعاية مكالمات النتائج للربع الثاني من عام 2026',
-      priceAmount: '30,000',
+      priceAmount: priceOverrides.GOLD || '30,000',
       priceLabel: 'للفترة',
       features: [
         { text: 'شعار الشركة الراعية يظهر في التغريدة المثبتة', code: 'A' },
@@ -915,7 +924,7 @@ function SponsorshipQ22026() {
       tier: 'DIAMOND',
       title: 'الباقة الألماسية',
       period: 'رعاية مكالمات النتائج للربع الثاني من عام 2026',
-      priceAmount: '50,000',
+      priceAmount: priceOverrides.DIAMOND || '50,000',
       priceLabel: 'للفترة',
       featured: true,
       features: [

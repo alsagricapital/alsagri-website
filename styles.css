@@ -5223,6 +5223,39 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   0%, 100% { opacity: .42; transform: translateX(22%); }
   50% { opacity: .9; transform: translateX(-22%); }
 }
+@keyframes spJourneyTracer {
+  0%, 8% { transform: translateX(0); opacity: 0; }
+  12%, 30% { transform: translateX(0); opacity: 1; }
+  42%, 60% { transform: translateX(-50%); opacity: 1; }
+  72%, 90% { transform: translateX(-100%); opacity: 1; }
+  100% { transform: translateX(-100%); opacity: 0; }
+}
+@keyframes spJourneyLine {
+  0%, 12% { transform: scaleX(.08); }
+  45% { transform: scaleX(.54); }
+  78%, 100% { transform: scaleX(1); }
+}
+@keyframes spJourneyCodeA {
+  0%, 34%, 100% { transform: translateY(0) scale(1); box-shadow: none; }
+  12%, 28% { transform: translateY(-6px) scale(1.08); box-shadow: 0 0 0 8px color-mix(in srgb, var(--sp-gold) 14%, transparent); }
+}
+@keyframes spJourneyCodeB {
+  0%, 39%, 66%, 100% { transform: translateY(0) scale(1); box-shadow: none; }
+  44%, 60% { transform: translateY(-6px) scale(1.08); box-shadow: 0 0 0 8px color-mix(in srgb, var(--sp-gold) 14%, transparent); }
+}
+@keyframes spJourneyCodeC {
+  0%, 70%, 100% { transform: translateY(0) scale(1); box-shadow: none; }
+  76%, 94% { transform: translateY(-6px) scale(1.08); box-shadow: 0 0 0 8px color-mix(in srgb, var(--sp-gold) 14%, transparent); }
+}
+@keyframes spJourneyFocus {
+  0%, 100% { border-color: color-mix(in srgb, var(--sp-gold) 34%, var(--line)); }
+  50% { border-color: color-mix(in srgb, var(--sp-gold) 78%, var(--line)); }
+}
+@keyframes spJourneyScreen {
+  0%, 32%, 100% { transform: translateY(0); }
+  46%, 62% { transform: translateY(-5px); }
+  78%, 92% { transform: translateY(-9px); }
+}
 .sponsorship-hero::after {
   content: "";
   position: absolute;
@@ -6419,6 +6452,207 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   line-height: 1.75;
 }
 
+.sp-placement-journey {
+  position: relative;
+  overflow: hidden;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--surface) 90%, #fff), color-mix(in srgb, var(--sp-gold) 7%, var(--surface))),
+    var(--surface);
+  box-shadow: 0 30px 72px -56px rgba(10,22,40,.5);
+}
+.sp-placement-journey::before {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid color-mix(in srgb, var(--sp-gold) 16%, transparent);
+  border-radius: 8px;
+  pointer-events: none;
+}
+.sp-placement-journey::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: -34%;
+  width: 28%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.36), transparent);
+  transform: skewX(-15deg);
+  animation: spSweep 6.2s ease-in-out infinite;
+  pointer-events: none;
+}
+.sp-journey-stage {
+  position: relative;
+  z-index: 1;
+  min-height: 310px;
+  padding: 24px;
+  border-radius: 8px;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(29,90,158,.22), transparent 34%),
+    linear-gradient(135deg, rgba(10,22,40,.96), #0F2133);
+  color: #fff;
+  overflow: hidden;
+}
+.sp-journey-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 42px 42px;
+  opacity: .34;
+  animation: spGridDrift 24s linear infinite;
+}
+.sp-journey-stage::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(214,177,91,.58), transparent);
+  animation: spFinalLine 4.8s ease-in-out infinite;
+}
+.sp-journey-screen {
+  position: relative;
+  z-index: 1;
+  width: min(560px, 100%);
+  min-height: 244px;
+  padding: 22px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.055);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+  display: grid;
+  align-content: space-between;
+  gap: 18px;
+  animation: spJourneyScreen 8.4s ease-in-out infinite;
+}
+.sp-journey-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,.86);
+  font-size: 13px;
+}
+.sp-journey-screen strong {
+  display: block;
+  max-width: 440px;
+  font-size: 28px;
+  line-height: 1.35;
+  color: #fff;
+}
+.sp-journey-screen p {
+  max-width: 440px;
+  color: rgba(255,255,255,.62);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.sp-journey-sponsor {
+  justify-self: start;
+  min-width: 210px;
+  padding: 13px 16px;
+  border-radius: 8px;
+  border: 1px dashed rgba(214,177,91,.74);
+  color: var(--sp-gold-2);
+  font-family: 'IBM Plex Mono', monospace;
+  direction: ltr;
+  font-size: 12px;
+  text-align: center;
+  animation: spLogoSignal 3.3s ease-in-out infinite;
+}
+.sp-journey-path {
+  position: absolute;
+  z-index: 2;
+  inset-inline: 58px;
+  top: calc(310px + 62px);
+  height: 40px;
+  pointer-events: none;
+}
+.sp-journey-path span {
+  position: absolute;
+  inset-inline: 0;
+  top: 19px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--sp-gold), color-mix(in srgb, var(--sp-blue) 68%, var(--sp-gold)), var(--sp-gold));
+  transform-origin: right center;
+  animation: spJourneyLine 8.4s cubic-bezier(.2,.7,.2,1) infinite;
+}
+.sp-journey-path i {
+  position: absolute;
+  top: 10px;
+  inset-inline-start: calc(100% - 18px);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--sp-gold-2);
+  border: 3px solid var(--surface);
+  box-shadow: 0 0 0 8px color-mix(in srgb, var(--sp-gold) 14%, transparent);
+  animation: spJourneyTracer 8.4s cubic-bezier(.2,.7,.2,1) infinite;
+}
+.sp-journey-steps {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 42px;
+}
+.sp-journey-step {
+  position: relative;
+  min-height: 250px;
+  padding: 22px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--sp-gold) 24%, var(--line));
+  background: color-mix(in srgb, var(--surface) 94%, var(--sp-gold));
+  animation: spJourneyFocus 8.4s ease-in-out infinite;
+}
+.sp-journey-step-b { animation-delay: 2.8s; }
+.sp-journey-step-c { animation-delay: 5.6s; }
+.sp-journey-code {
+  width: 48px;
+  height: 48px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--navy);
+  background: linear-gradient(135deg, var(--sp-gold-2), var(--sp-gold));
+  font-family: 'IBM Plex Mono', monospace;
+  direction: ltr;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+.sp-journey-step-a .sp-journey-code { animation: spJourneyCodeA 8.4s ease-in-out infinite; }
+.sp-journey-step-b .sp-journey-code { animation: spJourneyCodeB 8.4s ease-in-out infinite; }
+.sp-journey-step-c .sp-journey-code { animation: spJourneyCodeC 8.4s ease-in-out infinite; }
+.sp-journey-step h3 {
+  color: var(--ink);
+  font-size: 22px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+.sp-journey-step p {
+  margin-top: 9px;
+  color: var(--ink-soft);
+  font-size: 14.5px;
+  line-height: 1.7;
+}
+.sp-journey-thumb {
+  margin: 18px 0 0;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: #fff;
+  box-shadow: 0 18px 44px -36px rgba(10,22,40,.48);
+}
+.sp-journey-thumb img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .sp-packages-section {
   background: color-mix(in srgb, var(--paper) 76%, var(--surface));
 }
@@ -6921,6 +7155,7 @@ body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-package
   }
   .sp-product-cards,
   .sp-placement-grid,
+  .sp-journey-steps,
   .sp-reasons-grid,
   .sp-stats-grid,
   .sp-flow-grid,
@@ -6949,6 +7184,34 @@ body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-package
   }
   .sp-placement-mock {
     min-height: 260px;
+  }
+  .sp-placement-journey {
+    padding: 22px;
+  }
+  .sp-placement-journey::before,
+  .sp-journey-path {
+    display: none;
+  }
+  .sp-journey-stage {
+    min-height: 260px;
+    padding: 18px;
+  }
+  .sp-journey-screen {
+    min-height: 220px;
+    padding: 18px;
+  }
+  .sp-journey-screen strong {
+    font-size: 22px;
+  }
+  .sp-journey-steps {
+    margin-top: 16px;
+  }
+  .sp-journey-step {
+    min-height: 0;
+    padding: 20px;
+  }
+  .sp-journey-thumb {
+    max-width: 360px;
   }
   .sp-examples-grid .rpt-compact .rpt-body {
     padding: 14px 16px 15px;
@@ -7021,6 +7284,15 @@ body[data-page="sponsorship"]:not([data-motion-variant="cinematic"]) .sp-package
   .sp-placement.in .sp-placement-mock::after,
   .sp-placement.in .sp-placement-example-image::after,
   .sp-placement.in .sp-placement-logo,
+  .sp-placement-journey::after,
+  .sp-journey-stage::before,
+  .sp-journey-stage::after,
+  .sp-journey-screen,
+  .sp-journey-sponsor,
+  .sp-journey-path span,
+  .sp-journey-path i,
+  .sp-journey-step,
+  .sp-journey-code,
   .sp-package.in::before,
   .sp-package::after,
   .sp-package.in li .sp-feat-check,

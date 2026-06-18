@@ -1206,37 +1206,75 @@ function SponsorshipQ22026() {
             <h2>أين يظهر شعارك؟</h2>
             <p>في ثلاثة أماكن دائمة أمام كل متابع للسلسلة: التغريدة الافتتاحية المثبتة، والبنر الأساسي للمكالمة، وأسفل كل مكالمة منشورة.</p>
           </div>
-          <div className="sp-placement-grid">
-            {placements.map((item, idx) => (
-              <article className={'sp-placement reveal d' + (idx + 1) + (item.wide ? ' is-wide' : '')} key={item.code}>
-                <div className="sp-placement-code">{item.code}</div>
-                {item.image ? (
-                  <figure className="sp-placement-example-image">
-                    <span>مثال</span>
-                    <img
-                      src={item.image}
-                      alt={item.alt}
-                      loading="lazy"
-                      decoding="async" />
-                  </figure>
-                ) : (
-                  <div className="sp-placement-mock" aria-hidden="true">
-                    <div className="sp-placement-brand">
-                      <BrandMark size={22} />
-                      <span>الصقري | Alsagri</span>
-                    </div>
-                    <div className="sp-placement-content">
-                      <strong>مكالمة المستثمرين - شركة المثال</strong>
-                      <span></span><span></span><span></span>
-                    </div>
-                    <div className="sp-placement-logo">SPONSOR LOGO</div>
+          {hasCinematicMotion ? (
+            <div className="sp-placement-journey reveal d2">
+              <div className="sp-journey-path" aria-hidden="true">
+                <span></span>
+                <i></i>
+              </div>
+              <div className="sp-journey-stage" aria-hidden="true">
+                <div className="sp-journey-screen">
+                  <div className="sp-journey-brand">
+                    <BrandMark size={22} />
+                    <span>الصقري | Alsagri</span>
                   </div>
-                )}
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            ))}
-          </div>
+                  <strong>مكالمة المستثمرين - شركة المثال</strong>
+                  <p>ملخص مكالمة النتائج يظهر ضمن السلسلة أمام جمهور مالي نوعي.</p>
+                  <div className="sp-journey-sponsor">SPONSOR LOGO</div>
+                </div>
+              </div>
+              <div className="sp-journey-steps">
+                {placements.map((item, idx) => (
+                  <article className={'sp-journey-step sp-journey-step-' + item.code.toLowerCase()} key={item.code}>
+                    <div className="sp-journey-code">{item.code}</div>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                    {item.image && (
+                      <figure className="sp-journey-thumb">
+                        <img
+                          src={item.image}
+                          alt={item.alt}
+                          loading="lazy"
+                          decoding="async" />
+                      </figure>
+                    )}
+                  </article>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="sp-placement-grid">
+              {placements.map((item, idx) => (
+                <article className={'sp-placement reveal d' + (idx + 1) + (item.wide ? ' is-wide' : '')} key={item.code}>
+                  <div className="sp-placement-code">{item.code}</div>
+                  {item.image ? (
+                    <figure className="sp-placement-example-image">
+                      <span>مثال</span>
+                      <img
+                        src={item.image}
+                        alt={item.alt}
+                        loading="lazy"
+                        decoding="async" />
+                    </figure>
+                  ) : (
+                    <div className="sp-placement-mock" aria-hidden="true">
+                      <div className="sp-placement-brand">
+                        <BrandMark size={22} />
+                        <span>الصقري | Alsagri</span>
+                      </div>
+                      <div className="sp-placement-content">
+                        <strong>مكالمة المستثمرين - شركة المثال</strong>
+                        <span></span><span></span><span></span>
+                      </div>
+                      <div className="sp-placement-logo">SPONSOR LOGO</div>
+                    </div>
+                  )}
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

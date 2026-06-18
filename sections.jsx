@@ -1050,6 +1050,21 @@ function SponsorshipQ22026() {
             </div>
 
             <div className="sp-hero-visual reveal d2" aria-label="معاينة ظهور الراعي">
+              <div className="sp-motion-frame" aria-hidden="true">
+                <span className="sp-motion-rail sp-motion-rail-a"></span>
+                <span className="sp-motion-rail sp-motion-rail-b"></span>
+                <span className="sp-motion-rail sp-motion-rail-c"></span>
+                <span className="sp-motion-crosshair sp-motion-crosshair-a"></span>
+                <span className="sp-motion-crosshair sp-motion-crosshair-b"></span>
+                <div className="sp-motion-readout sp-motion-readout-top">
+                  <strong>+25</strong>
+                  <span>CALLS</span>
+                </div>
+                <div className="sp-motion-readout sp-motion-readout-bottom">
+                  <strong>2M+</strong>
+                  <span>VIEWS</span>
+                </div>
+              </div>
               <figure className="sp-hero-example-card">
                 <figcaption>
                   <span>مثال توضيحي</span>
@@ -1076,6 +1091,11 @@ function SponsorshipQ22026() {
             </p>
           </div>
           <div className="sp-product-cards">
+            <div className="sp-product-signal" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
             <div className="sp-product-card reveal d1">
               <strong>+25 مكالمة منشورة في الربع</strong>
               <p>تغطية لأبرز الشركات بعد كل إعلان نتائج خلال الموسم.</p>

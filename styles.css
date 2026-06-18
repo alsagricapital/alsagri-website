@@ -5180,6 +5180,63 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   70% { transform: translateY(-2px); opacity: 1; }
   100% { transform: translateY(0); opacity: 1; }
 }
+@keyframes spHeroScan {
+  0%, 18% { transform: translateX(96%) skewX(-12deg); opacity: 0; }
+  28% { opacity: .62; }
+  48%, 100% { transform: translateX(-120%) skewX(-12deg); opacity: 0; }
+}
+@keyframes spGridDrift {
+  to { background-position: 48px 32px; }
+}
+@keyframes spMotionRail {
+  0% { clip-path: inset(0 100% 0 0); opacity: 0; }
+  18%, 70% { opacity: .86; }
+  48% { clip-path: inset(0 0 0 0); }
+  100% { clip-path: inset(0 0 0 100%); opacity: 0; }
+}
+@keyframes spCrosshairTrack {
+  0%, 100% { transform: translate3d(0, 0, 0); opacity: .38; }
+  50% { transform: translate3d(-10px, 6px, 0); opacity: .86; }
+}
+@keyframes spReadoutFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes spReadoutTick {
+  0%, 100% { opacity: .55; transform: scaleX(.42); }
+  50% { opacity: 1; transform: scaleX(1); }
+}
+@keyframes spProductSignal {
+  from { transform: translateX(340%); }
+  to { transform: translateX(-140%); }
+}
+@keyframes spFlowTravel {
+  0% { transform: translateX(330%); opacity: 0; }
+  20%, 70% { opacity: .9; }
+  100% { transform: translateX(-130%); opacity: 0; }
+}
+@keyframes spCheckDraw {
+  0% { opacity: .35; transform: rotate(45deg) scale(.72); }
+  40%, 100% { opacity: 1; transform: rotate(45deg) scale(1); }
+}
+@keyframes spFinalLine {
+  0%, 100% { opacity: .42; transform: translateX(22%); }
+  50% { opacity: .9; transform: translateX(-22%); }
+}
+.sponsorship-hero::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset-block: 0;
+  inset-inline-start: -20%;
+  width: 38%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.58), transparent);
+  pointer-events: none;
+  animation: spHeroScan 9.5s cubic-bezier(.2,.7,.2,1) 1s infinite;
+}
+.sponsorship-hero::before {
+  animation: spGridDrift 26s linear infinite;
+}
 .sponsorship-hero .trend-chart {
   overflow: visible;
 }
@@ -5284,6 +5341,134 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   gap: 14px;
   align-self: stretch;
 }
+.sp-motion-frame {
+  position: absolute;
+  inset: -30px -26px;
+  z-index: 0;
+  pointer-events: none;
+}
+.sp-motion-frame::before,
+.sp-motion-frame::after {
+  content: "";
+  position: absolute;
+  width: 76px;
+  height: 76px;
+  border-color: color-mix(in srgb, var(--sp-gold) 58%, transparent);
+  opacity: .64;
+}
+.sp-motion-frame::before {
+  inset-inline-start: 0;
+  top: 0;
+  border-top: 1px solid;
+  border-inline-start: 1px solid;
+}
+.sp-motion-frame::after {
+  inset-inline-end: 0;
+  bottom: 0;
+  border-bottom: 1px solid;
+  border-inline-end: 1px solid;
+}
+.sp-motion-rail {
+  position: absolute;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--sp-gold) 78%, transparent), transparent);
+  transform-origin: center;
+  animation: spMotionRail 4.8s cubic-bezier(.2,.7,.2,1) infinite;
+}
+.sp-motion-rail-a {
+  inset-inline: 8%;
+  top: 13%;
+}
+.sp-motion-rail-b {
+  inset-inline: 2% 18%;
+  bottom: 18%;
+  animation-delay: 1.15s;
+}
+.sp-motion-rail-c {
+  inset-inline: 24% 4%;
+  top: 52%;
+  transform: rotate(-8deg);
+  animation-delay: 2.25s;
+}
+.sp-motion-crosshair {
+  position: absolute;
+  width: 38px;
+  height: 38px;
+  opacity: .55;
+  animation: spCrosshairTrack 5.8s ease-in-out infinite;
+}
+.sp-motion-crosshair::before,
+.sp-motion-crosshair::after {
+  content: "";
+  position: absolute;
+  background: color-mix(in srgb, var(--sp-blue) 52%, transparent);
+}
+.sp-motion-crosshair::before {
+  inset-inline: 0;
+  top: 50%;
+  height: 1px;
+}
+.sp-motion-crosshair::after {
+  inset-block: 0;
+  inset-inline-start: 50%;
+  width: 1px;
+}
+.sp-motion-crosshair-a {
+  inset-inline-start: 7%;
+  bottom: 24%;
+}
+.sp-motion-crosshair-b {
+  inset-inline-end: 9%;
+  top: 18%;
+  animation-delay: 1.6s;
+}
+.sp-motion-readout {
+  position: absolute;
+  min-width: 92px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--sp-gold) 34%, var(--line));
+  box-shadow: 0 18px 38px -32px rgba(10,22,40,.42);
+  direction: ltr;
+  text-align: left;
+  animation: spReadoutFloat 5.5s ease-in-out infinite;
+}
+.sp-motion-readout::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin-top: 6px;
+  background: linear-gradient(90deg, var(--sp-gold), transparent);
+  transform-origin: left center;
+  animation: spReadoutTick 2.4s ease-in-out infinite;
+}
+.sp-motion-readout strong,
+.sp-motion-readout span {
+  display: block;
+}
+.sp-motion-readout strong {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--navy);
+}
+.sp-motion-readout span {
+  margin-top: 3px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--ink-mute);
+}
+.sp-motion-readout-top {
+  inset-inline-end: -8px;
+  top: 0;
+}
+.sp-motion-readout-bottom {
+  inset-inline-start: -4px;
+  bottom: 2px;
+  animation-delay: 1.4s;
+}
 .sp-hero-visual::before,
 .sp-hero-visual::after {
   content: "";
@@ -5312,6 +5497,7 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
 .sp-hero-example-card {
   position: relative;
   overflow: hidden;
+  z-index: 1;
   align-self: center;
   margin: 0;
   padding: 12px;
@@ -5519,10 +5705,46 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
 }
 
 .sp-product-cards {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
   margin-bottom: 28px;
+}
+.sp-product-signal {
+  position: absolute;
+  z-index: 0;
+  inset-inline: 16%;
+  top: 50%;
+  height: 34px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  overflow: hidden;
+}
+.sp-product-signal::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--sp-gold) 45%, transparent), transparent);
+}
+.sp-product-signal span {
+  position: absolute;
+  inset-inline-start: 0;
+  top: 50%;
+  width: 26%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--sp-gold), transparent);
+  animation: spProductSignal 3.8s cubic-bezier(.2,.7,.2,1) infinite;
+}
+.sp-product-signal span:nth-child(2) {
+  animation-delay: 1.2s;
+  opacity: .72;
+}
+.sp-product-signal span:nth-child(3) {
+  animation-delay: 2.4s;
+  opacity: .5;
 }
 .sp-product-card,
 .sp-flow,
@@ -5537,12 +5759,43 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   background: var(--surface);
 }
 .sp-product-card {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
   min-height: 150px;
   padding: 28px;
   display: grid;
   align-content: center;
   gap: 8px;
   box-shadow: 0 24px 58px -52px rgba(10,22,40,.38);
+}
+.sp-product-card::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: 7px;
+  border: 1px solid color-mix(in srgb, var(--sp-gold) 18%, transparent);
+  opacity: 0;
+  transform: scale(.985);
+  transition: opacity .45s ease, transform .45s ease;
+  pointer-events: none;
+}
+.sp-product-card::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: -45%;
+  width: 36%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+  opacity: .48;
+  pointer-events: none;
+}
+.sp-product-card.in::before {
+  opacity: 1;
+  transform: scale(1);
+}
+.sp-product-card.in::after {
+  animation: spSweep 5.4s ease-in-out 1.1s infinite;
 }
 .sp-product-card,
 .sp-stat,
@@ -5569,6 +5822,8 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   line-height: 1.7;
 }
 .sp-product-metric {
+  position: relative;
+  overflow: hidden;
   justify-self: start;
   width: fit-content;
   margin-top: 6px;
@@ -5583,17 +5838,51 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   font-weight: 700;
   line-height: 1.4;
 }
+.sp-product-metric::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: -60%;
+  width: 46%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.68), transparent);
+  animation: spSweep 4.4s ease-in-out 1.6s infinite;
+}
 .sp-flow {
+  position: relative;
   padding: 28px;
   overflow: hidden;
 }
+.sp-flow::before {
+  content: "";
+  position: absolute;
+  inset-inline: 28px;
+  top: 92px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--sp-gold) 42%, transparent), transparent);
+  opacity: .72;
+}
+.sp-flow::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 28px;
+  top: 91px;
+  width: 26%;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--sp-gold), transparent);
+  animation: spFlowTravel 5.8s cubic-bezier(.2,.7,.2,1) infinite;
+}
 .sp-flow h3 {
+  position: relative;
+  z-index: 1;
   color: var(--sp-gold);
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 24px;
 }
 .sp-flow-grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
@@ -5942,8 +6231,40 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   margin-inline: auto;
 }
 .sp-placement {
+  position: relative;
+  overflow: hidden;
   padding: 22px;
   min-width: 0;
+}
+.sp-placement::before {
+  content: "";
+  position: absolute;
+  inset-inline: 18px;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--sp-gold) 64%, transparent), transparent);
+  opacity: 0;
+  transform: translateX(24%);
+  pointer-events: none;
+}
+.sp-placement::after {
+  content: "";
+  position: absolute;
+  inset-inline: 18px;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--sp-blue) 42%, transparent), transparent);
+  opacity: 0;
+  transform: translateX(-24%);
+  pointer-events: none;
+}
+.sp-placement.in::before,
+.sp-placement.in::after {
+  opacity: 1;
+  animation: spFinalLine 4.8s ease-in-out infinite;
+}
+.sp-placement.in::after {
+  animation-delay: 1.2s;
 }
 .sp-placement-code {
   position: relative;
@@ -6146,6 +6467,18 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
 .sp-package.in::before {
   animation: spPackageShine 3.8s cubic-bezier(.2,.7,.2,1) .65s infinite;
 }
+.sp-package::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset-inline: 18px;
+  bottom: 14px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--sp-gold) 64%, transparent), transparent);
+  opacity: .58;
+  pointer-events: none;
+  animation: spFinalLine 5.6s ease-in-out infinite;
+}
 .sp-package.is-featured {
   background:
     linear-gradient(135deg, rgba(29,90,158,.28), transparent 52%),
@@ -6230,6 +6563,13 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   transform: rotate(45deg);
   margin-top: 4px;
 }
+.sp-package.in li .sp-feat-check {
+  animation: spCheckDraw .7s cubic-bezier(.2,.8,.2,1) both;
+}
+.sp-package.in li:nth-child(2) .sp-feat-check { animation-delay: .1s; }
+.sp-package.in li:nth-child(3) .sp-feat-check { animation-delay: .2s; }
+.sp-package.in li:nth-child(4) .sp-feat-check { animation-delay: .3s; }
+.sp-package.in li:nth-child(5) .sp-feat-check { animation-delay: .4s; }
 .sp-feat-text {
   flex: 1;
   min-width: 0;
@@ -6344,6 +6684,7 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   transform: rotate(-7deg);
 }
 .sp-final-grid {
+  overflow: hidden;
   position: relative;
   z-index: 1;
   padding: 38px;
@@ -6352,6 +6693,31 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   align-items: center;
   gap: 28px;
   box-shadow: 0 28px 70px -54px rgba(10,22,40,.45);
+}
+.sp-final-grid::before,
+.sp-final-grid::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+.sp-final-grid::before {
+  inset-inline: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--sp-gold) 72%, transparent), transparent);
+  animation: spFinalLine 4.8s ease-in-out infinite;
+}
+.sp-final-grid::after {
+  inset-block: 18px;
+  inset-inline-start: -40%;
+  width: 30%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.32), transparent);
+  transform: skewX(-15deg);
+  animation: spSweep 6s ease-in-out 1s infinite;
+}
+.sp-final-grid > * {
+  position: relative;
+  z-index: 1;
 }
 .sp-final-grid h2 {
   margin-top: 12px;
@@ -6441,6 +6807,10 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
     padding: 68px 0 64px;
   }
   .sp-hero-chart {
+    display: none;
+  }
+  .sp-motion-frame,
+  .sp-product-signal {
     display: none;
   }
   .sp-hero-visual::before,
@@ -6573,23 +6943,39 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .sponsorship-hero::before,
+  .sponsorship-hero::after,
   .sponsorship-hero .trend-line-main,
   .sponsorship-hero .trend-line-gloss,
   .sponsorship-hero .trend-area,
   .sponsorship-hero .trend-bar,
   .sponsorship-hero .trend-node,
+  .sp-motion-rail,
+  .sp-motion-crosshair,
+  .sp-motion-readout,
+  .sp-motion-readout::after,
   .sp-hero-visual::before,
   .sp-hero-visual::after,
   .sp-hero-example-card,
   .sp-hero-example-card::before,
+  .sp-product-signal span,
+  .sp-product-card::after,
+  .sp-product-metric::after,
+  .sp-flow::after,
   .sp-flow.in .sp-flow-item span,
+  .sp-placement.in::before,
+  .sp-placement.in::after,
   .sp-placement.in .sp-placement-code,
   .sp-placement.in .sp-placement-code::after,
   .sp-placement.in .sp-placement-mock::after,
   .sp-placement.in .sp-placement-example-image::after,
   .sp-placement.in .sp-placement-logo,
   .sp-package.in::before,
-  .sp-package.in .sp-package-price {
+  .sp-package::after,
+  .sp-package.in li .sp-feat-check,
+  .sp-package.in .sp-package-price,
+  .sp-final-grid::before,
+  .sp-final-grid::after {
     animation: none !important;
   }
 }

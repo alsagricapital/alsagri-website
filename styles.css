@@ -6641,38 +6641,48 @@ body[data-page="sponsorship"] .sp-package.in:hover {
 }
 
 /* ── Q2 sponsorship · MOTION variant (sponsorship-q2-2026-motion.html) ──
-   Bold, page-scoped motion. The static override above targets
+   Professional, page-scoped motion. The static override above targets
    data-page="sponsorship", so this page keeps every original keyframe
-   animation and layers on a dramatic scroll-reveal, an animated hero backdrop
-   and gradient title, a deeper hero parallax (JS sets --sp-parallax), and a
-   glowing hover lift. The KPI numbers count up via an inline script in the
-   page. Everything here is disabled under reduced-motion (block just below). */
+   animation. On top, GSAP + ScrollTrigger (motion-fx.js) drive a choreographed
+   hero intro, staggered scroll reveals, scrubbed parallax, scroll-linked KPI
+   count-ups, 3D card tilt and magnetic buttons, plus an animated canvas
+   "data-mesh" hero backdrop. CSS here adds the ambient hero gradient, the gold
+   title sheen, pulsing labels and the glow hover. Markup is visible by default
+   so the page degrades gracefully; everything is off under reduced-motion. */
 @keyframes spmHeroGradient { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
 @keyframes spmTitleSheen { from { background-position: 200% center; } to { background-position: -200% center; } }
 @keyframes spmKickerBar { 0%, 100% { transform: scaleX(1); opacity: .8; } 50% { transform: scaleX(2.1); opacity: 1; } }
 @keyframes spmPop { 0% { transform: scale(1); } 40% { transform: scale(1.14); } 100% { transform: scale(1); } }
 
-/* dramatic scroll reveal — replaces the calm base .reveal on this page only */
+/* Scroll reveal & parallax are driven by GSAP (motion-fx.js). Markup stays
+   visible by default so the page degrades gracefully if GSAP fails to load. */
 body[data-page="sponsorship-motion"] .reveal {
-  opacity: 0;
-  transform: translateY(46px) scale(.965);
-  filter: blur(6px);
-  transition: opacity .9s cubic-bezier(.16, .84, .3, 1), transform .9s cubic-bezier(.16, .84, .3, 1), filter .9s ease;
-}
-body[data-page="sponsorship-motion"] .reveal.in {
   opacity: 1;
   transform: none;
-  filter: blur(0);
+  filter: none;
+  transition: none;
 }
 
-/* animated hero backdrop + deeper parallax */
+/* animated canvas "data-mesh" hero backdrop */
+body[data-page="sponsorship-motion"] .spm-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .6;
+}
+body[data-page="sponsorship-motion"] .sponsorship-hero > .wrap {
+  position: relative;
+  z-index: 1;
+}
+
+/* ambient animated hero backdrop (parallax handled by GSAP) */
 body[data-page="sponsorship-motion"] .sponsorship-hero {
   background-size: 240% 240%;
   animation: spmHeroGradient 16s ease-in-out infinite alternate;
 }
 body[data-page="sponsorship-motion"] .sp-hero-chart {
   will-change: transform;
-  transform: translate3d(0, calc(var(--sp-parallax, 0) * 0.32px), 0);
 }
 
 /* gold sheen sweeping across the hero title */

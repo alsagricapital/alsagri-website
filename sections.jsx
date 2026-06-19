@@ -1023,348 +1023,6 @@ function SponsorshipQ22026() {
     'سال': '146K',
   };
   const previousExamples = window.REPORTS.filter((r) => r.cat === 'earnings' && !hiddenPreviousExamples.includes(r.co));
-  const hasCinematicMotion = document.body.dataset.motionVariant === 'cinematic';
-
-  useEffect(() => {
-    if (!hasCinematicMotion) {
-      document.querySelector('.spl-sticky-cta')?.classList.remove('is-visible');
-      return undefined;
-    }
-
-    const updateStickyCta = () => {
-      const hero = document.querySelector('.spl-hero');
-      const cta = document.querySelector('.spl-sticky-cta');
-      const threshold = hero ? hero.offsetTop + hero.offsetHeight * 0.72 : window.innerHeight * 0.85;
-      cta?.classList.toggle('is-visible', window.scrollY > threshold);
-    };
-
-    updateStickyCta();
-    window.addEventListener('scroll', updateStickyCta, { passive: true });
-    document.addEventListener('scroll', updateStickyCta, { passive: true });
-    window.addEventListener('resize', updateStickyCta);
-    const stickyCtaTimer = window.setInterval(updateStickyCta, 250);
-    return () => {
-      window.removeEventListener('scroll', updateStickyCta);
-      document.removeEventListener('scroll', updateStickyCta);
-      window.removeEventListener('resize', updateStickyCta);
-      window.clearInterval(stickyCtaTimer);
-    };
-  }, [hasCinematicMotion]);
-
-  const faqItems = [
-    {
-      q: 'هل الرعاية إعلان عابر؟',
-      a: 'لا. الرعاية تظهر في سلسلة محتوى متكرر طوال موسم النتائج، وترتبط بسياق مالي يتابعه جمهور مهتم بالشركات والسوق.',
-    },
-    {
-      q: 'هل الأرقام مبنية على أداء فعلي؟',
-      a: 'نعم، صفحة الرعاية تعرض أرقام أداء ولقطات موثقة من حساب الصقري على منصة X، مع إبقاء تلك اللقطات ثابتة دون مؤثرات.',
-    },
-    {
-      q: 'كم مدة الظهور؟',
-      a: 'تغطي الرعاية فترة الربع الثاني من 15 يونيو إلى 15 سبتمبر، مع ظهور متكرر داخل محتوى السلسلة.',
-    },
-    {
-      q: 'هل المساحة محدودة؟',
-      a: 'نعم، المساحة محدودة لكل ربع حتى يبقى حضور الراعي واضحاً وغير مزدحم.',
-    },
-  ];
-
-  if (hasCinematicMotion) {
-    return (
-      <React.Fragment>
-        <div className="spl-progress" aria-hidden="true"></div>
-        <a className="spl-sticky-cta" href="https://wa.me/966550734332" target="_blank" rel="noreferrer">
-          احجز الرعاية الآن
-        </a>
-
-        <section className="spl-hero">
-          <div className="spl-market-grid" aria-hidden="true">
-            <ChartLineBackground variant="sponsorship" />
-            <span className="spl-orbit spl-orbit-a"></span>
-            <span className="spl-orbit spl-orbit-b"></span>
-            <span className="spl-orbit spl-orbit-c"></span>
-          </div>
-          <div className="wrap spl-hero-wrap">
-            <div className="spl-topline reveal">
-              <span>Q2 Earnings Calls Series</span>
-              <span>Sponsorship 2026</span>
-              <span>Limited Slot</span>
-            </div>
-            <div className="spl-hero-grid">
-              <div className="spl-hero-copy reveal d1">
-                <div className="spl-brandline">
-                  <BrandMark size={26} />
-                  <span>الصقري | Alsagri Capital</span>
-                  <small>@AlsagriCapital</small>
-                </div>
-                <h1>رعاية سلسلة مكالمات النتائج للربع الثاني 2026</h1>
-                <p>
-                  ظهور متكرر أمام جمهور مالي نوعي خلال موسم النتائج. ليست إعلاناً عابراً، بل ارتباط مستمر بمحتوى مالي جاد يتابع الشركات المدرجة.
-                </p>
-                <div className="spl-hero-actions">
-                  <a className="btn btn-primary" href="https://wa.me/966550734332" target="_blank" rel="noreferrer">
-                    احجز الرعاية
-                    <span className="arrow">←</span>
-                  </a>
-                  <a className="btn btn-ghost" href="#motion-packages">استعرض الباقات</a>
-                </div>
-                <div className="spl-floating-chips" aria-label="ملخص سريع">
-                  <span>25+ Calls</span>
-                  <span>150K+ Expected Views</span>
-                  <span>3 Months Pinned</span>
-                  <span>Financial Audience</span>
-                </div>
-              </div>
-
-              <div className="spl-hero-mock reveal d2" aria-label="معاينة ظهور الراعي">
-                <div className="spl-x-card">
-                  <div className="spl-x-head">
-                    <BrandMark size={32} />
-                    <div>
-                      <strong>الصقري | Alsagri Capital</strong>
-                      <span>@AlsagriCapital · Q2 Results</span>
-                    </div>
-                  </div>
-                  <div className="spl-x-content">
-                    <h2>سلسلة مكالمات النتائج</h2>
-                    <p>تلخيص وتحليل مكالمات المستثمرين للشركات المدرجة خلال الربع.</p>
-                    <div className="spl-x-chart" aria-hidden="true">
-                      <span></span><span></span><span></span><span></span>
-                    </div>
-                  </div>
-                  <div className="spl-sponsor-slot">
-                    <span>SPONSOR LOGO</span>
-                    <small>موضع ظهور الراعي</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="spl-trust-strip" aria-label="أرقام الأداء">
-          <div className="wrap spl-trust-grid">
-            {stats.map((stat) => (
-              <div className="spl-trust-item reveal" key={stat.value}>
-                <CountUpText value={stat.value} as="strong" />
-                <span>{stat.label}</span>
-                <small>{stat.note}</small>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="spl-section spl-product">
-          <div className="wrap">
-            <div className="spl-section-head reveal">
-              <span>THE PRODUCT</span>
-              <h2>ما هي مكالمات المستثمرين؟</h2>
-              <p>محتوى متخصص يحول مكالمات النتائج الطويلة إلى ملخصات واضحة وقابلة للمتابعة لجمهور مهتم بالسوق السعودي.</p>
-            </div>
-            <div className="spl-product-grid">
-              <article className="spl-info-card reveal d1">
-                <strong>+25 مكالمة منشورة في الربع</strong>
-                <p>تغطية لأبرز الشركات بعد إعلان النتائج خلال الموسم.</p>
-                <em>متوقع أكثر من 2 مليون مشاهدة</em>
-              </article>
-              <article className="spl-info-card reveal d2">
-                <strong>تغريدة افتتاحية مثبتة 3 أشهر</strong>
-                <p>رأس السلسلة مثبت أعلى الحساب ومرجع دائم لكل المكالمات.</p>
-                <em>متوقع مشاهدات أعلى من 150 ألف</em>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section className="spl-section spl-timeline-section">
-          <div className="wrap">
-            <div className="spl-section-head reveal">
-              <span>HOW IT WORKS</span>
-              <h2>كيف تعمل السلسلة؟</h2>
-              <p>رحلة واضحة من إعلان النتائج إلى حضور علامتك مع كل محتوى منشور.</p>
-            </div>
-            <div className="spl-timeline reveal d2">
-              {flow.map((item) => (
-                <article className="spl-timeline-step" key={item.n}>
-                  <span>{item.n}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                  {item.metric && <em>{item.metric}</em>}
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="spl-section spl-why">
-          <div className="wrap">
-            <div className="spl-section-head reveal">
-              <span>WHY SPONSOR</span>
-              <h2>لماذا ترعى هذه السلسلة؟</h2>
-              <p>حضور علامتك في موسم النتائج، أمام جمهور مالي نوعي، داخل محتوى دائم ومتكرر.</p>
-            </div>
-            <div className="spl-benefit-grid">
-              {reasons.map((item, idx) => (
-                <article className={'spl-benefit-card reveal d' + (idx + 1)} key={item.n}>
-                  <span>{item.n}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </article>
-              ))}
-            </div>
-            <figure className="spl-proof-panel">
-              <figcaption>
-                <span>مصدر موثّق</span>
-                <small>تحليلات حساب الصقري على منصة X</small>
-              </figcaption>
-              <div className="sp-analytics-grid">
-                {analytics.map((a) => (
-                  <div className="sp-an-card" key={a.label}>
-                    <div className="sp-an-label">
-                      {a.label}
-                      {a.verified && (
-                        <svg className="sp-an-check" viewBox="0 0 24 24" aria-hidden="true">
-                          <circle cx="12" cy="12" r="10" fill="#1d9bf0" />
-                          <path d="M9.3 12.4l1.9 1.9 3.6-3.9" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      )}
-                    </div>
-                    <div className="sp-an-val">
-                      {a.value}
-                      {a.sub && <small>{a.sub}</small>}
-                      {a.up && <span className="sp-an-up">↑ {a.up}</span>}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </figure>
-          </div>
-        </section>
-
-        <section className="spl-section spl-placements">
-          <div className="wrap">
-            <div className="spl-section-head reveal">
-              <span>BRAND PLACEMENT</span>
-              <h2>أين يظهر شعارك؟</h2>
-              <p>ثلاث نقاط ظهور ضمن تجربة واحدة: التغريدة المثبتة، أسفل كل مكالمة، والبنر الأساسي.</p>
-            </div>
-            <div className="spl-placement-stage reveal d2">
-              <div className="spl-placement-path" aria-hidden="true"><span></span><i></i></div>
-              <div className="spl-placement-preview" aria-hidden="true">
-                <div className="spl-preview-card">
-                  <BrandMark size={24} />
-                  <strong>مكالمة المستثمرين - شركة المثال</strong>
-                  <p>المحتوى المالي يظهر ضمن سلسلة متخصصة يتابعها جمهور مهتم.</p>
-                  <div>SPONSOR LOGO</div>
-                </div>
-              </div>
-              <div className="spl-placement-steps">
-                {placements.map((item) => (
-                  <article className={'spl-placement-step spl-placement-step-' + item.code.toLowerCase()} key={item.code}>
-                    <span>{item.code}</span>
-                    <h3>{item.title}</h3>
-                    <p>{item.text}</p>
-                    {item.image && <img src={item.image} alt={item.alt} loading="lazy" decoding="async" />}
-                  </article>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="spl-section spl-gallery-section">
-          <div className="wrap">
-            <div className="spl-section-head reveal">
-              <span>PREVIOUS EXAMPLES</span>
-              <h2>أمثلة سابقة</h2>
-              <p>نماذج من مكالمات نتائج منشورة سابقاً بنفس أسلوب السلسلة.</p>
-            </div>
-            <EarningsFeatureBanner />
-            <div className="examples-grid sp-examples-grid">
-              {previousExamples.map((r) => (
-                <ReportCard
-                  key={r.co + r.title}
-                  r={r}
-                  catLabel="EARNINGS CALL"
-                  compact
-                  viewsPlacement="ticker"
-                  viewCount={previousExampleViews[r.co]} />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="motion-packages" className="spl-section spl-packages">
-          <div className="wrap">
-            <div className="spl-section-head reveal">
-              <span>PACKAGES</span>
-              <h2>باقات الرعاية</h2>
-              <p>اختر مستوى الحضور المناسب. مساحة الرعاية محدودة لكل ربع.</p>
-            </div>
-            <div className="spl-package-grid">
-              {packages.map((pkg, idx) => (
-                <article className={'spl-package reveal d' + (idx + 1) + (pkg.featured ? ' is-featured' : '')} key={pkg.tier}>
-                  {pkg.featured && <div className="spl-package-badge">أعلى حضور · Maximum Exposure</div>}
-                  <span>{pkg.tier}</span>
-                  <h3>{pkg.title}</h3>
-                  <p>{pkg.period}</p>
-                  <div className="spl-price">
-                    <img src="assets/sponsorship/saudi-riyal-symbol.svg" alt="" loading="lazy" decoding="async" />
-                    <strong>{pkg.priceAmount}</strong>
-                    <small>{pkg.priceLabel}</small>
-                  </div>
-                  <ul>
-                    {pkg.features.map((feature) => (
-                      <li key={feature.text}>
-                        <i></i>
-                        <span>
-                          {feature.amount && <b><span dir="ltr">{feature.amount}</span><img src="assets/sponsorship/saudi-riyal-symbol.svg" alt="ريال سعودي" loading="lazy" decoding="async" /></b>}
-                          {feature.text}
-                          {feature.code && <em>{feature.code}</em>}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="spl-section spl-faq-section">
-          <div className="wrap">
-            <div className="spl-section-head reveal">
-              <span>FAQ</span>
-              <h2>أسئلة مختصرة قبل التواصل</h2>
-            </div>
-            <div className="spl-faq-grid">
-              {faqItems.map((item, idx) => (
-                <article className={'spl-faq-card reveal d' + (idx + 1)} key={item.q}>
-                  <h3>{item.q}</h3>
-                  <p>{item.a}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="spl-final-cta">
-          <div className="wrap">
-            <div className="spl-final-panel reveal">
-              <span>LIMITED · الربع الثاني 2026</span>
-              <h2>كن راعي السلسلة</h2>
-              <p>حضور متكرر أمام جمهور مالي نوعي. لنحجز ظهور علامتك قبل بداية الموسم.</p>
-              <div className="spl-final-actions">
-                <a className="btn btn-primary" href="https://wa.me/966550734332" target="_blank" rel="noreferrer">واتساب · 0550734332</a>
-                <a className="btn btn-ghost" href="mailto:alsagricapital@gmail.com">alsagricapital@gmail.com</a>
-              </div>
-            </div>
-          </div>
-        </section>
-      </React.Fragment>
-    );
-  }
 
   return (
     <React.Fragment>
@@ -1392,23 +1050,6 @@ function SponsorshipQ22026() {
             </div>
 
             <div className="sp-hero-visual reveal d2" aria-label="معاينة ظهور الراعي">
-              {hasCinematicMotion && (
-                <div className="sp-motion-frame" aria-hidden="true">
-                  <span className="sp-motion-rail sp-motion-rail-a"></span>
-                  <span className="sp-motion-rail sp-motion-rail-b"></span>
-                  <span className="sp-motion-rail sp-motion-rail-c"></span>
-                  <span className="sp-motion-crosshair sp-motion-crosshair-a"></span>
-                  <span className="sp-motion-crosshair sp-motion-crosshair-b"></span>
-                  <div className="sp-motion-readout sp-motion-readout-top">
-                    <strong>+25</strong>
-                    <span>CALLS</span>
-                  </div>
-                  <div className="sp-motion-readout sp-motion-readout-bottom">
-                    <strong>2M+</strong>
-                    <span>VIEWS</span>
-                  </div>
-                </div>
-              )}
               <figure className="sp-hero-example-card">
                 <figcaption>
                   <span>مثال توضيحي</span>
@@ -1435,13 +1076,6 @@ function SponsorshipQ22026() {
             </p>
           </div>
           <div className="sp-product-cards">
-            {hasCinematicMotion && (
-              <div className="sp-product-signal" aria-hidden="true">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-            )}
             <div className="sp-product-card reveal d1">
               <strong>+25 مكالمة منشورة في الربع</strong>
               <p>تغطية لأبرز الشركات بعد كل إعلان نتائج خلال الموسم.</p>
@@ -1480,7 +1114,7 @@ function SponsorshipQ22026() {
             {stats.map((stat, idx) => (
               <div className={'sp-stat reveal d' + (idx + 1)} key={stat.value}>
                 <div className="sp-stat-value">
-                  {hasCinematicMotion ? <CountUpText value={stat.value} as="strong" /> : <strong>{stat.value}</strong>}
+                  <strong>{stat.value}</strong>
                   {stat.badge && <em className="sp-stat-badge">{stat.badge}</em>}
                 </div>
                 <span>{stat.label}</span>
@@ -1547,75 +1181,37 @@ function SponsorshipQ22026() {
             <h2>أين يظهر شعارك؟</h2>
             <p>في ثلاثة أماكن دائمة أمام كل متابع للسلسلة: التغريدة الافتتاحية المثبتة، والبنر الأساسي للمكالمة، وأسفل كل مكالمة منشورة.</p>
           </div>
-          {hasCinematicMotion ? (
-            <div className="sp-placement-journey reveal d2">
-              <div className="sp-journey-path" aria-hidden="true">
-                <span></span>
-                <i></i>
-              </div>
-              <div className="sp-journey-stage" aria-hidden="true">
-                <div className="sp-journey-screen">
-                  <div className="sp-journey-brand">
-                    <BrandMark size={22} />
-                    <span>الصقري | Alsagri</span>
-                  </div>
-                  <strong>مكالمة المستثمرين - شركة المثال</strong>
-                  <p>ملخص مكالمة النتائج يظهر ضمن السلسلة أمام جمهور مالي نوعي.</p>
-                  <div className="sp-journey-sponsor">SPONSOR LOGO</div>
-                </div>
-              </div>
-              <div className="sp-journey-steps">
-                {placements.map((item, idx) => (
-                  <article className={'sp-journey-step sp-journey-step-' + item.code.toLowerCase()} key={item.code}>
-                    <div className="sp-journey-code">{item.code}</div>
-                    <h3>{item.title}</h3>
-                    <p>{item.text}</p>
-                    {item.image && (
-                      <figure className="sp-journey-thumb">
-                        <img
-                          src={item.image}
-                          alt={item.alt}
-                          loading="lazy"
-                          decoding="async" />
-                      </figure>
-                    )}
-                  </article>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <div className="sp-placement-grid">
-              {placements.map((item, idx) => (
-                <article className={'sp-placement reveal d' + (idx + 1) + (item.wide ? ' is-wide' : '')} key={item.code}>
-                  <div className="sp-placement-code">{item.code}</div>
-                  {item.image ? (
-                    <figure className="sp-placement-example-image">
-                      <span>مثال</span>
-                      <img
-                        src={item.image}
-                        alt={item.alt}
-                        loading="lazy"
-                        decoding="async" />
-                    </figure>
-                  ) : (
-                    <div className="sp-placement-mock" aria-hidden="true">
-                      <div className="sp-placement-brand">
-                        <BrandMark size={22} />
-                        <span>الصقري | Alsagri</span>
-                      </div>
-                      <div className="sp-placement-content">
-                        <strong>مكالمة المستثمرين - شركة المثال</strong>
-                        <span></span><span></span><span></span>
-                      </div>
-                      <div className="sp-placement-logo">SPONSOR LOGO</div>
+          <div className="sp-placement-grid">
+            {placements.map((item, idx) => (
+              <article className={'sp-placement reveal d' + (idx + 1) + (item.wide ? ' is-wide' : '')} key={item.code}>
+                <div className="sp-placement-code">{item.code}</div>
+                {item.image ? (
+                  <figure className="sp-placement-example-image">
+                    <span>مثال</span>
+                    <img
+                      src={item.image}
+                      alt={item.alt}
+                      loading="lazy"
+                      decoding="async" />
+                  </figure>
+                ) : (
+                  <div className="sp-placement-mock" aria-hidden="true">
+                    <div className="sp-placement-brand">
+                      <BrandMark size={22} />
+                      <span>الصقري | Alsagri</span>
                     </div>
-                  )}
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </article>
-              ))}
-            </div>
-          )}
+                    <div className="sp-placement-content">
+                      <strong>مكالمة المستثمرين - شركة المثال</strong>
+                      <span></span><span></span><span></span>
+                    </div>
+                    <div className="sp-placement-logo">SPONSOR LOGO</div>
+                  </div>
+                )}
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

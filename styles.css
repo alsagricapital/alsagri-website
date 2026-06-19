@@ -6641,34 +6641,105 @@ body[data-page="sponsorship"] .sp-package.in:hover {
 }
 
 /* ── Q2 sponsorship · MOTION variant (sponsorship-q2-2026-motion.html) ──
-   The static override above is scoped to data-page="sponsorship", so the
-   motion page keeps ALL the original keyframe animations alive. These rules
-   add an extra interactive layer on top of that: a stronger card hover lift,
-   analytics-card hover, button press feedback, and a hero scroll parallax
-   driven by --sp-parallax (set in JS; stays 0 under reduced-motion). */
+   Bold, page-scoped motion. The static override above targets
+   data-page="sponsorship", so this page keeps every original keyframe
+   animation and layers on a dramatic scroll-reveal, an animated hero backdrop
+   and gradient title, a deeper hero parallax (JS sets --sp-parallax), and a
+   glowing hover lift. The KPI numbers count up via an inline script in the
+   page. Everything here is disabled under reduced-motion (block just below). */
+@keyframes spmHeroGradient { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+@keyframes spmTitleSheen { from { background-position: 200% center; } to { background-position: -200% center; } }
+@keyframes spmKickerBar { 0%, 100% { transform: scaleX(1); opacity: .8; } 50% { transform: scaleX(2.1); opacity: 1; } }
+@keyframes spmPop { 0% { transform: scale(1); } 40% { transform: scale(1.14); } 100% { transform: scale(1); } }
+
+/* dramatic scroll reveal — replaces the calm base .reveal on this page only */
+body[data-page="sponsorship-motion"] .reveal {
+  opacity: 0;
+  transform: translateY(46px) scale(.965);
+  filter: blur(6px);
+  transition: opacity .9s cubic-bezier(.16, .84, .3, 1), transform .9s cubic-bezier(.16, .84, .3, 1), filter .9s ease;
+}
+body[data-page="sponsorship-motion"] .reveal.in {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+/* animated hero backdrop + deeper parallax */
+body[data-page="sponsorship-motion"] .sponsorship-hero {
+  background-size: 240% 240%;
+  animation: spmHeroGradient 16s ease-in-out infinite alternate;
+}
+body[data-page="sponsorship-motion"] .sp-hero-chart {
+  will-change: transform;
+  transform: translate3d(0, calc(var(--sp-parallax, 0) * 0.32px), 0);
+}
+
+/* gold sheen sweeping across the hero title */
+body[data-page="sponsorship-motion"] .sp-hero-copy h1 {
+  background: linear-gradient(100deg, var(--navy) 32%, var(--sp-gold) 50%, var(--navy) 68%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: spmTitleSheen 7s linear infinite;
+}
+
+/* pulsing accent bar on kicker + section labels */
+body[data-page="sponsorship-motion"] .sp-kicker::before,
+body[data-page="sponsorship-motion"] .sp-section-head > span::before {
+  transform-origin: right center;
+  animation: spmKickerBar 3s ease-in-out infinite;
+}
+
+/* finished count-up gets a quick pop (class added by the page script) */
+body[data-page="sponsorship-motion"] .sp-stat-value strong.spm-pop {
+  display: inline-block;
+  animation: spmPop .5s ease;
+}
+
+/* glowing, lifting hover */
 body[data-page="sponsorship-motion"] .sp-product-card.in:hover,
 body[data-page="sponsorship-motion"] .sp-stat.in:hover,
 body[data-page="sponsorship-motion"] .sp-placement.in:hover,
 body[data-page="sponsorship-motion"] .sp-package.in:hover {
-  transform: translateY(-8px);
-  border-color: color-mix(in srgb, var(--sp-gold) 55%, var(--line));
-  box-shadow: 0 36px 72px -38px rgba(10, 22, 40, .55);
+  transform: translateY(-12px) scale(1.02);
+  border-color: color-mix(in srgb, var(--sp-gold) 70%, var(--line));
+  box-shadow: 0 44px 84px -34px rgba(10, 22, 40, .6), 0 0 0 1px color-mix(in srgb, var(--sp-gold) 32%, transparent);
 }
 body[data-page="sponsorship-motion"] .sp-an-card {
-  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  transition: transform .25s cubic-bezier(.2, .8, .2, 1), border-color .25s ease, box-shadow .25s ease;
 }
 body[data-page="sponsorship-motion"] .sp-an-card:hover {
-  transform: translateY(-6px);
-  border-color: color-mix(in srgb, var(--sp-gold) 52%, var(--line));
-  box-shadow: 0 26px 48px -26px rgba(10, 22, 40, .5);
+  transform: translateY(-8px) scale(1.04);
+  border-color: color-mix(in srgb, var(--sp-gold) 62%, var(--line));
+  box-shadow: 0 30px 54px -24px rgba(10, 22, 40, .55);
 }
 body[data-page="sponsorship-motion"] .sponsorship-hero .btn:active,
 body[data-page="sponsorship-motion"] .sp-contact-actions a:active {
   transform: translateY(2px) scale(.985);
 }
-body[data-page="sponsorship-motion"] .sp-hero-chart {
-  will-change: transform;
-  transform: translate3d(0, calc(var(--sp-parallax, 0) * 0.22px), 0);
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-page="sponsorship-motion"] .sponsorship-hero,
+  body[data-page="sponsorship-motion"] .sp-hero-copy h1,
+  body[data-page="sponsorship-motion"] .sp-kicker::before,
+  body[data-page="sponsorship-motion"] .sp-section-head > span::before,
+  body[data-page="sponsorship-motion"] .sp-stat-value strong.spm-pop {
+    animation: none !important;
+  }
+  body[data-page="sponsorship-motion"] .sp-hero-copy h1 {
+    background: none;
+    -webkit-text-fill-color: var(--navy);
+  }
+  body[data-page="sponsorship-motion"] .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  body[data-page="sponsorship-motion"] .sp-hero-chart {
+    transform: none !important;
+  }
 }
 
 @media (max-width: 1100px) {

@@ -71,6 +71,7 @@ function App() {
     newsletter: Newsletter,
     contact:  Contact,
     sponsorship: SponsorshipQ22026,
+    'sponsorship-motion': SponsorshipQ22026,
     'service-detail': ServiceDetail,
     'tool-position-switch': window.ToolPositionSwitch,
     'tool-compound-return': window.ToolCompoundReturn,

@@ -6640,6 +6640,37 @@ body[data-page="sponsorship"] .sp-package.in:hover {
   transform: none;
 }
 
+/* ── Q2 sponsorship · MOTION variant (sponsorship-q2-2026-motion.html) ──
+   The static override above is scoped to data-page="sponsorship", so the
+   motion page keeps ALL the original keyframe animations alive. These rules
+   add an extra interactive layer on top of that: a stronger card hover lift,
+   analytics-card hover, button press feedback, and a hero scroll parallax
+   driven by --sp-parallax (set in JS; stays 0 under reduced-motion). */
+body[data-page="sponsorship-motion"] .sp-product-card.in:hover,
+body[data-page="sponsorship-motion"] .sp-stat.in:hover,
+body[data-page="sponsorship-motion"] .sp-placement.in:hover,
+body[data-page="sponsorship-motion"] .sp-package.in:hover {
+  transform: translateY(-8px);
+  border-color: color-mix(in srgb, var(--sp-gold) 55%, var(--line));
+  box-shadow: 0 36px 72px -38px rgba(10, 22, 40, .55);
+}
+body[data-page="sponsorship-motion"] .sp-an-card {
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+body[data-page="sponsorship-motion"] .sp-an-card:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--sp-gold) 52%, var(--line));
+  box-shadow: 0 26px 48px -26px rgba(10, 22, 40, .5);
+}
+body[data-page="sponsorship-motion"] .sponsorship-hero .btn:active,
+body[data-page="sponsorship-motion"] .sp-contact-actions a:active {
+  transform: translateY(2px) scale(.985);
+}
+body[data-page="sponsorship-motion"] .sp-hero-chart {
+  will-change: transform;
+  transform: translate3d(0, calc(var(--sp-parallax, 0) * 0.22px), 0);
+}
+
 @media (max-width: 1100px) {
   .sp-hero-grid,
   .sp-proof-grid,

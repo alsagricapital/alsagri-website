@@ -917,6 +917,29 @@ function Disclaimer() {
 
 /* ── SPONSORSHIP Q2 2026 page ─────────────────────────────────── */
 function SponsorshipQ22026() {
+  // Hero parallax — motion variant only (sponsorship-q2-2026-motion.html). Writes
+  // --sp-parallax (px) on the hero; the basic page is untouched. Skipped under
+  // reduced-motion, rAF-throttled, cleaned up on unmount.
+  React.useEffect(() => {
+    if (document.body.dataset.page !== 'sponsorship-motion') return undefined;
+    const hero = document.querySelector('.sponsorship-hero');
+    if (!hero || !window.matchMedia) return undefined;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const offset = Math.max(0, -hero.getBoundingClientRect().top);
+      hero.style.setProperty('--sp-parallax', String(Math.min(offset, 600)));
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
   const stats = [
     { value: '~13.2M', label: 'مرات الظهور', note: 'Impressions' },
     { value: '~51K', label: 'متابع', note: 'Followers', badge: '80% متابع نشط' },

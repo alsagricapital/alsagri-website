@@ -6730,6 +6730,173 @@ body[data-page="sponsorship-motion"] .sp-contact-actions a:active {
   transform: translateY(2px) scale(.985);
 }
 
+/* ════════════════ MOTION page · cinematic dark theme ════════════════
+   Re-themes the shared markup to a premium dark canvas by remapping the
+   design tokens (the site already ships dark-mode values) and adding glass
+   cards, gold glows and gradient type. Scoped entirely to the motion page. */
+body[data-page="sponsorship-motion"] {
+  --ink: #EEF1F7;
+  --ink-soft: #AEB7C9;
+  --ink-mute: #828DA3;
+  --navy: #EEF1F7;            /* navy was dark text; flip to light for the dark canvas */
+  --line: rgba(255, 255, 255, .10);
+  --line-2: rgba(255, 255, 255, .18);
+  --bg: #070D1A;
+  --surface: rgba(255, 255, 255, .05);
+  --surface-2: rgba(255, 255, 255, .065);
+  --paper: #EEF1F7;
+  --sp-gold: #D9B45A;
+  --sp-gold-2: #F0CE7B;
+  color: var(--ink);
+  background-color: #070D1A;
+}
+
+/* page chrome — translucent dark nav + deep footer */
+body[data-page="sponsorship-motion"] .nav {
+  background: rgba(8, 14, 26, .72);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, .07);
+}
+body[data-page="sponsorship-motion"] .foot {
+  background: #05090F;
+  border-top: 1px solid rgba(255, 255, 255, .07);
+}
+
+/* section backdrops — deep, with faint coloured glows */
+body[data-page="sponsorship-motion"] .sp-section {
+  background:
+    radial-gradient(1200px 520px at 100% 0%, rgba(29, 90, 158, .10), transparent 60%),
+    #070D1A;
+}
+body[data-page="sponsorship-motion"] .sp-section:nth-of-type(even) {
+  background:
+    radial-gradient(1000px 480px at 0% 100%, rgba(217, 180, 90, .07), transparent 60%),
+    #050A14;
+}
+
+/* HERO — cinematic depth + gold/blue glows */
+body[data-page="sponsorship-motion"] .sponsorship-hero {
+  color: var(--ink);
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+  background:
+    radial-gradient(1100px 620px at 82% -12%, rgba(217, 180, 90, .20), transparent 58%),
+    radial-gradient(950px 640px at 2% 116%, rgba(29, 90, 158, .30), transparent 58%),
+    linear-gradient(180deg, #0B1730, #070D1A 62%, #05090F);
+  background-size: 170% 170%, 170% 170%, 100% 100%;
+}
+body[data-page="sponsorship-motion"] .sponsorship-hero::before {
+  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, .05) 1px, transparent 0);
+  opacity: .7;
+}
+
+/* glass surfaces for every card */
+body[data-page="sponsorship-motion"] .sp-product-card,
+body[data-page="sponsorship-motion"] .sp-stat,
+body[data-page="sponsorship-motion"] .sp-placement,
+body[data-page="sponsorship-motion"] .sp-package,
+body[data-page="sponsorship-motion"] .sp-an-card,
+body[data-page="sponsorship-motion"] .sp-analytics,
+body[data-page="sponsorship-motion"] .sp-flow,
+body[data-page="sponsorship-motion"] .sp-proof-card {
+  background: linear-gradient(160deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .022));
+  border: 1px solid rgba(255, 255, 255, .10);
+  -webkit-backdrop-filter: blur(9px);
+  backdrop-filter: blur(9px);
+  box-shadow: 0 30px 60px -42px rgba(0, 0, 0, .75), inset 0 1px 0 rgba(255, 255, 255, .06);
+}
+
+/* highlight (first) KPI → gold glass */
+body[data-page="sponsorship-motion"] .sp-stat:first-child {
+  background: linear-gradient(160deg, rgba(217, 180, 90, .24), rgba(217, 180, 90, .05));
+  border-color: rgba(217, 180, 90, .5);
+  color: var(--ink);
+}
+body[data-page="sponsorship-motion"] .sp-stat:first-child small {
+  color: rgba(255, 255, 255, .62);
+}
+
+/* glowing gold KPI numbers */
+body[data-page="sponsorship-motion"] .sp-stat-value strong {
+  color: var(--sp-gold-2);
+  text-shadow: 0 0 26px rgba(217, 180, 90, .45);
+}
+
+/* gradient section + product headings */
+body[data-page="sponsorship-motion"] .sp-section-head h2 {
+  background: linear-gradient(180deg, #FFFFFF, #BFC8DA);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* premium gold primary CTA, refined ghost */
+body[data-page="sponsorship-motion"] .sponsorship-hero .btn-primary {
+  background: linear-gradient(135deg, #F0CE7B, #C99B3F);
+  color: #1A1206;
+  border: 0;
+  box-shadow: 0 20px 44px -20px rgba(217, 180, 90, .65);
+}
+body[data-page="sponsorship-motion"] .sponsorship-hero .btn-ghost {
+  border-color: rgba(255, 255, 255, .24);
+  color: var(--ink);
+}
+body[data-page="sponsorship-motion"] .sponsorship-hero .btn-ghost:hover {
+  border-color: var(--sp-gold);
+  color: var(--sp-gold-2);
+}
+
+/* featured (Diamond) package — gold glow frame */
+body[data-page="sponsorship-motion"] .sp-package.is-featured {
+  border-color: rgba(217, 180, 90, .5);
+  box-shadow: 0 44px 96px -44px rgba(217, 180, 90, .42), inset 0 1px 0 rgba(255, 255, 255, .08);
+}
+
+/* contact tiles → glass */
+body[data-page="sponsorship-motion"] .sp-contact-actions a {
+  background: linear-gradient(160deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .02));
+  border-color: rgba(255, 255, 255, .12);
+}
+
+/* package tiers: silver/gold shipped as light metallic cards with dark text —
+   relight every text token now that they sit on dark glass */
+body[data-page="sponsorship-motion"] .sp-package.sp-tier-silver,
+body[data-page="sponsorship-motion"] .sp-package.sp-tier-gold {
+  color: var(--ink);
+}
+body[data-page="sponsorship-motion"] .sp-package.sp-tier-silver > p,
+body[data-page="sponsorship-motion"] .sp-package.sp-tier-gold > p,
+body[data-page="sponsorship-motion"] .sp-package.sp-tier-silver li,
+body[data-page="sponsorship-motion"] .sp-package.sp-tier-gold li,
+body[data-page="sponsorship-motion"] .sp-package.sp-tier-silver .sp-package-price small,
+body[data-page="sponsorship-motion"] .sp-package.sp-tier-gold .sp-package-price small {
+  color: var(--ink-soft);
+}
+body[data-page="sponsorship-motion"] .sp-package.sp-tier-silver .sp-package-price strong,
+body[data-page="sponsorship-motion"] .sp-package.sp-tier-gold .sp-package-price strong {
+  color: var(--ink);
+}
+body[data-page="sponsorship-motion"] .sp-package.sp-tier-silver .sp-package-tier { color: #B9C2D4; }
+body[data-page="sponsorship-motion"] .sp-package.sp-tier-gold .sp-package-tier { color: var(--sp-gold-2); }
+body[data-page="sponsorship-motion"] .sp-package.sp-tier-gold li .sp-feat-check {
+  border-inline-end-color: var(--sp-gold);
+  border-bottom-color: var(--sp-gold);
+}
+
+/* final CTA — was a light panel; make it a dark glass band */
+body[data-page="sponsorship-motion"] .sp-final-section {
+  background:
+    radial-gradient(900px 520px at 80% 0%, rgba(217, 180, 90, .14), transparent 60%),
+    linear-gradient(180deg, #070D1A, #05090F);
+  border-top: 1px solid rgba(255, 255, 255, .08);
+}
+body[data-page="sponsorship-motion"] .sp-final-grid {
+  background: linear-gradient(160deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .02));
+  border: 1px solid rgba(255, 255, 255, .10);
+  -webkit-backdrop-filter: blur(9px);
+  backdrop-filter: blur(9px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   body[data-page="sponsorship-motion"] .sponsorship-hero,
   body[data-page="sponsorship-motion"] .sp-hero-copy h1,

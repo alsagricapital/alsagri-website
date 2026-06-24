@@ -1050,6 +1050,7 @@ function SponsorshipQ22026() {
   return (
     <React.Fragment>
       <section className="sponsorship-hero">
+        <div className="sp-sponsorship-red-ribbon" aria-hidden="true"></div>
         <div className="sp-hero-chart" aria-hidden="true">
           <ChartLineBackground variant="sponsorship" />
         </div>
@@ -1084,6 +1085,12 @@ function SponsorshipQ22026() {
                   loading="eager"
                   decoding="async" />
               </figure>
+              {document.body.dataset.page === 'sponsorship' && (
+                <div className="sp-sponsor-agreed-seal" dir="rtl" aria-label="تم الاتفاق مع راعي للحساب">
+                  <span>تم الاتفاق</span>
+                  <strong>مع راعي للحساب</strong>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -5405,6 +5405,52 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   border-radius: 6px;
   background: #fff;
 }
+.sp-sponsor-agreed-seal {
+  position: absolute;
+  z-index: 4;
+  inset-inline-end: -36px;
+  bottom: -24px;
+  width: 238px;
+  aspect-ratio: 1;
+  display: grid;
+  place-content: center;
+  gap: 7px;
+  padding: 28px;
+  color: #fff8ee;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(76, 7, 12, .72);
+  background:
+    radial-gradient(circle at 34% 27%, rgba(255, 193, 171, .42) 0 2%, transparent 16%),
+    radial-gradient(circle at 68% 74%, rgba(93, 2, 13, .34) 0 8%, transparent 29%),
+    radial-gradient(circle at 48% 44%, #db2b35 0 47%, #b11120 70%, #750916 100%);
+  clip-path: polygon(50% 0%, 57% 5%, 66% 2%, 72% 9%, 82% 9%, 86% 18%, 96% 23%, 94% 33%, 100% 42%, 95% 50%, 99% 59%, 91% 66%, 91% 77%, 81% 80%, 75% 90%, 65% 88%, 57% 98%, 49% 92%, 40% 98%, 33% 89%, 22% 91%, 18% 81%, 8% 76%, 10% 66%, 1% 58%, 6% 49%, 1% 40%, 9% 33%, 7% 22%, 18% 18%, 22% 8%, 33% 10%, 41% 2%);
+  filter: drop-shadow(0 18px 16px rgba(64, 8, 13, .32));
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+.sp-sponsor-agreed-seal::before {
+  content: "";
+  position: absolute;
+  inset: 17px;
+  border: 2px solid rgba(255, 244, 224, .68);
+  border-radius: 48%;
+  box-shadow: inset 0 0 0 2px rgba(113, 7, 18, .34);
+}
+.sp-sponsor-agreed-seal span,
+.sp-sponsor-agreed-seal strong {
+  position: relative;
+  z-index: 1;
+  display: block;
+  line-height: 1.25;
+}
+.sp-sponsor-agreed-seal span {
+  font-size: 25px;
+  font-weight: 800;
+}
+.sp-sponsor-agreed-seal strong {
+  font-size: 18px;
+  font-weight: 700;
+}
 .sp-profile-mini {
   display: grid;
   overflow: hidden;
@@ -6956,6 +7002,18 @@ body[data-page="sponsorship-motion"] .sp-final-grid {
   .sp-hero-visual::before,
   .sp-hero-visual::after {
     display: none;
+  }
+  .sp-sponsor-agreed-seal {
+    inset-inline-end: -8px;
+    bottom: -18px;
+    width: 188px;
+    padding: 24px;
+  }
+  .sp-sponsor-agreed-seal span {
+    font-size: 21px;
+  }
+  .sp-sponsor-agreed-seal strong {
+    font-size: 15px;
   }
   .sp-hero-grid {
     gap: 34px;

@@ -1084,6 +1084,12 @@ function SponsorshipQ22026() {
                   loading="eager"
                   decoding="async" />
               </figure>
+              {document.body.dataset.page === 'sponsorship' && (
+                <div className="sp-sponsor-agreed-seal" dir="rtl" aria-label="تم الاتفاق مع راعي للحساب">
+                  <span>تم الاتفاق</span>
+                  <strong>مع راعي للحساب</strong>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -1050,6 +1050,7 @@ function SponsorshipQ22026() {
   return (
     <React.Fragment>
       <section className="sponsorship-hero">
+        <div className="sp-sponsorship-red-ribbon" aria-hidden="true"></div>
         <div className="sp-hero-chart" aria-hidden="true">
           <ChartLineBackground variant="sponsorship" />
         </div>

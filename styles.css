@@ -5098,20 +5098,6 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   --sp-blue: #1D5A9E;
   --sp-deep: #0A1628;
 }
-.sp-sponsorship-red-ribbon {
-  position: absolute;
-  z-index: 2;
-  top: 33%;
-  left: -20vw;
-  width: 145vw;
-  height: clamp(30px, 3.4vw, 56px);
-  background: linear-gradient(90deg, #890b17 0%, #d51d2d 36%, #f04a56 52%, #b90d20 100%);
-  box-shadow: 0 9px 18px rgba(125, 8, 20, .2);
-  transform: rotate(-20deg);
-  transform-origin: center;
-  pointer-events: none;
-}
-
 .sponsorship-hero {
   position: relative;
   overflow: hidden;
@@ -5255,6 +5241,7 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
 }
 .sp-hero-grid {
   position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(360px, .95fr);
   gap: 56px;
@@ -5329,9 +5316,6 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   display: grid;
   gap: 14px;
   align-self: stretch;
-}
-body[data-page="sponsorship"] .sp-hero-visual.reveal {
-  transform: none;
 }
 .sp-hero-visual::before,
 .sp-hero-visual::after {

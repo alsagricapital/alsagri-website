@@ -5353,6 +5353,26 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   color: var(--navy);
   font-weight: 700;
 }
+.sp-usa-gold-note {
+  margin-top: 20px;
+  max-width: max-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 18px 12px;
+  color: #9a6817;
+  font-size: 18px;
+  line-height: 1.55;
+  font-weight: 800;
+  border: 1px solid rgba(190, 135, 42, .32);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,249,235,.76));
+  box-shadow:
+    0 10px 26px rgba(154, 104, 23, .1),
+    inset 0 1px 0 rgba(255,255,255,.9);
+  text-shadow: 0 1px 0 rgba(255,255,255,.72);
+}
 .sp-hero-actions {
   margin-top: 34px;
   display: flex;
@@ -6491,6 +6511,25 @@ body[data-page="sponsorshipusa-en"] .sp-saudi-booked-card p {
 .sp-package.sp-tier-gold li .sp-feat-check {
   border-inline-end-color: #6E5519;
   border-bottom-color: #6E5519;
+}
+.sp-section-gold-line {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 18px;
+  padding: 11px 18px 12px;
+  color: #9a6817;
+  font-size: 18px;
+  line-height: 1.55;
+  font-weight: 800;
+  border: 1px solid rgba(190, 135, 42, .32);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,249,235,.76));
+  box-shadow:
+    0 10px 26px rgba(154, 104, 23, .1),
+    inset 0 1px 0 rgba(255,255,255,.9);
+  text-shadow: 0 1px 0 rgba(255,255,255,.72);
 }
 .sp-package h3 {
   margin-top: 16px;

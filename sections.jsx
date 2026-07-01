@@ -943,7 +943,7 @@ function SponsorshipQ22026() {
     exampleImage: 'assets/sponsorship/threads-example-tweet.png?v=threads1',
   } : {
     kicker: 'SPONSORSHIP 2026 · Q2 EARNINGS CALLS SERIES',
-    title: isEnglishUsa ? 'Q2 2026 Earnings Calls Series Sponsorship' : 'رعاية سلسلة مكالمات النتائج للربع الثاني 2026',
+    title: isEnglishUsa ? 'Q2 2026 Earnings Calls Series Sponsorship' : 'رعاية سلسلة مكالمات نتائج الربع الثاني 2026',
     subtitle: isUsaSponsorship ? (
       <span className="sp-hero-market-subtitle">
         {isEnglishUsa ? 'For U.S. market companies' : 'لشركات السوق الأمريكي'}
@@ -1146,16 +1146,23 @@ function SponsorshipQ22026() {
   ];
   const packages = isUsaSponsorship
     ? basePackages
-      .filter((pkg) => pkg.tier !== 'SILVER')
       .map((pkg) => ({
         ...pkg,
-        priceAmount: pkg.tier === 'GOLD' ? '40,000' : pkg.tier === 'DIAMOND' ? '60,000' : pkg.priceAmount,
-        features: pkg.features
-          .filter((feature) => pkg.tier !== 'GOLD' || !['إعلان للشركة الراعية في أي وقت حسب رغبتهم خلال الفترة', 'Sponsor ad placement at any time during the period'].includes(feature.text))
-          .map((feature) => ({
-            ...feature,
-            text: feature.text.replace('+25 مكالمة', '+35 مكالمة').replace('+25 calls', '+35 calls'),
-          })),
+        period: pkg.tier === 'SILVER'
+          ? (isEnglishUsa ? 'Q2 2026 earnings calls sponsorship' : 'رعاية مكالمات نتائج الربع الثاني 2026')
+          : pkg.period,
+        priceAmount: pkg.tier === 'SILVER' ? '20,000' : pkg.tier === 'GOLD' ? '40,000' : pkg.tier === 'DIAMOND' ? '60,000' : pkg.priceAmount,
+        features: pkg.tier === 'SILVER'
+          ? [
+            { text: isEnglishUsa ? 'Sponsor mention and logo appear in 10 calls only' : 'إشارة شكر وشعار الشركة الراعية يظهران في عدد 10 مكالمات فقط', code: 'B' },
+            { text: isEnglishUsa ? 'Sponsor logo added to the main banner for the 10 calls' : 'إضافة شعار الشركة الراعية في البنر الأساسي للعشر مكالمات', code: 'C' },
+          ]
+          : pkg.features
+            .filter((feature) => pkg.tier !== 'GOLD' || !['إعلان للشركة الراعية في أي وقت حسب رغبتهم خلال الفترة', 'Sponsor ad placement at any time during the period'].includes(feature.text))
+            .map((feature) => ({
+              ...feature,
+              text: feature.text.replace('+25 مكالمة', '+35 مكالمة').replace('+25 calls', '+35 calls'),
+            })),
       }))
     : basePackages;
   const hiddenPreviousExamples = ['لوسيد', 'الأمار', 'المراعي'];
@@ -1184,6 +1191,11 @@ function SponsorshipQ22026() {
               <p>
                 {heroContent.description}
               </p>
+              {isUsaSponsorship && !isEnglishUsa && (
+                <div className="sp-usa-gold-note">
+                  الحساب الوحيد بـ X اللي يغطي مكالمات نتائج السوق الأمريكي باللغة العربية
+                </div>
+              )}
               <div className="sp-hero-actions">
                 <a className="btn btn-primary" href="https://wa.me/966550734332" target="_blank" rel="noreferrer">
                   {isEnglishUsa ? 'Reserve Sponsorship' : 'احجز الرعاية'}
@@ -1267,6 +1279,11 @@ function SponsorshipQ22026() {
             <span>WHY SPONSOR · 02</span>
             <h2>{isEnglishUsa ? 'Why sponsor this series?' : 'لماذا ترعى هذه السلسلة؟'}</h2>
             <p>{isEnglishUsa ? 'Real performance from the previous season, repeated visibility inside serious financial content, and an audience that cares about markets and listed companies. Become the brand investors associate with earnings season.' : 'أداء حقيقي من الموسم السابق، وحضور متكرر داخل محتوى مالي جاد يتابعه جمهور مهتم بالسوق والشركات المدرجة. كن العلامة التي يربطها المستثمر بكل إعلان نتائج، ورسّخ حضورك في أكثر مواسم السوق متابعةً.'}</p>
+            {isUsaSponsorship && !isEnglishUsa && (
+              <strong className="sp-section-gold-line">
+                الحساب الوحيد الذي ينشر مكالمات نتائج الشركات الأمريكية باللغة العربية
+              </strong>
+            )}
           </div>
           <div className="sp-stats-grid">
             {stats.map((stat, idx) => (

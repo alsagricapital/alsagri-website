@@ -257,20 +257,20 @@ p { margin: 0; }
     max-height: 44px;
   }
 }
-body[data-page="sponsorship"] .nav-links,
-body[data-page="sponsorship"] .nav-burger {
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .nav-links,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .nav-burger {
   display: none;
 }
-body[data-page="sponsorship"] .nav-inner {
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .nav-inner {
   justify-content: space-between;
 }
 @media (max-width: 860px) {
-  body[data-page="sponsorship"] .nav-cta {
+  body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .nav-cta {
     display: inline-flex;
     padding: 9px 13px;
     font-size: 12px;
   }
-  body[data-page="sponsorship"] .nav-cta .dot {
+  body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .nav-cta .dot {
     display: none;
   }
 }
@@ -5284,6 +5284,23 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   color: var(--navy);
   text-wrap: balance;
 }
+.sp-hero-market-subtitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  color: #c81e1e;
+  font-size: 24px;
+  line-height: 1.5;
+  font-weight: 700;
+}
+.sp-hero-market-subtitle img {
+  width: 36px;
+  height: 19px;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(10, 26, 51, 0.12);
+  object-fit: cover;
+}
 .sp-hero-copy p {
   margin-top: 22px;
   max-width: 680px;
@@ -5589,6 +5606,9 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   letter-spacing: 0;
   color: var(--ink);
   text-wrap: balance;
+}
+.sp-examples-title {
+  color: #148a4a;
 }
 .sp-section-head p {
   margin-top: 14px;
@@ -6634,54 +6654,54 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   font-size: 14px;
 }
 
-body[data-page="sponsorship"] .sponsorship-hero::after,
-body[data-page="sponsorship"] .sp-hero-visual::before,
-body[data-page="sponsorship"] .sp-hero-visual::after,
-body[data-page="sponsorship"] .sp-hero-example-card::before,
-body[data-page="sponsorship"] .sp-product-card::before,
-body[data-page="sponsorship"] .sp-product-card::after,
-body[data-page="sponsorship"] .sp-product-metric::after,
-body[data-page="sponsorship"] .sp-flow::before,
-body[data-page="sponsorship"] .sp-flow::after,
-body[data-page="sponsorship"] .sp-placement::before,
-body[data-page="sponsorship"] .sp-placement::after,
-body[data-page="sponsorship"] .sp-placement-code::after,
-body[data-page="sponsorship"] .sp-placement-mock::after,
-body[data-page="sponsorship"] .sp-placement-example-image::after,
-body[data-page="sponsorship"] .sp-package::before,
-body[data-page="sponsorship"] .sp-package::after,
-body[data-page="sponsorship"] .sp-final-grid::before,
-body[data-page="sponsorship"] .sp-final-grid::after {
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sponsorship-hero::after,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-hero-visual::before,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-hero-visual::after,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-hero-example-card::before,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-product-card::before,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-product-card::after,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-product-metric::after,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-flow::before,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-flow::after,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-placement::before,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-placement::after,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-placement-code::after,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-placement-mock::after,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-placement-example-image::after,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-package::before,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-package::after,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-final-grid::before,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-final-grid::after {
   content: none;
   animation: none;
 }
-body[data-page="sponsorship"] .sponsorship-hero::before,
-body[data-page="sponsorship"] .sp-hero-example-card,
-body[data-page="sponsorship"] .sp-flow.in .sp-flow-item span,
-body[data-page="sponsorship"] .sp-placement.in .sp-placement-code,
-body[data-page="sponsorship"] .sp-placement.in .sp-placement-logo,
-body[data-page="sponsorship"] .sp-package.in li .sp-feat-check,
-body[data-page="sponsorship"] .sp-package.in .sp-package-price {
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sponsorship-hero::before,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-hero-example-card,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-flow.in .sp-flow-item span,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-placement.in .sp-placement-code,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-placement.in .sp-placement-logo,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-package.in li .sp-feat-check,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-package.in .sp-package-price {
   animation: none;
 }
-body[data-page="sponsorship"] .sponsorship-hero .trend-line-main,
-body[data-page="sponsorship"] .sponsorship-hero .trend-line-gloss {
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sponsorship-hero .trend-line-main,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sponsorship-hero .trend-line-gloss {
   animation: none;
   stroke-dashoffset: 0;
 }
-body[data-page="sponsorship"] .sponsorship-hero .trend-area {
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sponsorship-hero .trend-area {
   animation: none;
   opacity: 1;
 }
-body[data-page="sponsorship"] .sponsorship-hero .trend-bar,
-body[data-page="sponsorship"] .sponsorship-hero .trend-node {
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sponsorship-hero .trend-bar,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sponsorship-hero .trend-node {
   animation: none;
   transform: none;
 }
-body[data-page="sponsorship"] .sp-product-card.in:hover,
-body[data-page="sponsorship"] .sp-stat.in:hover,
-body[data-page="sponsorship"] .sp-placement.in:hover,
-body[data-page="sponsorship"] .sp-package.in:hover {
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-product-card.in:hover,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-stat.in:hover,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-placement.in:hover,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorship-threads"]) .sp-package.in:hover {
   transform: none;
 }
 

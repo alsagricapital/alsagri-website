@@ -917,6 +917,38 @@ function Disclaimer() {
 
 /* ── SPONSORSHIP Q2 2026 page ─────────────────────────────────── */
 function SponsorshipQ22026() {
+  const isThreadsSponsorship = document.body.dataset.page === 'sponsorship-threads';
+  const isUsaSponsorship = document.body.dataset.page === 'sponsorshipusa';
+  const heroContent = isThreadsSponsorship ? {
+    kicker: 'SPONSORSHIP 2026 · INVESTMENT THREADS SERIES',
+    title: 'رعاية سلسلة تغريدات استثمارية',
+    description: (
+      <React.Fragment>
+        فرصة رعاية كاملة أمام جمهور مالي نوعي لسلسلة متخصصة تلخص وتحلل أبرز الأعمال والنصائح المالية من كبار المستثمرين بطريقة منظمة ومرتبة.
+      </React.Fragment>
+    ),
+    exampleCaption: 'نموذج ظهور الراعي في تغريدة السلسلة المثبتة',
+    exampleAlt: 'مثال توضيحي لسلسلة تغريدات استثمارية مع ظهور شعار الراعي',
+    exampleImage: 'assets/sponsorship/threads-example-tweet.png?v=threads1',
+  } : {
+    kicker: 'SPONSORSHIP 2026 · Q2 EARNINGS CALLS SERIES',
+    title: 'رعاية سلسلة مكالمات النتائج للربع الثاني 2026',
+    subtitle: isUsaSponsorship ? (
+      <span className="sp-hero-market-subtitle">
+        لشركات السوق الأمريكي
+        <img src="assets/sponsorship/us-flag.png" alt="" loading="eager" decoding="async" />
+      </span>
+    ) : null,
+    description: (
+      <React.Fragment>
+        فرصة رعاية كاملة أمام جمهور مالي نوعي لسلسلة متخصصة تلخص وتحلل مكالمات عرض النتائج للشركات المدرجة خلال الفترة من <strong>{isUsaSponsorship ? '1 يوليو - 15 سبتمبر' : '15 يونيو - 15 سبتمبر'}</strong>.
+      </React.Fragment>
+    ),
+    exampleCaption: 'نموذج ظهور الراعي في التغريدة المثبتة',
+    exampleAlt: 'مثال توضيحي لتغريدة مكالمات المستثمرين مع ظهور شعار الراعي',
+    exampleImage: 'assets/sponsorship/q2-2026-example-tweet-enhanced.png?v=q2e',
+  };
+
   // Hero parallax — motion variant only (sponsorship-q2-2026-motion.html). Writes
   // --sp-parallax (px) on the hero; the basic page is untouched. Skipped under
   // reduced-motion, rAF-throttled, cleaned up on unmount.
@@ -969,11 +1001,32 @@ function SponsorshipQ22026() {
   const reasons = [
     { n: '01', title: 'جمهور مالي نوعي', text: 'مستثمرون ومتداولون، لا جمهور عام. كل مشاهدة لها قيمة.' },
     { n: '02', title: 'محتوى دائم ومثبت', text: 'الافتتاحية مثبتة طوال الربع، وحضورك لا ينتهي بانتهاء منشور واحد.' },
-    { n: '03', title: 'ظهور متكرر للشعار', text: 'في الافتتاحية وأسفل كل مكالمة، مع أكثر من 25 ظهور خلال الربع.' },
+    { n: '03', title: 'ظهور متكرر للشعار', text: isUsaSponsorship ? 'في الافتتاحية وأسفل كل مكالمة، مع أكثر من 35 ظهور خلال الربع.' : 'في الافتتاحية وأسفل كل مكالمة، مع أكثر من 25 ظهور خلال الربع.' },
     { n: '04', title: 'ظهور في محتوى احترافي', text: 'يتابع المحتوى رؤساء تنفيذيون لشركات مدرجة وكبار الإداريين والتنفيذيين، بناءً على الأرقام والإحصائيات لدينا.' },
   ];
 
-  const placements = [
+  const placements = isThreadsSponsorship ? [
+    {
+      code: 'A',
+      title: 'غلاف التغريدة الافتتاحية المثبتة',
+      text: 'تغريدة تعريفية تجمع الثريدات والتقارير العامة، ويظهر فيها شعار الشركة الراعية بوضوح.',
+      image: 'assets/sponsorship/threads-example-tweet.png?v=threads1',
+      alt: 'مثال توضيحي لغلاف تغريدة سلسلة التغريدات الاستثمارية مع ظهور شعار الشركة الراعية',
+    },
+    {
+      code: 'B',
+      title: 'داخل كل ثريد أو تقرير',
+      text: 'إشارة شكر وشعار الشركة الراعية يظهران داخل محتوى الثريد أو التقرير المنشور خلال فترة الرعاية.',
+    },
+    {
+      code: 'C',
+      title: 'شعار الشركة الراعية داخل صورة السلسلة',
+      text: 'مساحة واضحة داخل الصورة المرفقة بالتغريدة مخصصة لعبارة: هنا شعار الشركة الراعية.',
+      image: 'assets/sponsorship/threads-sponsor-banner.png?v=threads1',
+      alt: 'بنر توضيحي لسلسلة تقارير وملخصات استثمارية مع مساحة شعار الشركة الراعية',
+      wide: true,
+    },
+  ] : [
     {
       code: 'A',
       title: 'غلاف التغريدة الافتتاحية المثبتة',
@@ -996,7 +1049,7 @@ function SponsorshipQ22026() {
     },
   ];
 
-  const packages = [
+  const basePackages = [
     {
       tier: 'SILVER',
       title: 'الباقة الفضية',
@@ -1036,6 +1089,20 @@ function SponsorshipQ22026() {
       ],
     },
   ];
+  const packages = isUsaSponsorship
+    ? basePackages
+      .filter((pkg) => pkg.tier !== 'SILVER')
+      .map((pkg) => ({
+        ...pkg,
+        priceAmount: pkg.tier === 'GOLD' ? '40,000' : pkg.tier === 'DIAMOND' ? '60,000' : pkg.priceAmount,
+        features: pkg.features
+          .filter((feature) => pkg.tier !== 'GOLD' || feature.text !== 'إعلان للشركة الراعية في أي وقت حسب رغبتهم خلال الفترة')
+          .map((feature) => ({
+            ...feature,
+            text: feature.text.replace('+25 مكالمة', '+35 مكالمة'),
+          })),
+      }))
+    : basePackages;
   const hiddenPreviousExamples = ['لوسيد', 'الأمار', 'المراعي'];
   const previousExampleViews = {
     'لوبريف': '194K',
@@ -1056,10 +1123,11 @@ function SponsorshipQ22026() {
         <div className="wrap">
           <div className="sp-hero-grid">
             <div className="sp-hero-copy reveal">
-              <div className="sp-kicker">SPONSORSHIP 2026 · Q2 EARNINGS CALLS SERIES</div>
-              <h1>رعاية سلسلة مكالمات النتائج للربع الثاني 2026</h1>
+              <div className="sp-kicker">{heroContent.kicker}</div>
+              <h1>{heroContent.title}</h1>
+              {heroContent.subtitle}
               <p>
-                فرصة رعاية كاملة أمام جمهور مالي نوعي لسلسلة متخصصة تلخص وتحلل مكالمات عرض النتائج للشركات المدرجة خلال الفترة من <strong>15 يونيو - 15 سبتمبر</strong>.
+                {heroContent.description}
               </p>
               <div className="sp-hero-actions">
                 <a className="btn btn-primary" href="https://wa.me/966550734332" target="_blank" rel="noreferrer">
@@ -1076,11 +1144,11 @@ function SponsorshipQ22026() {
               <figure className="sp-hero-example-card">
                 <figcaption>
                   <span>مثال توضيحي</span>
-                  <small>نموذج ظهور الراعي في التغريدة المثبتة</small>
+                  <small>{heroContent.exampleCaption}</small>
                 </figcaption>
                 <img
-                  src="assets/sponsorship/q2-2026-example-tweet-enhanced.png?v=q2e"
-                  alt="مثال توضيحي لتغريدة مكالمات المستثمرين مع ظهور شعار الراعي"
+                  src={heroContent.exampleImage}
+                  alt={heroContent.exampleAlt}
                   loading="eager"
                   decoding="async" />
               </figure>
@@ -1248,7 +1316,9 @@ function SponsorshipQ22026() {
         <div className="wrap">
           <div className="sp-section-head reveal">
             <span>PREVIOUS EXAMPLES · 04</span>
-            <h2>أمثلة سابقة</h2>
+            <h2 className={isUsaSponsorship ? 'sp-examples-title' : undefined}>
+              {isUsaSponsorship ? 'أمثلة سابقة (من مكالمات نتائج السوق السعودي)' : 'أمثلة سابقة'}
+            </h2>
             <p>نماذج من مكالمات نتائج الشركات المنشورة سابقاً في حساب الصقري، بنفس أسلوب السلسلة التي تظهر فيها رعاية العلامة.</p>
           </div>
           <EarningsFeatureBanner />

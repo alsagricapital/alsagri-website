@@ -1138,6 +1138,12 @@ function SponsorshipQ22026() {
                   استعرض الباقات
                 </a>
               </div>
+              {isUsaSponsorship && (
+                <div className="sp-saudi-booked-card" dir="rtl">
+                  <p>أرقام حجزت رعاية سلسلة مكالمات النتائج للربع الثاني 2026 للسوق السعودي</p>
+                  <img src="assets/sponsorship/argaam-logo.png" alt="أرقام" loading="eager" decoding="async" />
+                </div>
+              )}
             </div>
 
             <div className="sp-hero-visual reveal d2" aria-label="معاينة ظهور الراعي">

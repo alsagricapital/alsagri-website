@@ -5326,6 +5326,32 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
 .sponsorship-hero .btn-ghost {
   background: color-mix(in srgb, var(--surface) 70%, transparent);
 }
+.sp-saudi-booked-card {
+  margin-top: 18px;
+  max-width: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px;
+  border: 1px solid rgba(248, 125, 21, .26);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .78);
+  box-shadow: 0 12px 30px rgba(10, 26, 51, .08);
+}
+.sp-saudi-booked-card img {
+  width: 112px;
+  height: auto;
+  flex: 0 0 auto;
+}
+.sp-saudi-booked-card p {
+  margin: 0;
+  color: #f5821f;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  font-weight: 700;
+}
 
 .sp-hero-visual {
   position: relative;
@@ -7051,6 +7077,17 @@ body[data-page="sponsorship-motion"] .sp-final-grid {
   .sp-hero-actions .btn {
     width: 100%;
     justify-content: center;
+  }
+  .sp-saudi-booked-card {
+    align-items: flex-start;
+    padding: 13px 14px;
+  }
+  .sp-saudi-booked-card img {
+    width: 88px;
+  }
+  .sp-saudi-booked-card p {
+    font-size: 14px;
+    line-height: 1.7;
   }
   .sp-sponsor-preview {
     min-height: 300px;

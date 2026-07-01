@@ -1174,9 +1174,9 @@ function SponsorshipQ22026() {
           </div>
           <div className="sp-product-cards">
             <div className="sp-product-card reveal d1">
-              <strong>+25 مكالمة منشورة في الربع</strong>
+              <strong>{isUsaSponsorship ? '+35 مكالمة منشورة في الربع' : '+25 مكالمة منشورة في الربع'}</strong>
               <p>تغطية لأبرز الشركات بعد كل إعلان نتائج خلال الموسم.</p>
-              <span className="sp-product-metric">متوقع أكثر من 2 مليون مشاهدة</span>
+              <span className="sp-product-metric">{isUsaSponsorship ? 'متوقع أكثر من 2.5 مليون مشاهدة' : 'متوقع أكثر من 2 مليون مشاهدة'}</span>
             </div>
             <div className="sp-product-card reveal d2">
               <strong>تغريدة افتتاحية مثبتة 3 أشهر</strong>

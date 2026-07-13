@@ -5287,6 +5287,13 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   gap: 56px;
   align-items: center;
 }
+.sp-hero-grid.is-copy-only {
+  grid-template-columns: minmax(0, 920px);
+  justify-content: center;
+}
+.sp-hero-grid.is-copy-only .sp-hero-copy {
+  width: 100%;
+}
 .sp-hero-copy {
   min-width: 0;
 }
@@ -6500,10 +6507,14 @@ body[data-page="sponsorshipusa-en"] .sp-saudi-booked-card p {
   object-fit: cover;
 }
 .sp-placement-crop.is-opening > img {
-  object-position: center 53%;
+  object-fit: contain;
+  object-position: center;
+  background: #031833;
 }
 .sp-placement-crop.is-banner > img {
-  object-position: center bottom;
+  object-fit: contain;
+  object-position: center;
+  background: #eef5ff;
 }
 .sp-placement-crop.is-inside > img {
   object-position: center 64%;
@@ -6533,9 +6544,7 @@ body[data-page="sponsorshipusa-en"] .sp-saudi-booked-card p {
   font-size: 14px;
 }
 .sp-placement-crop.is-banner figcaption {
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
+  display: none;
 }
 .sp-placement-crop.is-inside figcaption {
   left: 50%;

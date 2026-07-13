@@ -976,8 +976,14 @@ function SponsorshipQ22026() {
       : isUsaSponsorship
         ? 'نموذج ظهور الراعي في التغريدة الافتتاحية'
         : 'نموذج ظهور الراعي في التغريدة المثبتة',
-    exampleAlt: isEnglishUsa ? 'Illustrative earnings calls tweet with sponsor logo placement' : 'مثال توضيحي لتغريدة مكالمات المستثمرين مع ظهور شعار الراعي',
-    exampleImage: 'assets/sponsorship/q2-2026-example-tweet-enhanced.png?v=q2e',
+    exampleAlt: isEnglishUsa
+      ? 'Opening tweet banner for the Q2 2026 earnings calls series with sponsor placement'
+      : isUsaSponsorship
+        ? 'بنر التغريدة الافتتاحية لسلسلة مكالمات نتائج الشركات مع ظهور الراعي'
+        : 'مثال توضيحي لتغريدة مكالمات المستثمرين مع ظهور شعار الراعي',
+    exampleImage: isUsaSponsorship
+      ? 'assets/sponsorship/q2-2026-opening-tweet-banner.png?v=opening1'
+      : 'assets/sponsorship/q2-2026-example-tweet-enhanced.png?v=q2e',
   };
   const whatsappMessage = isEnglishUsa
     ? 'Hello, I would like to request the exclusive sponsorship proposal for the U.S. earnings season coverage.'
@@ -1083,7 +1089,7 @@ function SponsorshipQ22026() {
       code: 'A',
       title: 'Opening tweet cover',
       text: 'The opening tweet launches the series and links together all earnings-call coverage during the season.',
-      image: 'assets/sponsorship/q2-2026-example-tweet-enhanced.png?v=q2e',
+      image: 'assets/sponsorship/q2-2026-opening-tweet-banner.png?v=opening1',
       alt: 'Illustrative opening tweet cover with sponsor logo placement',
     },
     {
@@ -1097,8 +1103,8 @@ function SponsorshipQ22026() {
       code: 'C',
       title: 'Brand logo in the main call banner',
       text: 'The sponsor logo appears inside the main banner for each published earnings call throughout the season.',
-      image: 'assets/sponsorship/q2-2026-banner-go-telecom.png?v=q2e',
-      alt: 'Illustrative sponsor logo placement in the main earnings call banner',
+      image: 'assets/sponsorship/q2-2026-call-banner-almarai.png?v=almarai1',
+      alt: 'Almarai earnings call banner with sponsor logo placement',
       wide: true,
     },
   ] : [
@@ -1106,7 +1112,7 @@ function SponsorshipQ22026() {
       code: 'A',
       title: isUsaSponsorship ? 'غلاف التغريدة الافتتاحية' : 'غلاف التغريدة الافتتاحية المثبتة',
       text: isUsaSponsorship ? 'تنطلق منها السلسلة وتُربط بها جميع تغطيات مكالمات النتائج خلال الموسم.' : 'مثبتة أعلى الحساب طوال الربع، وهي أول ما يراه زائر السلسلة.',
-      image: 'assets/sponsorship/q2-2026-example-tweet-enhanced.png?v=q2e',
+      image: isUsaSponsorship ? 'assets/sponsorship/q2-2026-opening-tweet-banner.png?v=opening1' : 'assets/sponsorship/q2-2026-example-tweet-enhanced.png?v=q2e',
       alt: isUsaSponsorship ? 'مثال توضيحي لغلاف التغريدة الافتتاحية مع ظهور شعار الراعي' : 'مثال توضيحي لغلاف التغريدة الافتتاحية المثبتة مع ظهور شعار الراعي',
     },
     {
@@ -1120,8 +1126,8 @@ function SponsorshipQ22026() {
       code: 'C',
       title: 'شعار العلامة التجارية في البنر الأساسي للمكالمة',
       text: 'شعار الراعي داخل البنر الأساسي للمكالمة، يظهر مع كل مكالمة منشورة طوال الموسم.',
-      image: 'assets/sponsorship/q2-2026-banner-go-telecom.png?v=q2e',
-      alt: 'مثال توضيحي لظهور شعار الراعي في البنر الأساسي لمكالمة عرض النتائج',
+      image: isUsaSponsorship ? 'assets/sponsorship/q2-2026-call-banner-almarai.png?v=almarai1' : 'assets/sponsorship/q2-2026-banner-go-telecom.png?v=q2e',
+      alt: isUsaSponsorship ? 'بنر مكالمة نتائج المراعي مع ظهور شعار الراعي' : 'مثال توضيحي لظهور شعار الراعي في البنر الأساسي لمكالمة عرض النتائج',
       wide: true,
     },
   ];
@@ -1131,17 +1137,17 @@ function SponsorshipQ22026() {
       title: 'Opening tweet — the series hub',
       text: 'Your logo appears in the opening tweet that launches the series and links together the season coverage for 3 months.',
       badge: 'Series reference · 3 months',
-      image: 'assets/sponsorship/q2-2026-example-tweet-enhanced.png?v=q2e',
+      image: 'assets/sponsorship/q2-2026-opening-tweet-banner.png?v=opening1',
       alt: 'Opening earnings calls tweet with the sponsor logo placement highlighted',
       visual: 'opening',
     },
     {
       n: '02',
-      title: 'Every call banner — feed visibility',
+      title: 'Every call banner',
       text: 'Your logo is integrated into the cover image published with every earnings call.',
       badge: 'More than 35 banners',
-      image: 'assets/sponsorship/q2-2026-banner-go-telecom.png?v=q2e',
-      alt: 'Earnings call banner showing the sponsor logo placement',
+      image: 'assets/sponsorship/q2-2026-call-banner-almarai.png?v=almarai1',
+      alt: 'Almarai earnings call banner showing the sponsor logo placement',
       visual: 'banner',
     },
     {
@@ -1159,17 +1165,17 @@ function SponsorshipQ22026() {
       title: 'التغريدة الافتتاحية — بوابة السلسلة',
       text: 'يظهر شعارك في التغريدة الافتتاحية التي تنطلق منها السلسلة، وتُربط بها تغطيات الموسم طوال 3 أشهر.',
       badge: 'مرجع السلسلة · 3 أشهر',
-      image: 'assets/sponsorship/q2-2026-example-tweet-enhanced.png?v=q2e',
+      image: 'assets/sponsorship/q2-2026-opening-tweet-banner.png?v=opening1',
       alt: 'التغريدة الافتتاحية لمكالمات النتائج مع تحديد موضع شعار الراعي',
       visual: 'opening',
     },
     {
       n: '02',
-      title: 'بنر كل مكالمة — ظهور في الخلاصة',
+      title: 'بنر كل مكالمة',
       text: 'يُدمج شعارك داخل صورة الغلاف المنشورة مع كل مكالمة نتائج.',
       badge: 'أكثر من 35 بنرًا',
-      image: 'assets/sponsorship/q2-2026-banner-go-telecom.png?v=q2e',
-      alt: 'بنر مكالمة نتائج يوضح موضع شعار الراعي',
+      image: 'assets/sponsorship/q2-2026-call-banner-almarai.png?v=almarai1',
+      alt: 'بنر مكالمة نتائج المراعي يوضح موضع شعار الراعي',
       visual: 'banner',
     },
     {
@@ -1242,12 +1248,12 @@ function SponsorshipQ22026() {
   const packages = isUsaSponsorship ? [exclusiveUsaPackage] : basePackages;
   const hiddenPreviousExamples = ['لوسيد', 'الأمار', 'المراعي'];
   const previousExampleViews = {
-    'لوبريف': '194K',
-    'أرامكو السعودية': '25K',
+    'لوبريف': '243K',
+    'أرامكو السعودية': '28K',
     'أفالون فارما': '35K',
-    'وقت اللياقة': '52K',
-    'رسن': '96K',
-    'سال': '146K',
+    'وقت اللياقة': '64K',
+    'رسن': '113K',
+    'سال': '165K',
   };
   const previousExamples = window.REPORTS.filter((r) => r.cat === 'earnings' && !hiddenPreviousExamples.includes(r.co));
 
@@ -1258,7 +1264,7 @@ function SponsorshipQ22026() {
           <ChartLineBackground variant="sponsorship" />
         </div>
         <div className="wrap">
-          <div className="sp-hero-grid">
+          <div className={'sp-hero-grid' + (isUsaSponsorship ? ' is-copy-only' : '')}>
             <div className="sp-hero-copy reveal">
               <div className="sp-kicker">{heroContent.kicker}</div>
               <h1>{heroContent.title}</h1>
@@ -1293,25 +1299,27 @@ function SponsorshipQ22026() {
               )}
             </div>
 
-            <div className="sp-hero-visual reveal d2" aria-label={isEnglishUsa ? 'Sponsor placement preview' : 'معاينة ظهور الراعي'}>
-              <figure className="sp-hero-example-card">
-                <figcaption>
-                  <span>{isEnglishUsa ? 'Illustrative example' : 'مثال توضيحي'}</span>
-                  <small>{heroContent.exampleCaption}</small>
-                </figcaption>
-                <img
-                  src={heroContent.exampleImage}
-                  alt={heroContent.exampleAlt}
-                  loading="eager"
-                  decoding="async" />
-              </figure>
-              {document.body.dataset.page === 'sponsorship' && (
-                <div className="sp-sponsor-agreed-seal" dir="rtl" aria-label="تم الاتفاق مع راعي للحساب">
-                  <span>تم الاتفاق</span>
-                  <strong>مع راعي للحساب</strong>
-                </div>
-              )}
-            </div>
+            {!isUsaSponsorship && (
+              <div className="sp-hero-visual reveal d2" aria-label={isEnglishUsa ? 'Sponsor placement preview' : 'معاينة ظهور الراعي'}>
+                <figure className="sp-hero-example-card">
+                  <figcaption>
+                    <span>{isEnglishUsa ? 'Illustrative example' : 'مثال توضيحي'}</span>
+                    <small>{heroContent.exampleCaption}</small>
+                  </figcaption>
+                  <img
+                    src={heroContent.exampleImage}
+                    alt={heroContent.exampleAlt}
+                    loading="eager"
+                    decoding="async" />
+                </figure>
+                {document.body.dataset.page === 'sponsorship' && (
+                  <div className="sp-sponsor-agreed-seal" dir="rtl" aria-label="تم الاتفاق مع راعي للحساب">
+                    <span>تم الاتفاق</span>
+                    <strong>مع راعي للحساب</strong>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </section>

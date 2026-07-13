@@ -1145,7 +1145,7 @@ function SponsorshipQ22026() {
       n: '01',
       title: 'Opening tweet — the series hub',
       text: 'Your logo appears in the opening tweet that launches the series and links together the coverage through September 15, 2026.',
-      badge: '1 placement · expected +200K views',
+      badge: '1 placement · expected +300K views',
       image: 'assets/sponsorship/q2-2026-opening-tweet-banner.png?v=opening1',
       alt: 'Opening earnings calls tweet with the sponsor logo placement highlighted',
       visual: 'opening',
@@ -1173,7 +1173,7 @@ function SponsorshipQ22026() {
       n: '01',
       title: 'التغريدة الافتتاحية — بوابة السلسلة',
       text: 'يظهر شعارك في التغريدة الافتتاحية التي تنطلق منها السلسلة، وتُربط بها التغطيات حتى 15 سبتمبر 2026.',
-      badge: '1 ظهور (متوقع +200 ألف مشاهدة)',
+      badge: '1 ظهور (متوقع +300 ألف مشاهدة)',
       image: 'assets/sponsorship/q2-2026-opening-tweet-banner.png?v=opening1',
       alt: 'التغريدة الافتتاحية لمكالمات النتائج مع تحديد موضع شعار الراعي',
       visual: 'opening',
@@ -1328,8 +1328,8 @@ function SponsorshipQ22026() {
                 </div>
               )}
               <div className="sp-hero-actions">
-                <a className="btn btn-primary" href={sponsorshipWhatsappUrl} target="_blank" rel="noreferrer">
-                  {isEnglishUsa ? 'Request Sponsorship Proposal on WhatsApp' : isUsaSponsorship ? 'اطلب عرض الرعاية على واتساب' : 'احجز الرعاية'}
+                <a className="btn btn-primary" href={isUsaSponsorship ? '#contact' : sponsorshipWhatsappUrl} target={isUsaSponsorship ? undefined : '_blank'} rel={isUsaSponsorship ? undefined : 'noreferrer'}>
+                  {isEnglishUsa ? 'Request Sponsorship Proposal' : isUsaSponsorship ? 'اطلب عرض الرعاية' : 'احجز الرعاية'}
                   <span className="arrow">{isEnglishUsa ? '→' : '←'}</span>
                 </a>
                 <a className="btn btn-ghost" href="#packages">
@@ -1375,10 +1375,11 @@ function SponsorshipQ22026() {
         </div>
       </section>
 
+      <div className="sp-intro-order">
       <section className="sp-section sp-product-section">
         <div className="wrap">
           <div className="sp-section-head reveal">
-            <span>THE PRODUCT · 01</span>
+            <span>THE PRODUCT · {isUsaSponsorship ? '02' : '01'}</span>
             <h2>{isEnglishUsa ? 'What are earnings calls?' : 'ما هي مكالمات المستثمرين؟'}</h2>
             <p>
               {isEnglishUsa ? 'Earnings calls are meetings where a company executive team discusses results with financial analysts, usually for about an hour. We transcribe and publish them for followers and market participants on X.' : 'مكالمات النتائج لقاءات يحضرها الفريق التنفيذي للشركة مع محللي الشركات المالية، وتمتد عادة لنحو ساعة. نعمل على تفريغها كاملة ونشرها للمتابعين والمهتمين في تويتر.'}
@@ -1416,7 +1417,7 @@ function SponsorshipQ22026() {
         <section className="sp-section sp-audience-section">
           <div className="wrap">
             <div className="sp-section-head reveal">
-              <span>AUDIENCE · 02</span>
+              <span>AUDIENCE · 01</span>
               <h2>{isEnglishUsa ? 'Who is the audience?' : 'من هو الجمهور؟'}</h2>
               <p>{isEnglishUsa ? 'An audience actively interested in markets, listed companies, investing, and trading—not broad, untargeted reach.' : 'جمهور مهتم فعلياً بالأسواق والاستثمار، ويتابع نتائج الشركات والمحتوى المالي المتخصص، وليس وصولاً عاماً غير مستهدف.'}</p>
             </div>
@@ -1454,6 +1455,7 @@ function SponsorshipQ22026() {
           </div>
         </section>
       )}
+      </div>
 
       <section className="sp-section sp-why-section">
         <div className="wrap">
@@ -1543,7 +1545,7 @@ function SponsorshipQ22026() {
           <div className="sp-section-head reveal">
             <span>BRAND PLACEMENT · {isUsaSponsorship ? '04' : '03'}</span>
             <h2>{isEnglishUsa ? '71+ core brand placements, plus one dedicated promotional post.' : isUsaSponsorship ? <React.Fragment><bdi dir="ltr">71+</bdi> نقطة ظهور أساسية للعلامة، إضافة إلى منشور إعلاني مخصص.</React.Fragment> : 'أين يظهر شعارك؟'}</h2>
-            <p>{isEnglishUsa ? '1 opening-tweet placement, 35 call banners, and 35 sponsor acknowledgements at the beginning of calls.' : isUsaSponsorship ? '1 ظهور في التغريدة الافتتاحية، و35 ظهوراً في بنرات المكالمات، و35 ظهوراً في بداية المكالمات.' : 'في ثلاثة أماكن دائمة أمام كل متابع للسلسلة: التغريدة الافتتاحية المثبتة، والبنر الأساسي للمكالمة، وأسفل كل مكالمة منشورة.'}</p>
+            {!isUsaSponsorship && <p>في ثلاثة أماكن دائمة أمام كل متابع للسلسلة: التغريدة الافتتاحية المثبتة، والبنر الأساسي للمكالمة، وأسفل كل مكالمة منشورة.</p>}
           </div>
           {isUsaSponsorship ? (
             <div className="sp-placement-overview reveal">
@@ -1664,8 +1666,8 @@ function SponsorshipQ22026() {
                   <small>{pkg.priceLabel}</small>
                 </div>
                 {isUsaSponsorship && (
-                  <a className="btn sp-package-cta" href={sponsorshipWhatsappUrl} target="_blank" rel="noreferrer">
-                    {isEnglishUsa ? 'Request Proposal on WhatsApp' : 'اطلب عرض الرعاية على واتساب'}
+                  <a className="btn sp-package-cta" href="#contact">
+                    {isEnglishUsa ? 'Request Sponsorship Proposal' : 'اطلب عرض الرعاية'}
                   </a>
                 )}
               </article>
@@ -1680,7 +1682,7 @@ function SponsorshipQ22026() {
         </div>
       </section>
 
-      <section className="sp-final-section">
+      <section id="contact" className="sp-final-section">
         <div className="wrap">
           <div className="sp-final-grid reveal">
             <div>

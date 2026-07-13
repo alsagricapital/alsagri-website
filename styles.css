@@ -5920,6 +5920,16 @@ body[data-page="sponsorshipusa-en"] .sp-saudi-booked-card p {
 .sp-audience-section {
   background: linear-gradient(145deg, rgba(238, 247, 255, .72), rgba(255, 255, 255, .94));
 }
+.sp-intro-order {
+  display: flex;
+  flex-direction: column;
+}
+.sp-intro-order .sp-audience-section {
+  order: 1;
+}
+.sp-intro-order .sp-product-section {
+  order: 2;
+}
 .sp-audience-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -7234,6 +7244,7 @@ body[data-page="sponsorshipusa-en"] .sp-audience-card > strong {
 .sp-final-section {
   position: relative;
   overflow: hidden;
+  scroll-margin-top: 90px;
   padding: 92px 0;
   background:
     linear-gradient(135deg, var(--paper), color-mix(in srgb, var(--accent) 7%, var(--paper)));

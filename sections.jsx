@@ -943,7 +943,11 @@ function SponsorshipQ22026() {
     exampleImage: 'assets/sponsorship/threads-example-tweet.png?v=threads1',
   } : {
     kicker: 'SPONSORSHIP 2026 · Q2 EARNINGS CALLS SERIES',
-    title: isEnglishUsa ? 'Q2 2026 Earnings Calls Series Sponsorship' : 'رعاية سلسلة مكالمات نتائج الربع الثاني 2026',
+    title: isEnglishUsa
+      ? 'Put your brand in front of Arab investors during the U.S. earnings season'
+      : isUsaSponsorship
+        ? 'رعاية سلسلة مكالمات نتائج الشركات الأمريكية'
+        : 'رعاية سلسلة مكالمات نتائج الربع الثاني 2026',
     subtitle: isUsaSponsorship ? (
       <span className="sp-hero-market-subtitle">
         {isEnglishUsa ? 'For U.S. market companies' : 'لشركات السوق الأمريكي'}
@@ -954,19 +958,33 @@ function SponsorshipQ22026() {
       <React.Fragment>
         {isEnglishUsa ? (
           <React.Fragment>
-            A complete sponsorship opportunity in front of a high-quality financial audience for a specialized series that summarizes and analyzes earnings calls for listed companies during <strong>July 1 - September 15</strong>.
+            An exclusive sponsorship for a specialized Arabic series covering more than 35 earnings calls, with repeated brand visibility in front of an engaged financial audience through <strong>September 15, 2026</strong>.
+          </React.Fragment>
+        ) : isUsaSponsorship ? (
+          <React.Fragment>
+            فرصة رعاية كاملة أمام جمهور مالي نوعي لسلسلة متخصصة تلخص وتحلل مكالمات عرض النتائج للشركات المدرجة حتى <strong>15 سبتمبر 2026</strong>.
           </React.Fragment>
         ) : (
           <React.Fragment>
-            فرصة رعاية كاملة أمام جمهور مالي نوعي لسلسلة متخصصة تلخص وتحلل مكالمات عرض النتائج للشركات المدرجة خلال الفترة من <strong>{isUsaSponsorship ? '1 يوليو - 15 سبتمبر' : '15 يونيو - 15 سبتمبر'}</strong>.
+            فرصة رعاية كاملة أمام جمهور مالي نوعي لسلسلة متخصصة تلخص وتحلل مكالمات عرض النتائج للشركات المدرجة خلال الفترة من <strong>15 يونيو - 15 سبتمبر</strong>.
           </React.Fragment>
         )}
       </React.Fragment>
     ),
-    exampleCaption: isEnglishUsa ? 'Sample sponsor placement in the pinned tweet' : 'نموذج ظهور الراعي في التغريدة المثبتة',
+    exampleCaption: isEnglishUsa
+      ? 'Sample sponsor placement in the opening tweet'
+      : isUsaSponsorship
+        ? 'نموذج ظهور الراعي في التغريدة الافتتاحية'
+        : 'نموذج ظهور الراعي في التغريدة المثبتة',
     exampleAlt: isEnglishUsa ? 'Illustrative earnings calls tweet with sponsor logo placement' : 'مثال توضيحي لتغريدة مكالمات المستثمرين مع ظهور شعار الراعي',
     exampleImage: 'assets/sponsorship/q2-2026-example-tweet-enhanced.png?v=q2e',
   };
+  const whatsappMessage = isEnglishUsa
+    ? 'Hello, I would like to request the exclusive sponsorship proposal for the U.S. earnings season coverage.'
+    : isUsaSponsorship
+      ? 'مرحباً، أرغب في طلب عرض الرعاية الحصرية لتغطية موسم نتائج الشركات الأمريكية.'
+      : 'مرحباً، أرغب في مناقشة رعاية سلسلة مكالمات النتائج.';
+  const sponsorshipWhatsappUrl = `https://wa.me/966550734332?text=${encodeURIComponent(whatsappMessage)}`;
 
   // Hero parallax — motion variant only (sponsorship-q2-2026-motion.html). Writes
   // --sp-parallax (px) on the hero; the basic page is untouched. Skipped under
@@ -994,13 +1012,13 @@ function SponsorshipQ22026() {
   const stats = isEnglishUsa ? [
     { value: '~13.2M', label: 'Impressions', note: 'Account reach' },
     { value: '~51K', label: 'Followers', note: 'Audience size', badge: '80% active followers' },
-    { value: '~55K', label: 'Views per call', note: 'Average content views' },
-    { value: '~166K', label: 'Previous season opener views', note: 'Pinned tweet' },
+    { value: '~65K', label: 'Views per call', note: 'Average content views' },
+    { value: '~322K', label: 'Previous season opener views', note: 'Opening tweet' },
   ] : [
     { value: '~13.2M', label: 'مرات الظهور', note: 'Impressions' },
     { value: '~51K', label: 'متابع', note: 'Followers', badge: '80% متابع نشط' },
-    { value: '~55K', label: 'مشاهدة لكل مكالمة', note: 'متوسط مشاهدات المحتوى' },
-    { value: '~166K', label: 'مشاهدة لافتتاحية الموسم السابق', note: 'تغريدة مثبتة' },
+    { value: isUsaSponsorship ? '~65K' : '~55K', label: 'مشاهدة لكل مكالمة', note: 'متوسط مشاهدات المحتوى' },
+    { value: isUsaSponsorship ? '~322K' : '~166K', label: 'مشاهدة لافتتاحية الموسم السابق', note: isUsaSponsorship ? 'تغريدة افتتاحية' : 'تغريدة مثبتة' },
   ];
 
   const analytics = [
@@ -1017,25 +1035,25 @@ function SponsorshipQ22026() {
 
   const flow = isEnglishUsa ? [
     { n: '01', title: 'Results announced', text: 'The company officially reports its results' },
-    { n: '02', title: 'Call published', text: 'The call is published on X within hours', metric: '55K average views per call' },
-    { n: '03', title: 'Your logo appears', text: 'Below each call and in the pinned opening tweet' },
+    { n: '02', title: 'Call published', text: 'The call is published on X within hours', metric: '65K average views per call' },
+    { n: '03', title: 'Your logo appears', text: 'At the beginning of each call and in the opening tweet' },
     { n: '04', title: 'Quarter-long brand presence', text: 'Your brand appears repeatedly with each company result', metric: '+13M impressions during the quarter' },
   ] : [
     { n: '01', title: 'إعلان النتائج', text: 'الشركة تعلن نتائجها رسمياً' },
-    { n: '02', title: 'نشر المكالمة', text: 'نشر المكالمة في تويتر خلال ساعات', metric: 'متوسط مشاهدات 55 ألف للمكالمات' },
-    { n: '03', title: 'ظهور شعارك', text: 'أسفل المكالمة وفي التغريدة الافتتاحية المثبتة' },
+    { n: '02', title: 'نشر المكالمة', text: 'نشر المكالمة في تويتر خلال ساعات', metric: isUsaSponsorship ? 'متوسط مشاهدات 65 ألف للمكالمات' : 'متوسط مشاهدات 55 ألف للمكالمات' },
+    { n: '03', title: 'ظهور شعارك', text: isUsaSponsorship ? 'في بداية كل مكالمة وفي التغريدة الافتتاحية' : 'أسفل المكالمة وفي التغريدة الافتتاحية المثبتة' },
     { n: '04', title: 'حضور العلامة التجارية طوال الربع', text: 'يتكرر ظهور العلامة التجارية مع نتائج كل شركة', metric: 'ظهور +13M خلال الربع' },
   ];
 
   const reasons = isEnglishUsa ? [
     { n: '01', title: 'A focused financial audience', text: 'Investors and traders, not a general audience. Every view has context and value.' },
-    { n: '02', title: 'Persistent, pinned content', text: 'The opener remains pinned throughout the quarter, so your presence does not end with one post.' },
-    { n: '03', title: 'Repeated logo exposure', text: 'In the opener and below each call, with more than 35 appearances during the quarter.' },
+    { n: '02', title: 'A lasting series reference', text: 'The opening tweet links the season coverage together, so your presence continues beyond a single post.' },
+    { n: '03', title: 'Repeated logo exposure', text: 'In the opener and at the beginning of each call, with more than 35 appearances during the quarter.' },
     { n: '04', title: 'Professional financial content', text: 'The content is followed by executives, market participants, and decision-makers, based on the analytics we track.' },
   ] : [
     { n: '01', title: 'جمهور مالي نوعي', text: 'مستثمرون ومتداولون، لا جمهور عام. كل مشاهدة لها قيمة.' },
-    { n: '02', title: 'محتوى دائم ومثبت', text: 'الافتتاحية مثبتة طوال الربع، وحضورك لا ينتهي بانتهاء منشور واحد.' },
-    { n: '03', title: 'ظهور متكرر للشعار', text: isUsaSponsorship ? 'في الافتتاحية وأسفل كل مكالمة، مع أكثر من 35 ظهور خلال الربع.' : 'في الافتتاحية وأسفل كل مكالمة، مع أكثر من 25 ظهور خلال الربع.' },
+    { n: '02', title: isUsaSponsorship ? 'مرجع مستمر للسلسلة' : 'محتوى دائم ومثبت', text: isUsaSponsorship ? 'تربط التغريدة الافتتاحية تغطيات الموسم ببعضها، فلا ينتهي حضورك بانتهاء منشور واحد.' : 'الافتتاحية مثبتة طوال الربع، وحضورك لا ينتهي بانتهاء منشور واحد.' },
+    { n: '03', title: 'ظهور متكرر للشعار', text: isUsaSponsorship ? 'في الافتتاحية وبداية كل مكالمة، مع أكثر من 35 ظهور خلال الربع.' : 'في الافتتاحية وأسفل كل مكالمة، مع أكثر من 25 ظهور خلال الربع.' },
     { n: '04', title: 'ظهور في محتوى احترافي', text: 'يتابع المحتوى رؤساء تنفيذيون لشركات مدرجة وكبار الإداريين والتنفيذيين، بناءً على الأرقام والإحصائيات لدينا.' },
   ];
 
@@ -1063,15 +1081,17 @@ function SponsorshipQ22026() {
   ] : isEnglishUsa ? [
     {
       code: 'A',
-      title: 'Pinned opening tweet cover',
-      text: 'Pinned at the top of the account throughout the quarter, making it the first touchpoint for visitors to the series.',
+      title: 'Opening tweet cover',
+      text: 'The opening tweet launches the series and links together all earnings-call coverage during the season.',
       image: 'assets/sponsorship/q2-2026-example-tweet-enhanced.png?v=q2e',
-      alt: 'Illustrative pinned opening tweet cover with sponsor logo placement',
+      alt: 'Illustrative opening tweet cover with sponsor logo placement',
     },
     {
       code: 'B',
-      title: 'Below each earnings call',
-      text: 'Your logo appears below every published call, with more than 35 appearances during the quarter.',
+      title: 'At the beginning of each earnings call',
+      text: 'The sponsor is acknowledged and its logo appears after the call introduction and before the full transcript.',
+      image: 'assets/sponsorship/q2-2026-inside-call-sponsor-example.png?v=inside1',
+      alt: 'Sponsor acknowledgement and logo near the beginning of an earnings call',
     },
     {
       code: 'C',
@@ -1084,15 +1104,17 @@ function SponsorshipQ22026() {
   ] : [
     {
       code: 'A',
-      title: 'غلاف التغريدة الافتتاحية المثبتة',
-      text: 'مثبتة أعلى الحساب طوال الربع، وهي أول ما يراه زائر السلسلة.',
+      title: isUsaSponsorship ? 'غلاف التغريدة الافتتاحية' : 'غلاف التغريدة الافتتاحية المثبتة',
+      text: isUsaSponsorship ? 'تنطلق منها السلسلة وتُربط بها جميع تغطيات مكالمات النتائج خلال الموسم.' : 'مثبتة أعلى الحساب طوال الربع، وهي أول ما يراه زائر السلسلة.',
       image: 'assets/sponsorship/q2-2026-example-tweet-enhanced.png?v=q2e',
-      alt: 'مثال توضيحي لغلاف التغريدة الافتتاحية المثبتة مع ظهور شعار الراعي',
+      alt: isUsaSponsorship ? 'مثال توضيحي لغلاف التغريدة الافتتاحية مع ظهور شعار الراعي' : 'مثال توضيحي لغلاف التغريدة الافتتاحية المثبتة مع ظهور شعار الراعي',
     },
     {
       code: 'B',
-      title: 'أسفل كل مكالمة نتائج',
-      text: 'شعارك أسفل المقال في كل مكالمة، مع أكثر من 25 مرة في الربع.',
+      title: isUsaSponsorship ? 'في بداية كل مكالمة نتائج' : 'أسفل كل مكالمة نتائج',
+      text: isUsaSponsorship ? 'يظهر شكر الراعي وشعاره بعد مقدمة المكالمة وقبل بدء النص الكامل.' : 'شعارك أسفل المقال في كل مكالمة، مع أكثر من 25 مرة في الربع.',
+      image: isUsaSponsorship ? 'assets/sponsorship/q2-2026-inside-call-sponsor-example.png?v=inside1' : undefined,
+      alt: isUsaSponsorship ? 'مثال لموضع شكر الراعي وشعاره في بداية مكالمة نتائج' : undefined,
     },
     {
       code: 'C',
@@ -1101,6 +1123,63 @@ function SponsorshipQ22026() {
       image: 'assets/sponsorship/q2-2026-banner-go-telecom.png?v=q2e',
       alt: 'مثال توضيحي لظهور شعار الراعي في البنر الأساسي لمكالمة عرض النتائج',
       wide: true,
+    },
+  ];
+  const usaPlacementSteps = isEnglishUsa ? [
+    {
+      n: '01',
+      title: 'Opening tweet — the series hub',
+      text: 'Your logo appears in the opening tweet that launches the series and links together the season coverage for 3 months.',
+      badge: 'Series reference · 3 months',
+      image: 'assets/sponsorship/q2-2026-example-tweet-enhanced.png?v=q2e',
+      alt: 'Opening earnings calls tweet with the sponsor logo placement highlighted',
+      visual: 'opening',
+    },
+    {
+      n: '02',
+      title: 'Every call banner — feed visibility',
+      text: 'Your logo is integrated into the cover image published with every earnings call.',
+      badge: 'More than 35 banners',
+      image: 'assets/sponsorship/q2-2026-banner-go-telecom.png?v=q2e',
+      alt: 'Earnings call banner showing the sponsor logo placement',
+      visual: 'banner',
+    },
+    {
+      n: '03',
+      title: 'Beginning of every call — clear sponsor acknowledgement',
+      text: 'The sponsor acknowledgement and logo appear after the call introduction and before the full transcript begins.',
+      badge: 'Acknowledgement and logo in every call',
+      image: 'assets/sponsorship/q2-2026-inside-call-sponsor-example.png?v=inside1',
+      alt: 'Sponsor acknowledgement and logo shown near the beginning of an earnings call',
+      visual: 'inside',
+    },
+  ] : [
+    {
+      n: '01',
+      title: 'التغريدة الافتتاحية — بوابة السلسلة',
+      text: 'يظهر شعارك في التغريدة الافتتاحية التي تنطلق منها السلسلة، وتُربط بها تغطيات الموسم طوال 3 أشهر.',
+      badge: 'مرجع السلسلة · 3 أشهر',
+      image: 'assets/sponsorship/q2-2026-example-tweet-enhanced.png?v=q2e',
+      alt: 'التغريدة الافتتاحية لمكالمات النتائج مع تحديد موضع شعار الراعي',
+      visual: 'opening',
+    },
+    {
+      n: '02',
+      title: 'بنر كل مكالمة — ظهور في الخلاصة',
+      text: 'يُدمج شعارك داخل صورة الغلاف المنشورة مع كل مكالمة نتائج.',
+      badge: 'أكثر من 35 بنرًا',
+      image: 'assets/sponsorship/q2-2026-banner-go-telecom.png?v=q2e',
+      alt: 'بنر مكالمة نتائج يوضح موضع شعار الراعي',
+      visual: 'banner',
+    },
+    {
+      n: '03',
+      title: 'بداية كل مكالمة — شكر واضح للراعي',
+      text: 'يظهر شكر الراعي وشعاره بعد مقدمة المكالمة وأسماء الإدارة مباشرة، وقبل بدء النص الكامل.',
+      badge: 'شكر وشعار في بداية كل مكالمة',
+      image: 'assets/sponsorship/q2-2026-inside-call-sponsor-example.png?v=inside1',
+      alt: 'مثال لموضع شكر الراعي وشعاره في بداية مكالمة نتائج',
+      visual: 'inside',
     },
   ];
 
@@ -1144,27 +1223,23 @@ function SponsorshipQ22026() {
       ],
     },
   ];
-  const packages = isUsaSponsorship
-    ? basePackages
-      .map((pkg) => ({
-        ...pkg,
-        period: pkg.tier === 'SILVER'
-          ? (isEnglishUsa ? 'Q2 2026 earnings calls sponsorship' : 'رعاية مكالمات نتائج الربع الثاني 2026')
-          : pkg.period,
-        priceAmount: pkg.tier === 'SILVER' ? '20,000' : pkg.tier === 'GOLD' ? '40,000' : pkg.tier === 'DIAMOND' ? '60,000' : pkg.priceAmount,
-        features: pkg.tier === 'SILVER'
-          ? [
-            { text: isEnglishUsa ? 'Sponsor mention and logo appear in 10 calls only' : 'إشارة شكر وشعار الشركة الراعية يظهران في عدد 10 مكالمات فقط', code: 'B' },
-            { text: isEnglishUsa ? 'Sponsor logo added to the main banner for the 10 calls' : 'إضافة شعار الشركة الراعية في البنر الأساسي للعشر مكالمات', code: 'C' },
-          ]
-          : pkg.features
-            .filter((feature) => pkg.tier !== 'GOLD' || !['إعلان للشركة الراعية في أي وقت حسب رغبتهم خلال الفترة', 'Sponsor ad placement at any time during the period'].includes(feature.text))
-            .map((feature) => ({
-              ...feature,
-              text: feature.text.replace('+25 مكالمة', '+35 مكالمة').replace('+25 calls', '+35 calls'),
-            })),
-      }))
-    : basePackages;
+  const exclusiveUsaPackage = {
+    tier: 'EXCLUSIVE',
+    title: isEnglishUsa ? 'Exclusive Sponsorship' : 'الرعاية الحصرية',
+    period: isEnglishUsa ? 'Exclusive sponsorship for 3 months' : 'رعاية حصرية لمدة 3 أشهر',
+    priceAmount: '60,000',
+    priceLabel: isEnglishUsa ? 'for the season' : 'للموسم',
+    featured: true,
+    features: [
+      { text: isEnglishUsa ? 'Sponsor visibility in the opening tweet' : 'الظهور في التغريدة الافتتاحية' },
+      { text: isEnglishUsa ? 'Logo inside the main banner for every earnings call' : 'الشعار داخل البنر الأساسي لجميع المكالمات' },
+      { text: isEnglishUsa ? 'Sponsor acknowledgement and logo at the beginning of every earnings call' : 'شكر الراعي ووضع شعاره في بداية كل مكالمة' },
+      { text: isEnglishUsa ? 'More than 35 earnings-call coverages during the season' : 'أكثر من 35 تغطية خلال الموسم' },
+      { text: isEnglishUsa ? 'One custom promotional post with mutually agreed copy' : 'منشور إعلاني مخصص واحد بصياغة متفق عليها' },
+      { text: isEnglishUsa ? 'Final performance report: views, engagement, and impressions' : 'تقرير أداء نهائي: المشاهدات، التفاعل، والظهور' },
+    ],
+  };
+  const packages = isUsaSponsorship ? [exclusiveUsaPackage] : basePackages;
   const hiddenPreviousExamples = ['لوسيد', 'الأمار', 'المراعي'];
   const previousExampleViews = {
     'لوبريف': '194K',
@@ -1196,13 +1271,18 @@ function SponsorshipQ22026() {
                   الحساب الوحيد بـ X اللي يغطي مكالمات نتائج السوق الأمريكي باللغة العربية
                 </div>
               )}
+              {isUsaSponsorship && (
+                <div className="sp-sponsorship-timing">
+                  {isEnglishUsa ? 'Sponsorship starts immediately upon agreement and continues through September 15, 2026.' : 'تبدأ الرعاية فور الاتفاق وتستمر حتى 15 سبتمبر 2026'}
+                </div>
+              )}
               <div className="sp-hero-actions">
-                <a className="btn btn-primary" href="https://wa.me/966550734332" target="_blank" rel="noreferrer">
-                  {isEnglishUsa ? 'Reserve Sponsorship' : 'احجز الرعاية'}
+                <a className="btn btn-primary" href={sponsorshipWhatsappUrl} target="_blank" rel="noreferrer">
+                  {isEnglishUsa ? 'Request Sponsorship Proposal on WhatsApp' : isUsaSponsorship ? 'اطلب عرض الرعاية على واتساب' : 'احجز الرعاية'}
                   <span className="arrow">{isEnglishUsa ? '→' : '←'}</span>
                 </a>
                 <a className="btn btn-ghost" href="#packages">
-                  {isEnglishUsa ? 'View Packages' : 'استعرض الباقات'}
+                  {isEnglishUsa ? 'View Sponsorship' : isUsaSponsorship ? 'استعرض الباقة' : 'استعرض الباقات'}
                 </a>
               </div>
               {isUsaSponsorship && (
@@ -1247,14 +1327,14 @@ function SponsorshipQ22026() {
           </div>
           <div className="sp-product-cards">
             <div className="sp-product-card reveal d1">
-              <strong>{isEnglishUsa ? '+35 published calls during the quarter' : isUsaSponsorship ? '+35 مكالمة منشورة في الربع' : '+25 مكالمة منشورة في الربع'}</strong>
+              <strong>{isEnglishUsa ? 'More than 35 published calls during the season' : isUsaSponsorship ? 'أكثر من 35 مكالمة منشورة خلال الموسم' : '+25 مكالمة منشورة في الربع'}</strong>
               <p>{isEnglishUsa ? 'Coverage of key companies after each earnings release during the season.' : 'تغطية لأبرز الشركات بعد كل إعلان نتائج خلال الموسم.'}</p>
               <span className="sp-product-metric">{isEnglishUsa ? 'Expected reach of more than 2.5M views' : isUsaSponsorship ? 'متوقع أكثر من 2.5 مليون مشاهدة' : 'متوقع أكثر من 2 مليون مشاهدة'}</span>
             </div>
             <div className="sp-product-card reveal d2">
-              <strong>{isEnglishUsa ? 'Pinned opening tweet for 3 months' : 'تغريدة افتتاحية مثبتة 3 أشهر'}</strong>
-              <p>{isEnglishUsa ? 'The series hub stays pinned at the top of the account as a permanent reference for all calls.' : 'رأس السلسلة مثبت أعلى الحساب ومرجع دائم لكل المكالمات.'}</p>
-              <span className="sp-product-metric">{isEnglishUsa ? 'Expected to exceed 150K views' : 'متوقع مشاهدات أعلى من 150 ألف'}</span>
+              <strong>{isEnglishUsa ? 'Opening tweet for the series' : isUsaSponsorship ? 'تغريدة افتتاحية للسلسلة' : 'تغريدة افتتاحية مثبتة 3 أشهر'}</strong>
+              <p>{isEnglishUsa ? 'The opening tweet launches the series and links together all earnings-call coverage during the season.' : isUsaSponsorship ? 'تنطلق منها السلسلة وتُربط بها جميع تغطيات مكالمات النتائج طوال الموسم.' : 'رأس السلسلة مثبت أعلى الحساب ومرجع دائم لكل المكالمات.'}</p>
+              <span className="sp-product-metric">{isEnglishUsa ? 'Expected to exceed 200K views' : isUsaSponsorship ? 'متوقع مشاهدات أعلى من 200 ألف' : 'متوقع مشاهدات أعلى من 150 ألف'}</span>
             </div>
           </div>
           <div className="sp-flow reveal d3">
@@ -1326,12 +1406,12 @@ function SponsorshipQ22026() {
           <div className="sp-proof-grid">
             <div className="sp-proof-card sp-proof-media reveal">
               <span className="sp-proof-label">{isEnglishUsa ? 'Verified performance' : 'أداء موثق'}</span>
-              <strong>{isEnglishUsa ? '~166K views on the previous opener' : '~166K مشاهدة للافتتاحية السابقة'}</strong>
+              <strong>{isEnglishUsa ? '~322K views on the previous opener' : isUsaSponsorship ? '~322K مشاهدة للافتتاحية السابقة' : '~166K مشاهدة للافتتاحية السابقة'}</strong>
               <p>{isEnglishUsa ? 'An actual X screenshot from the previous season opener, showing views and engagement around the series.' : 'لقطة فعلية من منصة X للتغريدة الافتتاحية في الموسم السابق، وتوضح حجم المشاهدات والتفاعل على السلسلة.'}</p>
               <div className="sp-proof-window sp-proof-window-image">
                 <img
-                  src="assets/sponsorship/q2-2026-proof-tweet.png"
-                  alt={isEnglishUsa ? 'Screenshot of an earnings calls tweet showing 166.5K views and audience engagement' : 'لقطة من تغريدة مكالمات المستثمرين تظهر 166.5 ألف مشاهدة وتفاعل المتابعين'}
+                  src={isUsaSponsorship ? 'assets/sponsorship/q2-2026-proof-tweet-322k.png' : 'assets/sponsorship/q2-2026-proof-tweet.png'}
+                  alt={isEnglishUsa ? 'Screenshot of an earnings calls tweet showing more than 322K views' : isUsaSponsorship ? 'لقطة من تغريدة مكالمات المستثمرين تظهر أكثر من 322 ألف مشاهدة' : 'لقطة من تغريدة مكالمات المستثمرين تظهر 166.5 ألف مشاهدة وتفاعل المتابعين'}
                   loading="lazy"
                   decoding="async" />
               </div>
@@ -1353,40 +1433,68 @@ function SponsorshipQ22026() {
         <div className="wrap">
           <div className="sp-section-head reveal">
             <span>BRAND PLACEMENT · 03</span>
-            <h2>{isEnglishUsa ? 'Where does your logo appear?' : 'أين يظهر شعارك؟'}</h2>
-            <p>{isEnglishUsa ? 'In three recurring placements in front of every series follower: the pinned opening tweet, the main call banner, and below each published call.' : 'في ثلاثة أماكن دائمة أمام كل متابع للسلسلة: التغريدة الافتتاحية المثبتة، والبنر الأساسي للمكالمة، وأسفل كل مكالمة منشورة.'}</p>
+            <h2>{isEnglishUsa ? 'Your brand appears in 3 placements throughout the season' : isUsaSponsorship ? 'علامتك تظهر في 3 مواضع طوال الموسم' : 'أين يظهر شعارك؟'}</h2>
+            <p>{isEnglishUsa ? 'Visibility in the opening series hub, repeated visibility with every published call, and a direct sponsorship mention inside the content.' : isUsaSponsorship ? 'ظهور في التغريدة الافتتاحية المرجعية، وحضور متكرر مع كل مكالمة منشورة.' : 'في ثلاثة أماكن دائمة أمام كل متابع للسلسلة: التغريدة الافتتاحية المثبتة، والبنر الأساسي للمكالمة، وأسفل كل مكالمة منشورة.'}</p>
           </div>
-          <div className="sp-placement-grid">
-            {placements.map((item, idx) => (
-              <article className={'sp-placement reveal d' + (idx + 1) + (item.wide ? ' is-wide' : '')} key={item.code}>
-                <div className="sp-placement-code">{item.code}</div>
-                {item.image ? (
-                  <figure className="sp-placement-example-image">
-                    <span>{isEnglishUsa ? 'Example' : 'مثال'}</span>
-                    <img
-                      src={item.image}
-                      alt={item.alt}
-                      loading="lazy"
-                      decoding="async" />
-                  </figure>
-                ) : (
-                  <div className="sp-placement-mock" aria-hidden="true">
-                    <div className="sp-placement-brand">
-                      <BrandMark size={22} />
-                      <span>{isEnglishUsa ? 'Alsagri' : 'الصقري | Alsagri'}</span>
+          {isUsaSponsorship ? (
+            <div className="sp-placement-overview reveal">
+              {usaPlacementSteps.map((item) => (
+                <article className="sp-placement-row" key={item.n}>
+                  <div className="sp-placement-row-copy">
+                    <span className="sp-placement-number">{item.n}</span>
+                    <div>
+                      <h3>{item.title}</h3>
+                      <p>{item.text}</p>
+                      <strong className="sp-placement-badge">{item.badge}</strong>
                     </div>
-                    <div className="sp-placement-content">
-                      <strong>{isEnglishUsa ? 'Earnings Call - Sample Company' : 'مكالمة المستثمرين - شركة المثال'}</strong>
-                      <span></span><span></span><span></span>
-                    </div>
-                    <div className="sp-placement-logo">SPONSOR LOGO</div>
                   </div>
-                )}
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            ))}
-          </div>
+                  <figure className={'sp-placement-crop is-' + item.visual}>
+                    {item.image ? (
+                      <React.Fragment>
+                        <img src={item.image} alt={item.alt} loading="lazy" decoding="async" />
+                        <figcaption>{item.visual === 'inside' ? (isEnglishUsa ? 'Sponsor acknowledgement and logo' : 'موضع شكر الراعي وشعاره') : (isEnglishUsa ? 'Sponsor logo here' : 'شعار الراعي هنا')}</figcaption>
+                      </React.Fragment>
+                    ) : (
+                      <div className="sp-placement-inside-preview">
+                        <div className="sp-inside-head">
+                          <span>{isEnglishUsa ? 'EARNINGS CALL' : 'مكالمة نتائج'}</span>
+                          <strong>{isEnglishUsa ? 'Sample company' : 'شركة المثال'}</strong>
+                        </div>
+                        <div className="sp-inside-lines" aria-hidden="true"><i></i><i></i><i></i></div>
+                        <div className="sp-inside-sponsor">
+                          <span>{isEnglishUsa ? 'Sponsored by' : 'برعاية'}</span>
+                          <strong>{isEnglishUsa ? 'SPONSOR LOGO' : 'شعار الراعي'}</strong>
+                        </div>
+                      </div>
+                    )}
+                  </figure>
+                </article>
+              ))}
+              <p className="sp-placement-inclusive">{isEnglishUsa ? 'All three placements are included in the exclusive sponsorship package.' : 'جميع مواضع الظهور الثلاثة مشمولة ضمن باقة الرعاية الحصرية.'}</p>
+            </div>
+          ) : (
+            <div className="sp-placement-grid">
+              {placements.map((item, idx) => (
+                <article className={'sp-placement reveal d' + (idx + 1) + (item.wide ? ' is-wide' : '')} key={item.code}>
+                  <div className="sp-placement-code">{item.code}</div>
+                  {item.image ? (
+                    <figure className="sp-placement-example-image">
+                      <span>{isEnglishUsa ? 'Example' : 'مثال'}</span>
+                      <img src={item.image} alt={item.alt} loading="lazy" decoding="async" />
+                    </figure>
+                  ) : (
+                    <div className="sp-placement-mock" aria-hidden="true">
+                      <div className="sp-placement-brand"><BrandMark size={22} /><span>{isEnglishUsa ? 'Alsagri' : 'الصقري | Alsagri'}</span></div>
+                      <div className="sp-placement-content"><strong>{isEnglishUsa ? 'Earnings Call - Sample Company' : 'مكالمة المستثمرين - شركة المثال'}</strong><span></span><span></span><span></span></div>
+                      <div className="sp-placement-logo">SPONSOR LOGO</div>
+                    </div>
+                  )}
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -1418,10 +1526,10 @@ function SponsorshipQ22026() {
         <div className="wrap">
           <div className="sp-section-head reveal">
             <span>PACKAGES · 05</span>
-            <h2>{isEnglishUsa ? 'Sponsorship packages' : 'باقات الرعاية'}</h2>
-            <p>{isEnglishUsa ? 'Choose the level of presence that fits your brand and reserve your spot before the season starts. Only one sponsor slot is available.' : 'اختر مستوى الحضور الذي يناسب علامتك، واحجز مكانك قبل بداية الموسم — المساحة محدودة لراعٍ واحد فقط.'}</p>
+            <h2>{isEnglishUsa ? 'Exclusive sponsorship' : isUsaSponsorship ? 'الرعاية الحصرية' : 'باقات الرعاية'}</h2>
+            <p>{isEnglishUsa ? 'One complete sponsorship package for one exclusive partner. Sponsorship starts immediately upon agreement and runs for 3 months.' : isUsaSponsorship ? 'باقة متكاملة لشريك حصري واحد. تبدأ الرعاية فور الاتفاق وتستمر لمدة 3 أشهر.' : 'اختر مستوى الحضور الذي يناسب علامتك، واحجز مكانك قبل بداية الموسم — المساحة محدودة لراعٍ واحد فقط.'}</p>
           </div>
-          <div className="sp-packages-grid">
+          <div className={'sp-packages-grid' + (packages.length === 1 ? ' is-single' : '')}>
             {packages.map((pkg, idx) => (
               <article className={'sp-package reveal d' + (idx + 1) + ' sp-tier-' + pkg.tier.toLowerCase() + (pkg.featured ? ' is-featured' : '')} key={pkg.tier}>
                 <span className="sp-package-tier">{pkg.tier}</span>
@@ -1429,16 +1537,21 @@ function SponsorshipQ22026() {
                 <p>{pkg.period}</p>
                 <ul>
                   {pkg.features.map((feature) => (
-                    <li key={feature.text}><span className="sp-feat-check"></span><span className="sp-feat-text">{feature.amount && <strong className="sp-feat-amount"><span dir="ltr">{feature.amount}</span><img src="assets/sponsorship/saudi-riyal-symbol.svg" alt={isEnglishUsa ? 'Saudi riyal' : 'ريال سعودي'} loading="lazy" decoding="async" /></strong>}{feature.text}{feature.code && <em className="sp-feat-code">{feature.code}</em>}</span></li>
+                    <li key={feature.text}><span className="sp-feat-check"></span><span className="sp-feat-text">{feature.amount && <strong className="sp-feat-amount"><span dir="ltr">{feature.amount}</span></strong>}{feature.text}{feature.code && <em className="sp-feat-code">{feature.code}</em>}</span></li>
                   ))}
                 </ul>
                 <div className="sp-package-price">
                   <strong className="sp-riyal-price">
-                    <img src="assets/sponsorship/saudi-riyal-symbol.svg" alt="" loading="lazy" decoding="async" />
+                    <span className="sp-currency-text">{isEnglishUsa ? 'SAR' : 'ر.س'}</span>
                     <span>{pkg.priceAmount}</span>
                   </strong>
                   <small>{pkg.priceLabel}</small>
                 </div>
+                {isUsaSponsorship && (
+                  <a className="btn sp-package-cta" href={sponsorshipWhatsappUrl} target="_blank" rel="noreferrer">
+                    {isEnglishUsa ? 'Request Proposal on WhatsApp' : 'اطلب عرض الرعاية على واتساب'}
+                  </a>
+                )}
               </article>
             ))}
           </div>
@@ -1449,16 +1562,16 @@ function SponsorshipQ22026() {
         <div className="wrap">
           <div className="sp-final-grid reveal">
             <div>
-              <span>{isEnglishUsa ? 'LIMITED · Q2 2026' : 'LIMITED · الربع الثاني 2026'}</span>
-              <h2>{isEnglishUsa ? 'Sponsor the series' : 'كن راعي السلسلة'}</h2>
-              <p>{isEnglishUsa ? 'One sponsorship slot per quarter. Reserve your brand presence before the season starts.' : 'مساحة رعاية واحدة لكل ربع. لنحجز ظهور علامتك أمام جمهور مالي نوعي قبل بداية الموسم.'}</p>
+              <span>{isEnglishUsa ? 'EXCLUSIVE · 3 MONTHS' : isUsaSponsorship ? 'حصري · 3 أشهر' : 'LIMITED · الربع الثاني 2026'}</span>
+              <h2>{isEnglishUsa ? 'Become the exclusive partner' : isUsaSponsorship ? 'كن الشريك الحصري' : 'كن راعي السلسلة'}</h2>
+              <p>{isEnglishUsa ? 'Sponsorship starts immediately upon agreement and continues through September 15, 2026.' : isUsaSponsorship ? 'تبدأ الرعاية فور الاتفاق وتستمر حتى 15 سبتمبر 2026.' : 'مساحة رعاية واحدة لكل ربع. لنحجز ظهور علامتك أمام جمهور مالي نوعي قبل بداية الموسم.'}</p>
             </div>
             <div className="sp-contact-actions">
               <a href="https://x.com/AlsagriCapital" target="_blank" rel="noreferrer">
                 <small>{isEnglishUsa ? 'On X' : 'على منصة X'}</small>
                 <strong>@AlsagriCapital</strong>
               </a>
-              <a href="https://wa.me/966550734332" target="_blank" rel="noreferrer">
+              <a href={sponsorshipWhatsappUrl} target="_blank" rel="noreferrer">
                 <small>{isEnglishUsa ? 'WhatsApp' : 'واتساب'}</small>
                 <strong>0550734332</strong>
               </a>

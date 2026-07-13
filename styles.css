@@ -5331,6 +5331,19 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   color: var(--navy);
   text-wrap: balance;
 }
+.sp-hero-title-with-flag {
+  display: inline;
+}
+.sp-hero-title-with-flag img {
+  display: inline-block;
+  width: 52px;
+  height: 28px;
+  margin-inline-start: 14px;
+  vertical-align: .08em;
+  border-radius: 4px;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px rgba(10, 26, 51, .12), 0 7px 18px rgba(10, 26, 51, .1);
+}
 .sp-hero-market-subtitle {
   display: inline-flex;
   align-items: center;
@@ -5359,6 +5372,141 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
 .sp-hero-copy p strong {
   color: var(--navy);
   font-weight: 700;
+}
+.sp-publisher-proof {
+  margin-top: 20px;
+  max-width: 820px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 13px;
+  border: 1px solid rgba(20, 74, 128, .14);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, .72);
+  box-shadow: 0 12px 30px rgba(10, 26, 51, .06);
+}
+.sp-publisher-account,
+.sp-publisher-credential {
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 11px;
+  border-radius: 9px;
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+.sp-publisher-account {
+  color: var(--navy);
+  background: #eef7ff;
+}
+.sp-publisher-account svg {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
+  color: #1d9bf0;
+}
+.sp-publisher-account a {
+  direction: ltr;
+  color: #146aa3;
+  text-decoration: none;
+}
+.sp-publisher-account a:hover {
+  text-decoration: underline;
+}
+.sp-publisher-credential {
+  color: #43546a;
+  border: 1px solid rgba(10, 26, 51, .09);
+  background: rgba(255, 255, 255, .82);
+}
+.sp-publisher-credential bdi {
+  color: var(--navy);
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 700;
+}
+.sp-expected-companies {
+  margin-top: 20px;
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: minmax(220px, .72fr) minmax(0, 1.7fr);
+  align-items: center;
+  gap: 20px;
+  padding: 18px;
+  border: 1px solid rgba(210, 170, 83, .38);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 92% 10%, rgba(51, 116, 191, .22), transparent 34%),
+    linear-gradient(135deg, #07182e 0%, #0b2441 58%, #0d2d50 100%);
+  box-shadow: 0 22px 50px -34px rgba(2, 17, 35, .9), inset 0 1px 0 rgba(255, 255, 255, .08);
+  overflow: hidden;
+}
+.sp-expected-companies-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-self: stretch;
+  justify-content: center;
+  padding-inline-end: 20px;
+  border-inline-end: 1px solid rgba(255, 255, 255, .12);
+}
+.sp-expected-companies-copy strong {
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.55;
+}
+.sp-expected-companies-copy small {
+  color: rgba(232, 199, 121, .82);
+  font-size: 11px;
+  line-height: 1.5;
+}
+.sp-company-list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 7px;
+  direction: ltr;
+}
+.sp-company-list span {
+  min-width: 0;
+  min-height: 61px;
+  padding: 9px 7px 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: #fff;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  line-height: 1;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, .10);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, .045);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+  transition: background-color .2s ease, border-color .2s ease, transform .2s ease;
+}
+.sp-company-list span:hover {
+  background: rgba(255, 255, 255, .09);
+  border-color: rgba(218, 181, 96, .45);
+  transform: translateY(-2px);
+}
+.sp-company-list img {
+  display: block;
+  width: auto;
+  max-width: 66px;
+  height: 21px;
+  object-fit: contain;
+  filter: grayscale(1) brightness(0) invert(1);
+  opacity: .9;
+}
+.sp-company-list small {
+  color: rgba(232, 199, 121, .78);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8.5px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: .08em;
 }
 .sp-usa-gold-note {
   margin-top: 20px;
@@ -5392,6 +5540,30 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
 }
 .sponsorship-hero .btn-ghost {
   background: color-mix(in srgb, var(--surface) 70%, transparent);
+}
+.sponsorship-hero .btn-pdf {
+  color: #8b6118;
+  border-color: rgba(190, 135, 42, .44);
+  background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,247,228,.9));
+}
+.sponsorship-hero .btn-pdf:hover {
+  color: var(--navy);
+  border-color: var(--sp-gold);
+  transform: translateY(-2px);
+}
+.sp-pdf-tag {
+  min-width: 34px;
+  padding: 4px 6px;
+  display: inline-grid;
+  place-items: center;
+  direction: ltr;
+  color: #fff;
+  background: #b4232e;
+  border-radius: 5px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  line-height: 1;
+  font-weight: 700;
 }
 .sp-saudi-booked-card {
   margin-top: 18px;
@@ -5745,6 +5917,117 @@ body[data-page="sponsorshipusa-en"] .sp-saudi-booked-card p {
   font-size: 17px;
   line-height: 1.85;
 }
+.sp-audience-section {
+  background: linear-gradient(145deg, rgba(238, 247, 255, .72), rgba(255, 255, 255, .94));
+}
+.sp-audience-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+.sp-audience-card {
+  min-height: 210px;
+  padding: 25px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid rgba(20, 74, 128, .13);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .88);
+  box-shadow: 0 20px 44px -38px rgba(10, 26, 51, .34);
+}
+.sp-audience-card > strong {
+  color: var(--sp-gold-2);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 38px;
+  line-height: 1;
+  white-space: nowrap;
+}
+body[data-page="sponsorshipusa-en"] .sp-audience-card > strong {
+  direction: ltr;
+}
+.sp-audience-card h3 {
+  margin-top: 15px;
+  color: var(--navy);
+  font-size: 18px;
+  line-height: 1.45;
+}
+.sp-audience-card p {
+  margin-top: 7px;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.75;
+}
+.sp-audience-interests > span {
+  color: var(--sp-gold-2);
+  font-size: 13px;
+  font-weight: 800;
+}
+.sp-audience-interests > div {
+  margin-top: 13px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.sp-audience-interests em {
+  padding: 7px 9px;
+  color: var(--navy);
+  font-size: 11px;
+  line-height: 1.2;
+  font-style: normal;
+  font-weight: 700;
+  border: 1px solid rgba(20, 74, 128, .12);
+  border-radius: 999px;
+  background: #f4f8fc;
+}
+.sp-projection-note {
+  margin-top: 18px;
+  padding: 19px 22px;
+  display: grid;
+  grid-template-columns: minmax(190px, .55fr) minmax(0, 1.45fr);
+  align-items: center;
+  gap: 20px;
+  border: 1px solid rgba(190, 135, 42, .3);
+  border-radius: 12px;
+  background: linear-gradient(135deg, #fffdf8, #fff7e5);
+}
+.sp-projection-note strong {
+  color: #9a6817;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.sp-projection-note p {
+  margin: 0;
+  color: var(--navy);
+  font-size: 14px;
+  line-height: 1.75;
+  font-weight: 700;
+}
+.sp-audience-source,
+.sp-stats-source {
+  margin: 13px 0 0;
+  color: #69788b;
+  font-size: 11px;
+  line-height: 1.65;
+}
+.sp-stats-source {
+  padding: 11px 14px;
+  border: 1px solid rgba(10, 26, 51, .08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .66);
+}
+.sp-examples-context {
+  margin: -10px 0 24px;
+  padding: 15px 18px;
+  color: #0d5f38;
+  font-size: 15px;
+  line-height: 1.75;
+  font-weight: 800;
+  border: 1px solid rgba(20, 138, 74, .24);
+  border-inline-start: 4px solid #148a4a;
+  border-radius: 9px;
+  background: rgba(233, 249, 240, .78);
+}
 
 .sp-product-cards {
   position: relative;
@@ -6015,6 +6298,11 @@ body[data-page="sponsorshipusa-en"] .sp-saudi-booked-card p {
   color: var(--ink-mute);
   font-size: 12px;
   direction: ltr;
+}
+.sp-stat small.sp-date-range {
+  direction: rtl;
+  unicode-bidi: isolate;
+  text-align: right;
 }
 .sp-stat:first-child small {
   color: rgba(255,255,255,.62);
@@ -6490,6 +6778,12 @@ body[data-page="sponsorshipusa-en"] .sp-saudi-booked-card p {
   line-height: 1.35;
   font-weight: 800;
 }
+.sp-placement-badge.is-exposure {
+  color: #fff;
+  border-color: var(--navy);
+  background: var(--navy);
+  box-shadow: 0 10px 20px -16px rgba(10, 26, 51, .72);
+}
 .sp-placement-crop {
   position: relative;
   height: 166px;
@@ -6648,6 +6942,30 @@ body[data-page="sponsorshipusa-en"] .sp-saudi-booked-card p {
   grid-template-columns: minmax(0, 760px);
   justify-content: center;
   max-width: 760px;
+}
+.sp-editorial-note {
+  max-width: 760px;
+  margin: 18px auto 0;
+  padding: 18px 20px;
+  display: grid;
+  grid-template-columns: minmax(150px, .42fr) minmax(0, 1.58fr);
+  align-items: center;
+  gap: 18px;
+  border: 1px solid rgba(20, 74, 128, .16);
+  border-radius: 10px;
+  background: rgba(238, 247, 255, .72);
+}
+.sp-editorial-note strong {
+  color: #146aa3;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.sp-editorial-note p {
+  margin: 0;
+  color: var(--navy);
+  font-size: 13px;
+  line-height: 1.8;
+  font-weight: 650;
 }
 .sp-package {
   min-height: 560px;
@@ -7365,6 +7683,9 @@ body[data-page="sponsorship-motion"] .sp-final-grid {
   .sp-flow-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  .sp-audience-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .sp-flow-item:nth-child(2n) {
     border-inline-start: 0;
   }
@@ -7409,9 +7730,56 @@ body[data-page="sponsorship-motion"] .sp-final-grid {
     font-size: 40px;
     line-height: 1.18;
   }
+  .sp-hero-title-with-flag img {
+    width: 42px;
+    height: 23px;
+    margin-inline-start: 9px;
+  }
   .sp-hero-copy p {
     font-size: 16px;
     line-height: 1.9;
+  }
+  .sp-publisher-proof {
+    align-items: stretch;
+    padding: 10px;
+  }
+  .sp-publisher-account,
+  .sp-publisher-credential {
+    flex: 1 1 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  .sp-expected-companies {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    padding: 16px;
+  }
+  .sp-expected-companies-copy {
+    text-align: center;
+    padding: 0 0 14px;
+    border-inline-end: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .12);
+  }
+  .sp-company-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .sp-company-list span {
+    min-width: 0;
+    min-height: 56px;
+  }
+  .sp-projection-note {
+    grid-template-columns: 1fr;
+    gap: 7px;
+    text-align: center;
+  }
+  .sp-audience-card > strong {
+    font-size: 32px;
+  }
+  .sp-editorial-note {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 16px;
+    text-align: center;
   }
   .sp-hero-actions {
     align-items: stretch;

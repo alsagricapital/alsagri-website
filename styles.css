@@ -1617,6 +1617,24 @@ a.rpt-link:hover { transform: translateY(-3px); border-color: var(--accent); }
 .rpt-compact .rpt-views-badge strong {
   font-size: 11.5px;
 }
+.rpt-click-hint {
+  margin-top: auto;
+  min-height: 38px;
+  padding: 9px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--navy);
+  font-size: 12px;
+  line-height: 1.3;
+  font-weight: 800;
+  border-top: 1px solid var(--line);
+  background: color-mix(in srgb, var(--sp-gold) 9%, var(--surface));
+}
+.rpt-link:hover .rpt-click-hint {
+  color: var(--accent-2);
+}
 .rpt-title {
   margin-top: 6px; font-size: 18px; line-height: 1.4; font-weight: 500;
   text-wrap: balance;
@@ -6818,7 +6836,7 @@ body[data-page="sponsorshipusa-en"] .sp-audience-card > strong {
 .sp-placement-crop.is-banner > img {
   object-fit: contain;
   object-position: center;
-  background: #eef5ff;
+  background: #050807;
 }
 .sp-placement-crop.is-inside > img {
   object-position: center 64%;
@@ -6852,8 +6870,14 @@ body[data-page="sponsorshipusa-en"] .sp-audience-card > strong {
 }
 .sp-placement-crop.is-inside figcaption {
   left: 50%;
+  bottom: 8px;
+  width: calc(100% - 24px);
+  max-width: 390px;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.45;
   transform: translateX(-50%);
-  white-space: nowrap;
+  white-space: normal;
 }
 .sp-placement-inside-preview {
   height: 100%;
@@ -7222,6 +7246,16 @@ body[data-page="sponsorshipusa-en"] .sp-audience-card > strong {
 }
 .sp-package.is-featured .sp-package-price small {
   color: rgba(255,255,255,.58);
+}
+.sp-package > p.sp-package-tax-note {
+  margin-top: 10px;
+  color: var(--ink-mute);
+  font-size: 11px;
+  line-height: 1.75;
+  font-weight: 500;
+}
+.sp-package.is-featured > p.sp-package-tax-note {
+  color: rgba(255,255,255,.62);
 }
 .sp-package.in .sp-package-price {
   animation: spPriceSettle .7s cubic-bezier(.2,.8,.2,1) .22s both;

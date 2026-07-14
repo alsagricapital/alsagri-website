@@ -568,7 +568,7 @@ function About() {
 }
 
 /* ── Report card (used inline within Services) ─────────────────── */
-function ReportCard({ r, catLabel, viewCount, compact = false, viewsPlacement = 'body' }) {
+function ReportCard({ r, catLabel, viewCount, compact = false, viewsPlacement = 'body', clickLabel = '' }) {
   const arCat = ({
     earnings: 'مكالمة عرض النتائج',
     brokerage: 'تقرير بحثي',
@@ -640,6 +640,12 @@ function ReportCard({ r, catLabel, viewCount, compact = false, viewsPlacement = 
             </div>
           )}
         </div>
+      )}
+      {reportHref && clickLabel && (
+        <span className="rpt-click-hint">
+          <span>{clickLabel}</span>
+          <span aria-hidden="true">↗</span>
+        </span>
       )}
     </Wrapper>);
 }
@@ -978,7 +984,7 @@ function SponsorshipQ22026() {
         ? 'بنر التغريدة الافتتاحية لسلسلة مكالمات نتائج الشركات مع ظهور الراعي'
         : 'مثال توضيحي لتغريدة مكالمات المستثمرين مع ظهور شعار الراعي',
     exampleImage: isUsaSponsorship
-      ? 'assets/sponsorship/q2-2026-opening-tweet-banner.png?v=opening1'
+      ? 'assets/sponsorship/q2-2026-opening-tweet-banner.png?v=openingusa2'
       : 'assets/sponsorship/q2-2026-example-tweet-enhanced.png?v=q2e',
   };
   const whatsappMessage = isEnglishUsa
@@ -1098,7 +1104,7 @@ function SponsorshipQ22026() {
       code: 'A',
       title: 'Opening tweet cover',
       text: 'The opening tweet launches the series and links together all earnings-call coverage during the season.',
-      image: 'assets/sponsorship/q2-2026-opening-tweet-banner.png?v=opening1',
+      image: 'assets/sponsorship/q2-2026-opening-tweet-banner.png?v=openingusa2',
       alt: 'Illustrative opening tweet cover with sponsor logo placement',
     },
     {
@@ -1112,8 +1118,8 @@ function SponsorshipQ22026() {
       code: 'C',
       title: 'Brand logo in the main call banner',
       text: 'The sponsor logo appears inside the main banner for each published earnings call throughout the season.',
-      image: 'assets/sponsorship/q2-2026-call-banner-almarai.png?v=almarai1',
-      alt: 'Almarai earnings call banner with sponsor logo placement',
+      image: 'assets/sponsorship/q2-2026-call-banner-nvidia.png?v=nvidia1',
+      alt: 'NVIDIA earnings call banner with sponsor logo placement',
       wide: true,
     },
   ] : [
@@ -1121,7 +1127,7 @@ function SponsorshipQ22026() {
       code: 'A',
       title: isUsaSponsorship ? 'غلاف التغريدة الافتتاحية' : 'غلاف التغريدة الافتتاحية المثبتة',
       text: isUsaSponsorship ? 'تنطلق منها السلسلة وتُربط بها جميع تغطيات مكالمات النتائج خلال الموسم.' : 'مثبتة أعلى الحساب طوال الربع، وهي أول ما يراه زائر السلسلة.',
-      image: isUsaSponsorship ? 'assets/sponsorship/q2-2026-opening-tweet-banner.png?v=opening1' : 'assets/sponsorship/q2-2026-example-tweet-enhanced.png?v=q2e',
+      image: isUsaSponsorship ? 'assets/sponsorship/q2-2026-opening-tweet-banner.png?v=openingusa2' : 'assets/sponsorship/q2-2026-example-tweet-enhanced.png?v=q2e',
       alt: isUsaSponsorship ? 'مثال توضيحي لغلاف التغريدة الافتتاحية مع ظهور شعار الراعي' : 'مثال توضيحي لغلاف التغريدة الافتتاحية المثبتة مع ظهور شعار الراعي',
     },
     {
@@ -1135,8 +1141,8 @@ function SponsorshipQ22026() {
       code: 'C',
       title: 'شعار العلامة التجارية في البنر الأساسي للمكالمة',
       text: 'شعار الراعي داخل البنر الأساسي للمكالمة، يظهر مع كل مكالمة منشورة طوال الموسم.',
-      image: isUsaSponsorship ? 'assets/sponsorship/q2-2026-call-banner-almarai.png?v=almarai1' : 'assets/sponsorship/q2-2026-banner-go-telecom.png?v=q2e',
-      alt: isUsaSponsorship ? 'بنر مكالمة نتائج المراعي مع ظهور شعار الراعي' : 'مثال توضيحي لظهور شعار الراعي في البنر الأساسي لمكالمة عرض النتائج',
+      image: isUsaSponsorship ? 'assets/sponsorship/q2-2026-call-banner-nvidia.png?v=nvidia1' : 'assets/sponsorship/q2-2026-banner-go-telecom.png?v=q2e',
+      alt: isUsaSponsorship ? 'بنر مكالمة نتائج إنفيديا مع موضع شعار الشركة الراعية' : 'مثال توضيحي لظهور شعار الراعي في البنر الأساسي لمكالمة عرض النتائج',
       wide: true,
     },
   ];
@@ -1145,8 +1151,8 @@ function SponsorshipQ22026() {
       n: '01',
       title: 'Opening tweet — the series hub',
       text: 'Your logo appears in the opening tweet that launches the series and links together the coverage through September 15, 2026.',
-      badge: '1 placement · expected +300K views',
-      image: 'assets/sponsorship/q2-2026-opening-tweet-banner.png?v=opening1',
+      badge: 'One series opener — the previous season opener achieved 322K views.',
+      image: 'assets/sponsorship/q2-2026-opening-tweet-banner.png?v=openingusa2',
       alt: 'Opening earnings calls tweet with the sponsor logo placement highlighted',
       visual: 'opening',
     },
@@ -1155,8 +1161,8 @@ function SponsorshipQ22026() {
       title: 'Every call banner',
       text: 'Your logo is integrated into the cover image published with every earnings call.',
       badge: '35 placements · 65K average views per call',
-      image: 'assets/sponsorship/q2-2026-call-banner-almarai.png?v=almarai1',
-      alt: 'Almarai earnings call banner showing the sponsor logo placement',
+      image: 'assets/sponsorship/q2-2026-call-banner-nvidia.png?v=nvidia1',
+      alt: 'NVIDIA earnings call banner showing the sponsor logo placement',
       visual: 'banner',
     },
     {
@@ -1173,8 +1179,8 @@ function SponsorshipQ22026() {
       n: '01',
       title: 'التغريدة الافتتاحية — بوابة السلسلة',
       text: 'يظهر شعارك في التغريدة الافتتاحية التي تنطلق منها السلسلة، وتُربط بها التغطيات حتى 15 سبتمبر 2026.',
-      badge: '1 ظهور (متوقع +300 ألف مشاهدة)',
-      image: 'assets/sponsorship/q2-2026-opening-tweet-banner.png?v=opening1',
+      badge: 'افتتاحية واحدة للسلسلة — حققت افتتاحية الموسم السابق 322 ألف مشاهدة.',
+      image: 'assets/sponsorship/q2-2026-opening-tweet-banner.png?v=openingusa2',
       alt: 'التغريدة الافتتاحية لمكالمات النتائج مع تحديد موضع شعار الراعي',
       visual: 'opening',
     },
@@ -1183,8 +1189,8 @@ function SponsorshipQ22026() {
       title: 'بنر كل مكالمة',
       text: 'يُدمج شعارك داخل صورة الغلاف المنشورة مع كل مكالمة نتائج.',
       badge: '35 ظهور (متوسط لكل مكالمة 65 ألف مشاهدة)',
-      image: 'assets/sponsorship/q2-2026-call-banner-almarai.png?v=almarai1',
-      alt: 'بنر مكالمة نتائج المراعي يوضح موضع شعار الراعي',
+      image: 'assets/sponsorship/q2-2026-call-banner-nvidia.png?v=nvidia1',
+      alt: 'بنر مكالمة نتائج إنفيديا يوضح موضع شعار الشركة الراعية',
       visual: 'banner',
     },
     {
@@ -1254,7 +1260,7 @@ function SponsorshipQ22026() {
       { text: isEnglishUsa ? 'One custom promotional post with mutually agreed copy' : 'منشور إعلاني مخصص واحد بصياغة متفق عليها' },
       { text: isEnglishUsa ? 'Mention of the sponsor’s account on X' : 'إشارة إلى حساب الراعي على X' },
       { text: isEnglishUsa ? 'A mutually agreed call to action, such as “Download the app” or “Learn about the service”' : 'عبارة دعوة للفعل متفق عليها، مثل «حمّل التطبيق» أو «تعرف إلى الخدمة»' },
-      { text: isEnglishUsa ? 'Final performance report: views, engagement, and impressions' : 'تقرير أداء نهائي: المشاهدات، التفاعل، والظهور' },
+      { text: isEnglishUsa ? 'Interim performance report after the first 15–20 coverages, followed by a final report at the end of the season' : 'تقرير أداء مرحلي بعد أول 15–20 تغطية، وتقرير نهائي بعد انتهاء الموسم' },
     ],
   };
   const packages = isUsaSponsorship ? [exclusiveUsaPackage] : basePackages;
@@ -1429,7 +1435,7 @@ function SponsorshipQ22026() {
               </article>
               <article className="sp-audience-card reveal d2">
                 <strong>95%</strong>
-                <h3>{isEnglishUsa ? 'Saudi Arabia and GCC' : 'من السعودية والخليج'}</h3>
+                <h3>{isEnglishUsa ? 'of the audience is in Saudi Arabia' : 'من الجمهور في السعودية'}</h3>
                 <p>{isEnglishUsa ? 'The geographic concentration of the available audience data.' : 'النطاق الجغرافي الأبرز ضمن بيانات الجمهور المتاحة.'}</p>
               </article>
               <article className="sp-audience-card reveal d3">
@@ -1563,7 +1569,7 @@ function SponsorshipQ22026() {
                     {item.image ? (
                       <React.Fragment>
                         <img src={item.image} alt={item.alt} loading="lazy" decoding="async" />
-                        <figcaption>{item.visual === 'inside' ? (isEnglishUsa ? 'Sponsor acknowledgement and logo' : 'موضع شكر الراعي وشعاره') : (isEnglishUsa ? 'Sponsor logo here' : 'شعار الراعي هنا')}</figcaption>
+                        <figcaption>{item.visual === 'inside' ? (isEnglishUsa ? 'A real example from Argaam, sponsor of the Saudi earnings series (for illustration)' : 'صورة حقيقية لراعي سلسلة نتائج السوق السعودي أرقام (صورة للتوضيح)') : (isEnglishUsa ? 'Sponsor logo here' : 'شعار الراعي هنا')}</figcaption>
                       </React.Fragment>
                     ) : (
                       <div className="sp-placement-inside-preview">
@@ -1634,6 +1640,7 @@ function SponsorshipQ22026() {
                 catLabel="EARNINGS CALL"
                 compact
                 viewsPlacement="ticker"
+                clickLabel={isEnglishUsa ? 'Click here' : 'انقر هنا'}
                 viewCount={previousExampleViews[r.co]} />
             ))}
           </div>
@@ -1665,6 +1672,13 @@ function SponsorshipQ22026() {
                   </strong>
                   <small>{pkg.priceLabel}</small>
                 </div>
+                {isUsaSponsorship && (
+                  <p className="sp-package-tax-note">
+                    {isEnglishUsa
+                      ? 'Sponsorship consideration: SAR 60,000. VAT is not charged because the service provider was not registered for VAT as of the date this proposal was issued.'
+                      : 'المقابل المالي للرعاية: 60,000 ريال سعودي. لا تُحتسب ضريبة القيمة المضافة على المبلغ لكون مقدم الخدمة غير مسجل في ضريبة القيمة المضافة بتاريخ إصدار هذا العرض.'}
+                  </p>
+                )}
                 {isUsaSponsorship && (
                   <a className="btn sp-package-cta" href="#contact">
                     {isEnglishUsa ? 'Request Sponsorship Proposal' : 'اطلب عرض الرعاية'}

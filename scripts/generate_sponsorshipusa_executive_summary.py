@@ -166,8 +166,8 @@ def page_one(c):
     gap = 10
     kpi_w = (CONTENT_W - gap * 3) / 4
     y = 394
-    draw_kpi(c, M, y, kpi_w, 84, "SAR 60,000", "SPONSORSHIP CONSIDERATION", True)
-    draw_kpi(c, M + (kpi_w + gap), y, kpi_w, 84, "35+", "PUBLISHED COVERAGES")
+    draw_kpi(c, M, y, kpi_w, 84, "SAR 60,000", "SPONSORSHIP INVESTMENT", True)
+    draw_kpi(c, M + (kpi_w + gap), y, kpi_w, 84, "35+", "EARNINGS-CALL COVERAGES")
     draw_kpi(c, M + (kpi_w + gap) * 2, y, kpi_w, 84, "71+", "CORE BRAND PLACEMENTS")
     draw_kpi(c, M + (kpi_w + gap) * 3, y, kpi_w, 84, "SEP 15", "AGREEMENT END DATE")
 
@@ -183,13 +183,13 @@ def page_one(c):
         S_BODY,
     )
 
-    rounded_box(c, M, 176, CONTENT_W, 82, GOLD_LIGHT, HexColor("#E0C583"), 12)
-    draw_paragraph(c, "WHAT THE COVERAGE DELIVERS", M + 16, 241, 220, style("goldPanelH", 10, NAVY, 13, True))
+    rounded_box(c, M, 164, CONTENT_W, 82, GOLD_LIGHT, HexColor("#E0C583"), 12)
+    draw_paragraph(c, "WHAT THE COVERAGE DELIVERS", M + 16, 229, 220, style("goldPanelH", 10, NAVY, 13, True))
     draw_paragraph(
         c,
         "Alsagri turns leading earnings calls into structured Arabic coverage highlighting key figures, management guidance, and analyst questions.",
         M + 16,
-        222,
+        210,
         CONTENT_W - 32,
         S_BODY_DARK,
     )
@@ -197,7 +197,7 @@ def page_one(c):
         c,
         "Historical performance indicates total views may exceed 2.5 million, with no guaranteed minimum view count.",
         M + 16,
-        194,
+        182,
         CONTENT_W - 32,
         S_SMALL,
     )
@@ -280,7 +280,7 @@ def page_two(c):
 def page_three(c):
     draw_page_base(c, 3)
     draw_paragraph(c, "EXCLUSIVE PACKAGE", M, H - 105, CONTENT_W, S_KICKER)
-    draw_paragraph(c, "A measurable sponsorship designed to compound with every coverage", M, H - 128, CONTENT_W, S_H1)
+    draw_paragraph(c, "A measurable sponsorship that builds value with every coverage", M, H - 128, CONTENT_W, S_H1)
 
     benefits = [
         ("Focused financial audience", "Investors and traders, not a general audience. Every view has context and value."),
@@ -290,7 +290,7 @@ def page_three(c):
     ]
     gap = 10
     box_w = (CONTENT_W - gap) / 2
-    start_y = 585
+    start_y = 570
     for i, (title, body) in enumerate(benefits):
         col = i % 2
         row = i // 2
@@ -327,7 +327,7 @@ def page_three(c):
 
     panel_y = 178
     rounded_box(c, M, panel_y, CONTENT_W, 104, NAVY, NAVY, 13, 0)
-    draw_paragraph(c, "SPONSORSHIP CONSIDERATION", M + 18, panel_y + 82, 230, S_KICKER)
+    draw_paragraph(c, "SPONSORSHIP INVESTMENT", M + 18, panel_y + 82, 230, S_KICKER)
     draw_paragraph(c, "SAR 60,000", M + 18, panel_y + 60, 200, style("price", 22, WHITE, 25, True))
     draw_paragraph(
         c,

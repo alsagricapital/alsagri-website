@@ -287,30 +287,30 @@ p { margin: 0; }
     max-height: 44px;
   }
 }
-body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorshipusa-en"], [data-page="sponsorship-threads"]) .nav-links,
-body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorshipusa-en"], [data-page="sponsorship-threads"]) .nav-burger {
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"], [data-page="sponsorship-threads"]) .nav-links,
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"], [data-page="sponsorship-threads"]) .nav-burger {
   display: none;
 }
-body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorshipusa-en"], [data-page="sponsorship-threads"]) .nav-inner {
+body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"], [data-page="sponsorship-threads"]) .nav-inner {
   justify-content: space-between;
 }
 @media (max-width: 860px) {
-  body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorshipusa-en"], [data-page="sponsorship-threads"]) .nav-cta {
+  body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"], [data-page="sponsorship-threads"]) .nav-cta {
     display: inline-flex;
     padding: 9px 13px;
     font-size: 12px;
   }
-  body:is([data-page="sponsorshipusa"], [data-page="sponsorshipusa-en"]) .nav-lang-switch {
+  body:is([data-page="sponsorshipusa"], [data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"]) .nav-lang-switch {
     margin-inline-start: 0;
     gap: 4px;
     padding: 4px;
   }
-  body:is([data-page="sponsorshipusa"], [data-page="sponsorshipusa-en"]) .nav-lang-switch a {
+  body:is([data-page="sponsorshipusa"], [data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"]) .nav-lang-switch a {
     min-width: auto;
     padding: 7px 8px;
     font-size: 11px;
   }
-  body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorshipusa-en"], [data-page="sponsorship-threads"]) .nav-cta .dot {
+  body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"], [data-page="sponsorship-threads"]) .nav-cta .dot {
     display: none;
   }
 }
@@ -1002,6 +1002,44 @@ body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="spo
   transform: translateY(-2px);
   border-color: rgba(143,176,209,.42);
   box-shadow: 0 32px 72px -46px rgba(10,22,40,.92);
+}
+.earnings-feature-banner.is-secondary {
+  grid-template-columns: minmax(0, 1fr) minmax(180px, .34fr) auto;
+  gap: 22px;
+  min-height: 148px;
+  padding: 21px 26px;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(213,173,80,.18), transparent 30%),
+    radial-gradient(circle at 84% 64%, rgba(105,190,154,.18), transparent 38%),
+    linear-gradient(135deg, #062d28 0%, #0a4236 56%, #0b5b46 100%);
+  border-color: rgba(213,173,80,.34);
+  box-shadow: 0 22px 54px -40px rgba(6,45,40,.82);
+}
+.earnings-feature-banner.is-secondary:hover {
+  border-color: rgba(213,173,80,.52);
+  box-shadow: 0 28px 62px -42px rgba(6,45,40,.9);
+}
+.earnings-feature-banner.is-secondary .efb-bg {
+  background-image: radial-gradient(circle at 1px 1px, rgba(213,173,80,.32) 1px, transparent 0);
+}
+.earnings-feature-banner.is-secondary .efb-kicker {
+  color: #f3d99d;
+  border-color: rgba(213,173,80,.34);
+}
+.earnings-feature-banner.is-secondary .efb-copy strong {
+  font-size: clamp(20px, 2.6vw, 31px);
+}
+.earnings-feature-banner.is-secondary .efb-visual,
+.earnings-feature-banner.is-secondary .efb-visual svg {
+  min-height: 98px;
+  height: 98px;
+}
+.earnings-feature-banner.is-secondary .efb-area { fill: rgba(213,173,80,.12); }
+.earnings-feature-banner.is-secondary .efb-line { stroke: #D5AD50; }
+.earnings-feature-banner.is-secondary .efb-arrow { stroke: #A9D8C1; }
+.earnings-feature-banner.is-secondary .efb-action {
+  min-height: 42px;
+  padding: 10px 16px;
 }
 .efb-bg {
   position: absolute;
@@ -5362,6 +5400,13 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   object-fit: cover;
   box-shadow: 0 0 0 1px rgba(10, 26, 51, .12), 0 7px 18px rgba(10, 26, 51, .1);
 }
+.sp-hero-title-with-flag img.is-saudi-flag {
+  width: 54px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: 5px;
+  vertical-align: .02em;
+}
 .sp-hero-market-subtitle {
   display: inline-flex;
   align-items: center;
@@ -5479,11 +5524,36 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   font-size: 11px;
   line-height: 1.5;
 }
+.sp-expected-companies-kicker {
+  display: none;
+}
 .sp-company-list {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 7px;
   direction: ltr;
+}
+.sp-company-marquee {
+  min-width: 0;
+}
+.sp-company-marquee.is-animated {
+  width: 100%;
+  overflow: hidden;
+  container-type: inline-size;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 5%, #000 95%, transparent 100%);
+}
+body[data-market="saudi-q3"] .sp-company-list span {
+  flex: 0 1 82px;
+  width: 82px;
+  min-height: 64px;
+  padding: 8px 6px 7px;
+  gap: 5px;
+  color: var(--navy);
+  border-color: rgba(10, 32, 57, .08);
+  border-radius: 10px;
+  background: rgba(250, 252, 255, .97);
+  box-shadow: 0 7px 18px -14px rgba(0, 0, 0, .65);
 }
 .sp-company-list span {
   min-width: 0;
@@ -5518,6 +5588,51 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   filter: grayscale(1) brightness(0) invert(1);
   opacity: .9;
 }
+.sp-company-logo-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+}
+body[data-market="saudi-q3"] .sp-company-logo-frame {
+  width: 100%;
+  height: 28px;
+  padding: 1px 5px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+body[data-market="saudi-q3"] .sp-company-list img {
+  width: auto;
+  max-width: 74px;
+  height: 24px;
+  filter: none;
+  opacity: 1;
+}
+body[data-market="saudi-q3"] .sp-company-list img.is-navy-mark {
+  filter: brightness(0) saturate(100%) invert(12%) sepia(45%) saturate(1718%) hue-rotate(176deg) brightness(88%) contrast(101%);
+}
+body[data-market="saudi-q3"] .sp-company-list img.is-green-mark {
+  filter: brightness(0) saturate(100%) invert(55%) sepia(54%) saturate(752%) hue-rotate(72deg) brightness(92%) contrast(92%);
+}
+.sp-company-monogram {
+  min-width: 30px;
+  height: 24px;
+  padding-inline: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  border: 1px solid rgba(232, 199, 121, .46);
+  border-radius: 7px;
+  background: rgba(218, 181, 96, .12);
+}
 .sp-company-list small {
   color: rgba(232, 199, 121, .78);
   font-family: 'IBM Plex Mono', monospace;
@@ -5525,6 +5640,71 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   line-height: 1;
   font-weight: 700;
   letter-spacing: .08em;
+}
+body[data-market="saudi-q3"] .sp-company-list small {
+  min-height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #102b49;
+  font-family: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  font-size: 9.5px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 0;
+  white-space: normal;
+}
+body[data-market="saudi-q3"] .sp-expected-companies {
+  max-width: 960px;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding: 15px 16px 16px;
+  background:
+    radial-gradient(circle at 92% 0%, rgba(48, 123, 194, .15), transparent 30%),
+    linear-gradient(145deg, #081b31 0%, #0a2949 100%);
+}
+body[data-market="saudi-q3"] .sp-expected-companies-copy {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  justify-content: start;
+  gap: 12px;
+  padding: 0 0 11px;
+  border-inline-end: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, .12);
+}
+body[data-market="saudi-q3"] .sp-expected-companies-kicker {
+  min-height: 31px;
+  padding: 5px 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #f0d58f;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .03em;
+  border: 1px solid rgba(232, 199, 121, .38);
+  border-radius: 999px;
+  background: rgba(218, 181, 96, .10);
+}
+body[data-market="saudi-q3"] .sp-expected-companies-copy strong {
+  display: block;
+  font-size: 17px;
+  line-height: 1.35;
+}
+body[data-market="saudi-q3"] .sp-expected-companies-copy small {
+  display: block;
+  margin-top: 3px;
+  color: rgba(222, 233, 245, .68);
+  font-size: 10.5px;
+}
+body[data-market="saudi-q3"] .sp-company-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 7px;
+  direction: rtl;
 }
 .sp-usa-gold-note {
   margin-top: 20px;
@@ -5644,31 +5824,31 @@ a.tool-card.is-link[class*="tool-tint-"]:hover .tool-arrow { color: var(--tint);
   line-height: 1.7;
   font-weight: 700;
 }
-body[data-page="sponsorshipusa-en"] .sponsorship-hero,
-body[data-page="sponsorshipusa-en"] .sp-section,
-body[data-page="sponsorshipusa-en"] .sp-final-section {
+body:is([data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"]) .sponsorship-hero,
+body:is([data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"]) .sp-section,
+body:is([data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"]) .sp-final-section {
   direction: ltr;
   text-align: left;
 }
-body[data-page="sponsorshipusa-en"] .sp-hero-copy,
-body[data-page="sponsorshipusa-en"] .sp-section-head,
-body[data-page="sponsorshipusa-en"] .sp-product-card,
-body[data-page="sponsorshipusa-en"] .sp-flow,
-body[data-page="sponsorshipusa-en"] .sp-stat,
-body[data-page="sponsorshipusa-en"] .sp-reason,
-body[data-page="sponsorshipusa-en"] .sp-placement,
-body[data-page="sponsorshipusa-en"] .sp-package,
-body[data-page="sponsorshipusa-en"] .sp-final-grid {
+body:is([data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"]) .sp-hero-copy,
+body:is([data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"]) .sp-section-head,
+body:is([data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"]) .sp-product-card,
+body:is([data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"]) .sp-flow,
+body:is([data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"]) .sp-stat,
+body:is([data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"]) .sp-reason,
+body:is([data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"]) .sp-placement,
+body:is([data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"]) .sp-package,
+body:is([data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"]) .sp-final-grid {
   text-align: left;
 }
-body[data-page="sponsorshipusa-en"] .sp-kicker,
-body[data-page="sponsorshipusa-en"] .sp-section-head > span,
-body[data-page="sponsorshipusa-en"] .sp-package-tier,
-body[data-page="sponsorshipusa-en"] .sp-proof-label,
-body[data-page="sponsorshipusa-en"] .sp-final-grid > div > span {
+body:is([data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"]) .sp-kicker,
+body:is([data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"]) .sp-section-head > span,
+body:is([data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"]) .sp-package-tier,
+body:is([data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"]) .sp-proof-label,
+body:is([data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"]) .sp-final-grid > div > span {
   direction: ltr;
 }
-body[data-page="sponsorshipusa-en"] .sp-saudi-booked-card p {
+body:is([data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"]) .sp-saudi-booked-card p {
   font-family: 'IBM Plex Sans', system-ui, sans-serif;
 }
 
@@ -5998,7 +6178,7 @@ body[data-page="sponsorshipusa-en"] .sp-saudi-booked-card p {
   line-height: 1;
   white-space: nowrap;
 }
-body[data-page="sponsorshipusa-en"] .sp-audience-card > strong {
+body:is([data-page="sponsorshipusa-en"], [data-page="sponsorship-q3-saudi-en"]) .sp-audience-card > strong {
   direction: ltr;
 }
 .sp-audience-card h3 {
@@ -6499,6 +6679,16 @@ body[data-page="sponsorshipusa-en"] .sp-audience-card > strong {
   gap: 10px;
   padding: 16px;
 }
+.sp-analytics-image {
+  padding: 16px;
+  background: var(--surface);
+}
+.sp-analytics-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
 .sp-an-card {
   background: var(--surface-2);
   border: 1px solid var(--line);
@@ -6548,6 +6738,7 @@ body[data-page="sponsorshipusa-en"] .sp-audience-card > strong {
 }
 @media (max-width: 520px) {
   .sp-analytics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sp-analytics-image { padding: 8px; }
 }
 .sp-proof-grid {
   display: grid;
@@ -6565,6 +6756,16 @@ body[data-page="sponsorshipusa-en"] .sp-audience-card > strong {
   color: var(--ink);
   font-size: 26px;
   line-height: 1.35;
+}
+.sp-proof-history-metrics {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+.sp-proof-history-metrics strong {
+  color: var(--ink);
+  font-size: 25px;
+  line-height: 1.45;
 }
 .sp-proof-card > p {
   margin-top: 10px;
@@ -6588,6 +6789,59 @@ body[data-page="sponsorshipusa-en"] .sp-audience-card > strong {
   height: auto;
   display: block;
   background: #fff;
+}
+.sp-proof-quarter {
+  margin: 26px 0 0;
+}
+.sp-proof-quarter + .sp-proof-quarter {
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+.sp-proof-quarter .sp-proof-window {
+  margin-top: 10px;
+}
+.sp-proof-post-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.sp-proof-post-link .sp-proof-window {
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.sp-proof-post-link:hover .sp-proof-window,
+.sp-proof-post-link:focus-visible .sp-proof-window {
+  transform: translateY(-2px);
+  border-color: rgba(29, 90, 158, .32);
+  box-shadow: 0 26px 58px -38px rgba(10, 22, 40, .5);
+}
+.sp-proof-post-link:focus-visible {
+  outline: 2px solid var(--navy);
+  outline-offset: 5px;
+  border-radius: 10px;
+}
+.sp-proof-post-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 11px;
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 700;
+}
+.sp-proof-post-cta span {
+  font-size: 15px;
+}
+.sp-proof-quarter-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border: 1px solid rgba(29, 90, 158, .18);
+  border-radius: 999px;
+  background: rgba(29, 90, 158, .08);
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
 }
 .sp-proof-window-head {
   display: flex;
@@ -7090,6 +7344,9 @@ body[data-page="sponsorshipusa-en"] .sp-audience-card > strong {
 .sp-examples-grid {
   margin-top: 0;
 }
+.sp-example-quarter-block {
+  margin-top: 54px;
+}
 .sp-packages-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -7247,6 +7504,9 @@ body[data-page="sponsorshipusa-en"] .sp-audience-card > strong {
   margin: 28px 0 0;
   display: grid;
   gap: 16px;
+}
+body[data-market="saudi-q3"] .sp-package ul {
+  margin-bottom: 28px;
 }
 .sp-package li {
   display: flex;
@@ -7561,6 +7821,53 @@ body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="spo
 body:is([data-page="sponsorship"], [data-page="sponsorshipusa"], [data-page="sponsorshipusa-en"], [data-page="sponsorship-threads"]) .sp-package.in:hover {
   transform: none;
 }
+
+body[data-page="sponsorship-q3-saudi-en"] .sponsorship-hero::after,
+body[data-page="sponsorship-q3-saudi-en"] .sp-hero-visual::before,
+body[data-page="sponsorship-q3-saudi-en"] .sp-hero-visual::after,
+body[data-page="sponsorship-q3-saudi-en"] .sp-hero-example-card::before,
+body[data-page="sponsorship-q3-saudi-en"] .sp-product-card::before,
+body[data-page="sponsorship-q3-saudi-en"] .sp-product-card::after,
+body[data-page="sponsorship-q3-saudi-en"] .sp-product-metric::after,
+body[data-page="sponsorship-q3-saudi-en"] .sp-flow::before,
+body[data-page="sponsorship-q3-saudi-en"] .sp-flow::after,
+body[data-page="sponsorship-q3-saudi-en"] .sp-placement::before,
+body[data-page="sponsorship-q3-saudi-en"] .sp-placement::after,
+body[data-page="sponsorship-q3-saudi-en"] .sp-placement-code::after,
+body[data-page="sponsorship-q3-saudi-en"] .sp-placement-mock::after,
+body[data-page="sponsorship-q3-saudi-en"] .sp-placement-example-image::after,
+body[data-page="sponsorship-q3-saudi-en"] .sp-package::before,
+body[data-page="sponsorship-q3-saudi-en"] .sp-package::after,
+body[data-page="sponsorship-q3-saudi-en"] .sp-final-grid::before,
+body[data-page="sponsorship-q3-saudi-en"] .sp-final-grid::after {
+  content: none;
+  animation: none;
+}
+body[data-page="sponsorship-q3-saudi-en"] .sponsorship-hero::before,
+body[data-page="sponsorship-q3-saudi-en"] .sp-hero-example-card,
+body[data-page="sponsorship-q3-saudi-en"] .sp-flow.in .sp-flow-item span,
+body[data-page="sponsorship-q3-saudi-en"] .sp-placement.in .sp-placement-code,
+body[data-page="sponsorship-q3-saudi-en"] .sp-placement.in .sp-placement-logo,
+body[data-page="sponsorship-q3-saudi-en"] .sp-package.in li .sp-feat-check,
+body[data-page="sponsorship-q3-saudi-en"] .sp-package.in .sp-package-price,
+body[data-page="sponsorship-q3-saudi-en"] .sponsorship-hero .trend-line-main,
+body[data-page="sponsorship-q3-saudi-en"] .sponsorship-hero .trend-line-gloss,
+body[data-page="sponsorship-q3-saudi-en"] .sponsorship-hero .trend-area,
+body[data-page="sponsorship-q3-saudi-en"] .sponsorship-hero .trend-bar,
+body[data-page="sponsorship-q3-saudi-en"] .sponsorship-hero .trend-node {
+  animation: none;
+}
+body[data-page="sponsorship-q3-saudi-en"] .sponsorship-hero .trend-line-main,
+body[data-page="sponsorship-q3-saudi-en"] .sponsorship-hero .trend-line-gloss {
+  stroke-dashoffset: 0;
+}
+body[data-page="sponsorship-q3-saudi-en"] .sponsorship-hero .trend-area { opacity: 1; }
+body[data-page="sponsorship-q3-saudi-en"] .sponsorship-hero .trend-bar,
+body[data-page="sponsorship-q3-saudi-en"] .sponsorship-hero .trend-node { transform: none; }
+body[data-page="sponsorship-q3-saudi-en"] .sp-product-card.in:hover,
+body[data-page="sponsorship-q3-saudi-en"] .sp-stat.in:hover,
+body[data-page="sponsorship-q3-saudi-en"] .sp-placement.in:hover,
+body[data-page="sponsorship-q3-saudi-en"] .sp-package.in:hover { transform: none; }
 
 /* ── Q2 sponsorship · MOTION variant (sponsorship-q2-2026-motion.html) ──
    Professional, page-scoped motion. The static override above targets
@@ -7909,6 +8216,10 @@ body[data-page="sponsorship-motion"] .sp-final-grid {
     height: 23px;
     margin-inline-start: 9px;
   }
+  .sp-hero-title-with-flag img.is-saudi-flag {
+    width: 45px;
+    height: 30px;
+  }
   .sp-hero-copy p {
     font-size: 16px;
     line-height: 1.9;
@@ -7940,6 +8251,23 @@ body[data-page="sponsorship-motion"] .sp-final-grid {
   .sp-company-list span {
     min-width: 0;
     min-height: 56px;
+  }
+  body[data-market="saudi-q3"] .sp-expected-companies-copy {
+    grid-template-columns: 1fr;
+    gap: 9px;
+    padding: 0 0 14px;
+    text-align: center;
+  }
+  body[data-market="saudi-q3"] .sp-expected-companies-kicker {
+    justify-self: center;
+  }
+  body[data-market="saudi-q3"] .sp-company-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  body[data-market="saudi-q3"] .sp-company-list span {
+    width: auto;
+    min-height: 62px;
   }
   .sp-projection-note {
     grid-template-columns: 1fr;

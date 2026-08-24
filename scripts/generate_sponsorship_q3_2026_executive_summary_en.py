@@ -159,7 +159,7 @@ def page_one(c):
     y = 252
     metric_card(c, M, y, card_w, "81K", "AVERAGE VIEWS PER CALL", "Q2 coverage benchmark", True)
     metric_card(c, M + card_w + gap, y, card_w, "4.2M", "TOTAL SERIES VIEWS", "Historical series performance")
-    metric_card(c, M + (card_w + gap) * 2, y, card_w, "16M", "ACCOUNT VIEWS", "Across the campaign period")
+    metric_card(c, M + (card_w + gap) * 2, y, card_w, "17.1M", "ACCOUNT IMPRESSIONS", "Across the campaign period")
     metric_card(c, M + (card_w + gap) * 3, y, card_w, "45+", "PUBLISHED COVERAGES", "Minimum season commitment")
 
     panel_y = 66
@@ -243,7 +243,7 @@ def page_two(c):
     card_gap = 11
     card_w = (CONTENT_W - card_gap * 2) / 3
     cards_y = 283
-    placement_card(c, M, cards_y, card_w, "01", "Opening post", "The season hub launches the series and connects every earnings-call coverage in one reference point.", "1 placement  |  Q1 opener 325K  |  Q2 opener 400K")
+    placement_card(c, M, cards_y, card_w, "01", "Opening post", "The season hub launches the series and connects every earnings-call coverage in one reference point.", "1 placement  |  Q1 opener 325K  |  Q2 opener 355K")
     placement_card(c, M + card_w + card_gap, cards_y, card_w, "02", "Every coverage banner", "The sponsor logo is integrated into every published earnings-call cover image throughout the season.", "45+ placements  |  81K average views per call")
     placement_card(c, M + (card_w + card_gap) * 2, cards_y, card_w, "03", "Exclusive partner introduction", "The sponsor is presented before the full coverage, creating repeated context-rich brand association.", "45+ placements  |  Exclusive category presence")
 
@@ -279,7 +279,7 @@ def page_two(c):
     right_w = CONTENT_W - left_w - 12
     box(c, right_x, lower_y, right_w, lower_h, NAVY, NAVY, 12, 0)
     para(c, "AUDIENCE + MEASUREMENT", right_x + 16, lower_y + lower_h - 16, right_w - 32, style("aud-kicker", 7.6, GOLD, 9.5, True))
-    audience = [("53K", "FOLLOWERS"), ("95%", "SAUDI AUDIENCE"), ("47%", "NON-FOLLOWER REACH")]
+    audience = [("52.7K", "FOLLOWERS"), ("95%", "SAUDI AUDIENCE"), ("47%", "NON-FOLLOWER REACH")]
     stat_w = (right_w - 32) / 3
     for i, (value, label) in enumerate(audience):
         x = right_x + 16 + i * stat_w

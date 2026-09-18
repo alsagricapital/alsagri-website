@@ -267,10 +267,14 @@ function Nav({ currentPage, drawerOpen, setDrawerOpen }) {
           <ul className="nav-links">
             {items.map((it) => (
               <li key={it.id}>
-                <a href={it.href}
-                   className={currentPage === it.id ? 'active' : ''}>
-                  {it.label}
-                </a>
+                {it.id === 'cfa' ? (
+                  <span className="nav-coming-soon" aria-disabled="true">
+                    <span>{it.label}</span>
+                    <small>{isEnglish ? 'Coming soon' : 'قريبًا'}</small>
+                  </span>
+                ) : (
+                  <a href={it.href} className={currentPage === it.id ? 'active' : ''}>{it.label}</a>
+                )}
               </li>
             ))}
           </ul>
@@ -310,9 +314,14 @@ function Nav({ currentPage, drawerOpen, setDrawerOpen }) {
       <ul>
         {items.map((it) => (
           <li key={it.id}>
-            <a href={it.href} onClick={() => setDrawerOpen(false)}>
-              <span>{it.label}</span>
-            </a>
+            {it.id === 'cfa' ? (
+              <span className="nav-coming-soon" aria-disabled="true">
+                <span>{it.label}</span>
+                <small>{isEnglish ? 'Coming soon' : 'قريبًا'}</small>
+              </span>
+            ) : (
+              <a href={it.href} onClick={() => setDrawerOpen(false)}><span>{it.label}</span></a>
+            )}
           </li>
         ))}
       </ul>
@@ -322,7 +331,11 @@ function Nav({ currentPage, drawerOpen, setDrawerOpen }) {
 }
 
 /* ── X Subscription Banner (shared across pages) ────────────────── */
+// Set to true to restore the X subscription banner across the site.
+const SHOW_X_SUBSCRIPTION_BANNER = false;
+
 function XSubBanner() {
+  if (!SHOW_X_SUBSCRIPTION_BANNER) return null;
   return (
     <a className="top-announcement" href="https://x.com/alsagricapital" target="_blank" rel="noreferrer">
       <span className="tb-text">
@@ -348,7 +361,7 @@ function PageBanner({ num, eyebrow, title, sub, variant = 'about', showXSub = fa
             <h1 className="pb-title">{title}</h1>
             {sub && <p className="pb-sub">{sub}</p>}
             {afterSubContent}
-            {showXSub && (
+            {showXSub && SHOW_X_SUBSCRIPTION_BANNER && (
               <div style={{ marginTop: 24 }}>
                 <XSubBanner />
               </div>
@@ -375,6 +388,7 @@ function XInlineIcon({ className = '' }) {
 }
 
 function HomeServicesCallout({ className = '' }) {
+  if (!SHOW_X_SUBSCRIPTION_BANNER) return null;
   return (
     <a className={'home-services-callout reveal ' + className} href="services.html">
       <strong>هنا تتعرّف على خدمات ومميزات الاشتراك في حساب الصقري على <XInlineIcon /></strong>
@@ -432,12 +446,11 @@ function Hero() {
             </p>
             <HomeServicesCallout className="home-services-callout-mobile" />
             <div className="hero-actions">
-              <a href="services.html" className="btn btn-primary">
-                استعرض الخدمات
-                <span className="arrow">←</span>
-              </a>
-              <a href="about.html" className="btn btn-ghost">
-                عن المنصة
+              <a href="services.html" className="home-services-button">
+                <span>استعرض الخدمات</span>
+                <span className="home-services-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none"><path d="M19 12H5m0 0 6-6m-6 6 6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                </span>
               </a>
             </div>
           </div>
@@ -653,6 +666,7 @@ function ReportCard({ r, catLabel, viewCount, viewsLabel = 'مشاهدات', com
 
 /* ── SERVICES page ──────────────────────────────────── */
 function ServicesXHighlight() {
+  if (!SHOW_X_SUBSCRIPTION_BANNER) return null;
   return (
     <a className="services-x-highlight reveal" href="https://x.com/AlsagriCapital" target="_blank" rel="noreferrer">
       <span className="sxh-mark" aria-hidden="true">
@@ -692,6 +706,10 @@ function ServicesXHighlight() {
     </a>);
 }
 
+function ServiceFreeBadge() {
+  return <span className="earnings-free-badge"><span>مجاني على حساب</span><XInlineIcon /><bdi className="free-account-handle" dir="ltr">@AlsagriCapital</bdi></span>;
+}
+
 function Services() {
   return (
     <React.Fragment>
@@ -720,6 +738,7 @@ function Services() {
                 </div>
                 <h3>{s.ar}</h3>
                 <div className="svc-en">{s.en}</div>
+                {s.isFree && <ServiceFreeBadge />}
                 <p className="svc-desc">{s.desc}</p>
                 {s.tags && s.tags.length > 0 && (
                   <div className="svc-tags">
@@ -848,6 +867,7 @@ function ServiceDetail() {
         eyebrow={service.en.toUpperCase()}
         title={service.ar}
         sub={service.desc}
+        afterSubContent={service.isFree ? <ServiceFreeBadge /> : null}
         variant="services" />
 
       <section className="section first">
@@ -867,7 +887,6 @@ function ServiceDetail() {
             <h2>نماذج من <span style={{ color: 'var(--accent)' }}>{service.ar}</span></h2>
           </div>
 
-          {serviceId === 'earnings' && <EarningsFeatureBanner />}
           {serviceId === 'brokerage' && <BrokerageAccessBanner />}
 
           <div className="examples-grid">
@@ -939,6 +958,7 @@ function Disclaimer() {
 /* ── SPONSORSHIP Q2 2026 page ─────────────────────────────────── */
 function SponsorshipQ22026() {
   const sponsorshipPage = document.body.dataset.page;
+  const showPackagePrices = sponsorshipPage !== 'sponsorship';
   const isThreadsSponsorship = sponsorshipPage === 'sponsorship-threads';
   const isEnglishUsa = sponsorshipPage === 'sponsorshipusa-en';
   const isEnglishSaudiQ3 = sponsorshipPage === 'sponsorship-q3-saudi-en';
@@ -1993,16 +2013,16 @@ function SponsorshipQ22026() {
                 <p>{pkg.period}</p>
                 <ul>
                   {pkg.features.map((feature) => (
-                    <li key={feature.text}><span className="sp-feat-check"></span><span className="sp-feat-text">{feature.amount && <strong className="sp-feat-amount"><span dir="ltr">{feature.amount}</span></strong>}{feature.text}{feature.code && <em className="sp-feat-code">{feature.code}</em>}</span></li>
+                    <li key={feature.text}><span className="sp-feat-check"></span><span className="sp-feat-text">{showPackagePrices && feature.amount && <strong className="sp-feat-amount"><span dir="ltr">{feature.amount}</span></strong>}{feature.text}{feature.code && <em className="sp-feat-code">{feature.code}</em>}</span></li>
                   ))}
                 </ul>
-                <div className="sp-package-price">
+                {showPackagePrices && <div className="sp-package-price">
                   <strong className="sp-riyal-price">
                     <span className="sp-currency-text">{isEnglish ? 'SAR' : 'ر.س'}</span>
                     <span>{pkg.priceAmount}</span>
                   </strong>
                   <small>{pkg.priceLabel}</small>
-                </div>
+                </div>}
                 {isUsaSponsorship && (
                   <p className="sp-package-tax-note">
                     {isEnglish
@@ -2182,6 +2202,19 @@ function Tools() {
 
 /* ── CFA Resources page ───────────────────────────────────────────────── */
 function CFAResources() {
+  return (
+    <section className="section first cfa-coming-soon-page">
+      <div className="wrap">
+        <h1>مصادر CFA</h1>
+        <p>قريبًا</p>
+        <a href="index.html">العودة إلى الرئيسية</a>
+      </div>
+    </section>
+  );
+}
+
+// Preserve the resources for the future launch without rendering them.
+function CFAResourcesContent() {
   const [cfaResourcesOpen, setCfaResourcesOpen] = useState(false);
   const levels = [
     {

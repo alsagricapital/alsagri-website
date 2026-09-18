@@ -582,7 +582,28 @@ function About() {
 }
 
 /* ── Report card (used inline within Services) ─────────────────── */
+function AlujainFeatureCard({ r }) {
+  return (
+    <a className="alujain-feature" href={r.link} aria-label="قراءة تقرير اللجين الكامل مجانًا">
+      <div className="alujain-feature-copy">
+        <div className="alujain-feature-meta"><span>تقرير مالي وأساسي</span><span className="alujain-free">نموذج مجاني</span></div>
+        <span className="alujain-feature-en" dir="ltr">ALUJAIN · 2170</span>
+        <h3>اللجين</h3>
+        <p className="alujain-feature-title">قوة الموقع أمام تحدّي فائض المعروض</p>
+        <p className="alujain-feature-desc">قراءة معمّقة في مستقبل البولي بروبلين، جودة الأرباح، وميزة ينبع التصديرية.</p>
+        <div className="alujain-feature-topics"><span>الطلب والمنافسة</span><span>جودة الأرباح</span><span>فرص التوسع</span></div>
+        <div className="alujain-feature-bottom"><span className="alujain-read">اقرأ التقرير الكامل <span aria-hidden="true">←</span></span><span className="alujain-feature-date">سبتمبر 2026</span></div>
+      </div>
+      <div className="alujain-feature-visual" aria-hidden="true">
+        <img className="alujain-night" src="banners/alujain-plant-night.png" alt="" />
+        <span className="alujain-visual-label">الصناعة من منظور استثماري</span>
+      </div>
+    </a>
+  );
+}
+
 function ReportCard({ r, catLabel, viewCount, viewsLabel = 'مشاهدات', compact = false, viewsPlacement = 'body', clickLabel = '' }) {
+  if (r.cat === 'qualitative' && r.ticker === '2170.SR') return <AlujainFeatureCard r={r} />;
   const arCat = ({
     earnings: 'مكالمة عرض النتائج',
     brokerage: 'تقرير بحثي',
@@ -882,7 +903,7 @@ function ServiceDetail() {
           <div className="section-head" style={{ marginBottom: 40 }}>
             <div className="label">
               <span className="num">/{service.num} · نماذج</span>
-              <span className="kicker">{reports.length} تقارير</span>
+              <span className="kicker">{reports.length === 1 ? 'تقرير واحد' : `${reports.length} تقارير`}</span>
             </div>
             <h2>نماذج من <span style={{ color: 'var(--accent)' }}>{service.ar}</span></h2>
           </div>

@@ -8540,3 +8540,42 @@ body[data-page="sponsorship-motion"] .sp-final-grid {
 .earnings-free-badge .x-inline-icon { display: inline-flex; width: 14px; height: 14px; color: inherit; }
 .earnings-free-badge .x-inline-icon svg { width: 100%; height: 100%; }
 .earnings-free-badge .free-account-handle { font-family: Arial, sans-serif; font-size: 13px; }
+
+.alujain-feature{grid-column:1/-1;display:grid;grid-template-columns:1.05fr 1fr;overflow:hidden;border-radius:24px;background:#0b1d35;color:#fff;text-decoration:none;border:1px solid #284565;box-shadow:0 20px 50px -28px #09244070;transition:transform .25s,box-shadow .25s}
+.alujain-feature-copy{padding:40px;position:relative;z-index:1}
+.alujain-feature-meta{display:flex;align-items:center;flex-wrap:wrap;gap:16px;font-size:13px;color:#bacce0}
+.alujain-free{padding:5px 13px;border:1px solid #4275a3;border-radius:99px;background:#173e64;color:#e5f4ff}
+.alujain-feature-en{display:block;text-align:right;margin-top:30px;font-size:11px;letter-spacing:3px;color:#75b7ee}
+.alujain-feature h3{font-size:clamp(38px,4.5vw,60px);line-height:1.3;margin:8px 0 12px;color:#fff}
+.alujain-feature-title{font-size:clamp(19px,2vw,26px);font-weight:600;line-height:1.65;color:#fff}
+.alujain-feature-desc{font-size:15px;line-height:1.9;color:#b9c9dc;margin-top:16px;max-width:440px}
+.alujain-feature-topics{display:flex;flex-wrap:wrap;gap:8px;margin-top:23px}
+.alujain-feature-topics span{font-size:11px;padding:5px 10px;border:1px solid #33475f;border-radius:7px;color:#c8d9eb}
+.alujain-feature-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:32px}
+.alujain-read{display:inline-flex;align-items:center;gap:25px;background:#e8f4ff;color:#102e4d;padding:12px 18px;border-radius:12px;font-size:14px;font-weight:600}
+.alujain-read span{transition:transform .2s}.alujain-feature-date{font-size:12px;color:#a7bfd8}
+.alujain-feature-visual{position:relative;min-height:440px;overflow:hidden;background:#183d64}
+.alujain-night{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:52% center;transition:transform .5s}
+.alujain-feature-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#061629c9,transparent 65%);pointer-events:none}
+.alujain-day-frame{position:absolute;z-index:1;bottom:48px;left:26px;width:44%;aspect-ratio:1.95;border:3px solid #d8ebffb3;border-radius:12px;overflow:hidden;box-shadow:0 12px 35px #0007;transform:rotate(-4deg)}
+.alujain-day-frame img{width:100%;height:100%;object-fit:cover}
+.alujain-visual-label{position:absolute;bottom:20px;right:25px;color:#d8e6f4;font-size:11px;z-index:1;letter-spacing:.4px}
+.alujain-feature:focus-visible{outline:3px solid #2998ed;outline-offset:5px}
+@media(hover:hover){.alujain-feature:hover{transform:translateY(-4px);box-shadow:0 25px 55px -25px #09244090}.alujain-feature:hover .alujain-night{transform:scale(1.035)}.alujain-feature:hover .alujain-read span{transform:translateX(-4px)}}
+@media(max-width:760px){.alujain-feature{grid-template-columns:1fr}.alujain-feature-visual{grid-row:1;min-height:240px}.alujain-feature-copy{padding:27px}.alujain-feature-en{margin-top:22px}.alujain-day-frame{width:32%;bottom:36px;left:20px}.alujain-feature-bottom{gap:14px}.alujain-feature h3{font-size:42px}}
+@media(prefers-reduced-motion:reduce){.alujain-feature,.alujain-night,.alujain-read span{transition:none}.alujain-feature:hover,.alujain-feature:hover .alujain-night,.alujain-feature:hover .alujain-read span{transform:none}}
+
+/* Keep the Alujain sample at the standard report-card width. */
+.alujain-feature{grid-column:auto;display:flex;flex-direction:column;border-radius:18px;align-self:start}
+.alujain-feature-visual{order:-1;min-height:0;height:auto;aspect-ratio:2.1;flex:none}
+.alujain-feature-copy{padding:22px}
+.alujain-feature-meta{font-size:11px;gap:10px}
+.alujain-free{padding:3px 9px}
+.alujain-feature-en{font-size:10px;margin-top:18px;letter-spacing:2px}
+.alujain-feature h3{font-size:32px;margin:6px 0 8px}
+.alujain-feature-title{font-size:18px;line-height:1.6}
+.alujain-feature-desc,.alujain-feature-topics,.alujain-visual-label{display:none}
+.alujain-feature-bottom{margin-top:20px;gap:12px}
+.alujain-read{font-size:12px;padding:10px 12px;gap:12px;border-radius:9px}
+.alujain-feature-date{font-size:10px}
+.alujain-day-frame{width:31%;bottom:15px;left:17px;border-width:2px;border-radius:8px}

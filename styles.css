@@ -8483,3 +8483,14 @@ body[data-page="sponsorship-motion"] .sp-final-grid {
     animation: none !important;
   }
 }
+
+/* Alsagri identity: scalable navy wordmark and ascending falcon emblem. */
+.brand-logo-img{width:clamp(160px,16vw,216px);max-height:62px}
+.brand-logo-inverse{display:none}
+[data-mode="dark"] .brand-logo-default{display:none}
+[data-mode="dark"] .brand-logo-inverse{display:block}
+.brand-mark-img{background:transparent;border:0;box-shadow:none;border-radius:0;overflow:visible}
+.brand-mark-img img{object-fit:contain}
+@media(max-width:720px){.brand-logo-img{width:154px;max-height:48px}}
+
+.foot-brand{display:inline-block;margin-bottom:24px}.foot-brand .brand-logo-img{width:170px;max-height:none}

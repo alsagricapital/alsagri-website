@@ -108,7 +108,7 @@ function CountUpText({ value, as = 'span', className = '' }) {
 function BrandMark({ size = 28 }) {
   return (
     <span className="brand-mark-img" style={{ width: size, height: size }}>
-      <img src="assets/alsagri-icon-dark.png" alt="" loading="eager" decoding="async" />
+      <img src="assets/alsagri-symbol.svg" alt="" loading="eager" decoding="async" />
     </span>
   );
 }
@@ -260,13 +260,8 @@ function Nav({ currentPage, drawerOpen, setDrawerOpen }) {
     <header className={'nav ' + (scrolled ? 'scrolled' : '')}>
       <div className="wrap nav-inner">
         <a className="brand" href="index.html" aria-label="Alsagri Capital">
-          <img
-            className="brand-logo-img"
-            src="assets/alsagri-logo-horizontal.png"
-            alt="Alsagri Capital"
-            loading="eager"
-            decoding="async"
-          />
+          <img className="brand-logo-img brand-logo-default" src="assets/alsagri-logo.svg" alt="الصقري — Alsagri Capital" loading="eager" decoding="async" />
+          <img className="brand-logo-img brand-logo-inverse" src="assets/alsagri-logo-light.svg" alt="الصقري — Alsagri Capital" loading="eager" decoding="async" />
         </a>
         <nav>
           <ul className="nav-links">
@@ -2069,6 +2064,10 @@ function Footer() {
   return (
     <footer className="foot">
       <div className="wrap foot-inner">
+        <a className="foot-brand" href="index.html" aria-label="الصقري — الرئيسية">
+          <img className="brand-logo-img brand-logo-default" src="assets/alsagri-logo.svg" alt="الصقري — Alsagri Capital" loading="lazy" />
+          <img className="brand-logo-img brand-logo-inverse" src="assets/alsagri-logo-light.svg" alt="الصقري — Alsagri Capital" loading="lazy" />
+        </a>
         <div className="foot-row">
           <div>{isEnglish ? 'Alsagri - All rights reserved - 2026' : 'الصقري - جميع الحقوق محفوظة - 2026'}</div>
           <div className="mono">{isEnglish ? 'Riyadh · KSA · Financial market analysis' : 'Riyadh · KSA · TASI Listed Equities'}</div>

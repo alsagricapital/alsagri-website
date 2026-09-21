@@ -1,44 +1,48 @@
-# Private page analytics
+# Private server-side analytics
 
-Google Analytics account: **ALSAGRI**. Web stream: **ALSAGRI Website**.
-Measurement ID: `G-4L8P90SQCC` (a public routing identifier, not an access credential).
+## Current dashboard
+Netlify Web Analytics was enabled on September 21, 2026 for project
+`alsagricapital`, owned by team `alsagria1`.
+The activation screen stated that the team's plan includes Analytics for all
+projects. The billing page confirmed the current Free plan.
 
-The private dashboard is in the owner's Google Analytics account. No reporting
-credentials, dashboard data, or public visitor counter are included in the site.
+Private dashboard:
+https://app.netlify.com/projects/alsagricapital/analytics-and-metrics/analytics
 
-## Page coverage
+Sign in using the owner's existing Netlify account, alsagria1@gmail.com.
+Do not add this private dashboard as a public website link.
 
-Each HTML page includes one shared loader in `<head>`:
+## Measurement
+Netlify derives pageviews, sources, locations and estimated unique visitors from
+CDN server logs. The site adds no Google tag, consent popup, analytics cookie or
+visitor identifier. analytics.js sends no measurement requests.
 
-```html
-<script defer src="analytics.js?v=20260919"></script>
-```
+Pageviews include successful HTML responses (200, 201 or 304), not every image or
+script request. Unique visitors use IP addresses and are not verified people.
+Shared networks, changing IPs and automated traffic can affect interpretation.
+Data updates hourly. Available history depends on the hosting plan; at activation
+the dashboard displayed the last 24 hours.
 
-Include this once in future HTML reports and pages. The loader runs only on the
-HTTPS production domain (including `www`); local files, localhost and Netlify
-deploy previews do not send measurements. `/` and `/index.html` share one page
-identity, as do extensionless and `.html` URLs. Query strings and fragments are
-excluded from measured page URLs; referrers are reduced to their origin.
+Provider reference:
+https://docs.netlify.com/manage/monitoring/web-analytics/how-web-analytics-works/
 
-## Consent and scope
+## Legacy Google Analytics
+The previous property and its historical data have not been deleted:
+https://analytics.google.com/analytics/web/#/a408829542p555112120/realtime/pages
 
-The Google tag is loaded only after the visitor accepts analytics. The choice is
-stored locally for 180 days. Declining or withdrawing consent stops subsequent
-collection; the footer settings control reopens the choice. Advertising storage,
-ad personalization and Google Signals are disabled. Enhanced measurement was
-disabled on the web stream, leaving standard page views; keep history-based
-automatic page views disabled to avoid counting report anchor navigation.
+The site no longer sends new events to measurement ID `G-4L8P90SQCC`.
+The analytics.js filename remains for compatibility with existing pages. It
+disables the old Google tag and expires accessible legacy _ga cookies, then adds
+a plain Privacy link. It never changes a previous refusal into permission,
+reads a saved consent preference, or writes a new analytics identifier.
 
-The visitor notice is `privacy.html`. Local UI preview is available with
-`?analytics-preview=1` on localhost; this preview never loads Google's tag.
+## Maintenance
+Include exactly one shared script in each HTML page:
+`<script defer src="analytics.js?v=20260921-server"></script>`
 
-## Reports and verification
+This cleanup/footer script runs only on the HTTPS production host and optional
+localhost UI preview (`?analytics-preview=1`). This host check applies to the
+script, not to Netlify's independent server-side collection.
 
-In Google Analytics, use **Reports → Engagement → Pages and screens** (or the
-engagement collection under business objectives) for per-page views and users,
-and **Realtime** to verify recent visits. User counts are browser-based estimates,
-not an exact count of individual people. Declined or blocked analytics is not
-counted. Collection starts after installation and consent; it does not backfill
-earlier site visits.
-
-Run the focused checks with `node --test scripts/analytics.test.cjs`.
+Privacy notice: privacy.html.
+Run checks with `node --test scripts/analytics.test.cjs`.

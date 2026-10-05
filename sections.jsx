@@ -253,6 +253,7 @@ function Nav({ currentPage, drawerOpen, setDrawerOpen }) {
     { id: 'tools',     label: isEnglish ? 'Tools' : 'أدوات مفيدة', n: '03', href: 'tools.html' },
     { id: 'cfa',       label: isEnglish ? 'CFA Resources' : 'مصادر CFA',   n: '04', href: 'cfa.html' },
     { id: 'newsletter', label: isEnglish ? 'Newsletter' : 'النشرة البريدية', n: '05', href: 'newsletter.html' },
+    { id: 'store', label: isEnglish ? 'Store' : 'المتجر', n: '06', href: 'https://store.alsagricapital.com', external: true },
   ];
 
   return (
@@ -273,7 +274,7 @@ function Nav({ currentPage, drawerOpen, setDrawerOpen }) {
                     <small>{isEnglish ? 'Coming soon' : 'قريبًا'}</small>
                   </span>
                 ) : (
-                  <a href={it.href} className={currentPage === it.id ? 'active' : ''}>{it.label}</a>
+                  <a href={it.href} className={currentPage === it.id ? 'active' : ''} target={it.external ? '_blank' : undefined} rel={it.external ? 'noopener noreferrer' : undefined}>{it.label}</a>
                 )}
               </li>
             ))}
@@ -320,7 +321,7 @@ function Nav({ currentPage, drawerOpen, setDrawerOpen }) {
                 <small>{isEnglish ? 'Coming soon' : 'قريبًا'}</small>
               </span>
             ) : (
-              <a href={it.href} onClick={() => setDrawerOpen(false)}><span>{it.label}</span></a>
+              <a href={it.href} target={it.external ? '_blank' : undefined} rel={it.external ? 'noopener noreferrer' : undefined} onClick={() => setDrawerOpen(false)}><span>{it.label}</span></a>
             )}
           </li>
         ))}

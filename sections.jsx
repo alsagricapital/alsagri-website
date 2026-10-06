@@ -657,7 +657,7 @@ function ReportCard({ r, catLabel, viewCount, viewsLabel = 'مشاهدات', com
           {!compact && <div className="rpt-co">{r.co}</div>}
           {viewsPlacement !== 'ticker' && viewsBadge}
           {!compact && <div className="rpt-title">{r.title}</div>}
-          {!r.cover && <Sparkline data={r.spark} />}
+          {!r.cover && r.spark && <Sparkline data={r.spark} />}
           {r.metrics && !r.cover && (
             <div className="rpt-metrics">
               {r.metrics.map((m) => (

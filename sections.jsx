@@ -881,6 +881,7 @@ function ServiceDetail() {
   const reports = window.REPORTS.filter((r) => r.cat === serviceId &&
     (!isEarnings || r.quarter === (archiveQuarter || CURRENT_EARNINGS_QUARTER)));
   const EARNINGS_ARCHIVES = [
+    { quarter: 'Q2 2026', href: 'service-earnings-archive-q2-2026.html', title: 'أرشيف الربع الثاني 2026' },
     { quarter: 'Q1 2026', href: 'service-earnings-archive-q1-2026.html', title: 'أرشيف الربع الأول 2026' },
   ];
   const catLabel = ({
@@ -915,7 +916,7 @@ function ServiceDetail() {
               <span className="kicker">{reports.length === 1 ? 'تقرير واحد' : `${reports.length} تقارير`}</span>
             </div>
             {isEarnings && archiveQuarter
-              ? <h2>أرشيف <span style={{ color: 'var(--accent)' }}>الربع الأول 2026</span></h2>
+              ? <h2>أرشيف <span style={{ color: 'var(--accent)' }}>{archiveQuarter === 'Q2 2026' ? 'الربع الثاني 2026' : 'الربع الأول 2026'}</span></h2>
               : isEarnings
                 ? <h2>مكالمات <span style={{ color: 'var(--accent)' }}>الربع الثالث 2026</span></h2>
                 : <h2>نماذج من <span style={{ color: 'var(--accent)' }}>{service.ar}</span></h2>}

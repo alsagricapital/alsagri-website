@@ -874,7 +874,15 @@ function ServiceDetail() {
   const service = window.SERVICES.find((s) => s.id === serviceId);
   if (!service) return <div className="wrap" style={{ padding: '80px 0' }}>الخدمة غير موجودة</div>;
 
-  const reports = window.REPORTS.filter((r) => r.cat === serviceId);
+  // Earnings: main page shows the current quarter; archive pages set <body data-archive="Q1 2026">
+  const CURRENT_EARNINGS_QUARTER = 'Q3 2026';
+  const archiveQuarter = document.body.dataset.archive || null;
+  const isEarnings = serviceId === 'earnings';
+  const reports = window.REPORTS.filter((r) => r.cat === serviceId &&
+    (!isEarnings || r.quarter === (archiveQuarter || CURRENT_EARNINGS_QUARTER)));
+  const EARNINGS_ARCHIVES = [
+    { quarter: 'Q1 2026', href: 'service-earnings-archive-q1-2026.html', title: 'أرشيف الربع الأول 2026' },
+  ];
   const catLabel = ({
     earnings: 'EARNINGS CALL',
     brokerage: 'RESEARCH',
@@ -895,9 +903,9 @@ function ServiceDetail() {
       <section className="section first">
         <div className="wrap">
           <div style={{ marginBottom: 32 }}>
-            <a href="services.html" style={{ color: 'var(--ink-soft)', textDecoration: 'none', fontSize: 13, fontFamily: "'IBM Plex Mono', monospace", display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+            <a href={archiveQuarter ? 'service-earnings.html' : 'services.html'} style={{ color: 'var(--ink-soft)', textDecoration: 'none', fontSize: 13, fontFamily: "'IBM Plex Mono', monospace", display: 'inline-flex', alignItems: 'center', gap: 8 }}>
               <span>→</span>
-              <span>عودة للخدمات</span>
+              <span>{archiveQuarter ? 'عودة لمكالمات الربع الثالث' : 'عودة للخدمات'}</span>
             </a>
           </div>
 
@@ -906,8 +914,16 @@ function ServiceDetail() {
               <span className="num">/{service.num} · نماذج</span>
               <span className="kicker">{reports.length === 1 ? 'تقرير واحد' : `${reports.length} تقارير`}</span>
             </div>
-            <h2>نماذج من <span style={{ color: 'var(--accent)' }}>{service.ar}</span></h2>
+            {isEarnings && archiveQuarter
+              ? <h2>أرشيف <span style={{ color: 'var(--accent)' }}>الربع الأول 2026</span></h2>
+              : isEarnings
+                ? <h2>مكالمات <span style={{ color: 'var(--accent)' }}>الربع الثالث 2026</span></h2>
+                : <h2>نماذج من <span style={{ color: 'var(--accent)' }}>{service.ar}</span></h2>}
           </div>
+
+          {isEarnings && !archiveQuarter && reports.length === 0 && (
+            <p className="earnings-empty reveal">تُنشر تغطيات مكالمات الربع الثالث 2026 هنا تباعاً خلال موسم النتائج.</p>
+          )}
 
           {serviceId === 'brokerage' && <BrokerageAccessBanner />}
 
@@ -916,6 +932,19 @@ function ServiceDetail() {
           </div>
 
           {serviceId === 'qualitative' && <QualitativeMarketBanner />}
+
+          {isEarnings && !archiveQuarter && (
+            <div className="earnings-archive-list reveal">
+              <div className="label"><span className="num">الأرشيف</span></div>
+              {EARNINGS_ARCHIVES.map((a) => (
+                <a className="earnings-archive-link" key={a.href} href={a.href}>
+                  <span className="eal-kicker">ARCHIVE · {a.quarter}</span>
+                  <strong>{a.title}</strong>
+                  <span className="eal-arr">←</span>
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       </section>
     </React.Fragment>);

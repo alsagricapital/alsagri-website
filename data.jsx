@@ -39,8 +39,21 @@ const SERVICES = [
 ];
 
 const REPORTS = [
+  // ── Earnings calls · Q3 2026 ───────────────────────────────────
   {
     cat: 'earnings',
+    quarter: 'Q3 2026',
+    co: 'المراعي',
+    ticker: '2280.SR',
+    title: 'مكالمة نتائج الربع الثالث 2026',
+    desc: 'الترجمة العربية الكاملة للمكالمة: نمو الإيرادات 11%، أثر تكاليف الأعلاف والطاقة، رفع المخزون، النفقات الرأسمالية، و16 سؤالاً من المحللين.',
+    date: '2026·10·06',
+    cover: 'banners/almarai-q3-2026.png',
+    link: 'earnings-almarai-q3-2026.html',
+  },
+  {
+    cat: 'earnings',
+    quarter: 'Q1 2026',
     co: 'لوسيد',
     ticker: 'LCID',
     title: 'مكالمة عرض النتائج — الربع الأول 2026',
@@ -51,6 +64,7 @@ const REPORTS = [
   },
   {
     cat: 'earnings',
+    quarter: 'Q1 2026',
     co: 'الأمار',
     ticker: '6014.SR',
     title: 'مكالمة عرض النتائج — 19 مايو 2026',
@@ -61,6 +75,7 @@ const REPORTS = [
   },
   {
     cat: 'earnings',
+    quarter: 'Q1 2026',
     co: 'لوبريف',
     ticker: '2223.SR',
     title: 'مكالمة عرض النتائج — 11 مايو 2026',
@@ -72,6 +87,7 @@ const REPORTS = [
   // ── Earnings calls ─────────────────────────────────────────────
   {
     cat: 'earnings',
+    quarter: 'Q1 2026',
     co: 'أرامكو السعودية',
     ticker: '2222.SR',
     title: 'مكالمة نتائج الربع الأول 2026',
@@ -82,6 +98,7 @@ const REPORTS = [
   },
   {
     cat: 'earnings',
+    quarter: 'Q1 2026',
     co: 'أفالون فارما',
     ticker: '4017.SR',
     title: 'مكالمة نتائج الربع الأول 2026',
@@ -92,6 +109,7 @@ const REPORTS = [
   },
   {
     cat: 'earnings',
+    quarter: 'Q1 2026',
     co: 'المراعي',
     ticker: '2280.SR',
     title: 'مكالمة نتائج الربع الأول 2026',
@@ -102,6 +120,7 @@ const REPORTS = [
   },
   {
     cat: 'earnings',
+    quarter: 'Q1 2026',
     co: 'وقت اللياقة',
     ticker: '1830.SR',
     title: 'مكالمة نتائج الربع الأول 2026',
@@ -112,6 +131,7 @@ const REPORTS = [
   },
   {
     cat: 'earnings',
+    quarter: 'Q1 2026',
     co: 'رسن',
     ticker: '9558.SR',
     title: 'مكالمة نتائج الربع الأول 2026',
@@ -122,6 +142,7 @@ const REPORTS = [
   },
   {
     cat: 'earnings',
+    quarter: 'Q1 2026',
     co: 'سال',
     ticker: '4263.SR',
     title: 'مكالمة نتائج الربع الأول 2026',

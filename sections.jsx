@@ -252,8 +252,9 @@ function Nav({ currentPage, drawerOpen, setDrawerOpen }) {
     { id: 'services',  label: isEnglish ? 'Services' : 'الخدمات',     n: '02', href: 'services.html' },
     { id: 'tools',     label: isEnglish ? 'Tools' : 'أدوات مفيدة', n: '03', href: 'tools.html' },
     { id: 'cfa',       label: isEnglish ? 'CFA Resources' : 'مصادر CFA',   n: '04', href: 'cfa.html' },
-    { id: 'newsletter', label: isEnglish ? 'Newsletter' : 'النشرة البريدية', n: '05', href: 'newsletter.html' },
-    { id: 'store', label: isEnglish ? 'Store' : 'المتجر', n: '06', href: 'https://store.alsagricapital.com', external: true },
+    { id: 'general-reports', label: isEnglish ? 'General Reports' : 'تقارير عامة', n: '05', href: 'general-reports.html' },
+    { id: 'newsletter', label: isEnglish ? 'Newsletter' : 'النشرة البريدية', n: '06', href: 'newsletter.html' },
+    { id: 'store', label: isEnglish ? 'Store' : 'المتجر', n: '07', href: 'https://store.alsagricapital.com', external: true },
   ];
 
   return (
@@ -2253,6 +2254,36 @@ function Tools() {
 }
 
 /* ── CFA Resources page ───────────────────────────────────────────────── */
+function GeneralReports() {
+  return (
+    <React.Fragment>
+      <PageBanner
+        num="05"
+        eyebrow="GENERAL REPORTS"
+        title="تقارير عامة"
+        sub="تقارير وملفات تفاعلية عن القطاعات والأسواق والموضوعات التي نتابعها خارج تغطية شركة بعينها." />
+      <section className="section first general-reports-section">
+        <div className="wrap">
+          <a className="general-report-card" href="ukmto-maritime-incidents-2026.html" aria-label="افتح سجل الحوادث البحرية 2026">
+            <span className="general-report-art" aria-hidden="true">
+              <span className="general-report-route"></span>
+              <span className="general-report-port port-one"></span>
+              <span className="general-report-port port-two"></span>
+              <span className="general-report-art-label">UKMTO <b>2026</b></span>
+            </span>
+            <span className="general-report-copy">
+              <span className="general-report-kicker">النقل البحري · تقرير تفاعلي</span>
+              <strong>رصد الحوادث البحرية 2026</strong>
+              <span className="general-report-description">بلاغات UKMTO من فبراير إلى أكتوبر، مع أسماء السفن المتأثرة وأضرارها وارتباطها بالدول، وخيارات للبحث والتصفية.</span>
+              <span className="general-report-meta"><span>آخر تحديث: 18 أكتوبر 2026</span><span className="general-report-cta">استعرض التقرير <span aria-hidden="true">←</span></span></span>
+            </span>
+          </a>
+        </div>
+      </section>
+    </React.Fragment>
+  );
+}
+
 function CFAResources() {
   return (
     <section className="section first cfa-coming-soon-page">
@@ -2488,7 +2519,7 @@ function Newsletter() {
   return (
     <React.Fragment>
       <PageBanner
-        num="05"
+        num="06"
         eyebrow="NEWSLETTER"
         title="النشرة البريدية"
         sub="ملخصات مرتبة تصل إلى بريدك: تقارير، قراءات أسبوعية، ومختارات تحليلية تساعدك على متابعة السوق السعودي بهدوء ووضوح." />
@@ -2555,4 +2586,4 @@ function Newsletter() {
     </React.Fragment>);
 }
 
-Object.assign(window, { Nav, Hero, About, Services, ServiceDetail, Disclaimer, Contact, Tools, CFAResources, Newsletter, SponsorshipQ22026, Footer, useReveal, BrandMark, PageBanner, ReportCard });
+Object.assign(window, { Nav, Hero, About, Services, ServiceDetail, Disclaimer, Contact, Tools, GeneralReports, CFAResources, Newsletter, SponsorshipQ22026, Footer, useReveal, BrandMark, PageBanner, ReportCard });

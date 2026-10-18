@@ -219,7 +219,7 @@ p { margin: 0; }
   height: 1px; background: var(--accent);
 }
 @media (max-width: 1120px) {
-  .nav-links { gap: 22px; }
+  .nav-links { gap: 16px; }
   .nav-links a, .nav-links .nav-coming-soon { font-size: 13px; }
   .brand-logo-img { width: clamp(142px, 14vw, 178px); }
 }
@@ -8590,3 +8590,45 @@ body[data-page="sponsorship-motion"] .sp-final-grid {
 .earnings-archive-link strong { font-size: 18px; flex: 1; }
 .earnings-archive-link .eal-arr { color: var(--accent); font-size: 18px; }
 @media (max-width: 680px) { .earnings-archive-link { flex-wrap: wrap; } }
+
+/* General reports */
+.general-reports-section { min-height: 430px; }
+.general-report-card {
+  display: grid; grid-template-columns: minmax(210px, 30%) minmax(0, 1fr);
+  width: min(100%, 900px); min-height: 222px; overflow: hidden;
+  border: 1px solid var(--line); border-radius: 18px;
+  background: var(--surface); color: var(--ink); text-decoration: none;
+  box-shadow: 0 18px 55px -42px rgba(10, 26, 51, .4);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.general-report-card:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 22px 55px -32px rgba(10, 26, 51, .3); }
+.general-report-card:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+.general-report-art {
+  position: relative; display: block; min-height: 222px; overflow: hidden;
+  background: radial-gradient(circle at 24% 23%, rgba(104, 172, 220, .3), transparent 38%), linear-gradient(145deg, #102d4e, #07172c 78%);
+}
+.general-report-art::before {
+  content: ""; position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px);
+  background-size: 34px 34px; transform: rotate(-10deg) scale(1.2);
+}
+.general-report-route { position: absolute; width: 75%; height: 45%; right: 14%; top: 29%; border: 2px dashed rgba(157, 207, 243, .7); border-right-color: transparent; border-radius: 55% 42% 48% 35%; transform: rotate(-22deg); }
+.general-report-port { position: absolute; width: 9px; height: 9px; border: 2px solid #cfe8fa; border-radius: 50%; background: #0f345b; box-shadow: 0 0 0 6px rgba(207,232,250,.1); }
+.general-report-port.port-one { right: 25%; top: 30%; }
+.general-report-port.port-two { left: 25%; bottom: 29%; background: #e7ae74; border-color: #ffe3c4; }
+.general-report-art-label { position: absolute; right: 22px; bottom: 18px; color: #e4f2fc; direction: ltr; font: 600 13px 'IBM Plex Mono', monospace; letter-spacing: .1em; }
+.general-report-art-label b { color: #f7c492; }
+.general-report-copy { display: flex; flex-direction: column; align-items: flex-start; padding: 30px 34px 27px; }
+.general-report-kicker { color: var(--accent-2); font-size: 12px; font-weight: 600; }
+.general-report-copy strong { margin-top: 7px; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.45; color: var(--navy); }
+.general-report-description { margin-top: 7px; color: var(--ink-soft); font-size: 14px; line-height: 1.9; }
+.general-report-meta { display: flex; width: 100%; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 22px; font-size: 12px; color: var(--ink-soft); }
+.general-report-cta { color: var(--navy); font-weight: 700; }
+.general-report-cta span { color: var(--accent-2); margin-inline-start: 5px; }
+@media (max-width: 650px) {
+  .general-report-card { grid-template-columns: 1fr; }
+  .general-report-art { min-height: 165px; }
+  .general-report-copy { padding: 24px; }
+  .general-report-meta { padding-top: 18px; }
+}
+@media (prefers-reduced-motion: reduce) { .general-report-card { transition: none; } .general-report-card:hover { transform: none; } }

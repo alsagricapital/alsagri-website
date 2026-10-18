@@ -67,6 +67,7 @@ function App() {
     about:    About,
     services: Services,
     tools:    Tools,
+    'general-reports': GeneralReports,
     cfa:      CFAResources,
     newsletter: Newsletter,
     contact:  Contact,

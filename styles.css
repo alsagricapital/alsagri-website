@@ -8593,6 +8593,7 @@ body[data-page="sponsorship-motion"] .sp-final-grid {
 
 /* General reports */
 .general-reports-section { min-height: 430px; }
+.general-reports-list { display: grid; gap: 24px; }
 .general-report-card {
   display: grid; grid-template-columns: minmax(210px, 30%) minmax(0, 1fr);
   width: min(100%, 900px); min-height: 222px; overflow: hidden;
@@ -8618,6 +8619,11 @@ body[data-page="sponsorship-motion"] .sp-final-grid {
 .general-report-port.port-two { left: 25%; bottom: 29%; background: #e7ae74; border-color: #ffe3c4; }
 .general-report-art-label { position: absolute; right: 22px; bottom: 18px; color: #e4f2fc; direction: ltr; font: 600 13px 'IBM Plex Mono', monospace; letter-spacing: .1em; }
 .general-report-art-label b { color: #f7c492; }
+.earnings-report-art { background: radial-gradient(circle at 70% 15%, rgba(105, 185, 240, .34), transparent 42%), linear-gradient(145deg, #0c3157, #07182d 82%); }
+.earnings-report-graphic { position: absolute; inset: 6px 0 0; width: 100%; height: calc(100% - 6px); }
+.earnings-report-chip { position: absolute; z-index: 1; right: 18px; top: 15px; padding: 4px 9px; border: 1px solid rgba(225, 242, 255, .32); border-radius: 7px; background: rgba(7, 24, 45, .48); color: #e6f3ff; font-size: 11px; font-weight: 700; }
+.earnings-report-art-label { position: absolute; z-index: 1; left: 18px; bottom: 14px; color: #e4f2fc; direction: ltr; font: 600 13px 'IBM Plex Mono', monospace; letter-spacing: .1em; }
+.earnings-report-art-label b { color: #f7c492; }
 .general-report-copy { display: flex; flex-direction: column; align-items: flex-start; padding: 30px 34px 27px; }
 .general-report-kicker { color: var(--accent-2); font-size: 12px; font-weight: 600; }
 .general-report-copy strong { margin-top: 7px; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.45; color: var(--navy); }

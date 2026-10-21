@@ -2263,7 +2263,29 @@ function GeneralReports() {
         title="تقارير عامة"
         sub="تقارير وملفات تفاعلية عن القطاعات والأسواق والموضوعات التي نتابعها خارج تغطية شركة بعينها." />
       <section className="section first general-reports-section">
-        <div className="wrap">
+        <div className="wrap general-reports-list">
+          <a className="general-report-card" href="earnings-forecasts-2026-2025.html" aria-label="افتح توقعات أرباح الشركات والنتائج الفعلية">
+            <span className="general-report-art earnings-report-art" aria-hidden="true">
+              <span className="earnings-report-chip">توقعات × فعلي</span>
+              <svg className="earnings-report-graphic" viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs><linearGradient id="earningsBarGradient" x1="0" y1="0" x2="0" y2="1"><stop stopColor="#85c6ff"/><stop offset="1" stopColor="#3679b4"/></linearGradient></defs>
+                <path d="M28 178H334M28 124H334M28 70H334" stroke="#bcdaf0" strokeOpacity=".22" strokeDasharray="4 7"/>
+                <rect x="53" y="113" width="31" height="65" rx="6" fill="url(#earningsBarGradient)"/>
+                <rect x="114" y="92" width="31" height="86" rx="6" fill="url(#earningsBarGradient)"/>
+                <rect x="175" y="105" width="31" height="73" rx="6" fill="url(#earningsBarGradient)"/>
+                <rect x="236" y="65" width="31" height="113" rx="6" fill="url(#earningsBarGradient)"/>
+                <path d="M68 105L129 80L190 94L251 53L306 69" stroke="#f1bf7b" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+                <circle cx="68" cy="105" r="5" fill="#ffe0ad"/><circle cx="129" cy="80" r="5" fill="#ffe0ad"/><circle cx="190" cy="94" r="5" fill="#ffe0ad"/><circle cx="251" cy="53" r="5" fill="#ffe0ad"/><circle cx="306" cy="69" r="5" fill="#ffe0ad"/>
+              </svg>
+              <span className="earnings-report-art-label">Q3 <b>2026</b></span>
+            </span>
+            <span className="general-report-copy">
+              <span className="general-report-kicker">الأسهم السعودية · جدول تفاعلي</span>
+              <strong>توقعات أرباح الشركات</strong>
+              <span className="general-report-description">مقارنة توقعات بيوت الخبرة بالنتائج الفعلية للربع الثالث 2026، مع أرباع 2026 و2025 السابقة. جميع القيم بمليون ريال.</span>
+              <span className="general-report-meta"><span>آخر تحديث: 21 أكتوبر 2026</span><span className="general-report-cta">استعرض التوقعات <span aria-hidden="true">←</span></span></span>
+            </span>
+          </a>
           <a className="general-report-card" href="ukmto-maritime-incidents-2026.html" aria-label="افتح سجل الحوادث البحرية 2026">
             <span className="general-report-art" aria-hidden="true">
               <span className="general-report-route"></span>

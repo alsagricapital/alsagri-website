@@ -15,6 +15,9 @@
 <meta property="og:image" content="https://alsagricapital.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@AlsagriCapital">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script defer src="analytics.js?v=20260921-server"></script>
   <style>
     :root{--navy:#102b4e;--blue:#2363aa;--pale:#edf4fb;--line:#dce5ee;--text:#18314e;--muted:#61768b;--loss:#a43c3c}
@@ -101,9 +104,62 @@
     tbody tr:hover td.average-value{background:#d5e7f8}
     .error-mid{color:#1763ac}
     .loss,.num.loss,.quarter td.actual-value.loss,#q3 td.actual-value.loss{color:var(--text)}
+    .site-nav,.site-section-banner{font-family:'IBM Plex Sans Arabic',Tahoma,Arial,sans-serif}
+    .site-nav{position:sticky;top:0;z-index:90;background:#fafaf7f2;backdrop-filter:blur(14px);border-bottom:1px solid #e5e8ee}
+    .site-nav-inner{max-width:1500px;min-height:68px;margin:auto;padding:0 26px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .site-brand{display:inline-flex;align-items:center;flex:none;text-decoration:none}
+    .site-brand img{display:block;width:clamp(150px,15vw,216px);max-height:48px;object-fit:contain}
+    .site-links{display:flex;align-items:center;gap:clamp(14px,2.2vw,36px)}
+    .site-links a,.site-coming-soon{position:relative;color:#54607a;text-decoration:none;font-size:14px;font-weight:500;white-space:nowrap}
+    .site-links a:hover,.site-links a[aria-current="page"]{color:#0a1a33}
+    .site-links a[aria-current="page"]::after{content:"";position:absolute;right:0;left:0;bottom:-7px;height:1px;background:#6b8fb5}
+    .site-coming-soon small{display:block;color:#c62828;text-align:center;font-size:10px;line-height:1.1}
+    .site-contact{display:inline-flex;align-items:center;gap:9px;flex:none;padding:10px 17px;border-radius:999px;background:#0a1a33;color:#fff;text-decoration:none;font-size:13px}
+    .site-contact::before{content:"";width:6px;height:6px;border-radius:50%;background:#6b8fb5;box-shadow:0 0 0 4px #6b8fb533}
+    .site-mobile-menu{display:none;position:relative}
+    .site-mobile-menu summary{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid #d8dce5;border-radius:8px;list-style:none;cursor:pointer;color:#0a1a33;font-size:21px;line-height:1}
+    .site-mobile-menu summary::-webkit-details-marker{display:none}
+    .site-mobile-panel{position:absolute;top:49px;left:-10px;width:min(330px,calc(100vw - 32px));padding:12px 20px 18px;border:1px solid #d8dce5;border-radius:14px;background:#fafaf7;box-shadow:0 20px 35px #0a1a3328}
+    .site-mobile-panel a,.site-mobile-panel span{display:block;padding:12px 0;border-bottom:1px solid #e5e8ee;color:#0a1a33;text-decoration:none;font-size:16px}
+    .site-mobile-panel .site-contact-mobile{margin-top:12px;padding:10px 14px;border:0;border-radius:999px;background:#0a1a33;color:#fff;text-align:center;font-size:14px}
+    .site-section-banner{background-color:#fafaf7;background-image:radial-gradient(#dce4eb 1px,transparent 1px);background-size:16px 16px;border-bottom:1px solid #e5e8ee}
+    .site-section-inner{max-width:1500px;margin:auto;padding:24px 26px 25px}
+    .site-section-inner .site-crumb{font-size:11px;letter-spacing:.08em;color:#7488a0}
+    .site-section-inner .site-crumb a{color:inherit;text-decoration:none}
+    .site-section-inner .site-crumb a:hover{text-decoration:underline}
+    .site-section-inner h2{margin:6px 0 2px;color:#0a1a33;font-size:clamp(23px,2.5vw,32px);line-height:1.35}
+    .site-section-inner p{margin:0;color:#54607a;font-size:13px}
+    @media(max-width:1050px){.site-links,.site-contact{display:none}.site-mobile-menu{display:block}.site-brand img{width:clamp(132px,42vw,168px);max-height:44px}}
+    @media(max-width:700px){.site-nav-inner{padding:0 18px}.site-section-inner{padding:18px 18px 20px}}
+    @media print{.site-nav,.site-section-banner{display:none}}
   </style>
 </head>
 <body>
+  <div class="site-nav">
+    <div class="site-nav-inner">
+      <a class="site-brand" href="index.html" aria-label="الصقري — الصفحة الرئيسية"><img src="assets/alsagri-logo.svg" alt="الصقري — Alsagri Capital"></a>
+      <nav class="site-links" aria-label="أقسام الموقع">
+        <a href="about.html">عن المنصة</a>
+        <a href="services.html">الخدمات</a>
+        <a href="tools.html">أدوات مفيدة</a>
+        <span class="site-coming-soon">مصادر CFA<small>قريباً</small></span>
+        <a href="general-reports.html" aria-current="page">تقارير عامة</a>
+        <a href="newsletter.html">النشرة البريدية</a>
+        <a href="https://store.alsagricapital.com" target="_blank" rel="noopener noreferrer">المتجر</a>
+      </nav>
+      <a class="site-contact" href="contact.html">تواصل معي</a>
+      <details class="site-mobile-menu"><summary aria-label="القائمة">☰</summary>
+        <nav class="site-mobile-panel" aria-label="أقسام الموقع على الجوال">
+          <a href="index.html">الرئيسية</a><a href="about.html">عن المنصة</a><a href="services.html">الخدمات</a><a href="tools.html">أدوات مفيدة</a><span>مصادر CFA — قريباً</span><a href="general-reports.html">تقارير عامة</a><a href="newsletter.html">النشرة البريدية</a><a href="https://store.alsagricapital.com" target="_blank" rel="noopener noreferrer">المتجر</a><a class="site-contact-mobile" href="contact.html">تواصل معي</a>
+        </nav>
+      </details>
+    </div>
+  </div>
+  <div class="site-section-banner"><div class="site-section-inner">
+    <div class="site-crumb"><a href="index.html">الرئيسية</a> / <a href="general-reports.html">تقارير عامة</a> / توقعات الأرباح</div>
+    <h2>تقارير عامة</h2>
+    <p>توقعات أرباح الشركات السعودية ومقارنتها بالنتائج الفعلية</p>
+  </div></div>
   <div class="wrap">
     <header>
       <a class="return-link" href="general-reports.html">← التقارير العامة</a>

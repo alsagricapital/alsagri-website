@@ -885,6 +885,8 @@ function ServiceDetail() {
     { quarter: 'Q2 2026', href: 'service-earnings-archive-q2-2026.html', title: 'أرشيف الربع الثاني 2026' },
     { quarter: 'Q1 2026', href: 'service-earnings-archive-q1-2026.html', title: 'أرشيف الربع الأول 2026' },
   ];
+  // Q1/Q2 2026 archives are temporarily closed (see _redirects). Set to true to reopen.
+  const EARNINGS_ARCHIVE_OPEN = false;
   const catLabel = ({
     earnings: 'EARNINGS CALL',
     brokerage: 'RESEARCH',
@@ -935,7 +937,7 @@ function ServiceDetail() {
 
           {serviceId === 'qualitative' && <QualitativeMarketBanner />}
 
-          {isEarnings && !archiveQuarter && (
+          {isEarnings && !archiveQuarter && EARNINGS_ARCHIVE_OPEN && (
             <div className="earnings-archive-list reveal">
               <div className="label"><span className="num">الأرشيف</span></div>
               {EARNINGS_ARCHIVES.map((a) => (
@@ -1419,13 +1421,25 @@ function SponsorshipQ22026() {
     'رسن': '113K',
     'سال': '165K',
   };
-  const previousExamples = window.REPORTS.filter((r) => r.cat === 'earnings' && !hiddenPreviousExamples.includes(r.co));
+  // Sponsorship sample cards link to the original X posts (not the site archive).
+  const sponsorQ1Examples = [
+    { cat: 'earnings', co: 'لوسيد', ticker: 'LCID', title: 'مكالمة عرض النتائج — الربع الأول 2026', desc: 'ملخص لأبرز ما ورد في مكالمة لوسيد حول نتائج الربع الأول، مسار التسليمات، السيولة، وتطورات الإنتاج والطلب.', date: '2026·05·24', cover: 'banners/lucid-q1-2026.png', link: 'https://x.com/AlsagriCapital/status/2058509712400748765?s=20' },
+    { cat: 'earnings', co: 'الأمار', ticker: '6014.SR', title: 'مكالمة عرض النتائج — 19 مايو 2026', desc: 'قراءة لأبرز النقاط التشغيلية والمالية في مكالمة شركة الأمار، مع متابعة أداء العلامات التجارية وتوسع الفروع.', date: '2026·05·19', cover: 'banners/alamar-q1-2026.png', link: 'https://x.com/AlsagriCapital/status/2056826874970636328?s=20' },
+    { cat: 'earnings', co: 'لوبريف', ticker: '2223.SR', title: 'مكالمة عرض النتائج — 11 مايو 2026', desc: 'استعراض لأداء لوبريف في الربع الأول، تطورات الهوامش، الطلب على زيوت الأساس، وأبرز توجيهات الإدارة.', date: '2026·05·11', cover: 'banners/luberef-q1-2026.png', link: 'https://x.com/AlsagriCapital/status/2054278258380673307?s=20' },
+    { cat: 'earnings', co: 'أرامكو السعودية', ticker: '2222.SR', title: 'مكالمة نتائج الربع الأول 2026', desc: 'استعراض أبرز ملاحظات الإدارة حول مستويات الإنتاج، التدفقات النقدية الحرة، وسياسة التوزيعات النقدية.', date: '2026·05·11', cover: 'banners/aramco-q1-2026.png', link: 'https://x.com/AlsagriCapital/status/2054657346824249766?s=20' },
+    { cat: 'earnings', co: 'أفالون فارما', ticker: '4017.SR', title: 'مكالمة نتائج الربع الأول 2026', desc: 'استعراض نتائج الشركة، نمو خط الإنتاج الدوائي، والتوسع التشغيلي.', date: '2026·05·13', cover: 'banners/avalon-pharma-q1-2026.png', link: 'https://x.com/AlsagriCapital/status/2055553928171868648?s=20' },
+    { cat: 'earnings', co: 'المراعي', ticker: '2280.SR', title: 'مكالمة نتائج الربع الأول 2026', desc: 'مناقشة هوامش الربحية، تكاليف الأعلاف، وأداء قطاعَي الألبان والمخبوزات في السوق المحلية والتصدير.', date: '2026·05·10', cover: 'banners/almarai-q1-2026.png', link: 'https://x.com/AlsagriCapital/status/2054465152372646322?s=20' },
+    { cat: 'earnings', co: 'وقت اللياقة', ticker: '1830.SR', title: 'مكالمة نتائج الربع الأول 2026', desc: 'استعراض نمو الإيرادات، إضافة الفروع الجديدة، وحركة الاشتراكات والاحتفاظ بالعملاء.', date: '2026·04·30', cover: 'banners/fitness-time-q1-2026.png', link: 'https://x.com/AlsagriCapital/status/2053427767115464956?s=20' },
+    { cat: 'earnings', co: 'رسن', ticker: '9558.SR', title: 'مكالمة نتائج الربع الأول 2026', desc: 'نمو محفظة المنتجات الرقمية، توسع قاعدة العملاء، وآفاق قطاع التأمين والتمويل.', date: '2026·05·06', cover: 'banners/rasan-q1-2026.png', link: 'https://x.com/AlsagriCapital/status/2052330335812157755?s=20' },
+    { cat: 'earnings', co: 'سال', ticker: '4263.SR', title: 'مكالمة نتائج الربع الأول 2026', desc: 'استعراض نمو أعمال المناولة الجوية والبرية، الاستثمارات الرأسمالية، وحركة التجارة الدولية.', date: '2026·05·06', cover: 'banners/sal-q1-2026.png', link: 'https://x.com/AlsagriCapital/status/2052042595316928522?s=20' },
+  ];
+  const previousExamples = sponsorQ1Examples.filter((r) => r.cat === 'earnings' && !hiddenPreviousExamples.includes(r.co));
   const saudiQ1NameMap = {
     'لوبريف': 'Luberef',
     'أرامكو السعودية': 'Saudi Aramco',
     'رسن': 'Rasan',
   };
-  const saudiQ1Examples = window.REPORTS
+  const saudiQ1Examples = sponsorQ1Examples
     .filter((r) => r.cat === 'earnings' && ['لوبريف', 'أرامكو السعودية', 'رسن'].includes(r.co))
     .map((r) => isEnglish ? { ...r, co: saudiQ1NameMap[r.co], title: 'Q1 2026 earnings call' } : r);
   const saudiQ2Examples = [

@@ -1,0 +1,8 @@
+# Q1/Q2 2026 earnings-call archives: temporarily closed.
+# To reopen: delete the rules below and set EARNINGS_ARCHIVE_OPEN = true in sections.jsx.
+/service-earnings-archive-q1-2026.html  /service-earnings.html  302!
+/service-earnings-archive-q1-2026       /service-earnings.html  302!
+/service-earnings-archive-q2-2026.html  /service-earnings.html  302!
+/service-earnings-archive-q2-2026       /service-earnings.html  302!
+/earnings-q1-2026/*                     /service-earnings.html  302!
+/earnings-q2-2026/*                     /service-earnings.html  302!
